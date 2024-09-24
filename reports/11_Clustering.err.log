@@ -1,0 +1,78 @@
+Traceback (most recent call last):
+  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import math
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+np.random.seed(123)
+
+def circulo(num_datos = 100,R = 1, minimo = 0,maximo= 1, center_x = 0 , center_y = 0):
+    pi = math.pi
+    r = R * np.sqrt(np.random.uniform(minimo, maximo, size = num_datos)) 
+    theta = np.random.uniform(minimo, maximo, size= num_datos) * 2 * pi
+
+    x = center_x + np.cos(theta) * r
+    y = center_y + np.sin(theta) * r
+
+    x = np.round(x,3)
+    y = np.round(y,3)
+
+    df = np.column_stack([x,y])
+    df = pd.DataFrame(df)
+    df.columns = ['x','y']
+    return(df)
+
+# Create data
+datos_1 = circulo(num_datos = 20,R = 10, center_x = 5, center_y = 30)
+datos_2 = circulo(num_datos = 20,R = 10, center_x = 20, center_y = 10)
+datos_3 = circulo(num_datos = 20,R = 10, center_x = 50, center_y = 50)
+
+data = datos_1.append(datos_2).append(datos_3)
+
+plt.scatter(datos_1['x'], datos_1['y'], c = 'b')
+plt.scatter(datos_2['x'], datos_2['y'], c = 'r')
+plt.scatter(datos_3['x'], datos_3['y'], c = 'g')
+plt.show()
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mAttributeError[0m                            Traceback (most recent call last)
+[1;32m~\AppData\Local\Temp\ipykernel_30236\414725396.py[0m in [0;36m?[1;34m()[0m
+[0;32m     25[0m [0mdatos_1[0m [1;33m=[0m [0mcirculo[0m[1;33m([0m[0mnum_datos[0m [1;33m=[0m [1;36m20[0m[1;33m,[0m[0mR[0m [1;33m=[0m [1;36m10[0m[1;33m,[0m [0mcenter_x[0m [1;33m=[0m [1;36m5[0m[1;33m,[0m [0mcenter_y[0m [1;33m=[0m [1;36m30[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0;32m     26[0m [0mdatos_2[0m [1;33m=[0m [0mcirculo[0m[1;33m([0m[0mnum_datos[0m [1;33m=[0m [1;36m20[0m[1;33m,[0m[0mR[0m [1;33m=[0m [1;36m10[0m[1;33m,[0m [0mcenter_x[0m [1;33m=[0m [1;36m20[0m[1;33m,[0m [0mcenter_y[0m [1;33m=[0m [1;36m10[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0;32m     27[0m [0mdatos_3[0m [1;33m=[0m [0mcirculo[0m[1;33m([0m[0mnum_datos[0m [1;33m=[0m [1;36m20[0m[1;33m,[0m[0mR[0m [1;33m=[0m [1;36m10[0m[1;33m,[0m [0mcenter_x[0m [1;33m=[0m [1;36m50[0m[1;33m,[0m [0mcenter_y[0m [1;33m=[0m [1;36m50[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0;32m     28[0m [1;33m[0m[0m
+[1;32m---> 29[1;33m [0mdata[0m [1;33m=[0m [0mdatos_1[0m[1;33m.[0m[0mappend[0m[1;33m([0m[0mdatos_2[0m[1;33m)[0m[1;33m.[0m[0mappend[0m[1;33m([0m[0mdatos_3[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m     30[0m [1;33m[0m[0m
+[0;32m     31[0m [0mplt[0m[1;33m.[0m[0mscatter[0m[1;33m([0m[0mdatos_1[0m[1;33m[[0m[1;34m'x'[0m[1;33m][0m[1;33m,[0m [0mdatos_1[0m[1;33m[[0m[1;34m'y'[0m[1;33m][0m[1;33m,[0m [0mc[0m [1;33m=[0m [1;34m'b'[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0;32m     32[0m [0mplt[0m[1;33m.[0m[0mscatter[0m[1;33m([0m[0mdatos_2[0m[1;33m[[0m[1;34m'x'[0m[1;33m][0m[1;33m,[0m [0mdatos_2[0m[1;33m[[0m[1;34m'y'[0m[1;33m][0m[1;33m,[0m [0mc[0m [1;33m=[0m [1;34m'r'[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+
+[1;32m~\miniconda3\Lib\site-packages\pandas\core\generic.py[0m in [0;36m?[1;34m(self, name)[0m
+[0;32m   5985[0m             [1;32mand[0m [0mname[0m [1;32mnot[0m [1;32min[0m [0mself[0m[1;33m.[0m[0m_accessors[0m[1;33m[0m[1;33m[0m[0m
+[0;32m   5986[0m             [1;32mand[0m [0mself[0m[1;33m.[0m[0m_info_axis[0m[1;33m.[0m[0m_can_hold_identifiers_and_holds_name[0m[1;33m([0m[0mname[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0;32m   5987[0m         ):
+[0;32m   5988[0m             [1;32mreturn[0m [0mself[0m[1;33m[[0m[0mname[0m[1;33m][0m[1;33m[0m[1;33m[0m[0m
+[1;32m-> 5989[1;33m         [1;32mreturn[0m [0mobject[0m[1;33m.[0m[0m__getattribute__[0m[1;33m([0m[0mself[0m[1;33m,[0m [0mname[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m
+[1;31mAttributeError[0m: 'DataFrame' object has no attribute 'append'
+
