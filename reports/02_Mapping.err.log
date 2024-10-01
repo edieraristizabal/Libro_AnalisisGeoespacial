@@ -1,0 +1,108 @@
+Traceback (most recent call last):
+  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# instalar 
+!pip install OWSLib
+
+from owslib.wms import WebMapService
+
+igac = WebMapService('https://mapas.igac.gov.co/server/services/carto/carto100000colombia2019/MapServer/WMSServer?request=GetCapabilities&service=WMS')
+
+print (igac.identification.type)
+
+print (igac.identification.title)
+
+list(igac.contents)[:5]
+
+print(  igac['1'].title )
+print(  igac['1'].queryable )
+print(  igac['1'].opaque )
+print(  igac['1'].boundingBox )
+print(  igac['1'].boundingBoxWGS84)
+print(  igac['1'].crsOptions)
+print(  igac['1'].styles)
+
+img = igac.getmap(   layers=['1'],
+                    styles=[''],
+                     srs='EPSG:4326',
+                     bbox=(-81.760298, -4.003585, -67.111816, 13.533774),
+                     size=(640, 480),
+                     format='image/png',
+                     transparent=False)
+------------------
+
+----- stdout -----
+Collecting OWSLib
+  Downloading OWSLib-0.31.0-py2.py3-none-any.whl (233 kB)
+                                              0.0/233.1 kB ? eta -:--:--
+     -                                        10.2/233.1 kB ? eta -:--:--
+     -                                        10.2/233.1 kB ? eta -:--:--
+     ------                                41.0/233.1 kB 326.8 kB/s eta 0:00:01
+     -----------------------              153.6/233.1 kB 919.0 kB/s eta 0:00:01
+     -------------------------------------- 233.1/233.1 kB 1.3 MB/s eta 0:00:00
+Requirement already satisfied: lxml in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (5.3.0)
+Requirement already satisfied: python-dateutil>=1.5 in c:\users\edier\appdata\roaming\python\python311\site-packages (from OWSLib) (2.8.2)
+Requirement already satisfied: pytz in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (2023.3)
+Requirement already satisfied: pyyaml in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (6.0.1)
+Requirement already satisfied: requests>=1.0 in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (2.29.0)
+Requirement already satisfied: six>=1.5 in c:\users\edier\miniconda3\lib\site-packages (from python-dateutil>=1.5->OWSLib) (1.16.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (2.0.4)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (3.4)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (1.26.16)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (2023.11.17)
+Installing collected packages: OWSLib
+Successfully installed OWSLib-0.31.0
+------------------
+
+Traceback [1;36m(most recent call last)[0m:
+
+[0m  File [0;32m~\AppData\Roaming\Python\Python311\site-packages\IPython\core\interactiveshell.py:3508[0m in [0;35mrun_code[0m
+    exec(code_obj, self.user_global_ns, self.user_ns)[0m
+
+[0m  Cell [0;32mIn[1], line 6[0m
+    igac = WebMapService('https://mapas.igac.gov.co/server/services/carto/carto100000colombia2019/MapServer/WMSServer?request=GetCapabilities&service=WMS')[0m
+
+[0m  File [0;32m~\miniconda3\Lib\site-packages\owslib\wms.py:50[0m in [0;35mWebMapService[0m
+    return wms111.WebMapService_1_1_1([0m
+
+[0m  File [0;32m~\miniconda3\Lib\site-packages\owslib\map\wms111.py:75[0m in [0;35m__init__[0m
+    self._capabilities = reader.read(self.url, timeout=self.timeout)[0m
+
+[0m  File [0;32m~\miniconda3\Lib\site-packages\owslib\map\common.py:69[0m in [0;35mread[0m
+    return etree.fromstring(raw_text)[0m
+
+[0m  File [0;32msrc\\lxml\\etree.pyx:3306[0m in [0;35mlxml.etree.fromstring[0m
+
+[0m  File [0;32msrc\\lxml\\parser.pxi:1995[0m in [0;35mlxml.etree._parseMemoryDocument[0m
+
+[0m  File [0;32msrc\\lxml\\parser.pxi:1882[0m in [0;35mlxml.etree._parseDoc[0m
+
+[0m  File [0;32msrc\\lxml\\parser.pxi:1164[0m in [0;35mlxml.etree._BaseParser._parseDoc[0m
+
+[0m  File [0;32msrc\\lxml\\parser.pxi:633[0m in [0;35mlxml.etree._ParserContext._handleParseResultDoc[0m
+
+[0m  File [0;32msrc\\lxml\\parser.pxi:743[0m in [0;35mlxml.etree._handleParseResult[0m
+
+[1;36m  File [1;32msrc\\lxml\\parser.pxi:672[1;36m in [1;35mlxml.etree._raiseParseError[1;36m
+
+[1;36m  File [1;32m<string>:1[1;36m[0m
+[1;31mXMLSyntaxError[0m[1;31m:[0m Opening and ending tag mismatch: HR line 1 and body, line 1, column 913
+
+

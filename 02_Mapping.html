@@ -1,0 +1,1106 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>El arte de hacer mapas &#8212; Análisis Geoespacial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_Mapping';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Análisis Geoespacial
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Datos espaciales</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial/issues/new?title=Issue%20on%20page%20%2F02_Mapping.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02_Mapping.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>El arte de hacer mapas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geoservicios">Geoservicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocodificacion">Geocodificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapas-interactivos">Mapas interactivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapeo-web">Mapeo web</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, como: <a class="reference external" href="https://en.wikipedia.org/wiki/Cartography">Wikipedia</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="el-arte-de-hacer-mapas">
+<h1>El arte de hacer mapas<a class="headerlink" href="#el-arte-de-hacer-mapas" title="Permalink to this heading">#</a></h1>
+<p><strong>Cartografiar</strong> es el arte y ciencia de hacer mapas.</p>
+<p>El proceso cartográfico abarca muchas etapas, desde la concepción de la necesidad de un mapa hasta su consumo por parte de una audiencia. La concepción comienza con un entorno real o imaginado. A medida que el cartógrafo recopila información sobre el tema, considera cómo está estructurada esa información y cómo esa estructura debe influir en el diseño del mapa. Luego, los cartógrafos experimentan con la generalización, la simbolización, la tipografía y otros elementos del mapa para encontrar formas de presentar la información de manera que el lector del mapa la interprete tal como se pretende. Guiado por estos experimentos, el cartógrafo se decide por un diseño y crea el mapa, ya sea en forma física o electrónica. Una vez terminado, el mapa se entrega a su audiencia. El lector del mapa interpreta los símbolos y patrones para sacar conclusiones y, tal vez, tomar acciones. A través de las perspectivas espaciales que proporcionan, los mapas ayudan a moldear nuestra visión del mundo.</p>
+<p>El diseño de un mapa implica reunir varios elementos y tomar muchas decisiones. Los elementos del diseño se dividen en varios temas amplios, cada uno con su propia teoría, agenda de investigación y mejores prácticas. Dicho esto, hay efectos sinérgicos entre estos elementos, lo que significa que el proceso de diseño general no implica trabajar en cada elemento uno a la vez, sino un proceso iterativo de retroalimentación ajustando cada uno para lograr el resultado deseado.</p>
+<p><strong>Proyecciones de mapas</strong>: La base del mapa es el plano en el que se apoya (ya sea papel o pantalla), pero se requieren proyecciones para aplanar la superficie de la Tierra. Aunque todas las proyecciones distorsionan la superficie, los cartógrafos controlan estratégicamente cómo y dónde ocurre la distorsión. Por ejemplo, la popular proyección de Mercator no distorsiona los ángulos en la superficie, pero hace que las regiones cercanas a los polos parezcan más grandes de lo que son.</p>
+<p><strong>Generalización</strong>: Todos los mapas deben dibujarse a una escala más pequeña que la realidad, lo que requiere que la información incluida en un mapa sea una pequeña muestra de la vasta información sobre un lugar. La generalización es el proceso de ajustar el nivel de detalle en la información geográfica para que sea apropiado para la escala y el propósito de un mapa, a través de procedimientos como la selección, simplificación y clasificación.</p>
+<p><strong>Simbología</strong>: Todo mapa representa visualmente la ubicación y las propiedades de los fenómenos geográficos utilizando símbolos cartográficos, que son representaciones gráficas compuestas de varias variables visuales, como tamaño, forma, color y patrón.</p>
+<p><strong>Composición</strong>: A medida que se reúnen todos los símbolos, sus interacciones tienen efectos importantes en la lectura del mapa, como el agrupamiento y la jerarquía visual.</p>
+<section id="geoservicios">
+<h2>Geoservicios<a class="headerlink" href="#geoservicios" title="Permalink to this heading">#</a></h2>
+<p>Los geoservicios permiten el intercambio y acceso a la información geográfica publicada por los organismos o entidades productoras de información georreferenciada. Para la publicación de geoservicios se utilizan los lenguajes y protocolos estándar definidos por el <strong>Open Geospatial Consortium (OGC)</strong>. El OGC busca la definición de estándares abiertos e interoperables dentro de los Sistemas de Información Geográfica (SIG) y de la World Wide Web (WWW), todo ello con el objetivo de facilitar el intercambio de información geográfica.</p>
+<p>Entre los estándares de geoservicios más populares se tienen los siguientes:</p>
+<ul class="simple">
+<li><p><strong>WMTS</strong> (Web Map Tile Service): Es un estándar optimizado para la visualización eficiente de mapas a través de internet.	Entrega teselas de mapas pre-renderizadas, generalmente en formatos como PNG o JPEG. En lugar de renderizar la vista completa del mapa en tiempo real como lo hace WMS, WMTS utiliza teselas pre-generadas para componer rápidamente una vista de mapa basada en las operaciones de zoom y desplazamiento del usuario. El uso de WMTS es más adecuado para aplicaciones que requieren una navegación y visualización de mapas rápida, donde los datos son relativamente estáticos y no necesitan actualizaciones frecuentes.</p></li>
+</ul>
+<img src="https://web-mapping.surge.sh/images/tile_zoom_levels.png" width="600">
+<ul class="simple">
+<li><p><strong>WMS</strong> (Web Map Service): Estándar para la visualización de mapas a través de internet. En este caso un mapa no consiste en los propios datos, sino en una imagen de los mismos. WMS entrega imágenes de mapas renderizadas (como PNG, JPEG) basadas en datos geográficos. Esto significa que convierte nuestros datos geoespaciales en una imagen de mapa que los usuarios pueden ver, pero con la que no pueden interactuar en términos de manipulación de datos. El uso de WMS es ideal cuando el requisito principal es mostrar una representación visual de los datos geográficos sin necesidad de interactuar con sus elementos individuales.</p></li>
+</ul>
+<p>A continuacion se presenta un ejemplo de servicios de consultas de WMS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instalar </span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>OWSLib
+
+<span class="kn">from</span> <span class="nn">owslib.wms</span> <span class="kn">import</span> <span class="n">WebMapService</span>
+
+<span class="n">igac</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="s1">&#39;https://mapas.igac.gov.co/server/services/carto/carto100000colombia2019/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">igac</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">igac</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">igac</span><span class="o">.</span><span class="n">contents</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">title</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">queryable</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">opaque</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBox</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBoxWGS84</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">crsOptions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>  <span class="n">igac</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">styles</span><span class="p">)</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">igac</span><span class="o">.</span><span class="n">getmap</span><span class="p">(</span>   <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">],</span>
+                    <span class="n">styles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+                     <span class="n">srs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">,</span>
+                     <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">81.760298</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.003585</span><span class="p">,</span> <span class="o">-</span><span class="mf">67.111816</span><span class="p">,</span> <span class="mf">13.533774</span><span class="p">),</span>
+                     <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">),</span>
+                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;image/png&#39;</span><span class="p">,</span>
+                     <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting OWSLib
+  Downloading OWSLib-0.31.0-py2.py3-none-any.whl (233 kB)
+                                              0.0/233.1 kB ? eta -:--:--
+     -                                        10.2/233.1 kB ? eta -:--:--
+     -                                        10.2/233.1 kB ? eta -:--:--
+     ------                                41.0/233.1 kB 326.8 kB/s eta 0:00:01
+     -----------------------              153.6/233.1 kB 919.0 kB/s eta 0:00:01
+     -------------------------------------- 233.1/233.1 kB 1.3 MB/s eta 0:00:00
+Requirement already satisfied: lxml in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (5.3.0)
+Requirement already satisfied: python-dateutil&gt;=1.5 in c:\users\edier\appdata\roaming\python\python311\site-packages (from OWSLib) (2.8.2)
+Requirement already satisfied: pytz in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (2023.3)
+Requirement already satisfied: pyyaml in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (6.0.1)
+Requirement already satisfied: requests&gt;=1.0 in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (2.29.0)
+Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site-packages (from python-dateutil&gt;=1.5-&gt;OWSLib) (1.16.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\edier\miniconda3\lib\site-packages (from requests&gt;=1.0-&gt;OWSLib) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\edier\miniconda3\lib\site-packages (from requests&gt;=1.0-&gt;OWSLib) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\users\edier\miniconda3\lib\site-packages (from requests&gt;=1.0-&gt;OWSLib) (1.26.16)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\edier\miniconda3\lib\site-packages (from requests&gt;=1.0-&gt;OWSLib) (2023.11.17)
+Installing collected packages: OWSLib
+Successfully installed OWSLib-0.31.0
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+  <span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Python</span>\<span class="n">Python311</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">IPython</span>\<span class="n">core</span>\<span class="n">interactiveshell</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3508</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_ns</span><span class="p">)</span>
+
+  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+    <span class="n">igac</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="s1">&#39;https://mapas.igac.gov.co/server/services/carto/carto100000colombia2019/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS&#39;</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">owslib</span>\<span class="n">wms</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">50</span> <span class="ow">in</span> <span class="n">WebMapService</span>
+    <span class="k">return</span> <span class="n">wms111</span><span class="o">.</span><span class="n">WebMapService_1_1_1</span><span class="p">(</span>
+
+  <span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">owslib</span>\<span class="nb">map</span>\<span class="n">wms111</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">75</span> <span class="ow">in</span> <span class="fm">__init__</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_capabilities</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="o">~</span>\<span class="n">miniconda3</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">owslib</span>\<span class="nb">map</span>\<span class="n">common</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">69</span> <span class="ow">in</span> <span class="n">read</span>
+    <span class="k">return</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">raw_text</span><span class="p">)</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">etree</span><span class="o">.</span><span class="n">pyx</span><span class="p">:</span><span class="mi">3306</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">parser</span><span class="o">.</span><span class="n">pxi</span><span class="p">:</span><span class="mi">1995</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">_parseMemoryDocument</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">parser</span><span class="o">.</span><span class="n">pxi</span><span class="p">:</span><span class="mi">1882</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">_parseDoc</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">parser</span><span class="o">.</span><span class="n">pxi</span><span class="p">:</span><span class="mi">1164</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">_BaseParser</span><span class="o">.</span><span class="n">_parseDoc</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">parser</span><span class="o">.</span><span class="n">pxi</span><span class="p">:</span><span class="mi">633</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">_ParserContext</span><span class="o">.</span><span class="n">_handleParseResultDoc</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">parser</span><span class="o">.</span><span class="n">pxi</span><span class="p">:</span><span class="mi">743</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">_handleParseResult</span>
+
+  <span class="n">File</span> <span class="n">src</span>\\<span class="n">lxml</span>\\<span class="n">parser</span><span class="o">.</span><span class="n">pxi</span><span class="p">:</span><span class="mi">672</span> <span class="ow">in</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">_raiseParseError</span>
+
+  <span class="n">File</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span>
+<span class="ne">XMLSyntaxError</span>: Opening and ending tag mismatch: HR line 1 and body, line 1, column 913
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>WFS</strong> (Web Feature Service): Estándar que permite la descarga de datos geográficos en formato vectorial. WFS ofrece acceso a datos vectoriales geográficos en bruto (como puntos, polilíneas, polígonos). Esto significa que los usuarios pueden interactuar, consultar e incluso modificar directamente tanto los datos espaciales como los atributos. El uso de WFS es ideal para escenarios donde los usuarios necesitan interactuar directamente con los datos geoespaciales y, posiblemente, editarlos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wfs_url</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/geoserver/wfs&#39;</span>  <span class="c1"># TEST_USE_PROD_DATA</span>
+
+<span class="c1"># Connect to GeoServer WFS service.</span>
+<span class="n">wfs</span> <span class="o">=</span> <span class="n">WebFeatureService</span><span class="p">(</span><span class="n">wfs_url</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;2.0.0&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print the list of available layers</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">wfs</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="n">sorted_layer_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">wfs</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">canada_admin_boundaries_index</span> <span class="o">=</span> <span class="n">sorted_layer_ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;public:canada_admin_boundaries&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">layerID</span> <span class="ow">in</span> <span class="n">sorted_layer_ids</span><span class="p">[</span><span class="n">canada_admin_boundaries_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">canada_admin_boundaries_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]:</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">wfs</span><span class="p">[</span><span class="n">layerID</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Layer ID:&#39;</span><span class="p">,</span> <span class="n">layerID</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Title:&#39;</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Boundaries:&#39;</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">boundingBoxWGS84</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">layer_id</span> <span class="o">=</span> <span class="s1">&#39;public:canada_admin_boundaries&#39;</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">wfs</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">layer_id</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+<span class="c1"># Get the actual data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">wfs</span><span class="o">.</span><span class="n">getfeature</span><span class="p">(</span><span class="n">typename</span><span class="o">=</span><span class="s1">&#39;public:canada_admin_boundaries&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">74.5</span><span class="p">,</span> <span class="mf">45.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">73</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span> <span class="n">outputFormat</span><span class="o">=</span><span class="s1">&#39;JSON&#39;</span><span class="p">)</span>
+
+<span class="c1"># Write to file</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;data/output.geojson&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="n">layers</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;data/output.geojson&#39;</span><span class="p">)</span>
+<span class="n">layers</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>WCS</strong> (Web Coverage Service): WCS proporciona acceso a datos ráster geoespaciales en bruto. A diferencia de WMS, que solo devuelve imágenes de datos, WCS devuelve los datos en bruto que representan los valores reales subyacentes de un conjunto de datos ráster. El uso de WCS es ideal cuando los usuarios necesitan los valores reales de los píxeles de un conjunto de datos ráster. Esto es importante para tareas científicas, analíticas y de modelado donde los datos en bruto, en lugar de la representación visual, son esenciales.</p></li>
+<li><p><strong>WPS</strong> (Web Processing Service): WPS permite la ejecución de procesos geoespaciales en el lado del servidor. Esto significa que, en lugar de solo recuperar o mostrar datos, los usuarios pueden realizar varias operaciones sobre esos datos, como análisis de buffer, intersección, unión, etc. El uso de WPS es esencial cuando se requieren cálculos geoespaciales en tiempo real, aprovechando las capacidades de procesamiento del lado del servidor.</p></li>
+</ul>
+<p>Otra forma de acceder a datos espaciales es a través de las API (<em>Aplication Program Interface</em>). A continuación se presenta un ejemplo para acceder a los datos de sismos del Servicio Geológico de los Estados Unidos (USGS).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Boundary for PR region</span>
+<span class="n">minlat</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">maxlat</span> <span class="o">=</span> <span class="s1">&#39;12&#39;</span>
+<span class="n">minlon</span> <span class="o">=</span> <span class="s1">&#39;-78&#39;</span>
+<span class="n">maxlon</span> <span class="o">=</span> <span class="s1">&#39;-74&#39;</span>
+
+<span class="c1">#date ranges </span>
+<span class="n">sd</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01T00:00:00&#39;</span>
+<span class="n">ed</span> <span class="o">=</span> <span class="s1">&#39;2020-12-10T23:59:59&#39;</span>
+
+<span class="c1">#url </span>
+<span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;minlatitude=&#39;</span><span class="o">+</span> 
+      <span class="n">minlat</span> <span class="o">+</span><span class="s1">&#39;&amp;maxlatitude=&#39;</span><span class="o">+</span> <span class="n">maxlat</span> <span class="o">+</span> <span class="s1">&#39;&amp;minlongitude=&#39;</span> <span class="o">+</span> <span class="n">minlon</span> <span class="o">+</span> <span class="s1">&#39;&amp;maxlongitude=&#39;</span> <span class="o">+</span> 
+      <span class="n">maxlon</span> <span class="o">+</span> <span class="s1">&#39;&amp;starttime=&#39;</span> <span class="o">+</span> <span class="n">sd</span> <span class="o">+</span> <span class="s1">&#39;&amp;endtime=&#39;</span><span class="o">+</span> <span class="n">ed</span><span class="p">)</span>
+
+<span class="c1">#extract data</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">eq_data</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">eq_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Existen librerías en Python que permiten descargar información espacial de OSM (Open Street Map). A continuación se presenta un ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+
+<span class="n">city</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">geocode_to_gdf</span><span class="p">(</span><span class="s1">&#39;Medellín, Colombia&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">project_gdf</span><span class="p">(</span><span class="n">city</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span><span class="s1">&#39;Medellín, Colombia&#39;</span><span class="p">,</span> <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;drive&#39;</span><span class="p">)</span>
+
+<span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">edge_linewidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get all the parks in some neighborhood</span>
+<span class="n">place</span> <span class="o">=</span> <span class="s1">&#39;Medellín, Colombia&#39;</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;leisure&#39;</span><span class="p">:</span> <span class="s1">&#39;park&#39;</span><span class="p">}</span>
+
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">geometries_from_place</span><span class="p">(</span><span class="n">place</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+
+<span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="geocodificacion">
+<h2>Geocodificación<a class="headerlink" href="#geocodificacion" title="Permalink to this heading">#</a></h2>
+<p>Se refiere a encontrar ubicaciones en la Tierra por nombre y dirección. <strong>Geopy</strong> es una biblioteca que proporciona implementaciones para muchos servicios diferentes en un solo paquete, por lo que los diferentes servicios tienen distintos términos de uso, cuotas, precios, bases de datos geográficas, etc. Por ejemplo: <strong>Nominatim</strong> es gratuito, pero ofrece límites bajos de solicitudes.</p>
+<p>Cada servicio de geolocalización que puedas usar, como Google Maps, Bing Maps o Nominatim, tiene su propia clase en <code class="docutils literal notranslate"><span class="pre">geopy.geocoders</span></code>, lo que abstrae la API del servicio. Cada geocodificador define al menos un método <code class="docutils literal notranslate"><span class="pre">geocode</span></code> para resolver una ubicación a partir de una cadena de texto y puede definir un método <code class="docutils literal notranslate"><span class="pre">reverse</span></code>.</p>
+<p><a class="reference external" href="https://nominatim.org/">Nominatim</a> es una herramienta para buscar datos de OSM (Open Street Map) por nombre y dirección y generar direcciones sintéticas de puntos OSM (geocodificación inversa). Los parámetros de interés en Nominatim:</p>
+<ul class="simple">
+<li><p><strong>Timeout</strong> (int) - Tiempo de espera para encontrar cada consulta.</p></li>
+<li><p><strong>user_agent</strong> (str) – Es un encabezado de solicitud HTTP que se envía con cada solicitud. Nominatim requiere que este valor se configure como el nombre de tu aplicación. El objetivo es limitar el número de solicitudes por aplicación. Ejemplo: <code class="docutils literal notranslate"><span class="pre">email=&lt;correo</span> <span class="pre">válido&gt;</span></code>. Si estás realizando un gran número de solicitudes, incluye un correo válido o incorpóralo en la cadena de <code class="docutils literal notranslate"><span class="pre">user_agent</span></code>. Esta información será confidencial y solo se utilizará para contactarte en caso de un problema. Ver más en la Política de Uso. <strong>¡Importante! Debes usar algo distinto a <code class="docutils literal notranslate"><span class="pre">user_agent</span></code>!</strong></p></li>
+<li><p><strong>Query</strong> (dict o str) – La dirección, consulta o una consulta estructurada que deseas geocodificar. Estructura: un diccionario cuyas claves pueden ser: <code class="docutils literal notranslate"><span class="pre">street=&lt;número</span> <span class="pre">de</span> <span class="pre">casa&gt;</span> <span class="pre">&lt;nombre</span> <span class="pre">de</span> <span class="pre">la</span> <span class="pre">calle&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">city</span></code>, <code class="docutils literal notranslate"><span class="pre">county</span></code>, <code class="docutils literal notranslate"><span class="pre">state</span></code>, <code class="docutils literal notranslate"><span class="pre">country</span></code>, o <code class="docutils literal notranslate"><span class="pre">postalcode</span></code>.</p></li>
+<li><p><strong>exactly_one</strong> (bool) – Devuelve un resultado o una lista de resultados, si están disponibles.</p></li>
+<li><p><strong>language</strong> (str) – Idioma preferido para devolver los resultados. En este caso es ‘es’.</p></li>
+<li><p><strong>country_codes</strong> (str o lista) – Limitar los resultados de búsqueda a un país específico (o una lista de países) usando el código ISO 3166-1alpha2. En este caso es ‘col’.</p></li>
+<li><p><strong>featuretype</strong> (str) – Si está presente, restringe los resultados a un cierto tipo de características. Valores permitidos: <code class="docutils literal notranslate"><span class="pre">country</span></code>, <code class="docutils literal notranslate"><span class="pre">state</span></code>, <code class="docutils literal notranslate"><span class="pre">city</span></code>, <code class="docutils literal notranslate"><span class="pre">settlement</span></code>.</p></li>
+</ul>
+<p>A continuación se presenta un ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geopy.geocoders</span> <span class="kn">import</span> <span class="n">Nominatim</span>
+
+<span class="n">geolocator</span> <span class="o">=</span> <span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s2">&quot;edieraristizabal@gmail.com&quot;</span><span class="p">)</span>
+
+<span class="n">geolocator</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s2">&quot;Medellín&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span> 
+
+<span class="n">geolocator</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s1">&#39;El Líbano,,Antioquia,Colombia&#39;</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">geolocator</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s2">&quot;carrera 11 #82 - 71, Bogotá, Colombia&quot;</span><span class="p">)</span>
+
+<span class="n">geolocator</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;4.5640547, -74.1102259&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mapas-interactivos">
+<h2>Mapas interactivos<a class="headerlink" href="#mapas-interactivos" title="Permalink to this heading">#</a></h2>
+<p>Actualmente existen una serie de herramientas en Python y otros lenguajes que permiten elaborar mapas que interactúan con el usuario. Hay una gran cantidad de librerías para esto. A continuación se presentan algunas de las más importantes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">folium</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.664827</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.516</span><span class="p">],</span> <span class="n">zoom_start</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span><span class="n">location</span><span class="o">=</span> <span class="p">[</span><span class="mf">4.665</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.516</span><span class="p">],</span> <span class="n">zoom_start</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">tiles</span> <span class="o">=</span> <span class="s1">&#39;Stamen Terrain&#39;</span><span class="p">)</span>
+
+<span class="n">my_map</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span> <span class="p">[</span><span class="mf">4.665</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.516</span><span class="p">],</span> <span class="n">zoom_start</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="s1">&#39;CartoDB Positron&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">my_map</span><span class="p">)</span>
+
+<span class="c1"># other mapping code (e.g. lines, markers etc.)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">my_map</span><span class="p">)</span>
+
+<span class="n">my_map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folium_map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">8.907970</span><span class="p">,</span> <span class="mf">33.433200</span><span class="p">],</span>
+                        <span class="n">zoom_start</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                        <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;mapbox://styles/edieraristizabal/clfa1ygli001f01l1sta0hdjc&#39;</span><span class="p">,</span>
+                        <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;Mapbox&#39;</span><span class="p">,</span>
+                        <span class="n">API_key</span><span class="o">=</span><span class="s1">&#39;pk.eyJ1IjoiZWRpZXJhcmlzdGl6YWJhbCIsImEiOiJja2V3MG5hbTUzNjZlMnRxbTRhM282M29kIn0.iUtvK3OKv5IXnzn7lfRRYQ&#39;</span>     
+<span class="p">)</span>
+<span class="n">folium_map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">6.2443382</span><span class="p">,</span> <span class="o">-</span><span class="mf">75.573553</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;60%&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;60%&#39;</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">([</span><span class="mf">6.2443382</span><span class="p">,</span> <span class="o">-</span><span class="mf">75.573553</span><span class="p">],</span> <span class="n">popup</span><span class="o">=</span><span class="s2">&quot;&lt;strong&gt;Medellín&lt;/strong&gt;&quot;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Click me&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">([</span><span class="mf">6.2444000</span><span class="p">,</span> <span class="o">-</span><span class="mf">75.591000</span><span class="p">],</span> <span class="n">icon</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Icon</span><span class="p">(</span><span class="n">icon</span><span class="o">=</span><span class="s2">&quot;cloud&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">6.2444000</span><span class="p">,</span> <span class="o">-</span><span class="mf">75.598000</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#45ffff&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;#3186cc&quot;</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mi">48</span><span class="p">,</span> <span class="o">-</span><span class="mi">102</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span>
+    <span class="n">geo_data</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/us-states.json&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;choropleth&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/US_Unemployment_Oct2012.csv&quot;</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="s2">&quot;Unemployment&quot;</span><span class="p">],</span>
+    <span class="n">key_on</span><span class="o">=</span><span class="s2">&quot;feature.id&quot;</span><span class="p">,</span>
+    <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;YlGn&quot;</span><span class="p">,</span>
+    <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">line_opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">legend_name</span><span class="o">=</span><span class="s2">&quot;Unemployment Rate (%)&quot;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>GeoViews</strong> es una biblioteca de Python diseñada para facilitar la exploración y visualización de conjuntos de datos geográficos, meteorológicos y oceanográficos, como los utilizados en investigaciones sobre clima, tiempo atmosférico y teledetección. Es especialmente útil para aquellos que trabajan con grandes cantidades de datos espaciales y desean realizar visualizaciones interactivas de mapas o análisis espaciales. GeoViews se integra bien con otras bibliotecas de Python como <strong>HoloViews</strong> y <strong>Matplotlib</strong>, lo que permite crear gráficos complejos con un mínimo de código.</p>
+<p>Puedes obtener más información sobre GeoViews y cómo utilizarlo en su página oficial: <a class="reference external" href="https://geoviews.org/">GeoViews</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Para installar en Google Colab</span>
+<span class="o">!</span>apt-get<span class="w"> </span>install<span class="w"> </span>libgeos++<span class="w"> </span>libproj-dev
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>geoviews
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoviews</span> <span class="k">as</span> <span class="nn">gv</span>
+<span class="kn">import</span> <span class="nn">geoviews.feature</span> <span class="k">as</span> <span class="nn">gf</span>
+<span class="kn">from</span> <span class="nn">geoviews</span> <span class="kn">import</span> <span class="n">opts</span>
+<span class="kn">import</span> <span class="nn">geoviews.tile_sources</span> <span class="k">as</span> <span class="nn">gts</span>
+<span class="kn">from</span> <span class="nn">geoviews</span> <span class="kn">import</span> <span class="n">opts</span>
+<span class="kn">from</span> <span class="nn">geoviews</span> <span class="kn">import</span> <span class="n">opts</span><span class="p">,</span> <span class="n">tile_sources</span> <span class="k">as</span> <span class="n">gvts</span>
+<span class="kn">from</span> <span class="nn">geoviews</span> <span class="kn">import</span> <span class="n">dim</span><span class="p">,</span> <span class="n">opts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gts</span><span class="o">.</span><span class="n">tile_sources</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gv</span><span class="o">.</span><span class="n">tile_sources</span><span class="o">.</span><span class="n">OSM</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stockholm</span> <span class="o">=</span> <span class="p">(</span> <span class="mf">18.070625</span><span class="p">,</span><span class="mf">59.320462</span><span class="p">,</span> <span class="s1">&#39;Stockholm&#39;</span><span class="p">)</span>
+<span class="n">london</span> <span class="o">=</span> <span class="p">(</span> <span class="o">-</span><span class="mf">0.135593</span><span class="p">,</span> <span class="mf">51.507020</span><span class="p">,</span> <span class="s1">&#39;London&#39;</span><span class="p">)</span>
+<span class="n">istanbul</span> <span class="o">=</span> <span class="p">(</span> <span class="mf">28.981856</span><span class="p">,</span> <span class="mf">41.008327</span><span class="p">,</span> <span class="s1">&#39;Istanbul&#39;</span><span class="p">)</span>
+<span class="n">mogadishu</span> <span class="o">=</span> <span class="p">(</span> <span class="mf">45.299626</span><span class="p">,</span> <span class="mf">2.042388</span><span class="p">,</span> <span class="s1">&#39;Mogadishu&#39;</span><span class="p">)</span>
+
+<span class="n">cities</span> <span class="o">=</span> <span class="n">gv</span><span class="o">.</span><span class="n">Points</span><span class="p">([</span><span class="n">stockholm</span><span class="p">,</span> <span class="n">london</span><span class="p">,</span> <span class="n">istanbul</span><span class="p">,</span> <span class="n">mogadishu</span><span class="p">],</span> <span class="n">vdims</span><span class="o">=</span><span class="s1">&#39;City&#39;</span><span class="p">)</span>
+<span class="n">cities</span><span class="o">.</span><span class="n">dframe</span><span class="p">()</span>
+
+<span class="p">(</span><span class="n">gv</span><span class="o">.</span><span class="n">tile_sources</span><span class="o">.</span><span class="n">CartoDark</span> <span class="o">*</span> <span class="n">cities</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">Points</span><span class="p">(</span><span class="n">global_extent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;naturalearth_lowres&#39;</span><span class="p">))</span>
+
+<span class="n">world_poly</span> <span class="o">=</span> <span class="n">gv</span><span class="o">.</span><span class="n">Polygons</span><span class="p">(</span><span class="n">world</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="p">)</span>
+
+<span class="n">gv</span><span class="o">.</span><span class="n">Polygons</span><span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="n">vdims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;pop_est&#39;</span><span class="p">,</span> <span class="s1">&#39;gdp_md_est&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;World Population&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pop_est&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;blues&#39;</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coountries_grouped</span> <span class="o">=</span> <span class="n">gv</span><span class="o">.</span><span class="n">Polygons</span><span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="n">vdims</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;continent&#39;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Continent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)</span>
+
+<span class="n">continents</span> <span class="o">=</span> <span class="n">coountries_grouped</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hover&#39;</span><span class="p">],</span> <span class="n">infer_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">continents</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La <a class="reference external" href="https://plotly.com/python/">biblioteca de Python plotly</a> es una biblioteca de gráficos interactiva y de código abierto que admite más de 40 tipos de gráficos únicos, cubriendo una amplia gama de casos de uso en estadística, finanzas, geografía, ciencia y visualizaciones en 3D.</p>
+<p>Construida sobre la biblioteca de JavaScript Plotly (plotly.js), plotly permite a los usuarios de Python crear visualizaciones web interactivas y atractivas que se pueden mostrar en cuadernos Jupyter, guardar como archivos HTML independientes o utilizar como parte de aplicaciones web construidas puramente en Python utilizando Dash. La biblioteca de Python plotly a veces se denomina “<a class="reference external" href="http://plotly.py">plotly.py</a>” para diferenciarla de la biblioteca de JavaScript.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>plotly
+
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab<span class="w"> </span>ipywidgets
+
+<span class="o">!</span>jupyter<span class="w"> </span>labextension<span class="w"> </span>install<span class="w"> </span>jupyterlab-plotly
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv&#39;</span><span class="p">)</span>
+
+<span class="n">scl</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;rgb(150,0,90)&quot;</span><span class="p">],[</span><span class="mf">0.125</span><span class="p">,</span><span class="s2">&quot;rgb(0, 0, 200)&quot;</span><span class="p">],[</span><span class="mf">0.25</span><span class="p">,</span><span class="s2">&quot;rgb(0, 25, 255)&quot;</span><span class="p">],[</span><span class="mf">0.375</span><span class="p">,</span><span class="s2">&quot;rgb(0, 152, 255)&quot;</span><span class="p">],</span>
+<span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="s2">&quot;rgb(44, 255, 150)&quot;</span><span class="p">],[</span><span class="mf">0.625</span><span class="p">,</span><span class="s2">&quot;rgb(151, 255, 0)&quot;</span><span class="p">],[</span><span class="mf">0.75</span><span class="p">,</span><span class="s2">&quot;rgb(255, 234, 0)&quot;</span><span class="p">],[</span><span class="mf">0.875</span><span class="p">,</span><span class="s2">&quot;rgb(255, 111, 0)&quot;</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;rgb(255, 0, 0)&quot;</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergeo</span><span class="p">(</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lat&#39;</span><span class="p">],</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lon&#39;</span><span class="p">],</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Globvalue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; inches&#39;</span><span class="p">,</span>
+    <span class="n">marker</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Globvalue&#39;</span><span class="p">],</span>
+        <span class="n">colorscale</span> <span class="o">=</span> <span class="n">scl</span><span class="p">,</span>
+        <span class="n">reversescale</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">opacity</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">titleside</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span>
+            <span class="n">outlinecolor</span> <span class="o">=</span> <span class="s2">&quot;rgba(68, 68, 68, 0)&quot;</span><span class="p">,</span>
+            <span class="n">ticks</span> <span class="o">=</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">showticksuffix</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">,</span>
+            <span class="n">dtick</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">geo</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">scope</span> <span class="o">=</span> <span class="s1">&#39;north america&#39;</span><span class="p">,</span>
+        <span class="n">showland</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">landcolor</span> <span class="o">=</span> <span class="s2">&quot;rgb(212, 212, 212)&quot;</span><span class="p">,</span>
+        <span class="n">subunitcolor</span> <span class="o">=</span> <span class="s2">&quot;rgb(255, 255, 255)&quot;</span><span class="p">,</span>
+        <span class="n">countrycolor</span> <span class="o">=</span> <span class="s2">&quot;rgb(255, 255, 255)&quot;</span><span class="p">,</span>
+        <span class="n">showlakes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">lakecolor</span> <span class="o">=</span> <span class="s2">&quot;rgb(255, 255, 255)&quot;</span><span class="p">,</span>
+        <span class="n">showsubunits</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">showcountries</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">resolution</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="n">projection</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;conic conformal&#39;</span><span class="p">,</span>
+            <span class="n">rotation_lon</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+        <span class="p">),</span>
+        <span class="n">lonaxis</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">showgrid</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">gridwidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="nb">range</span><span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="mf">140.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">55.0</span> <span class="p">],</span>
+            <span class="n">dtick</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="p">),</span>
+        <span class="n">lataxis</span> <span class="o">=</span> <span class="nb">dict</span> <span class="p">(</span>
+            <span class="n">showgrid</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">gridwidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="nb">range</span><span class="o">=</span> <span class="p">[</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">60.0</span> <span class="p">],</span>
+            <span class="n">dtick</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;US Precipitation 06-30-2015&lt;br&gt;Source: &lt;a href=&quot;http://water.weather.gov/precip/&quot;&gt;NOAA&lt;/a&gt;&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us_cities</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_mapbox</span><span class="p">(</span><span class="n">us_cities</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;City&quot;</span><span class="p">,</span> <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;State&quot;</span><span class="p">,</span> <span class="s2">&quot;Population&quot;</span><span class="p">],</span>
+                        <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fuchsia&quot;</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">mapbox_style</span><span class="o">=</span><span class="s2">&quot;open-street-map&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mapeo-web">
+<h2>Mapeo web<a class="headerlink" href="#mapeo-web" title="Permalink to this heading">#</a></h2>
+<p>Un mapa web es una visualización interactiva de información geográfica, en forma de una página web, que puedes utilizar para contar historias
+y responder preguntas. Los mapas web son interactivos. El término interactivo implica que el usuario puede interactuar con el mapa.
+Esto puede significar seleccionar diferentes capas o características de datos del mapa para visualizar, acercarse a una parte específica del mapa
+que te interese, inspeccionar propiedades de características, editar contenido existente o enviar nuevo contenido, y mucho más.</p>
+<p>Los mapas web son útiles para diversos propósitos, como la visualización de datos en periodismo (y en otros ámbitos), mostrar datos espaciales
+en tiempo real, impulsar consultas espaciales en catálogos y herramientas de búsqueda en línea, proporcionar herramientas computacionales,
+reportes y mapeo colaborativo.</p>
+<p>A continuaci&#64;on se presenta un ejemplo eh HTML de la ocnstrucci&#64;on de un mapa utilziando la libreria Leaflet en javascript.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Agregar contenido&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,  initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css&quot;/&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+        .legend {
+            font-size: 16px;
+	        line-height: 24px;
+	        color: #333333;
+	        font-family: &#39;Open Sans&#39;, Helvetica, sans-serif;
+	        padding: 10px 14px;
+	        background-color: rgba(245,245,220,0.8) ;
+	        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	        border-radius: 5px;
+	        max-width: 250px;
+	        border: 1px solid grey;
+        }
+        .legend p {
+	        font-size: 16px;
+	        line-height: 24px;
+        }
+        .legend img {
+	        max-width: 200px;
+	        margin: auto;
+	        display: block;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+    &lt;script&gt;
+
+        // Create variable to hold map element, give initial settings to map
+        var map = L.map(&quot;map&quot;, {center: [31.262218, 34.801472], zoom: 17});
+        
+        // Add OpenStreetMap tile layer to map element
+        L.tileLayer(
+            &quot;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;, 
+            {attribution: &#39;&amp;copy; &lt;a href=&quot;https://www.openstreetmap.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt;&#39;}
+        ).addTo(map);
+        
+        // Add point
+        var pnt = L.marker([31.262218, 34.801472]).addTo(map);
+        
+        // Add line
+        var line = L.polyline(
+          [[31.262705, 34.800514], [31.262053, 34.800782]], 
+          {color: &quot;red&quot;, weight: 10}
+        ).addTo(map);
+        
+        // Add polygon
+        var pol = L.polygon(
+          [
+            [31.263127, 34.803668], 
+            [31.262503, 34.803089], 
+            [31.261733, 34.803561], 
+            [31.262448, 34.804752]
+          ], 
+          {color: &quot;red&quot;, fillColor: &quot;yellow&quot;, weight: 4}
+        ).addTo(map);
+        
+        // Add popup
+        line.bindPopup(
+            &quot;This is the path from &lt;b&gt;our department&lt;/b&gt;&quot; + 
+            &quot; to the &lt;b&gt;library&lt;/b&gt;.&quot;
+        );
+        
+        // Create Leaflet Control Object for Legend
+        var legend = L.control({position: &quot;bottomleft&quot;});
+        
+        // Function that runs when legend is added to map
+        legend.onAdd = function(map) {
+        
+            // Create Div Element and Populate it with HTML
+            var div = L.DomUtil.create(&quot;div&quot;, &quot;legend&quot;);		    
+            div.innerHTML = 
+                &#39;&lt;p&gt;&lt;b&gt;Simple shapes in Leaflet&lt;/b&gt;&lt;/p&gt;&lt;hr&gt;&#39; +
+                &#39;&lt;p&gt;This map shows an example of adding shapes on a Leaflet map&lt;/p&gt;&#39; +
+                &#39;The following shapes were added:&lt;br&gt;&#39; +
+                &#39;&lt;p&gt;&lt;ul&gt;&#39; +
+                &#39;&lt;li&gt;A marker&lt;/li&gt;&#39; +
+                &#39;&lt;li&gt;A line&lt;/li&gt;&#39; +
+                &#39;&lt;li&gt;A polygon&lt;/li&gt;&#39; +
+                &#39;&lt;/ul&gt;&lt;/p&gt;&#39; +
+                &#39;The line layer has a &lt;b&gt;popup&lt;/b&gt;. Click on the line to see it!&lt;hr&gt;&#39; +
+                &#39;Created with the Leaflet library&lt;br&gt;&#39; +
+                &#39;&lt;img src=&quot;https://web-mapping.surge.sh/images/logo_leaflet.svg&quot;&gt;&#39;;
+        
+            // Return the Legend div containing the HTML content
+            return div;
+        
+        };
+        
+        // Add Legend to Map
+        legend.addTo(map);
+        
+            &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geoservicios">Geoservicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocodificacion">Geocodificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapas-interactivos">Mapas interactivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapeo-web">Mapeo web</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Edier V. Aristizábal G.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
