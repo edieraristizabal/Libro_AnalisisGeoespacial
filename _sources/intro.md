@@ -2,7 +2,7 @@
 
 <table>
 <tr>
-  <td style="width: 50%; vertical-align: top; padding-right: 15px;">
+  <td style="width: 50%; vertical-align: top; padding-right: 30px;">
     <img src="https://i.pinimg.com/originals/e4/13/e0/e413e0dcc494adf8b2b46e3d183e75f4.gif" style="width: 100%;margin: 5px; padding: 0px; box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.2); border-radius: 15px;"/>
   </td>
   <td style="width: 50%; vertical-align: top;">
