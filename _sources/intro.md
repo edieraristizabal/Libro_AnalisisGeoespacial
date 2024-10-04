@@ -1,15 +1,12 @@
 # Análisis Geoespacial
 
-<div style="display: flex; align-items: flex-start;">
-  <div style="flex: 1; text-align: center;">
-    <img src="https://i.pinimg.com/originals/e4/13/e0/e413e0dcc494adf8b2b46e3d183e75f4.gif" width="400px">
-  </div>
-   
-    <div style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
-      <strong>Note:</strong> <br>
-      Este libro NO corresponde a una construcción original del compilador (en lugar de autor). Todo el contenido de este libro es una compilación de temas y ejemplos originalmente de un gran número de personas alrededor del mundo en sensores remotos, análisis espacial y estadística espacial, y que han publicado su contenido libre y abierto. En cada tema se dan los créditos correspondientes al inicio de cada notebook. Si considera que hace falta algún crédito o es usted el autor de dicha información y prefiere que sea retirada, por favor remitir un correo a <a href="mailto:evaristizabalg@unal.edu.co">evaristizabalg@unal.edu.co</a>.
-  </div>
-</div>
+| ![Image](https://i.pinimg.com/originals/e4/13/e0/e413e0dcc494adf8b2b46e3d183e75f4.gif) |  
+<br><br>
+:::note
+Este libro NO corresponde a una construcción original del compilador (en lugar de autor). Todo el contenido de este libro es una compilación de temas y ejemplos originalmente de un gran número de personas alrededor del mundo en sensores remotos, análisis espacial y estadística espacial, y que han publicado su contenido libre y abierto. En cada tema se dan los créditos correspondientes al inicio de cada notebook. Si considera que hace falta algún crédito o es usted el autor de dicha información y prefiere que sea retirada, por favor remitir un correo a evaristizabalg@unal.edu.co
+:::
+|
+| --- | --- |
 
 **Como referenciar:** Aristizábal, Edier. 2022. Libro Guía del curso Análisis Geoespacial. Universidad Nacional de Colombia, Departamento de Geociencias y Medio Ambiente, Facultad de Minas. https://edieraristizabal.github.io/Libro_AnalisisGeoespacial/intro.html.
 
