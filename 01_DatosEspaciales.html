@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '01_DatosEspaciales';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="El arte de hacer mapas" href="02_Mapping.html" />
     <link rel="prev" title="Ambiente computacional" href="00_Ambiente.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,6 +172,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Datos espaciales</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
 </ul>
 
     </div>
@@ -428,10 +432,10 @@ document.write(`
 <li><p>.DWG</p></li>
 </ul>
 <center><img src="https://pvsmt99345.i.lithium.com/t5/image/serverpage/image-id/49570i26EF3FAEACD21BD4/image-size/medium?v=1.0&px=400" width="500"></center>
-<div class="highlight-Note notranslate"><div class="highlight"><pre><span></span>Antes de continuar, es útil mencionar una aclaración rápida sobre la terminología. A lo largo de este curso, independientemente de la estructura de datos utilizada, nos referiremos a una medición sobre una observación como una *característica* (feature). Esto es consistente con otros trabajos en ciencia de datos y aprendizaje automático. Luego, un conjunto de mediciones es una *muestra*. Para las tablas, esto significa que una característica es una columna y una muestra es una fila. Sin embargo, históricamente, los científicos de información geográfica han utilizado la palabra &quot;característica (feature)&quot; para referirse a una observación individual, ya que una &quot;característica&quot; en cartografía es una entidad en un mapa, y &quot;atributo&quot; para describir las características de esa observación. En otros lugares, una *característica* puede llamarse *variable*, y una *muestra* referirse como un registro. Por lo tanto, la terminología coherente es importante: para este curso, una *característica* es un rasgo medido relacionado con una observación (una columna), y una *muestra* es un conjunto de mediciones (una fila).
-</pre></div>
-</div>
-<p>Adicional a los bien conocidos formatos <em>shp, gpkg adn kml o kmz</em>, es bastante utilizados los JSON y GeoJSON para archivos espaciales. <a class="reference external" href="https://www.json.org/json-es.html">JSON</a> (JavaScript Object Notation) es un formato ligero de intercambio de datos. Es fácil de leer y escribir para los humanos. Es fácil de interpretar y generar para las máquinas. Está basado en un subconjunto del Estándar del Lenguaje de Programación JavaScript ECMA-262 3ra Edición - Diciembre de 1999. JSON es un formato de texto completamente independiente del lenguaje, pero utiliza convenciones que son familiares para los programadores de lenguajes de la familia C, incluidos C, C++, C#, Java, JavaScript, Perl, Python y muchos otros. Estas propiedades hacen que JSON sea un lenguaje ideal para el intercambio de datos.</p>
+<blockquote>
+<div><p><em>Antes de continuar, es útil mencionar una aclaración rápida sobre la terminología. A lo largo de este curso, independientemente de la estructura de datos utilizada, nos referiremos a una medición sobre una observación como una <em>característica</em> (feature). Esto es consistente con otros trabajos en ciencia de datos y aprendizaje automático. Luego, un conjunto de mediciones es una <em>muestra</em>. Para las tablas, esto significa que una característica es una columna y una muestra es una fila. Sin embargo, históricamente, los científicos de información geográfica han utilizado la palabra “característica (feature)” para referirse a una observación individual, ya que una “característica” en cartografía es una entidad en un mapa, y “atributo” para describir las características de esa observación. En otros lugares, una <em>característica</em> puede llamarse <em>variable</em>, y una <em>muestra</em> referirse como un registro. Por lo tanto, la terminología coherente es importante: para este curso, una <em>característica</em> es un rasgo medido relacionado con una observación (una columna), y una <em>muestra</em> es un conjunto de mediciones (una fila).</em></p>
+</div></blockquote>
+<p>Adicional a los bien conocidos formatos <em>shp, gpkg, kml o kmz</em>, es bastante utilizados los JSON y GeoJSON para archivos espaciales. <a class="reference external" href="https://www.json.org/json-es.html">JSON</a> (JavaScript Object Notation) es un formato ligero de intercambio de datos. Es fácil de leer y escribir para los humanos. Es fácil de interpretar y generar para las máquinas. Está basado en un subconjunto del Estándar del Lenguaje de Programación JavaScript ECMA-262 3ra Edición - Diciembre de 1999. JSON es un formato de texto completamente independiente del lenguaje, pero utiliza convenciones que son familiares para los programadores de lenguajes de la familia C, incluidos C, C++, C#, Java, JavaScript, Perl, Python y muchos otros. Estas propiedades hacen que JSON sea un lenguaje ideal para el intercambio de datos.</p>
 <p>JSON se basa en dos estructuras:</p>
 <ul class="simple">
 <li><p>Una colección de pares nombre/valor. En varios lenguajes, esto se realiza como un objeto, registro, struct, diccionario, tabla hash, lista con clave o array asociativo.</p></li>
@@ -598,7 +602,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>SIn embargo en ambos ejemplos aunque tenemos coordenadas y podemos incluso generar un mapa con los puntos, si consultamos el sistema de coordenadas de referencia (<em>crs</em>) vamos a obtener que no hemos asignado el sistema.</p>
+<p>Sin embargo en ambos ejemplos aunque tenemos coordenadas y podemos incluso generar un mapa con los puntos, si consultamos el sistema de coordenadas de referencia (<em>crs</em>) vamos a obtener que no hemos asignado el sistema.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
@@ -653,7 +657,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Para crear <em>GepDataFrames</em> para otros objetos como lineas o poligonos es un poco mas complejo el proceso, por lo cual generalmente se importan desde formatos espaciales como <em>shp</em> o <em>gpkg</em>. Sin embargo veamos un sensillo ejemplo.</p>
+<p>Para crear <em>GeoDataFrames</em> para otros objetos como lineas o poligonos es un poco mas complejo el proceso, por lo cual generalmente se importan desde formatos espaciales como <em>shp</em> o <em>gpkg</em>. Sin embargo veamos un sensillo ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un GeoDataFrame vacío de geopandas</span>
@@ -1259,6 +1263,15 @@ Attributes:
         <p class="prev-next-title">Ambiente computacional</p>
       </div>
     </a>
+    <a class="right-next"
+       href="02_Mapping.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">El arte de hacer mapas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1310,7 +1323,7 @@ By Edier V. Aristizábal G.
     
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2024.
       <br/>
     
   </p>
