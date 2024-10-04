@@ -67,6 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '04_GLMPoisson';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Procesos Log-Gaussian Cox" href="05_LGCP.html" />
     <link rel="prev" title="Patrón de puntos" href="03_PointPattern.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,6 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
 </ul>
 
     </div>
@@ -378,10 +380,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-en-r">Poisson en R</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-no-homogeneo">Poisson no-homogeneo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesos-log-gaussian-cox">Procesos Log-Gaussian Cox</a></li>
 </ul>
 </li>
 </ul>
@@ -840,23 +838,6 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p><em>jtools</em> proporciona <code class="docutils literal notranslate"><span class="pre">plot_summs()</span></code> y <code class="docutils literal notranslate"><span class="pre">plot_coefs()</span></code> para visualizar el resumen del modelo y también nos permite comparar diferentes modelos con <em>ggplot2</em>.</p>
 </section>
 </section>
-<section id="poisson-no-homogeneo">
-<h2>Poisson no-homogeneo<a class="headerlink" href="#poisson-no-homogeneo" title="Permalink to this heading">#</a></h2>
-<section id="procesos-log-gaussian-cox">
-<h3>Procesos Log-Gaussian Cox<a class="headerlink" href="#procesos-log-gaussian-cox" title="Permalink to this heading">#</a></h3>
-<p>Los procesos tipo Cox se refieren a que la intensidad <span class="math notranslate nohighlight">\(\lambda(s)\)</span> varía en el espacio. Dada un area <span class="math notranslate nohighlight">\(A\)</span>, la probabilidad de observar un cierto número de puntos en dicha área sigue una distribución de Poisson con intensidad (valor esperado):
-$<span class="math notranslate nohighlight">\(
-\lambda_A=\int{\lambda(s)ds}
-\)</span><span class="math notranslate nohighlight">\(
-La parte gaussiana de LGCP viene de la modelación \)</span>log(\lambda(s))$ como un Gaussiano latente (condicionado a un conjunto de parámetros), en un marco típico de GLM or GAM.</p>
-<p>El proceso de Cox log-Gaussiano (LGCP) es un modelo probabilístico de patrones de puntos que se observan típicamente en el espacio o el tiempo. Tiene dos componentes principales. Primero, un campo de <em>intensidad</em> subyacente <span class="math notranslate nohighlight">\(\lambda(s)\)</span> de valores reales positivos se modela sobre todo el dominio <span class="math notranslate nohighlight">\(X\)</span> utilizando un proceso Gaussiano transformado exponencialmente, lo que obliga a que <span class="math notranslate nohighlight">\(\lambda\)</span> sea positivo. Luego, este campo de intensidad se utiliza para parametrizar un <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_point_process">proceso de puntos de Poisson</a>, que representa un mecanismo estocástico para colocar puntos en el espacio. Algunos fenómenos que pueden representarse con este modelo incluyen la incidencia de casos de cáncer en un condado o las ubicaciones espaciotemporales de eventos delictivos en una ciudad. Tanto las dimensiones espaciales como temporales se pueden manejar de manera equivalente dentro de este marco, aunque este tutorial solo aborda datos en dos dimensiones espaciales.</p>
-<p>En términos más formales, si tenemos un espacio <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(A\subseteq X\)</span>, la distribución sobre el número de puntos <span class="math notranslate nohighlight">\(Y_A\)</span> que ocurren dentro del subconjunto <span class="math notranslate nohighlight">\(A\)</span> se define como
-$<span class="math notranslate nohighlight">\(Y_A \sim Poisson\left(\int_A \lambda(s) ds\right)\)</span><span class="math notranslate nohighlight">\(
-y el campo de intensidad se define como
-\)</span><span class="math notranslate nohighlight">\(\log \lambda(s) \sim GP(\mu(s), K(s,s'))\)</span><span class="math notranslate nohighlight">\(
-donde \)</span>GP(\mu(s), K(s,s’))<span class="math notranslate nohighlight">\( denota un proceso Gaussiano con función de media \)</span>\mu(s)<span class="math notranslate nohighlight">\( y núcleo de covarianza \)</span>K(s,s’)<span class="math notranslate nohighlight">\( para una ubicación \)</span>s \in X$.</p>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -898,6 +879,15 @@ donde \)</span>GP(\mu(s), K(s,s’))<span class="math notranslate nohighlight">\
         <p class="prev-next-title">Patrón de puntos</p>
       </div>
     </a>
+    <a class="right-next"
+       href="05_LGCP.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Procesos Log-Gaussian Cox</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -922,10 +912,6 @@ donde \)</span>GP(\mu(s), K(s,s’))<span class="math notranslate nohighlight">\
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-en-r">Poisson en R</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-no-homogeneo">Poisson no-homogeneo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procesos-log-gaussian-cox">Procesos Log-Gaussian Cox</a></li>
 </ul>
 </li>
 </ul>
