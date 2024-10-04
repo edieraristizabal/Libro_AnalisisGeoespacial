@@ -1,7 +1,7 @@
 # Análisis Geoespacial
 
 <p style="text-align:center;">
-<img src="logocurso.png" width="400px">
+<img src="https://i.pinimg.com/736x/e6/05/88/e60588db05d47c57cefb0f23454e1c3d.jpg" width="400px">
 </p>
 
 **Como referenciar:** Aristizábal, Edier. 2022. Libro Guía del curso Análisis Geoespacial. Universidad Nacional de Colombia, Departamento de Geociencias y Medio Ambiente, Facultad de Minas. https://edieraristizabal.github.io/Libro_AnalisisGeoespacial/intro.html.
