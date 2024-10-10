@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Datos espaciales" href="01_DatosEspaciales.html" />
-    <link rel="prev" title="Análisis Geoespacial" href="intro.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -163,7 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Análisis Geoespacial
+                    <no title>
                 </a>
             </li>
         </ul>
@@ -175,6 +175,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_ArealData.html">Análisis de datos areales: mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_ArealData.html">Autocorrelación espacial</a></li>
 </ul>
 
     </div>
@@ -395,8 +398,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><strong>Credits</strong>: The content of this notebook is taken from the courses and book open and freely published by <a class="reference external" href="http://darribas.org/">Dani Arribas-Bel</a> -  University of Liverpool &amp; - Sergio Rey - <a class="reference external" href="http://spatial.ucr.edu">Center for Geospatial Sciences, University of California, Riverside</a>. The author apologies for any unintentional omissions and would be pleased to add an acknowledgment in future editions.</p>
-<section class="tex2jax_ignore mathjax_ignore" id="ambiente-computacional">
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="ambiente-computacional">
 <h1>Ambiente computacional<a class="headerlink" href="#ambiente-computacional" title="Permalink to this heading">#</a></h1>
 <p>Este curso se enmarca dentro del gran ecosistema <a class="reference external" href="https://es.wikipedia.org/wiki/C%C3%B3digo_abierto">de código abierto</a>. No solo por que su contenido y código fuente está a disposición para que las personas lo utilicen, estudien, modifiquen y redistribuyan, sino además por que ha sido construido a partir de fuentes de información con similares características.</p>
 <p>El grueso principal del curso se basa en el lenguaje de programación <a class="reference external" href="https://www.python.org/">Python</a> y <a class="reference external" href="https://www.r-project.org/">R</a>. Python y R son lenguajes de programación <a class="reference external" href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n_de_alto_nivel">de alto nivel</a> ampliamente utilizado en la actualidad. Ser un lenguaje de alto nivel significa que el código puede ser “interpretado dinámicamente”, lo que significa que se ejecuta sobre la marcha sin necesidad de compilarlo. Esto contrasta con los lenguajes de programación “de bajo nivel”, que primero deben convertirse en código máquina (es decir, compilados) antes de que puedan ejecutarse. Con Python, no necesitas preocuparte por la compilación y puedes simplemente escribir código, evaluarlo, corregirlo, volver a evaluarlo, etc., en un ciclo rápido, lo que lo convierte en una herramienta muy productiva.</p>
@@ -678,7 +680,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Análisis Geoespacial</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
     <a class="right-next"
