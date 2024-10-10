@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '05_LGCP';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Análisis de datos areales: mapas" href="06_ArealData.html" />
+    <link rel="next" title="Análisis de datos areales: mapas" href="06_Coropleta.html" />
     <link rel="prev" title="Modelos Lineales Generalizados (GLM) para Poisson" href="04_GLMPoisson.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,15 +171,16 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Datos espaciales</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Procesos Log-Gaussian Cox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_ArealData.html">Análisis de datos areales: mapas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_ArealData.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Análisis de datos areales: mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 </ul>
 
     </div>
@@ -386,8 +387,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><strong>Credits</strong>: El contenido de este notebook esta basado en .</p>
-<p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de [Spatial Statistics for Data Science: Theory and Practice with R](https://www.paulamoraga.com/book-spatial/point-process-modeling.html). El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="procesos-log-gaussian-cox">
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://www.paulamoraga.com/book-spatial/point-process-modeling.html">Spatial Statistics for Data Science: Theory and Practice with R</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="procesos-log-gaussian-cox">
 <h1>Procesos Log-Gaussian Cox<a class="headerlink" href="#procesos-log-gaussian-cox" title="Permalink to this heading">#</a></h1>
 <p>Los procesos Cox Log-Gaussianos (LGCPs) se refieren a que la intensidad <span class="math notranslate nohighlight">\(\lambda(s)\)</span> varía en el espacio. Un LGCP es un proceso de Poisson con una intensidad variable. Dada un area <span class="math notranslate nohighlight">\(A\)</span>, la probabilidad de observar un cierto número de puntos en dicha área sigue una distribución de Poisson con intensidad (valor esperado):
 $<span class="math notranslate nohighlight">\(
@@ -1074,7 +1074,7 @@ pp.res$summary.hyperpar
       </div>
     </a>
     <a class="right-next"
-       href="06_ArealData.html"
+       href="06_Coropleta.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
