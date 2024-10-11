@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Gaussian Processes &#8212; Análisis Geoespacial</title>
+    <title>Procesos Gaussianos con Python &#8212; Análisis Geoespacial</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '14_GP';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Procesos Gaussianos con INLA" href="15_GP.html" />
+    <link rel="next" title="Procesos Gaussianos con R" href="15_GP.html" />
     <link rel="prev" title="Kriging con R" href="13_Kriging.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,20 +183,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Gaussian Processes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con INLA</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
@@ -381,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Gaussian Processes</h1>
+    <h1>Procesos Gaussianos con Python</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -423,8 +412,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_noisy_targets.html#sphx-glr-auto-examples-gaussian-process-plot-gpr-noisy-targets-py">scikit-learn1</a>, <a href="https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_compare_gpr_krr.html#sphx-glr-auto-examples-gaussian-process-plot-compare-gpr-krr-py">sciki-learn2</a>, <a href="https://domino.ai/blog/fitting-gaussian-process-models-python">Chris Fonnesbeck</a>, <a href="https://github.com/jwangjie/Gaussian-Process-Regression-Tutorial/blob/master/gpr_tutorial.ipynb">Jie Wang, Offroad Robotics, Queen's University</a>, <a href="https://nbviewer.org/github/adamian/adamian.github.io/blob/master/talks/Brown2016.ipynb">Andreas Damianou - Brown University</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes">
-<h1>Gaussian Processes<a class="headerlink" href="#gaussian-processes" title="Permalink to this heading">#</a></h1>
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_noisy_targets.html#sphx-glr-auto-examples-gaussian-process-plot-gpr-noisy-targets-py">scikit-learn1</a>, <a href="https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_compare_gpr_krr.html#sphx-glr-auto-examples-gaussian-process-plot-compare-gpr-krr-py">sciki-learn2</a>, <a href="https://domino.ai/blog/fitting-gaussian-process-models-python">Chris Fonnesbeck</a>, <a href="https://github.com/jwangjie/Gaussian-Process-Regression-Tutorial/blob/master/gpr_tutorial.ipynb">Jie Wang, Offroad Robotics, Queen's University</a>, <a href="https://nbviewer.org/github/adamian/adamian.github.io/blob/master/talks/Brown2016.ipynb">Andreas Damianou - Brown University</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="procesos-gaussianos-con-python">
+<h1>Procesos Gaussianos con Python<a class="headerlink" href="#procesos-gaussianos-con-python" title="Permalink to this heading">#</a></h1>
 <p>Una variable aleatoria <span class="math notranslate nohighlight">\(X\)</span> se dice que está distribuida normalmente con media <span class="math notranslate nohighlight">\(\mu\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span> si su función de densidad de probabilidad (PDF) es:</p>
 <div class="math notranslate nohighlight">
 \[ P_X(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp{\left(-\frac{{\left(x - \mu \right)}^{2}}{2 \sigma^{2}}\right)}\]</div>
@@ -525,7 +514,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f31442c1b465961be693e6652944ffcf7c92354146ecfe5564bee831608e6980.png" src="_images/f31442c1b465961be693e6652944ffcf7c92354146ecfe5564bee831608e6980.png" />
+<img alt="_images/50ed0ebf519463b7ce58715fd5997e04d28a41db87339a540973662c167f8f68.png" src="_images/50ed0ebf519463b7ce58715fd5997e04d28a41db87339a540973662c167f8f68.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -545,7 +534,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/695a2090c6a6e0b223a5792454f60c8c55de69936ba353f905def9c4a9ab0289.png" src="_images/695a2090c6a6e0b223a5792454f60c8c55de69936ba353f905def9c4a9ab0289.png" />
+<img alt="_images/b4fb17a06c71c56097edf6f20ec8823fdb4a01df78deac47932681f902b99ead.png" src="_images/b4fb17a06c71c56097edf6f20ec8823fdb4a01df78deac47932681f902b99ead.png" />
 </div>
 </div>
 <p>A continuación, podemos graficar múltiples Gaussianas independientes. Por ejemplo, colocar el vector <span class="math notranslate nohighlight">\(X_1\)</span> en <span class="math notranslate nohighlight">\(X = 0\)</span> y otro vector <span class="math notranslate nohighlight">\(X_2\)</span> en <span class="math notranslate nohighlight">\(X = 1\)</span>. Ten en cuenta que tanto el vector <span class="math notranslate nohighlight">\(X_1\)</span> como el vector <span class="math notranslate nohighlight">\(X_2\)</span> son Gaussianos.</p>
@@ -565,7 +554,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c5722970c269bd2d43fecabadbac0559f6002941ffefa9ed6fd4bd4f655c1d48.png" src="_images/c5722970c269bd2d43fecabadbac0559f6002941ffefa9ed6fd4bd4f655c1d48.png" />
+<img alt="_images/4d9e533b3cd6cafd0d982f7e281dc758e5ae55cbdaf49331f7d8e136e6ed8ffb.png" src="_images/4d9e533b3cd6cafd0d982f7e281dc758e5ae55cbdaf49331f7d8e136e6ed8ffb.png" />
 </div>
 </div>
 <p>Estas líneas se parecen a <strong>funciones</strong> para cada par de puntos. Por otro lado, la gráfica también parece como si estuviéramos muestreando la región <span class="math notranslate nohighlight">\([0, 1]\)</span> con 10 funciones lineales, aunque solo haya dos puntos en cada línea. Desde la perspectiva del muestreo, el dominio <span class="math notranslate nohighlight">\([0, 1]\)</span> es nuestra región de interés, es decir, la región específica en la que realizamos nuestra regresión. Este muestreo se vuelve aún más claro si generamos más variables Gaussianas independientes y conectamos los puntos en orden mediante líneas.</p>
@@ -586,7 +575,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8478aa4dd42cf638ad15fdfc9070e34eda43db83362309bcef7c9b8d77013c61.png" src="_images/8478aa4dd42cf638ad15fdfc9070e34eda43db83362309bcef7c9b8d77013c61.png" />
+<img alt="_images/083f7529a8ead61ff997a9e4f25f01488e4cf24d160005071a70be0991f642bc.png" src="_images/083f7529a8ead61ff997a9e4f25f01488e4cf24d160005071a70be0991f642bc.png" />
 </div>
 </div>
 <p>¿Qué estamos intentando hacer al conectar puntos Gaussianos independientes generados aleatoriamente? Aunque estas líneas parecen funciones, son demasiado ruidosas. Si <span class="math notranslate nohighlight">\(X\)</span> es nuestro espacio de entrada, estas funciones no tienen sentido para la tarea de regresión. No podemos hacer ninguna predicción utilizando estas funciones. Las funciones deberían ser más suaves, lo que significa que los puntos de entrada que están cerca entre sí deberían tener valores similares en la función.</p>
@@ -625,7 +614,7 @@ $<span class="math notranslate nohighlight">\( \begin{pmatrix} x_1 \\ x_2 \end{p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0a7147f7154f2941f1abd8fc8060abd50409638657a35f3b30f824844efe1c7f.png" src="_images/0a7147f7154f2941f1abd8fc8060abd50409638657a35f3b30f824844efe1c7f.png" />
+<img alt="_images/29f896eb643965bd9f83c06a048b075fc4efe28a465629eecc0f009e82d89f90.png" src="_images/29f896eb643965bd9f83c06a048b075fc4efe28a465629eecc0f009e82d89f90.png" />
 </div>
 </div>
 <p>Queremos suavizar las funciones de muestreo definiendo las funciones de covarianza. Considerando el hecho de que cuando dos vectores son similares, el valor de salida de su producto punto es alto. Esto se puede ver claramente en la ecuación del producto punto <span class="math notranslate nohighlight">\(A\,B = AB\,cos\theta\)</span>, donde <span class="math notranslate nohighlight">\(\theta\)</span> es el ángulo entre dos vectores. Si un algoritmo se define únicamente en términos de productos internos en el espacio de entrada, entonces se puede elevar al espacio de características reemplazando las ocurrencias de esos productos internos por <span class="math notranslate nohighlight">\(k(x,\ x^\prime)\)</span>; llamamos a <span class="math notranslate nohighlight">\(k(\bullet,\bullet)\)</span> una función núcleo.</p>
@@ -703,7 +692,7 @@ $<span class="math notranslate nohighlight">\( \begin{pmatrix} x_1 \\ x_2 \end{p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b0052b1ac8f51024dff0fffcc3b9a9203d536c80347ac1b77186cc1798f81170.png" src="_images/b0052b1ac8f51024dff0fffcc3b9a9203d536c80347ac1b77186cc1798f81170.png" />
+<img alt="_images/1d6dcf1a29f5b67237f8f4d973bff8c7274170767396e43af2102e0b5255a4b6.png" src="_images/1d6dcf1a29f5b67237f8f4d973bff8c7274170767396e43af2102e0b5255a4b6.png" />
 </div>
 </div>
 <p>Obtuvimos exactamente el mismo gráfico como se esperaba. Ahora, kernelicemos nuestras funciones utilizando la RBF como nuestra covarianza.</p>
@@ -738,7 +727,7 @@ $<span class="math notranslate nohighlight">\( \begin{pmatrix} x_1 \\ x_2 \end{p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d325403e9dab162bdea571a938e0f259e7c38092f7b99cc4733e1f443cdb3116.png" src="_images/d325403e9dab162bdea571a938e0f259e7c38092f7b99cc4733e1f443cdb3116.png" />
+<img alt="_images/6c3b82771773fa4ecd42a5ee5dcfaa6ba14bb289703666c4572a4c1539077a33.png" src="_images/6c3b82771773fa4ecd42a5ee5dcfaa6ba14bb289703666c4572a4c1539077a33.png" />
 </div>
 </div>
 <p>Obtenemos líneas mucho más suaves que se asemejan más a funciones. Cuando la dimensión de la Gaussiana aumenta, ya no es necesario conectar puntos. Cuando la dimensión se vuelve infinita, hay un punto que representa cualquier entrada posible. Vamos a graficar <code class="docutils literal notranslate"><span class="pre">m=200</span></code> muestras de una Gaussiana de <code class="docutils literal notranslate"><span class="pre">n=200$-D$</span></code> para tener una idea de cómo se ven las funciones con infinitos parámetros.</p>
@@ -761,7 +750,7 @@ $<span class="math notranslate nohighlight">\( \begin{pmatrix} x_1 \\ x_2 \end{p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function _draw_all_if_interactive at 0x000001DFEF3619E0&gt; (for post_execute):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function flush_figures at 0x000001DCF3D9A840&gt; (for post_execute):
 </pre></div>
 </div>
 </div>
@@ -1622,7 +1611,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 </div>
-<p>We’ll create some sample 1D data as a draw from a GP with RBF covariance and lengthscale = 0.85. Next, we normalize the data and keep some for testing. We then plot the data.</p>
+<p>Crearemos algunos datos de muestra en 1D a partir de un Proceso Gaussiano (GP) con covarianza RBF y una longitud de escala = 0.85. A continuación, normalizamos los datos y reservamos algunos para pruebas. Luego, graficamos los datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">22</span> <span class="c1"># number of training points</span>
@@ -1669,7 +1658,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 <img alt="_images/fe071458e6f0d4ba763e1ca3298b37ad4014a62dfe9e7425313b259fb419ded8.png" src="_images/fe071458e6f0d4ba763e1ca3298b37ad4014a62dfe9e7425313b259fb419ded8.png" />
 </div>
 </div>
-<p>Now we’ll define two GP models, one with linear and one with RBF cov. function. We’ll use them to predict the training and the test data.</p>
+<p>Ahora definiremos dos modelos de Proceso Gaussiano (GP), uno con una función de covarianza lineal y otro con una función de covarianza RBF. Los utilizaremos para predecir los datos de entrenamiento y de prueba.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define GP models with initial parameters</span>
@@ -1710,8 +1699,8 @@ gp.log_marginal_likelihood: -5.131637070524745
 <img alt="_images/2159243acb1264ce9b5945bdd14cbc73c95cc9ce44a40bc200f68f4eda589dc7.png" src="_images/2159243acb1264ce9b5945bdd14cbc73c95cc9ce44a40bc200f68f4eda589dc7.png" />
 </div>
 </div>
-<p>Remember that the true one generating the data is 0.85, but we’d expect to find it as the best only if we have infinite data. Otherwise, something close to it is also expected.</p>
-<p>In the next plot we show the fit for each lengthscale, and the Likelihood achieved by it.</p>
+<p>Recuerda que el valor verdadero que genera los datos es 0.85, pero esperaríamos encontrarlo como el mejor solo si tuviéramos datos infinitos. De lo contrario, también se espera encontrar un valor cercano.</p>
+<p>En el siguiente gráfico mostramos el ajuste para cada longitud de escala y la verosimilitud lograda por cada una.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">28</span><span class="p">))</span> 
@@ -1740,12 +1729,12 @@ gp.log_marginal_likelihood: -5.131637070524745
 <img alt="_images/f7fd85a60941ebbc15a94f187cd9b57a287662da26cf78b8e9e0e6e464c4a83c.png" src="_images/f7fd85a60941ebbc15a94f187cd9b57a287662da26cf78b8e9e0e6e464c4a83c.png" />
 </div>
 </div>
-<p>We see that very short lenthscales give more “wiggly” functions, which are capable of interpolating perfectly between the training points. However, such an overfitted model is biased to be more “surprised” by anything else other than the exact same training data… hence performing poorly in the test set.</p>
-<p>On the other hand, high lengthscales give very flat functions, which in the limit look like the linear one and underfit the data.</p>
-<p>So, how do we automatically find the correct lengthscale?</p>
-<p>The principled way of selecting the correct parameter is not a visual check or testing the error in training/held out data. Instead, we wish to look at the likelihood, telling us what is the probability of the specific model (with lengthscale l) having generated the data.</p>
-<p>To show this, we’ll try as before different settings for the lengthscale of the GP-RBF, but this time we’ll keep track of the likelihood and also the training/test error.</p>
-<p>First, create some helper functions:</p>
+<p>Vemos que las longitudes de escala muy cortas generan funciones más “onduladas”, que son capaces de interpolar perfectamente entre los puntos de entrenamiento. Sin embargo, un modelo sobreajustado de este tipo tiende a estar más “sorprendido” por cualquier cosa que no sea exactamente los mismos datos de entrenamiento… por lo tanto, tiene un mal desempeño en el conjunto de prueba.</p>
+<p>Por otro lado, las longitudes de escala grandes generan funciones muy planas, que en el límite se parecen a una función lineal y subajustan los datos.</p>
+<p>Entonces, ¿cómo encontramos automáticamente la longitud de escala correcta?</p>
+<p>El enfoque más adecuado para seleccionar el parámetro correcto no es una verificación visual ni probar el error en los datos de entrenamiento/conjunto de validación. En cambio, queremos observar la verosimilitud, que nos indica cuál es la probabilidad de que el modelo específico (con longitud de escala l) haya generado los datos.</p>
+<p>Para mostrar esto, probaremos nuevamente diferentes configuraciones para la longitud de escala del GP-RBF, pero esta vez haremos un seguimiento de la verosimilitud y también del error de entrenamiento/prueba.</p>
+<p>Primero, crea algunas funciones auxiliares:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Root mean squared error</span>
@@ -1814,11 +1803,11 @@ Best lengthscale according to test error    : 0.8164646464646466
 <img alt="_images/c7c1d1530bebbf52e6ce16b2c7266db45fd364e64de3b91791f976583f08d401.png" src="_images/c7c1d1530bebbf52e6ce16b2c7266db45fd364e64de3b91791f976583f08d401.png" />
 </div>
 </div>
-<p>The fact that the best lengthscale (according to likelihood) is not necessarily the one giving us less training error is a good property, i.e. the model avoids overfitting.</p>
-<p>The chosen lengthscale is also quite close to the etrue one. Running the experiment with more data will reaveal an even close match (bear in mind that numerical problems due to simple coding here might cause problems in computations</p>
-<p>To properly optimize the kernel, we want to avoid exhaustive search of the correct parameter, especially since there are also other parameters which above we considered fixed.</p>
-<p>The way to optimize the GP according to maximum likelihood is by using gradient information. Then, by feeding the functions of the gradients and the function of the objective (already implemented in GP.objective) to a gradient optimizer you will get automatically the result. Check the function optimize of scipy.</p>
-<p>To save some time and effort here, we’ll demonstrate the optimization with GPy [<a class="github reference external" href="http://github.com/SheffieldML/GPy">SheffieldML/GPy</a>], a GP software package written in Python.).</p>
+<p>El hecho de que la mejor longitud de escala (según la verosimilitud) no sea necesariamente la que nos da el menor error de entrenamiento es una buena propiedad, es decir, el modelo evita el sobreajuste.</p>
+<p>La longitud de escala elegida también está bastante cerca de la longitud verdadera. Realizar el experimento con más datos revelará una coincidencia aún más cercana (ten en cuenta que los problemas numéricos debido a la codificación simple aquí podrían causar problemas en los cálculos).</p>
+<p>Para optimizar correctamente el kernel, queremos evitar una búsqueda exhaustiva del parámetro correcto, especialmente dado que también hay otros parámetros que antes consideramos fijos.</p>
+<p>La forma de optimizar el Proceso Gaussiano (GP) según la máxima verosimilitud es utilizando la información del gradiente. Luego, al proporcionar las funciones de los gradientes y la función del objetivo (ya implementada en GP.objective) a un optimizador de gradiente, obtendrás automáticamente el resultado. Consulta la función <em>optimize</em> de SciPy.</p>
+<p>Para ahorrar algo de tiempo y esfuerzo, demostraremos la optimización con GPy [<a class="github reference external" href="http://github.com/SheffieldML/GPy">SheffieldML/GPy</a>], un paquete de software de GP escrito en Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">Xtr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -1864,7 +1853,7 @@ Parameters:
 <img alt="_images/96829931ed7e200e0988afa2ea17d77db808f0339b5ef8dae20847d4eb51d5f4.png" src="_images/96829931ed7e200e0988afa2ea17d77db808f0339b5ef8dae20847d4eb51d5f4.png" />
 </div>
 </div>
-<p>Optimize using gradient method. Observe how the optimized lengthscale is close to the one we found before by grid search and even closer to the true one.</p>
+<p>Optimiza utilizando el método del gradiente. Observa cómo la longitud de escala optimizada está cerca de la que encontramos antes mediante búsqueda en rejilla y aún más cerca de la verdadera.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -2884,7 +2873,7 @@ C:\Users\edier\miniconda3\Lib\site-packages\sklearn\gaussian_process\kernels.py:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Procesos Gaussianos con INLA</p>
+        <p class="prev-next-title">Procesos Gaussianos con R</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

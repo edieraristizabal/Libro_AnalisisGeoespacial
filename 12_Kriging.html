@@ -183,20 +183,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kriging con Python</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Gaussian Processes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con INLA</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
@@ -391,16 +380,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Kriging con Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-distance-weighted-idw">Inverse Distance Weighted (IDW)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-delaunay">Poligonos de Delaunay</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-voronoy">Poligonos de Voronoy</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-delaunay">Poligonos de Delaunay</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-voronoy">Poligonos de Voronoy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriging">Kriging</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-variogram">Experimental variogram</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-variograma">Modelos de Variograma</a></li>
@@ -410,9 +396,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -758,10 +741,8 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="poligonos-de-delaunay">
-<h1>Poligonos de Delaunay<a class="headerlink" href="#poligonos-de-delaunay" title="Permalink to this heading">#</a></h1>
+<section id="poligonos-de-delaunay">
+<h3>Poligonos de Delaunay<a class="headerlink" href="#poligonos-de-delaunay" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Delaunay</span>
@@ -782,8 +763,9 @@ document.write(`
 <img alt="_images/c26c5c6d009455397e2a005158b21254e2aa642515d332169cacc69d3953c2fc.png" src="_images/c26c5c6d009455397e2a005158b21254e2aa642515d332169cacc69d3953c2fc.png" />
 </div>
 </div>
+</section>
 <section id="poligonos-de-voronoy">
-<h2>Poligonos de Voronoy<a class="headerlink" href="#poligonos-de-voronoy" title="Permalink to this heading">#</a></h2>
+<h3>Poligonos de Voronoy<a class="headerlink" href="#poligonos-de-voronoy" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Voronoi</span><span class="p">,</span> <span class="n">voronoi_plot_2d</span>
@@ -802,6 +784,7 @@ document.write(`
 <img alt="_images/4ef6214fb7fc69f1db4d832ee9582f4312727adaf7490bb116c635da5177da41.png" src="_images/4ef6214fb7fc69f1db4d832ee9582f4312727adaf7490bb116c635da5177da41.png" />
 </div>
 </div>
+</section>
 </section>
 <section id="kriging">
 <h2>Kriging<a class="headerlink" href="#kriging" title="Permalink to this heading">#</a></h2>
@@ -936,7 +919,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1cf3b2928d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x26b8e85e790&gt;
 </pre></div>
 </div>
 <img alt="_images/30946f02bb65769e960152f214dc89b306cfc468d218a5589923b5e05f88dd15.png" src="_images/30946f02bb65769e960152f214dc89b306cfc468d218a5589923b5e05f88dd15.png" />
@@ -1245,16 +1228,13 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Kriging con Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-distance-weighted-idw">Inverse Distance Weighted (IDW)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-delaunay">Poligonos de Delaunay</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-voronoy">Poligonos de Voronoy</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-delaunay">Poligonos de Delaunay</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-voronoy">Poligonos de Voronoy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriging">Kriging</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-variogram">Experimental variogram</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-variograma">Modelos de Variograma</a></li>
@@ -1264,9 +1244,6 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

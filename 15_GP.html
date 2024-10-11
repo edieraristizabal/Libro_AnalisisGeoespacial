@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Procesos Gaussianos con INLA &#8212; Análisis Geoespacial</title>
+    <title>Procesos Gaussianos con R &#8212; Análisis Geoespacial</title>
   
   
   
@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bases de datos geoespaciales" href="16_DB.html" />
-    <link rel="prev" title="Gaussian Processes" href="14_GP.html" />
+    <link rel="prev" title="Procesos Gaussianos con Python" href="14_GP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,20 +183,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Gaussian Processes</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Procesos Gaussianos con INLA</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Procesos Gaussianos con R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
@@ -381,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Procesos Gaussianos con INLA</h1>
+    <h1>Procesos Gaussianos con R</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,23 +380,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Procesos Gaussianos con INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-efecto-espacial-parametro">Alcance del Efecto Espacial (parámetro κ)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variacion-del-efecto-espacial-parametro">Variación del Efecto Espacial (parámetro δ)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clave-esta-en-la-proyeccion-de-los-efectos">La clave está en la proyección de los efectos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-en-modelos-espaciales-inla">Predicción en Modelos Espaciales INLA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos-clave-de-la-prediccion-en-inla">Puntos clave de la predicción en INLA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obteniendo-predicciones-espaciales-con-covariables-en-inla">Obteniendo predicciones espaciales con covariables en INLA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutando-el-modelo-inla-para-prediccion-espacial">Ejecutando el modelo INLA para predicción espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examinando-las-predicciones-del-modelo-inla">Examinando las predicciones del modelo INLA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizando-las-predicciones-de-efectos-fijos-en-inla">Visualizando las predicciones de efectos fijos en INLA</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clave-esta-en-la-proyeccion-de-los-efectos">La clave está en la proyección de los efectos</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-en-modelos-espaciales-inla">Predicción en Modelos Espaciales INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos-clave-de-la-prediccion-en-inla">Puntos clave de la predicción en INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#obteniendo-predicciones-espaciales-con-covariables-en-inla">Obteniendo predicciones espaciales con covariables en INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutando-el-modelo-inla-para-prediccion-espacial">Ejecutando el modelo INLA para predicción espacial</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examinando-las-predicciones-del-modelo-inla">Examinando las predicciones del modelo INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizando-las-predicciones-de-efectos-fijos-en-inla">Visualizando las predicciones de efectos fijos en INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Procesos Gaussianos con INLA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-inla">Ejemplo con INLA</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -419,8 +406,8 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://datascienceplus.com/spatial-regression-in-r-part-2-inla/">Lionel Hertzog</a>, <a href="https://www.paulamoraga.com/book-spatial/sec-geostatisticaldataSPDE.html">Spatial Statistics for Data Science: Theory and Practice with R</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p>
-<section id="procesos-gaussianos-con-inla">
-<h1>Procesos Gaussianos con INLA<a class="headerlink" href="#procesos-gaussianos-con-inla" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="procesos-gaussianos-con-r">
+<h1>Procesos Gaussianos con R<a class="headerlink" href="#procesos-gaussianos-con-r" title="Permalink to this heading">#</a></h1>
 <p>La geoestadística basada en modelos puede utilizarse para analizar datos espaciales relacionados con un fenómeno subyacente continuo en el espacio que se ha recolectado en un conjunto finito de ubicaciones. La geoestadística basada en modelos emplea modelos estadísticos para capturar la estructura de correlación espacial en los datos, lo que permite realizar inferencias estadísticas rigurosas y facilita la producción de predicciones espaciales junto con medidas de incertidumbre del fenómeno de interés (Diggle, Tawn y Moyeed 1998).</p>
 <p>Asumiendo datos gaussianos observados en un conjunto de <span class="math notranslate nohighlight">\(n\)</span> ubicaciones, <span class="math notranslate nohighlight">\({Y₁, …, Yₙ}\)</span>, podemos considerar el siguiente modelo para obtener predicciones en ubicaciones no muestreadas:</p>
 <p><span class="math notranslate nohighlight">\(Yᵢ | S(sᵢ) ∼ N(μ + S(sᵢ), τ²), i = 1, …, n.\)</span></p>
@@ -494,9 +481,8 @@ dat &lt;- data.frame(x = ca20$coords[,1],y = ca20$coords[,2],calcium = ca20$data
 </div>
 </div>
 </div>
-</section>
 <section id="efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">
-<h1>Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)<a class="headerlink" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe" title="Permalink to this heading">#</a></h1>
+<h2>Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)<a class="headerlink" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe" title="Permalink to this heading">#</a></h2>
 <p>INLA estima el efecto espacial utilizando una herramienta matemática compleja llamada ecuación diferencial parcial estocástica (EDPE). La idea básica es que podemos estimar un efecto espacial continuo utilizando un conjunto de puntos discretos (los nodos definidos en la malla) y funciones base, similar a las splines de regresión. Esto facilita mucho la estimación de los campos espaciales.</p>
 <p>El enfoque de la ecuación diferencial parcial estocástica (SPDE) implementado en el paquete R-INLA proporciona una forma flexible y computacionalmente eficiente de modelar datos geoestadísticos y realizar predicciones en ubicaciones no muestreadas (Lindgren y Rue 2015). Suponemos que, subyacente a los datos observados, hay una variable continua en el espacio que puede modelarse utilizando un campo aleatorio gaussiano (GRF) con una función de covarianza de Matérn, que se define como:</p>
 <p><span class="math notranslate nohighlight">\(Cov(x(sᵢ), x(sⱼ)) = (σ² / 2^(ν - 1)Γ(ν))(κ ||sᵢ - sⱼ||)^ν Kν(κ ||sᵢ - sⱼ||).\)</span></p>
@@ -530,8 +516,9 @@ dat &lt;- data.frame(x = ca20$coords[,1],y = ca20$coords[,2],calcium = ca20$data
 </div>
 </section>
 <section id="definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">
-<h1>Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación<a class="headerlink" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion" title="Permalink to this heading">#</a></h1>
+<h2>Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación<a class="headerlink" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion" title="Permalink to this heading">#</a></h2>
 <p>Establecer valores iniciales (priores) para el alcance y la variación del efecto espacial en INLA (representados por los parámetros κ y δ respectivamente) puede ser una tarea delicada, ya que estos valores tienen un gran impacto en el modelo ajustado. Afortunadamente, como el ajuste de modelos en INLA es relativamente rápido, es fácil realizar un análisis de sensibilidad para comprender qué configuraciones funcionan mejor.</p>
+</section>
 <section id="alcance-del-efecto-espacial-parametro">
 <h2>Alcance del Efecto Espacial (parámetro κ)<a class="headerlink" href="#alcance-del-efecto-espacial-parametro" title="Permalink to this heading">#</a></h2>
 <p>El prior para el alcance del efecto espacial corresponde con la siguiente fórmula:</p>
@@ -586,9 +573,8 @@ dat_stack &lt;- inla.stack(data = list(calcium = dat$calcium), # the response va
 </div>
 </div>
 </section>
-</section>
 <section id="la-clave-esta-en-la-proyeccion-de-los-efectos">
-<h1>La clave está en la proyección de los efectos<a class="headerlink" href="#la-clave-esta-en-la-proyeccion-de-los-efectos" title="Permalink to this heading">#</a></h1>
+<h2>La clave está en la proyección de los efectos<a class="headerlink" href="#la-clave-esta-en-la-proyeccion-de-los-efectos" title="Permalink to this heading">#</a></h2>
 <p>El punto clave aquí es el argumento <code class="docutils literal notranslate"><span class="pre">A</span></code> donde especificamos la proyección de los diferentes efectos. El efecto espacial se denomina <code class="docutils literal notranslate"><span class="pre">i</span></code> (aunque podemos nombrarlo como queramos) y está indexado por el número de nodos de la malla. Recordemos que cuanto más fina sea la malla, más precisa será la estimación del efecto espacial. Este efecto espacial <code class="docutils literal notranslate"><span class="pre">i</span></code> está vinculado a los datos a través de la matriz de proyección <code class="docutils literal notranslate"><span class="pre">A_mat</span></code>.</p>
 <p>Los demás efectos se vinculan directamente a los datos, por lo que no necesitan matrices de proyección.</p>
 <p>Aquí desglosamos un poco más la terminología:</p>
@@ -599,7 +585,7 @@ dat_stack &lt;- inla.stack(data = list(calcium = dat$calcium), # the response va
 </ul>
 </section>
 <section id="prediccion-en-modelos-espaciales-inla">
-<h1>Predicción en Modelos Espaciales INLA<a class="headerlink" href="#prediccion-en-modelos-espaciales-inla" title="Permalink to this heading">#</a></h1>
+<h2>Predicción en Modelos Espaciales INLA<a class="headerlink" href="#prediccion-en-modelos-espaciales-inla" title="Permalink to this heading">#</a></h2>
 <p>En INLA, por lo general, es más sencillo obtener predicciones del modelo pasando directamente los nuevos datos que se quieren utilizar para predecir al ajuste del modelo. En otras palabras, necesitamos definir estos nuevos datos <strong>antes</strong> de ajustar el modelo.</p>
 <p>Aquí vamos a ver cómo predecir el efecto de la elevación y la región sobre la variable respuesta, teniendo en cuenta el efecto espacial:</p>
 <ol class="arabic simple">
@@ -637,9 +623,8 @@ pred_stack_fixef &lt;- inla.stack(data = list(calcium = NA),
 </div>
 </div>
 </div>
-</section>
 <section id="puntos-clave-de-la-prediccion-en-inla">
-<h1>Puntos clave de la predicción en INLA<a class="headerlink" href="#puntos-clave-de-la-prediccion-en-inla" title="Permalink to this heading">#</a></h1>
+<h3>Puntos clave de la predicción en INLA<a class="headerlink" href="#puntos-clave-de-la-prediccion-en-inla" title="Permalink to this heading">#</a></h3>
 <p>Aquí hay un desglose de los puntos clave de la predicción en el modelo INLA que se acaba de describir:</p>
 <ul class="simple">
 <li><p><strong>Datos para la predicción</strong>:</p>
@@ -720,7 +705,7 @@ pred_stack_alleff &lt;- inla.stack(data = list(calcium = NA),
 </div>
 </section>
 <section id="obteniendo-predicciones-espaciales-con-covariables-en-inla">
-<h1>Obteniendo predicciones espaciales con covariables en INLA<a class="headerlink" href="#obteniendo-predicciones-espaciales-con-covariables-en-inla" title="Permalink to this heading">#</a></h1>
+<h3>Obteniendo predicciones espaciales con covariables en INLA<a class="headerlink" href="#obteniendo-predicciones-espaciales-con-covariables-en-inla" title="Permalink to this heading">#</a></h3>
 <p>Aquí detallamos el proceso para obtener predicciones espaciales teniendo en cuenta las covariables (elevación y región) en un modelo INLA:</p>
 <ol class="arabic simple">
 <li><p><strong>Información espacial de rásteres:</strong></p>
@@ -775,7 +760,7 @@ pred_stack_alleff &lt;- inla.stack(data = list(calcium = NA),
 </div>
 </section>
 <section id="ejecutando-el-modelo-inla-para-prediccion-espacial">
-<h1>Ejecutando el modelo INLA para predicción espacial<a class="headerlink" href="#ejecutando-el-modelo-inla-para-prediccion-espacial" title="Permalink to this heading">#</a></h1>
+<h3>Ejecutando el modelo INLA para predicción espacial<a class="headerlink" href="#ejecutando-el-modelo-inla-para-prediccion-espacial" title="Permalink to this heading">#</a></h3>
 <p>Se estima que la ejecución del modelo dure alrededor de 30 segundos. Aquí desglosamos los pasos principales del código que acabaste de mencionar:</p>
 <p><strong>1. Ajuste del modelo:</strong></p>
 <ul class="simple">
@@ -800,7 +785,7 @@ pred_stack_alleff &lt;- inla.stack(data = list(calcium = NA),
 </div>
 </section>
 <section id="examinando-las-predicciones-del-modelo-inla">
-<h1>Examinando las predicciones del modelo INLA<a class="headerlink" href="#examinando-las-predicciones-del-modelo-inla" title="Permalink to this heading">#</a></h1>
+<h3>Examinando las predicciones del modelo INLA<a class="headerlink" href="#examinando-las-predicciones-del-modelo-inla" title="Permalink to this heading">#</a></h3>
 <p>Una vez ajustado el modelo INLA para las predicciones espaciales, podemos analizar los resultados de diferentes maneras:</p>
 <p><strong>1. Predicciones basadas solo en efectos fijos:</strong></p>
 <p>Ahora que lo mencionas, podemos comenzar por observar las predicciones que solo tienen en cuenta los efectos fijos (elevación y región). Esto implica promediar las variaciones espaciales para ver el impacto general de estas covariables en la variable respuesta:</p>
@@ -844,7 +829,7 @@ ggplot(dat, aes(x = elevation, y = calcium)) +
 </div>
 </section>
 <section id="visualizando-las-predicciones-de-efectos-fijos-en-inla">
-<h1>Visualizando las predicciones de efectos fijos en INLA<a class="headerlink" href="#visualizando-las-predicciones-de-efectos-fijos-en-inla" title="Permalink to this heading">#</a></h1>
+<h3>Visualizando las predicciones de efectos fijos en INLA<a class="headerlink" href="#visualizando-las-predicciones-de-efectos-fijos-en-inla" title="Permalink to this heading">#</a></h3>
 <p>Ahora que hemos visto la teoría, veamos cómo visualizar las predicciones basadas únicamente en los efectos fijos (elevación y región) en tu modelo INLA:</p>
 <p><strong>1. Extraer predicciones de efectos fijos:</strong></p>
 <p>Como mencionaste anteriormente, utilizaste una etiqueta específica (por ejemplo, “prediccion_efectos_fijos”) al definir la pila de predicción. Esto nos permite extraer fácilmente las predicciones relevantes del objeto del modelo.</p>
@@ -891,8 +876,9 @@ ggplot(nn, aes(x=x, y=y, fill=value)) +
 </div>
 </div>
 </section>
-<section id="id1">
-<h1>Procesos Gaussianos con INLA<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="ejemplo-con-inla">
+<h2>Ejemplo con INLA<a class="headerlink" href="#ejemplo-con-inla" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
@@ -1222,6 +1208,7 @@ levelplot(grid$excprob, margin = FALSE)
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1259,7 +1246,7 @@ levelplot(grid$excprob, margin = FALSE)
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Gaussian Processes</p>
+        <p class="prev-next-title">Procesos Gaussianos con Python</p>
       </div>
     </a>
     <a class="right-next"
@@ -1286,23 +1273,21 @@ levelplot(grid$excprob, margin = FALSE)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Procesos Gaussianos con INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-efecto-espacial-parametro">Alcance del Efecto Espacial (parámetro κ)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variacion-del-efecto-espacial-parametro">Variación del Efecto Espacial (parámetro δ)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clave-esta-en-la-proyeccion-de-los-efectos">La clave está en la proyección de los efectos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-en-modelos-espaciales-inla">Predicción en Modelos Espaciales INLA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos-clave-de-la-prediccion-en-inla">Puntos clave de la predicción en INLA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obteniendo-predicciones-espaciales-con-covariables-en-inla">Obteniendo predicciones espaciales con covariables en INLA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutando-el-modelo-inla-para-prediccion-espacial">Ejecutando el modelo INLA para predicción espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examinando-las-predicciones-del-modelo-inla">Examinando las predicciones del modelo INLA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizando-las-predicciones-de-efectos-fijos-en-inla">Visualizando las predicciones de efectos fijos en INLA</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clave-esta-en-la-proyeccion-de-los-efectos">La clave está en la proyección de los efectos</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-en-modelos-espaciales-inla">Predicción en Modelos Espaciales INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos-clave-de-la-prediccion-en-inla">Puntos clave de la predicción en INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#obteniendo-predicciones-espaciales-con-covariables-en-inla">Obteniendo predicciones espaciales con covariables en INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutando-el-modelo-inla-para-prediccion-espacial">Ejecutando el modelo INLA para predicción espacial</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examinando-las-predicciones-del-modelo-inla">Examinando las predicciones del modelo INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizando-las-predicciones-de-efectos-fijos-en-inla">Visualizando las predicciones de efectos fijos en INLA</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Procesos Gaussianos con INLA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-inla">Ejemplo con INLA</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
