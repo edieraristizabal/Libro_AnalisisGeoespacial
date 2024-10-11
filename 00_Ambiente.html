@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '00_Ambiente';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Datos espaciales" href="01_DatosEspaciales.html" />
+    <link rel="next" title="Análisis Geoespacial" href="01_DatosEspaciales.html" />
     <link rel="prev" title="&lt;no title&gt;" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -169,15 +169,22 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ambiente computacional</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Datos espaciales</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_ArealData.html">Análisis de datos areales: mapas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_ArealData.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Análisis de datos areales: mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -508,6 +515,10 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">kernelspec</span> <span class="n">uninstall</span> <span class="n">myenv</span>
 </pre></div>
 </div>
+<p>Otra forma de asegurarse que instalando librerías desde el Jupyter Notebook queden instaladas efectivamente en el ambiente o entorno de trabajo es:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!{sys.executable} -m pip install NombreLibreria
+</pre></div>
+</div>
 </section>
 </section>
 <section id="contenedor-docker">
@@ -538,7 +549,6 @@ document.write(`
 </li>
 </ul>
 <p>Descargar o “pull” nuestro <a class="reference external" href="https://hub.docker.com/r/darribas/gds/">contenedor</a>. Para esto, ejecuta en la terminal el siguiente comando:</p>
-<center><img src="https://geekflare.com/wp-content/uploads/2020/04/docker-hub-repo.png" width="1000"></center>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">docker</span> <span class="n">pull</span> <span class="n">darribas</span><span class="o">/</span><span class="n">gds</span><span class="p">:</span><span class="mf">3.0</span>
 </pre></div>
 </div>
@@ -573,7 +583,6 @@ document.write(`
 <p>GEE proporciona un catálogo de datos que almacena un gran repositorio de datos geoespaciales, que incluye imágenes ópticas de una variedad de satélites y sistemas aéreos, variables ambientales, pronósticos meteorológicos y climáticos, cobertura terrestre, y conjuntos de datos socioeconómicos y topográficos. Antes de estar disponibles, estos conjuntos de datos se preprocesan, lo que permite un acceso eficiente y elimina muchas barreras asociadas con la gestión de datos.</p>
 <p>GEE utiliza cuatro tipos de objetos para representar los datos que pueden ser manipulados por su API. El tipo Image representa datos ráster que pueden consistir en una o más bandas, que contienen un nombre, tipo de datos, escala y proyección. Un conjunto o una serie temporal de Imágenes está representado por el tipo ImageCollection. GEE representa los datos vectoriales a través del tipo Feature. Este tipo está representado por una geometría (punto, línea o polígono) y una lista de atributos. El tipo FeatureCollection representa grupos de Features relacionadas y proporciona funciones para manipular estos datos, como clasificación, filtrado y visualización. GEE solo ofrece interfaces de programación que admiten procesamiento basado en píxeles. El resultado de un procesamiento en GEE se puede visualizar en el IDE web o guardar en uno de tres servicios de la compañía: Drive, Cloud Storage o Assets. GEE utiliza un servidor de Tiles para hacer que los datos estén disponibles en la interfaz web de manera eficiente.</p>
 <p>GEE proporciona una API en JavaScript y una API en Python para la gestión y el análisis de datos. Para la versión en JavaScript, también se proporciona un Entorno de Desarrollo Integrado <a class="reference external" href="https://code.earthengine.google.com">(IDE)</a> basado en la web, donde el usuario tiene fácil acceso a los datos disponibles, aplicaciones y visualización en tiempo real de los resultados del procesamiento. La API de Python está disponible a través de un módulo y tiene una estructura similar a su versión en JavaScript.</p>
-<center><img src="http://unescowe.sharif.ir/wp-content/uploads/2020/03/GEE1-1.png" width="500"></center>
 <section id="el-editor-de-codigo">
 <h3>El Editor de Código<a class="headerlink" href="#el-editor-de-codigo" title="Permalink to this heading">#</a></h3>
 <p>El Editor de Código es un entorno interactivo para desarrollar aplicaciones en Earth Engine. El panel central proporciona un editor de código en JavaScript. Sobre el editor hay botones para guardar el script actual, ejecutarlo y limpiar el mapa. El botón Get Link genera una URL única para el script en la barra de direcciones. El mapa en el panel inferior contiene las capas añadidas por el script. En la parte superior hay un cuadro de búsqueda para conjuntos de datos y lugares. El panel izquierdo contiene ejemplos de código, tus scripts guardados, una referencia API con capacidad de búsqueda y un gestor de activos para datos privados. El panel derecho tiene un inspector para consultar el mapa, una consola de salida y un gestor para tareas de larga duración. El botón de ayuda en la parte superior derecha contiene enlaces a esta guía y otros recursos para obtener ayuda. Aprende más en la <a class="reference external" href="https://developers.google.com/earth-engine/guides/playground">guía del Editor de Código</a>.</p>
@@ -653,16 +662,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "carto"
         },
         kernelOptions: {
-            name: "python3",
+            name: "carto",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'carto'</script>
 
                 </article>
               
@@ -688,7 +697,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Datos espaciales</p>
+        <p class="prev-next-title">Análisis Geoespacial</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

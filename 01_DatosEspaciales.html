@@ -181,6 +181,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -590,6 +596,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
 </div>
 <p>Algunas funciones interesantes que tienen los <em>GeoDataFrame</em>, heredadas de los <em>DataFrames</em> son:</p>
 <div class="cell docutils container">
@@ -598,10 +609,64 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>attribute1</th>
+      <th>attribute2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POINT (1.00000 1.00000)</td>
+      <td>1</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>POINT (2.00000 2.00000)</td>
+      <td>2</td>
+      <td>0.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 2 entries, 0 to 1
+Data columns (total 3 columns):
+ #   Column      Non-Null Count  Dtype   
+---  ------      --------------  -----   
+ 0   geometry    2 non-null      geometry
+ 1   attribute1  2 non-null      int64   
+ 2   attribute2  2 non-null      float64 
+dtypes: float64(1), geometry(1), int64(1)
+memory usage: 180.0 bytes
 </pre></div>
 </div>
 </div>
@@ -611,6 +676,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/dffadb1bff95a651c2913fa4ada0833af6552107d9dae7d7aef14e04ca3e056c.png" src="_images/dffadb1bff95a651c2913fa4ada0833af6552107d9dae7d7aef14e04ca3e056c.png" />
 </div>
 </div>
 <p>Es posible también crear un <em>GeoDataFrame</em> a partir de un <em>DataFrame</em>.</p>
@@ -628,6 +699,70 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Buenos Aires</td>
+      <td>Argentina</td>
+      <td>-34.58</td>
+      <td>-58.66</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brasilia</td>
+      <td>Brazil</td>
+      <td>-15.78</td>
+      <td>-47.91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Santiago</td>
+      <td>Chile</td>
+      <td>-33.45</td>
+      <td>-70.66</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bogota</td>
+      <td>Colombia</td>
+      <td>4.60</td>
+      <td>-74.08</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Caracas</td>
+      <td>Venezuela</td>
+      <td>10.48</td>
+      <td>-66.86</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -637,6 +772,76 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Buenos Aires</td>
+      <td>Argentina</td>
+      <td>-34.58</td>
+      <td>-58.66</td>
+      <td>(-58.66, -34.58)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brasilia</td>
+      <td>Brazil</td>
+      <td>-15.78</td>
+      <td>-47.91</td>
+      <td>(-47.91, -15.78)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Santiago</td>
+      <td>Chile</td>
+      <td>-33.45</td>
+      <td>-70.66</td>
+      <td>(-70.66, -33.45)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bogota</td>
+      <td>Colombia</td>
+      <td>4.60</td>
+      <td>-74.08</td>
+      <td>(-74.08, 4.6)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Caracas</td>
+      <td>Venezuela</td>
+      <td>10.48</td>
+      <td>-66.86</td>
+      <td>(-66.86, 10.48)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -646,6 +851,76 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Buenos Aires</td>
+      <td>Argentina</td>
+      <td>-34.58</td>
+      <td>-58.66</td>
+      <td>POINT (-58.66 -34.58)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brasilia</td>
+      <td>Brazil</td>
+      <td>-15.78</td>
+      <td>-47.91</td>
+      <td>POINT (-47.91 -15.78)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Santiago</td>
+      <td>Chile</td>
+      <td>-33.45</td>
+      <td>-70.66</td>
+      <td>POINT (-70.66 -33.45)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bogota</td>
+      <td>Colombia</td>
+      <td>4.60</td>
+      <td>-74.08</td>
+      <td>POINT (-74.08 4.6)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Caracas</td>
+      <td>Venezuela</td>
+      <td>10.48</td>
+      <td>-66.86</td>
+      <td>POINT (-66.86 10.48)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,11 +930,86 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Buenos Aires</td>
+      <td>Argentina</td>
+      <td>-34.58</td>
+      <td>-58.66</td>
+      <td>POINT (-58.66000 -34.58000)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brasilia</td>
+      <td>Brazil</td>
+      <td>-15.78</td>
+      <td>-47.91</td>
+      <td>POINT (-47.91000 -15.78000)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Santiago</td>
+      <td>Chile</td>
+      <td>-33.45</td>
+      <td>-70.66</td>
+      <td>POINT (-70.66000 -33.45000)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bogota</td>
+      <td>Colombia</td>
+      <td>4.60</td>
+      <td>-74.08</td>
+      <td>POINT (-74.08000 4.60000)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Caracas</td>
+      <td>Venezuela</td>
+      <td>10.48</td>
+      <td>-66.86</td>
+      <td>POINT (-66.86000 10.48000)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Sin embargo en ambos ejemplos aunque tenemos coordenadas y podemos incluso generar un mapa con los puntos, si consultamos el sistema de coordenadas de referencia (<em>crs</em>) vamos a obtener que no hemos asignado el sistema.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
 </pre></div>
 </div>
 </div>
@@ -675,6 +1025,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,10 +1037,110 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user_id</th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>date_taken</th>
+      <th>photo/video_page_url</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10727420@N00</td>
+      <td>139.700499</td>
+      <td>35.674000</td>
+      <td>2010-04-09 17:26:25.0</td>
+      <td>http://www.flickr.com/photos/10727420@N00/4545...</td>
+      <td>1.555139e+07</td>
+      <td>4.255856e+06</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8819274@N04</td>
+      <td>139.766521</td>
+      <td>35.709095</td>
+      <td>2007-02-10 16:08:40.0</td>
+      <td>http://www.flickr.com/photos/8819274@N04/26503...</td>
+      <td>1.555874e+07</td>
+      <td>4.260667e+06</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>62068690@N00</td>
+      <td>139.765632</td>
+      <td>35.694482</td>
+      <td>2008-12-21 15:45:31.0</td>
+      <td>http://www.flickr.com/photos/62068690@N00/3125...</td>
+      <td>1.555864e+07</td>
+      <td>4.258664e+06</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>49503094041@N01</td>
+      <td>139.784391</td>
+      <td>35.548589</td>
+      <td>2011-11-11 05:48:54.0</td>
+      <td>http://www.flickr.com/photos/49503094041@N01/6...</td>
+      <td>1.556073e+07</td>
+      <td>4.238684e+06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40443199@N00</td>
+      <td>139.768753</td>
+      <td>35.671521</td>
+      <td>2006-04-06 16:42:49.0</td>
+      <td>http://www.flickr.com/photos/40443199@N00/2482...</td>
+      <td>1.555899e+07</td>
+      <td>4.255517e+06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 7 columns):
+ #   Column                Non-Null Count  Dtype  
+---  ------                --------------  -----  
+ 0   user_id               10000 non-null  object 
+ 1   longitude             10000 non-null  float64
+ 2   latitude              10000 non-null  float64
+ 3   date_taken            10000 non-null  object 
+ 4   photo/video_page_url  10000 non-null  object 
+ 5   x                     10000 non-null  float64
+ 6   y                     10000 non-null  float64
+dtypes: float64(4), object(3)
+memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
@@ -710,11 +1165,18 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EPSG:4326
+</pre></div>
+</div>
+</div>
 </div>
 <p>Para crear <em>GeoDataFrames</em> para otros objetos como lineas o poligonos es un poco mas complejo el proceso, por lo cual generalmente se importan desde formatos espaciales como <em>shp</em> o <em>gpkg</em>. Sin embargo veamos un sensillo ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un GeoDataFrame vacío de geopandas</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="c1"># Crear un GeoDataFrame vacío de geopandas</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">()</span>
 
 <span class="c1"># Crear una nueva columna llamada &#39;geometry&#39; en el GeoDataFrame</span>
@@ -731,6 +1193,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Local\Temp\ipykernel_3348\1164090328.py:7: FutureWarning: You are adding a column named &#39;geometry&#39; to a GeoDataFrame constructed without an active geometry column. Currently, this automatically sets the active geometry column to &#39;geometry&#39; but in the future that will no longer happen. Instead, either provide geometry to the GeoDataFrame constructor (GeoDataFrame(... geometry=GeoSeries()) or use `set_geometry(&#39;geometry&#39;)` to explicitly set the active geometry column.
+  gdf[&#39;geometry&#39;] = None
+</pre></div>
+</div>
+<img alt="_images/5a24a8751ff927619b059acc505dd2470409eedfb373e9fe26ba557a47731d3d.svg" src="_images/5a24a8751ff927619b059acc505dd2470409eedfb373e9fe26ba557a47731d3d.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -742,6 +1210,36 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POLYGON ((24.95090 60.16916, 24.95349 60.16916...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -753,6 +1251,38 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POLYGON ((24.95090 60.16916, 24.95349 60.16916...</td>
+      <td>Senaatintori</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -760,14 +1290,32 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fiona.crs</span> <span class="kn">import</span> <span class="n">from_epsg</span>
-
-<span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">from_epsg</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;EPSG:4326&quot;</span>
 
 <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
 </pre></div>
 </div>
 </div>
@@ -777,6 +1325,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/5f4fc74cc5bd81386e15db9750fdb26524181966cf03c396b7642e0a1b239874.png" src="_images/5f4fc74cc5bd81386e15db9750fdb26524181966cf03c396b7642e0a1b239874.png" />
 </div>
 </div>
 </section>
@@ -800,7 +1354,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span>
 <span class="kn">import</span> <span class="nn">rioxarray</span>
-<span class="n">pop</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="s2">&quot;https://geographicdata.science/book/_downloads/5263090bd0bdbd7d1635505ff7d36d04/ghsl_sao_paulo.tif&quot;</span><span class="p">)</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;https://geographicdata.science/book/_downloads/5263090bd0bdbd7d1635505ff7d36d04/ghsl_sao_paulo.tif&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;rasterio&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -812,7 +1366,33 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>xarray.core.dataset.Dataset
+</pre></div>
+</div>
+</div>
+</div>
+<p>xarray tiene diferentes tipos de formatos. Para transformar el dataset a un dataArray se utiliza:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dr</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">to_dataarray</span><span class="p">()</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">dr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>xarray.core.dataarray.DataArray
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dr</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 1, 416, 468)
 </pre></div>
 </div>
 </div>
@@ -820,53 +1400,23 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">xarray</span></code> es un paquete para trabajar con arreglos etiquetados multidimensionales.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">coords</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dr</span><span class="o">.</span><span class="n">coords</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coordinates:
-  * band     (band) int64 1
-  * y        (y) float64 -2.822e+06 -2.822e+06 ... -2.926e+06 -2.926e+06
-  * x        (x) float64 -4.482e+06 -4.482e+06 ... -4.365e+06 -4.365e+06
+  * band         (band) int32 4B 1
+  * x            (x) float64 4kB -4.482e+06 -4.482e+06 ... -4.365e+06 -4.365e+06
+  * y            (y) float64 3kB -2.822e+06 -2.822e+06 ... -2.926e+06 -2.926e+06
+    spatial_ref  int32 4B ...
+  * variable     (variable) object 8B &#39;band_data&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <p>Curiosamente, nuestra superficie tiene <em>tres</em> dimensiones: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> y <code class="docutils literal notranslate"><span class="pre">band</span></code>. Las dos primeras rastrean la latitud y la longitud que cubre cada celda en nuestra cuadrícula de población. La tercera tiene un solo valor (1) y, en este contexto, no es muy útil. Pero es fácil imaginar contextos en los que una tercera dimensión sería útil. Por ejemplo, una imagen óptica en color puede tener tres bandas: rojo, azul y verde. Sensores más potentes pueden captar bandas adicionales, como el infrarrojo cercano (NIR) o incluso bandas de radio. O una superficie medida a lo largo del tiempo, como los geocubos, tendrá bandas para cada punto en el tiempo en el que se mide el campo. Una superficie geográfica tendrá, por lo tanto, dos dimensiones que registran la ubicación de las celdas (<code class="docutils literal notranslate"><span class="pre">x</span></code> y <code class="docutils literal notranslate"><span class="pre">y</span></code>), y al menos una <code class="docutils literal notranslate"><span class="pre">band</span></code> que registra otras dimensiones relacionadas con nuestros datos.</p>
 <p>Un objeto <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> contiene información adicional sobre los valores almacenados bajo el atributo <code class="docutils literal notranslate"><span class="pre">attrs</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">attrs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;transform&#39;: (250.0, 0.0, -4482000.0, 0.0, -250.0, -2822000.0),
- &#39;crs&#39;: &#39;+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs=True&#39;,
- &#39;res&#39;: (250.0, 250.0),
- &#39;is_tiled&#39;: 0,
- &#39;nodatavals&#39;: (-200.0,),
- &#39;scales&#39;: (1.0,),
- &#39;offsets&#39;: (0.0,),
- &#39;AREA_OR_POINT&#39;: &#39;Area&#39;,
- &#39;grid_mapping&#39;: &#39;spatial_ref&#39;}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 416, 468)
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -905,6 +1455,7 @@ document.write(`
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -917,7 +1468,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block;
+  display: block !important;
   min-width: 300px;
   max-width: 700px;
 }
@@ -1134,6 +1685,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -1155,14 +1711,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -1172,13 +1730,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -1216,7 +1777,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -1225,47 +1787,40 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (y: 416, x: 468)&gt;
-[194688 values with dtype=float32]
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 786kB
+Dimensions:      (x: 468, y: 416)
 Coordinates:
-    band     int64 1
-  * y        (y) float64 -2.822e+06 -2.822e+06 ... -2.926e+06 -2.926e+06
-  * x        (x) float64 -4.482e+06 -4.482e+06 ... -4.365e+06 -4.365e+06
-Attributes:
-    transform:      (250.0, 0.0, -4482000.0, 0.0, -250.0, -2822000.0)
-    crs:            +proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +...
-    res:            (250.0, 250.0)
-    is_tiled:       0
-    nodatavals:     (-200.0,)
-    scales:         (1.0,)
-    offsets:        (0.0,)
-    AREA_OR_POINT:  Area
-    grid_mapping:   spatial_ref</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 416</li><li><span class='xr-has-index'>x</span>: 468</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-6050ef09-7d21-43a0-92d2-f3a0b0114fea' class='xr-array-in' type='checkbox' checked><label for='section-6050ef09-7d21-43a0-92d2-f3a0b0114fea' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>...</span></div><div class='xr-array-data'><pre>[194688 values with dtype=float32]</pre></div></div></li><li class='xr-section-item'><input id='section-cc3ec7a3-e263-4929-8c08-e972d237511e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-cc3ec7a3-e263-4929-8c08-e972d237511e' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>band</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1</div><input id='attrs-a89755a2-4c89-41a8-bccb-95d52dec9e3a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a89755a2-4c89-41a8-bccb-95d52dec9e3a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-34192c9f-b0c8-441b-bf75-a4ea6ad346df' class='xr-var-data-in' type='checkbox'><label for='data-34192c9f-b0c8-441b-bf75-a4ea6ad346df' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-2.822e+06 ... -2.926e+06</div><input id='attrs-341fdefe-14a6-4c12-9a1f-8f16c9a080a0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-341fdefe-14a6-4c12-9a1f-8f16c9a080a0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-27d19556-2eea-4465-adb5-4db9416b19a0' class='xr-var-data-in' type='checkbox'><label for='data-27d19556-2eea-4465-adb5-4db9416b19a0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-2822125., -2822375., -2822625., ..., -2925375., -2925625., -2925875.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-4.482e+06 ... -4.365e+06</div><input id='attrs-011838c5-fa5b-45d8-b123-7aac3f4e4bf1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-011838c5-fa5b-45d8-b123-7aac3f4e4bf1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-08ba5913-72f3-4691-add7-9a5b7b0eee01' class='xr-var-data-in' type='checkbox'><label for='data-08ba5913-72f3-4691-add7-9a5b7b0eee01' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-4481875., -4481625., -4481375., ..., -4365625., -4365375., -4365125.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-32e9caff-da3d-4281-91c9-05c99aabaf89' class='xr-section-summary-in' type='checkbox'  checked><label for='section-32e9caff-da3d-4281-91c9-05c99aabaf89' class='xr-section-summary' >Attributes: <span>(9)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>transform :</span></dt><dd>(250.0, 0.0, -4482000.0, 0.0, -250.0, -2822000.0)</dd><dt><span>crs :</span></dt><dd>+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs=True</dd><dt><span>res :</span></dt><dd>(250.0, 250.0)</dd><dt><span>is_tiled :</span></dt><dd>0</dd><dt><span>nodatavals :</span></dt><dd>(-200.0,)</dd><dt><span>scales :</span></dt><dd>(1.0,)</dd><dt><span>offsets :</span></dt><dd>(0.0,)</dd><dt><span>AREA_OR_POINT :</span></dt><dd>Area</dd><dt><span>grid_mapping :</span></dt><dd>spatial_ref</dd></dl></div></li></ul></div></div></div></div>
+    band         int32 4B 1
+  * x            (x) float64 4kB -4.482e+06 -4.482e+06 ... -4.365e+06 -4.365e+06
+  * y            (y) float64 3kB -2.822e+06 -2.822e+06 ... -2.926e+06 -2.926e+06
+    spatial_ref  int32 4B ...
+Data variables:
+    band_data    (y, x) float32 779kB nan nan nan nan nan ... nan nan nan nan</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-1c7a5750-1b94-4efe-ae30-82d4e4a1cfa4' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-1c7a5750-1b94-4efe-ae30-82d4e4a1cfa4' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 468</li><li><span class='xr-has-index'>y</span>: 416</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-16c6e9fd-3d6c-4ae4-b40c-5891e74d1b2e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-16c6e9fd-3d6c-4ae4-b40c-5891e74d1b2e' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>band</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>1</div><input id='attrs-ecd20225-88fe-4c50-8d43-2ce47c40c945' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ecd20225-88fe-4c50-8d43-2ce47c40c945' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3c26b3e6-24ce-458e-aed7-4c7bd04c4351' class='xr-var-data-in' type='checkbox'><label for='data-3c26b3e6-24ce-458e-aed7-4c7bd04c4351' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-4.482e+06 ... -4.365e+06</div><input id='attrs-b1e856c8-58f4-4596-adc1-ea15dde631af' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b1e856c8-58f4-4596-adc1-ea15dde631af' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-28452c42-9eaf-4112-969e-34bf98baa3b9' class='xr-var-data-in' type='checkbox'><label for='data-28452c42-9eaf-4112-969e-34bf98baa3b9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-4481875., -4481625., -4481375., ..., -4365625., -4365375., -4365125.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-2.822e+06 ... -2.926e+06</div><input id='attrs-509f1de5-300f-4048-b2c3-64893b2b7d9e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-509f1de5-300f-4048-b2c3-64893b2b7d9e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b8009e13-9ffe-41fe-b328-dab6333514d1' class='xr-var-data-in' type='checkbox'><label for='data-b8009e13-9ffe-41fe-b328-dab6333514d1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-2822125., -2822375., -2822625., ..., -2925375., -2925625., -2925875.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spatial_ref</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-e11ecff2-58ca-4df8-9cf2-a59a4c4655ee' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e11ecff2-58ca-4df8-9cf2-a59a4c4655ee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1d1d99f5-ef54-402c-a28d-d24f30c232d5' class='xr-var-data-in' type='checkbox'><label for='data-1d1d99f5-ef54-402c-a28d-d24f30c232d5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;World_Mollweide&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.0174532925199433]],PROJECTION[&quot;Mollweide&quot;],PARAMETER[&quot;central_meridian&quot;,0],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;Meter&quot;,1],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH]]</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;World_Mollweide&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.0174532925199433]],PROJECTION[&quot;Mollweide&quot;],PARAMETER[&quot;central_meridian&quot;,0],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;Meter&quot;,1],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH]]</dd><dt><span>GeoTransform :</span></dt><dd>-4482000.0 250.0 0.0 -2822000.0 0.0 -250.0</dd></dl></div><div class='xr-var-data'><pre>[1 values with dtype=int32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7681b669-13cc-4e36-b100-1b82951ad2ce' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7681b669-13cc-4e36-b100-1b82951ad2ce' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>band_data</span></div><div class='xr-var-dims'>(y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-c6e6d65d-36fe-4bff-b69c-b525598d99ab' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c6e6d65d-36fe-4bff-b69c-b525598d99ab' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1a630281-9a98-4d88-864e-9e9c21ceaa5e' class='xr-var-data-in' type='checkbox'><label for='data-1a630281-9a98-4d88-864e-9e9c21ceaa5e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>AREA_OR_POINT :</span></dt><dd>Area</dd></dl></div><div class='xr-var-data'><pre>array([[nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       ...,
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan],
+       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6ce5e5d9-f273-42d9-9cc9-03180f8ab6b7' class='xr-section-summary-in' type='checkbox'  ><label for='section-6ce5e5d9-f273-42d9-9cc9-03180f8ab6b7' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-29c7a628-4a71-4c85-b380-74e6392047d8' class='xr-index-data-in' type='checkbox'/><label for='index-29c7a628-4a71-4c85-b380-74e6392047d8' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-4481875.0, -4481625.0, -4481375.0, -4481125.0, -4480875.0, -4480625.0,
+       -4480375.0, -4480125.0, -4479875.0, -4479625.0,
+       ...
+       -4367375.0, -4367125.0, -4366875.0, -4366625.0, -4366375.0, -4366125.0,
+       -4365875.0, -4365625.0, -4365375.0, -4365125.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=468))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ba927d64-d7cd-4908-b816-aa5d59e74ad0' class='xr-index-data-in' type='checkbox'/><label for='index-ba927d64-d7cd-4908-b816-aa5d59e74ad0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-2822125.0, -2822375.0, -2822625.0, -2822875.0, -2823125.0, -2823375.0,
+       -2823625.0, -2823875.0, -2824125.0, -2824375.0,
+       ...
+       -2923625.0, -2923875.0, -2924125.0, -2924375.0, -2924625.0, -2924875.0,
+       -2925125.0, -2925375.0, -2925625.0, -2925875.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=416))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c07c5430-c301-46b9-80c5-80284057ceaf' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c07c5430-c301-46b9-80c5-80284057ceaf' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dr</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7ff09ac08b20&gt;
-</pre></div>
-</div>
-<img alt="_images/e6ff344329a773fb676a0b4d8b1996fd7c87e5050075e8a208e6e116db17e149.png" src="_images/e6ff344329a773fb676a0b4d8b1996fd7c87e5050075e8a208e6e116db17e149.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pop</span><span class="o">!=-</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7ff09a949040&gt;
-</pre></div>
-</div>
-<img alt="_images/7af54e1c8d9df88fb6c9d67eaf3d7fbe31974eb0547c33e329c7b03357993623.png" src="_images/7af54e1c8d9df88fb6c9d67eaf3d7fbe31974eb0547c33e329c7b03357993623.png" />
+<img alt="_images/ddcb06c8b57d7ca06e719bf29e057d3f462e69952909b551b191024a66a8022d.png" src="_images/ddcb06c8b57d7ca06e719bf29e057d3f462e69952909b551b191024a66a8022d.png" />
 </div>
 </div>
 </section>
@@ -1288,16 +1843,16 @@ Attributes:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "carto"
         },
         kernelOptions: {
-            name: "python3",
+            name: "carto",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'carto'</script>
 
                 </article>
               

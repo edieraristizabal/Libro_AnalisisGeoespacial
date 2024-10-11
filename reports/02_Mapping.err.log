@@ -18,82 +18,74 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# instalar 
-!pip install OWSLib
+import plotly.graph_objects as go
 
-from owslib.wms import WebMapService
+df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv')
 
-igac = WebMapService('https://mapas.igac.gov.co/server/services/carto/carto100000colombia2019/MapServer/WMSServer?request=GetCapabilities&service=WMS')
+scl = [0,"rgb(150,0,90)"],[0.125,"rgb(0, 0, 200)"],[0.25,"rgb(0, 25, 255)"],[0.375,"rgb(0, 152, 255)"],
+[0.5,"rgb(44, 255, 150)"],[0.625,"rgb(151, 255, 0)"],[0.75,"rgb(255, 234, 0)"],[0.875,"rgb(255, 111, 0)"],[1,"rgb(255, 0, 0)"]
 
-print (igac.identification.type)
+fig = go.Figure(data=go.Scattergeo(
+    lat = df['Lat'],
+    lon = df['Lon'],
+    text = df['Globvalue'].astype(str) + ' inches',
+    marker = dict(
+        color = df['Globvalue'],
+        colorscale = scl,
+        reversescale = True,
+        opacity = 0.7,
+        size = 2,
+        colorbar = dict(
+            titleside = "right",
+            outlinecolor = "rgba(68, 68, 68, 0)",
+            ticks = "outside",
+            showticksuffix = "last",
+            dtick = 0.1
+        )
+    )
+))
 
-print (igac.identification.title)
-
-list(igac.contents)[:5]
-
-print(  igac['1'].title )
-print(  igac['1'].queryable )
-print(  igac['1'].opaque )
-print(  igac['1'].boundingBox )
-print(  igac['1'].boundingBoxWGS84)
-print(  igac['1'].crsOptions)
-print(  igac['1'].styles)
-
-img = igac.getmap(   layers=['1'],
-                    styles=[''],
-                     srs='EPSG:4326',
-                     bbox=(-81.760298, -4.003585, -67.111816, 13.533774),
-                     size=(640, 480),
-                     format='image/png',
-                     transparent=False)
+fig.update_layout(
+    geo = dict(
+        scope = 'north america',
+        showland = True,
+        landcolor = "rgb(212, 212, 212)",
+        subunitcolor = "rgb(255, 255, 255)",
+        countrycolor = "rgb(255, 255, 255)",
+        showlakes = True,
+        lakecolor = "rgb(255, 255, 255)",
+        showsubunits = True,
+        showcountries = True,
+        resolution = 50,
+        projection = dict(
+            type = 'conic conformal',
+            rotation_lon = -100
+        ),
+        lonaxis = dict(
+            showgrid = True,
+            gridwidth = 0.5,
+            range= [ -140.0, -55.0 ],
+            dtick = 5
+        ),
+        lataxis = dict (
+            showgrid = True,
+            gridwidth = 0.5,
+            range= [ 20.0, 60.0 ],
+            dtick = 5
+        )
+    ),
+    title='US Precipitation 06-30-2015<br>Source: <a href="http://water.weather.gov/precip/">NOAA</a>',
+)
+fig.show()
 ------------------
 
------ stdout -----
-Requirement already satisfied: OWSLib in c:\users\edier\miniconda3\lib\site-packages (0.31.0)
-Requirement already satisfied: lxml in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (5.3.0)
-Requirement already satisfied: python-dateutil>=1.5 in c:\users\edier\appdata\roaming\python\python311\site-packages (from OWSLib) (2.8.2)
-Requirement already satisfied: pytz in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (2023.3)
-Requirement already satisfied: pyyaml in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (6.0.1)
-Requirement already satisfied: requests>=1.0 in c:\users\edier\miniconda3\lib\site-packages (from OWSLib) (2.29.0)
-Requirement already satisfied: six>=1.5 in c:\users\edier\miniconda3\lib\site-packages (from python-dateutil>=1.5->OWSLib) (1.16.0)
-Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (2.0.4)
-Requirement already satisfied: idna<4,>=2.5 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (3.4)
-Requirement already satisfied: urllib3<1.27,>=1.21.1 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (1.26.16)
-Requirement already satisfied: certifi>=2017.4.17 in c:\users\edier\miniconda3\lib\site-packages (from requests>=1.0->OWSLib) (2023.11.17)
-------------------
 
-Traceback [1;36m(most recent call last)[0m:
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[17], line 1[0m
+[1;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mplotly[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraph_objects[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgo[39;00m
+[0;32m      3[0m df [38;5;241m=[39m pd[38;5;241m.[39mread_csv([38;5;124m'[39m[38;5;124mhttps://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv[39m[38;5;124m'[39m)
+[0;32m      5[0m scl [38;5;241m=[39m [[38;5;241m0[39m,[38;5;124m"[39m[38;5;124mrgb(150,0,90)[39m[38;5;124m"[39m],[[38;5;241m0.125[39m,[38;5;124m"[39m[38;5;124mrgb(0, 0, 200)[39m[38;5;124m"[39m],[[38;5;241m0.25[39m,[38;5;124m"[39m[38;5;124mrgb(0, 25, 255)[39m[38;5;124m"[39m],[[38;5;241m0.375[39m,[38;5;124m"[39m[38;5;124mrgb(0, 152, 255)[39m[38;5;124m"[39m],
 
-[0m  File [0;32m~\AppData\Roaming\Python\Python311\site-packages\IPython\core\interactiveshell.py:3508[0m in [0;35mrun_code[0m
-    exec(code_obj, self.user_global_ns, self.user_ns)[0m
-
-[0m  Cell [0;32mIn[1], line 6[0m
-    igac = WebMapService('https://mapas.igac.gov.co/server/services/carto/carto100000colombia2019/MapServer/WMSServer?request=GetCapabilities&service=WMS')[0m
-
-[0m  File [0;32m~\miniconda3\Lib\site-packages\owslib\wms.py:50[0m in [0;35mWebMapService[0m
-    return wms111.WebMapService_1_1_1([0m
-
-[0m  File [0;32m~\miniconda3\Lib\site-packages\owslib\map\wms111.py:75[0m in [0;35m__init__[0m
-    self._capabilities = reader.read(self.url, timeout=self.timeout)[0m
-
-[0m  File [0;32m~\miniconda3\Lib\site-packages\owslib\map\common.py:69[0m in [0;35mread[0m
-    return etree.fromstring(raw_text)[0m
-
-[0m  File [0;32msrc\\lxml\\etree.pyx:3306[0m in [0;35mlxml.etree.fromstring[0m
-
-[0m  File [0;32msrc\\lxml\\parser.pxi:1995[0m in [0;35mlxml.etree._parseMemoryDocument[0m
-
-[0m  File [0;32msrc\\lxml\\parser.pxi:1882[0m in [0;35mlxml.etree._parseDoc[0m
-
-[0m  File [0;32msrc\\lxml\\parser.pxi:1164[0m in [0;35mlxml.etree._BaseParser._parseDoc[0m
-
-[0m  File [0;32msrc\\lxml\\parser.pxi:633[0m in [0;35mlxml.etree._ParserContext._handleParseResultDoc[0m
-
-[0m  File [0;32msrc\\lxml\\parser.pxi:743[0m in [0;35mlxml.etree._handleParseResult[0m
-
-[1;36m  File [1;32msrc\\lxml\\parser.pxi:672[1;36m in [1;35mlxml.etree._raiseParseError[1;36m
-
-[1;36m  File [1;32m<string>:1[1;36m[0m
-[1;31mXMLSyntaxError[0m[1;31m:[0m Opening and ending tag mismatch: HR line 1 and body, line 1, column 913
-
+[1;31mModuleNotFoundError[0m: No module named 'plotly'
 

@@ -181,6 +181,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -477,27 +483,21 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;spikles-1.mat&quot;</span><span class="p">)</span>  <span class="c1"># Load the data,</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>              <span class="c1"># Extract the t variable,</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>              <span class="c1"># Extract the X variable,</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>                      <span class="c1"># ... and plot it.</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>
-<span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;spikles-1.mat&quot;</span><span class="p">)</span>  
+<span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>              
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>             
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>                     
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;spikles-1.mat&quot;</span><span class="p">)</span>  <span class="c1"># Load the data,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>              <span class="c1"># Extract the t variable,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>              <span class="c1"># Extract the X variable,</span>
-
-<span class="ne">NameError</span>: name &#39;loadmat&#39; is not defined
-</pre></div>
-</div>
+<img alt="_images/3843ed459d6f20ac0f1426e73854ded5149ef31b2a4ad6f1dd8f049cea642a52.png" src="_images/3843ed459d6f20ac0f1426e73854ded5149ef31b2a4ad6f1dd8f049cea642a52.png" />
 </div>
 </div>
 <p>El gráfico muestra que la rata corre de un lado a otro de manera consistente, realizando aproximadamente 15 pasadas durante los 3 minutos de grabación. También observamos que la rata se mueve bastante rápido en cada pasada, pero pasa una gran cantidad de tiempo en ambos extremos de la pista (cerca de la posición 0 cm o 100 cm) antes de girar y continuar.</p>
@@ -507,30 +507,141 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spiketimes</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;spiketimes&#39;</span><span class="p">]</span>
 <span class="n">n_bins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 <span class="c1"># Histogram spikes into bins centered at times t:</span>
-<span class="n">spiketrain</span> <span class="o">=</span> <span class="n">histogram</span><span class="p">(</span><span class="n">spiketimes</span><span class="p">,</span> 
+<span class="n">spiketrain</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">spiketimes</span><span class="p">,</span> 
                          <span class="n">bins</span> <span class="o">=</span> <span class="n">n_bins</span><span class="p">,</span> 
-                         <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span> 
+                         <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">n_bins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Histogram spikes into bins centered at times t:</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">spiketrain</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">spiketimes</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                          <span class="n">bins</span> <span class="o">=</span> <span class="n">n_bins</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                          <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\pyplot.py:2645,</span> in <span class="ni">hist</span><span class="nt">(x, bins, range, density, weights, cumulative, bottom, histtype, align, orientation, rwidth, log, color, label, stacked, data, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2639</span> <span class="nd">@_copy_docstring_and_deprecators</span><span class="p">(</span><span class="n">Axes</span><span class="o">.</span><span class="n">hist</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2640</span> <span class="k">def</span> <span class="nf">hist</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2641</span>         <span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2642</span>         <span class="n">cumulative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;mid&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2643</span>         <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">rwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2644</span>         <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">2645</span>     <span class="k">return</span> <span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2646</span>         <span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="nb">range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">density</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2647</span>         <span class="n">cumulative</span><span class="o">=</span><span class="n">cumulative</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="n">bottom</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="n">histtype</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2648</span>         <span class="n">align</span><span class="o">=</span><span class="n">align</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="p">,</span> <span class="n">rwidth</span><span class="o">=</span><span class="n">rwidth</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2649</span>         <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="n">stacked</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2650</span>         <span class="o">**</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\__init__.py:1461,</span> in <span class="ni">_preprocess_data.&lt;locals&gt;.inner</span><span class="nt">(ax, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1458</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span> <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1460</span>     <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1461</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="n">sanitize_sequence</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1463</span>     <span class="n">bound</span> <span class="o">=</span> <span class="n">new_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1464</span>     <span class="n">auto_label</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_namer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1465</span>                   <span class="ow">or</span> <span class="n">bound</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_namer</span><span class="p">))</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\axes\_axes.py:6851,</span> in <span class="ni">Axes.hist</span><span class="nt">(self, x, bins, range, density, weights, cumulative, bottom, histtype, align, orientation, rwidth, log, color, label, stacked, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6849</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6850</span>     <span class="n">height</span> <span class="o">=</span> <span class="n">top</span>
+<span class="ne">-&gt; </span><span class="mi">6851</span> <span class="n">bars</span> <span class="o">=</span> <span class="n">_barfunc</span><span class="p">(</span><span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">boffset</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6852</span>                 <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6853</span>                 <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">bottom_kwarg</span><span class="p">:</span> <span class="n">bottom</span><span class="p">})</span>
+<span class="g g-Whitespace">   </span><span class="mi">6854</span> <span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bars</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6855</span> <span class="k">if</span> <span class="n">stacked</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\__init__.py:1461,</span> in <span class="ni">_preprocess_data.&lt;locals&gt;.inner</span><span class="nt">(ax, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1458</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span> <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1460</span>     <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1461</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="n">sanitize_sequence</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1463</span>     <span class="n">bound</span> <span class="o">=</span> <span class="n">new_sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1464</span>     <span class="n">auto_label</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_namer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1465</span>                   <span class="ow">or</span> <span class="n">bound</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_namer</span><span class="p">))</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\axes\_axes.py:2486,</span> in <span class="ni">Axes.bar</span><span class="nt">(self, x, height, width, bottom, align, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2484</span>     <span class="k">else</span><span class="p">:</span>  <span class="c1"># horizontal</span>
+<span class="g g-Whitespace">   </span><span class="mi">2485</span>         <span class="n">r</span><span class="o">.</span><span class="n">sticky_edges</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2486</span>     <span class="bp">self</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2487</span>     <span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2489</span> <span class="k">if</span> <span class="n">xerr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">yerr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\axes\_base.py:2379,</span> in <span class="ni">_AxesBase.add_patch</span><span class="nt">(self, p)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2377</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get_clip_path</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2378</span>     <span class="n">p</span><span class="o">.</span><span class="n">set_clip_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patch</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2379</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_patch_limits</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2380</span> <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2381</span> <span class="n">p</span><span class="o">.</span><span class="n">_remove_method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">remove</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\axes\_base.py:2401,</span> in <span class="ni">_AxesBase._update_patch_limits</span><span class="nt">(self, patch)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2398</span> <span class="c1"># Get all vertices on the path</span>
+<span class="g g-Whitespace">   </span><span class="mi">2399</span> <span class="c1"># Loop through each segment to get extrema for Bezier curve sections</span>
+<span class="g g-Whitespace">   </span><span class="mi">2400</span> <span class="n">vertices</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">-&gt; </span><span class="mi">2401</span> <span class="k">for</span> <span class="n">curve</span><span class="p">,</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">iter_bezier</span><span class="p">(</span><span class="n">simplify</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2402</span>     <span class="c1"># Get distance along the curve of any extrema</span>
+<span class="g g-Whitespace">   </span><span class="mi">2403</span>     <span class="n">_</span><span class="p">,</span> <span class="n">dzeros</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">axis_aligned_extrema</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2404</span>     <span class="c1"># Calculate vertices of start, end and any extrema in between</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\matplotlib\path.py:459,</span> in <span class="ni">Path.iter_bezier</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="k">yield</span> <span class="n">BezierSegment</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">prev_vert</span><span class="p">,</span> <span class="n">verts</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>                                   <span class="n">verts</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">verts</span><span class="p">[</span><span class="mi">4</span><span class="p">:]])),</span> <span class="n">code</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span> <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="n">Path</span><span class="o">.</span><span class="n">CLOSEPOLY</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">459</span>     <span class="k">yield</span> <span class="n">BezierSegment</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">prev_vert</span><span class="p">,</span> <span class="n">first_vert</span><span class="p">])),</span> <span class="n">code</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="n">Path</span><span class="o">.</span><span class="n">STOP</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">return</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spikeindex</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">spiketrain</span><span class="o">!=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># Get the spike indices.</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>                               <span class="c1"># Plot the position,</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>  <span class="c1"># ... and the spikes.  </span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [sec]&#39;</span><span class="p">)</span>                     <span class="c1"># Label the axes.</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>
-<span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">spikeindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">spiketrain</span><span class="o">!=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># Get the spike indices.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>                               <span class="c1"># Plot the position,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>  <span class="c1"># ... and the spikes.  </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [sec]&#39;</span><span class="p">)</span>                     <span class="c1"># Label the axes.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e7aa3addaf360706673e1252db755523a2797bf8e4400559214d27cf59eb77d9.png" src="_images/e7aa3addaf360706673e1252db755523a2797bf8e4400559214d27cf59eb77d9.png" />
 </div>
 </div>
 <p>A partir de la figura anterior, está claro que la mayor parte de la actividad de picos ocurre cuando la rata está corriendo hacia arriba en la pista, en la dirección donde X está aumentando, en valores de X que van desde unos 50 cm hasta unos 80 cm. No vemos la misma actividad de picos en esta región cuando la rata está corriendo hacia abajo en la pista, en la dirección donde X está disminuyendo. Algunos picos ocurren en otras ubicaciones, pero estos parecen escasos en comparación con el disparo específico de lugar en esta región.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dataframe of predictors that includes X and a constant term</span>
-<span class="n">predictors</span> <span class="o">=</span> <span class="n">df</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">ones_like</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">X</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>                              <span class="c1"># Define spatial bins.</span>
+<span class="n">spikehist</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="n">bin_edges</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>           <span class="c1"># Histogram positions @ spikes.</span>
+<span class="n">occupancy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">bin_edges</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.001</span>                 <span class="c1"># Convert occupancy to seconds.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">spikehist</span><span class="o">/</span><span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># Plot results as bars.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                                      <span class="c1"># Label the axes.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c87a0ed17ad49bd0cdc5345028658f4a15ef2db615c9c3c5669840da33729fb4.png" src="_images/c87a0ed17ad49bd0cdc5345028658f4a15ef2db615c9c3c5669840da33729fb4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.genmod.families</span> <span class="kn">import</span> <span class="n">Poisson</span>
+<span class="kn">from</span> <span class="nn">statsmodels.genmod.families.links</span> <span class="kn">import</span> <span class="n">identity</span>
+
+<span class="c1"># Create a dataframe of predictors that includes X and a constant term</span>
+<span class="n">predictors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">X</span><span class="p">})</span>
 
 <span class="c1"># GLM model with Poisson family and identity link function</span>
 <span class="n">model1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">spiketrain</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Poisson</span><span class="p">(</span><span class="n">identity</span><span class="p">()))</span>
@@ -541,22 +652,39 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\envs\carto\Lib\site-packages\statsmodels\genmod\families\links.py:13: FutureWarning: The identity link alias is deprecated. Use Identity instead. The identity link alias will be removed after the 0.15.0 release.
+  warnings.warn(
+C:\Users\edier\miniconda3\envs\carto\Lib\site-packages\statsmodels\genmod\generalized_linear_model.py:307: DomainWarning: The identity link function does not respect the domain of the Poisson family.
+  warnings.warn((f&quot;The {type(family.link).__name__} link function &quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b1:
+Intercept   -0.000097
+X            0.000027
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>Inicialmente, es posible que notes que Python emite una advertencia en la línea de comandos indicando que este modelo—particularmente la función de enlace de identidad—puede ser inapropiado. Ignoraremos esta advertencia e intentaremos interpretar las estimaciones de los parámetros resultantes. El primero de estos valores es la estimación de máxima verosimilitud para <span class="math notranslate nohighlight">\(\beta_0\)</span>. Si creemos que este modelo es preciso, podríamos interpretar este parámetro como indicativo de que la tasa de disparo esperada en la posición <span class="math notranslate nohighlight">\(X(t) = 0\)</span> es de <span class="math notranslate nohighlight">\(-0.097\)</span> picos por milisegundo, o aproximadamente <span class="math notranslate nohighlight">\(-0.097\)</span> picos por segundo, y que a medida que la rata se mueve en la dirección positiva, la tasa de disparo aumenta en <span class="math notranslate nohighlight">\(\beta_1\)</span> picos por segundo por cada centímetro que la rata se mueve.</p>
 <p>Este resultado debería levantar algunas señales de advertencia de inmediato. El hecho de que la tasa de disparo sea negativa indica que el modelo se vuelve ininterpretable para los valores observados de <span class="math notranslate nohighlight">\(X(t)\)</span>. Esto sugiere un problema importante con el Modelo 1: la tasa de disparo es negativa, lo que motiva cambios en la función de enlace del modelo. Para visualizar mejor la calidad de este modelo, podemos comparar la dependencia que define entre la posición y la tasa de disparo con el histograma normalizado por ocupación que calculamos anteriormente. En este caso, utilizamos las posiciones definidas por los intervalos del histograma y calculamos la tasa de disparo modelada en estos puntos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">spikehist</span><span class="o">/</span><span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>    <span class="c1"># Plot results as bars.</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,(</span><span class="n">b1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">b1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">bins</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">spikehist</span><span class="o">/</span><span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>    <span class="c1"># Plot results as bars.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,(</span><span class="n">b1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">b1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">bins</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
      <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Model spike rate&quot;</span><span class="p">)</span>             <span class="c1"># Plot model.</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                    <span class="c1"># Label the axes.</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
-<span class="n">title</span><span class="p">(</span><span class="s2">&quot;b1 = [</span><span class="si">{0[0]:.4}</span><span class="s2">, </span><span class="si">{0[1]:.4}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b1</span><span class="p">))</span>
-<span class="n">legend</span><span class="p">()</span>
-<span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                    <span class="c1"># Label the axes.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;b1 = [</span><span class="si">{0[0]:.4}</span><span class="s2">, </span><span class="si">{0[1]:.4}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/27981b044f38b90d2b5989db673836a56584947c3eb10d0c28c8d9c5d2a3a2b2.png" src="_images/27981b044f38b90d2b5989db673836a56584947c3eb10d0c28c8d9c5d2a3a2b2.png" />
 </div>
 </div>
 <p>Vemos que la tasa de disparo del modelo captura algunas características del disparo observado, por ejemplo, el hecho de que la tasa de disparo aumenta a medida que la rata se mueve desde la posición <span class="math notranslate nohighlight">\(x = 0\)</span> hacia la posición <span class="math notranslate nohighlight">\(x = 60\)</span>. Pero el modelo no capta gran parte de la estructura, por ejemplo, el hecho de que la tasa de disparo no cambia linealmente con la posición y comienza a disminuir cuando la posición de la rata supera los <span class="math notranslate nohighlight">\(x = 70\)</span>. Esto sugiere un segundo problema con este modelo: la forma de la relación entre la posición y la tasa de disparo es incorrecta.</p>
@@ -576,7 +704,7 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>Para ajustar el Modelo 2 en Python, usamos el mismo modelo que antes pero reemplazamos la función de enlace con <span class="math notranslate nohighlight">\(\log\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">spiketrain</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Poisson</span><span class="p">(</span><span class="n">log</span><span class="p">()))</span> <span class="c1"># GLM model with Poisson family and log link function</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">spiketrain</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Poisson</span><span class="p">())</span> <span class="c1"># GLM model with Poisson family and log link function</span>
 <span class="n">model2_results</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span> <span class="c1"># Fit model to our data</span>
 <span class="n">b2</span> <span class="o">=</span> <span class="n">model2_results</span><span class="o">.</span><span class="n">params</span>    <span class="c1"># Get the predicted coefficient vector</span>
 </pre></div>
@@ -590,6 +718,13 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <span class="n">model2_results</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>  <span class="c1"># Fit model to our data</span>
 <span class="n">b2</span> <span class="o">=</span> <span class="n">model2_results</span><span class="o">.</span><span class="n">params</span>     <span class="c1"># Get the predicted coefficient vector</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept   -7.438887
+X            0.012943
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -610,15 +745,18 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>donde hemos utilizado el valor <span class="math notranslate nohighlight">\(b_2[1]\)</span>. Es decir, un aumento de 1 cm en la posición incrementa la tasa de disparo en un 1.3%. Debido a la función de enlace, la posición ahora tiene un efecto multiplicativo en lugar de aditivo sobre la tasa de disparo. En lugar de sumar a la tasa de disparo, cada aumento de posición conduce a una modulación multiplicativa de la tasa de disparo, con un incremento de aproximadamente un 1% por cm. Veamos cómo se ve este modelo comparándolo con el histograma normalizado por ocupación de los datos. En Python,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">spikehist</span><span class="o">/</span><span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>    <span class="c1"># Plot results as bars.</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">b2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">b2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">bins</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">spikehist</span><span class="o">/</span><span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>    <span class="c1"># Plot results as bars.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">b2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">b2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">bins</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
      <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Model spike rate&#39;</span><span class="p">)</span>             <span class="c1"># Plot model.</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                    <span class="c1"># Label the axes.</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">()</span>
-<span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                    <span class="c1"># Label the axes.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/93d02baa10681e62f5b1a84c5eba3d884b6a4de1230b4a41757489195e2a822c.png" src="_images/93d02baa10681e62f5b1a84c5eba3d884b6a4de1230b4a41757489195e2a822c.png" />
 </div>
 </div>
 <p>La inspección visual sugiere que hemos resuelto un problema: la tasa de disparo ya no es negativa en ningún lugar. Sin embargo, el ajuste del modelo aún no concuerda con la estructura observada en el histograma normalizado por ocupación. Hemos mejorado la función de enlace, pero usar solo la posición como covariable lleva a una tasa que es una función exponencial de la posición del ratón.</p>
@@ -644,21 +782,33 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b3:
+ Intercept   -26.279057
+X             0.690114
+X2           -0.005463
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>Al igual que con el Modelo 2, encontramos que Python no produce advertencias de que la función de enlace pueda ser inapropiada. En este caso, hay tres valores de parámetros estimados en <span class="math notranslate nohighlight">\(\mathbf{b}_3\)</span>.</p>
 <p>Ahora, interpretemos las estimaciones de los parámetros para el Modelo 3. La estimación del primer parámetro es <span class="math notranslate nohighlight">\(\beta_0=-26.3\)</span>. Esto significa que cuando el ratón está en la posición <span class="math notranslate nohighlight">\(x = 0\)</span>, la tasa de disparo es <span class="math notranslate nohighlight">\(\lamda = \exp(\beta_0)=-26.3=0\)</span>. Hay casi ninguna posibilidad de observar un disparo cuando el ratón está en esta ubicación. ¿Qué sucede cuando el ratón se mueve en la dirección positiva? Esto está determinado tanto por <span class="math notranslate nohighlight">\(\beta_1=0.6901\)</span> como por <span class="math notranslate nohighlight">\(\beta_2=-0.0055\)</span>. Por cada incremento unitario en la posición, la tasa de disparo se multiplica por <span class="math notranslate nohighlight">\(\exp(\beta_1)=1.99\)</span>, pero al mismo tiempo, por cada incremento unitario en el cuadrado de la posición, la tasa de disparo se multiplica por <span class="math notranslate nohighlight">\(\exp(\beta_2)=0.99\)</span>.</p>
 <p>Expresado de esta manera, los valores de los parámetros <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\beta_2\)</span> parecen difíciles de interpretar. Una vez que visualizamos este modelo, nos damos cuenta de que hay otra forma de expresar el modelo para que los parámetros sean más fáciles de interpretar:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">spikehist</span> <span class="o">/</span> <span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>    <span class="c1"># Plot results as bars.</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">b3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">b3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">bins</span> <span class="o">+</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">bins</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>  <span class="c1"># Plot model.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">spikehist</span> <span class="o">/</span> <span class="n">occupancy</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>    <span class="c1"># Plot results as bars.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">b3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">b3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">bins</span> <span class="o">+</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">bins</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>  <span class="c1"># Plot model.</span>
      <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">)</span>   
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                      <span class="c1"># Label the axes.</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">()</span>
-<span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position [cm]&#39;</span><span class="p">)</span>                      <span class="c1"># Label the axes.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Occupancy norm. hist. [spikes/s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4f17ca24db0bd8913bd3aa01e5df3bcad10bd05aac23c2806592c11cafe1d384.png" src="_images/4f17ca24db0bd8913bd3aa01e5df3bcad10bd05aac23c2806592c11cafe1d384.png" />
 </div>
 </div>
 <p>Vemos en la figura anterior que el Modelo 3 se alinea mucho más con el histograma normalizado por ocupación. La tasa de disparo es pequeña al comienzo de la pista, aumenta hasta una tasa de disparo máxima de cerca de 10 Hz a unos 60 cm a lo largo de la pista, y luego disminuye a medida que la posición sigue aumentando. La tasa de disparo modelada como función de la posición se asemeja a la densidad en forma de campana o montículo que a menudo asociamos con la distribución Gaussiana (o normal). El hecho de que la tasa de disparo sea la exponencial de una función cuadrática de la posición significa que podemos reescribir el modelo en una forma que se asemeje más a la función Gaussiana:</p>
@@ -673,10 +823,17 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Compute maximum likelihood estimates of</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="o">-</span><span class="n">b3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>                  <span class="c1"># place field center</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>             <span class="c1"># place field size</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">b3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># max firing rate</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>             <span class="c1"># place field size</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">b3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">b3</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># max firing rate</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mu: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">sigma: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">alpha: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mu: 63.16295780404678
+sigma: 9.566890841873345
+alpha: 0.011285495199176272
 </pre></div>
 </div>
 </div>
@@ -705,6 +862,12 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AIC2:  3344.790862938608
+model2_results.aic:  3344.790862938608
+</pre></div>
+</div>
+</div>
 </div>
 <p>La primera línea de este código calcula la log-verosimilitud para el Modelo 2. Recordemos que la verosimilitud es la distribución conjunta de todos los datos para un modelo específico. En este caso, el número de spikes en cada intervalo se modela como una variable aleatoria de Poisson con tasa <span class="math notranslate nohighlight">\(\lambda(t)\)</span>. Por lo tanto, la log-verosimilitud (<span class="math notranslate nohighlight">\(\text{LL}_2\)</span>) es el logaritmo del producto de los valores de probabilidad de Poisson para los spikes observados bajo el modelo propuesto (o equivalentemente, la suma del logaritmo de estos valores de probabilidad de Poisson). La segunda línea calcula el AIC para este modelo. Observa que usamos un valor de <span class="math notranslate nohighlight">\(p = 2\)</span>, ya que hay dos parámetros en este modelo (<span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>). Por último, mostramos que, efectivamente, esto es lo mismo que resulta al acceder al atributo <code class="docutils literal notranslate"><span class="pre">aic</span></code> de los resultados del modelo.</p>
 <p>De manera similar, podemos calcular el AIC para el Modelo 3:</p>
@@ -713,6 +876,11 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LL3</span> <span class="o">=</span> <span class="n">model3</span><span class="o">.</span><span class="n">loglike</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
 <span class="n">AIC3</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">LL3</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AIC3: &#39;</span><span class="p">,</span> <span class="n">AIC3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AIC3:  2708.776362292046
 </pre></div>
 </div>
 </div>
@@ -740,6 +908,12 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dAIC:  636.0145006465614
+Another method:  636.0145006465618
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="metodo-2-prueba-de-chi-cuadrado-para-modelos-anidados">
@@ -755,8 +929,14 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>Vamos a calcular el valor p para una MLRT que compare los Modelos 2 y 3:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">dev2</span> <span class="o">-</span> <span class="n">dev3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Compare Models 2 and 3, nested GLMs.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>  <span class="c1"># Importar chi2 desde scipy.stats</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">dev2</span> <span class="o">-</span> <span class="n">dev3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Compare Models 2 and 3, nested GLMs.</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p: 0.0
 </pre></div>
 </div>
 </div>
@@ -770,8 +950,15 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>Vamos ahora a usar el atributo <code class="docutils literal notranslate"><span class="pre">bse</span></code> para calcular intervalos de confianza para los parámetros del Modelo 2:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CI2</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">b2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model2_results</span><span class="o">.</span><span class="n">bse</span><span class="p">,</span> <span class="n">b2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model2_results</span><span class="o">.</span><span class="n">bse</span><span class="p">])</span> <span class="c1"># Compute 95% CI for parameters of Model 2.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CI2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model2_results</span><span class="o">.</span><span class="n">bse</span><span class="p">,</span> <span class="n">b2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model2_results</span><span class="o">.</span><span class="n">bse</span><span class="p">])</span> <span class="c1"># Compute 95% CI for parameters of Model 2.</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CI2:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">CI2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CI2:
+ [[-7.73444907  0.00892032]
+ [-7.14332531  0.01696651]]
 </pre></div>
 </div>
 </div>
@@ -779,8 +966,14 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>La columna izquierda de la variable <code class="docutils literal notranslate"><span class="pre">CI2</span></code> es el intervalo de confianza para <span class="math notranslate nohighlight">\(\beta_0\)</span>, y la columna derecha es el intervalo de confianza para <span class="math notranslate nohighlight">\(\beta_1\)</span>. ¿Cómo deberíamos interpretar estos intervalos de confianza? Al igual que antes, serán más interpretables si los exponenciamos primero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eCI2</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">CI2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eCI2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">CI2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">eCI2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[4.37493342e-04 1.00896023e+00]
+ [7.90120328e-04 1.01711126e+00]]
 </pre></div>
 </div>
 </div>
@@ -789,9 +982,15 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>Otro uso de los intervalos de confianza es expresar la significancia estadística de los parámetros individuales dentro del modelo. Si el valor verdadero de un parámetro es cero, entonces la covariable correspondiente a ese parámetro no contribuye a la predicción de los datos en el GLM. Si computamos un intervalo de confianza para un parámetro y no contiene cero, tenemos evidencia suficiente (al nivel de confianza utilizado para construir el intervalo) de que el valor verdadero del parámetro difiere de cero, y que la covariable para ese parámetro tiene una contribución significativa dentro del GLM. Podemos usar esto nuevamente para determinar si la adición del término cuadrático en el Modelo 3 proporciona una mejora significativa sobre el Modelo 2. Para hacerlo, utilicemos las variables de salida calculadas <code class="docutils literal notranslate"><span class="pre">b3</span></code> y <code class="docutils literal notranslate"><span class="pre">bse</span></code> para el Modelo 3 para determinar los intervalos de confianza para cada parámetro en el Modelo 3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CI3</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">b3</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model3_results</span><span class="o">.</span><span class="n">bse</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CI3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b3</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model3_results</span><span class="o">.</span><span class="n">bse</span><span class="p">,</span> 
             <span class="n">b3</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model3_results</span><span class="o">.</span><span class="n">bse</span><span class="p">])</span> <span class="c1"># Compute 95% CI for parameters of Model 3.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">CI3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-2.99542831e+01  5.77810706e-01 -6.30948487e-03]
+ [-2.26038307e+01  8.02417242e-01 -4.61644384e-03]]
 </pre></div>
 </div>
 </div>
@@ -805,13 +1004,18 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.117080430548911e-38
+</pre></div>
+</div>
+</div>
 </div>
 <p>Encontramos <span class="math notranslate nohighlight">\(p_{\beta_2} = 4.12 \times 10^{-38}\)</span>, que es muy cercano a cero. Este resultado es consistente con nuestro hallazgo previo, a través del MLRT, de que la mejora del Modelo 3 sobre el Modelo 2 sugiere que el componente cuadrático del modelo era significativo a un nivel de <span class="math notranslate nohighlight">\(p\)</span> de <span class="math notranslate nohighlight">\(&lt; 10^{-5}\)</span>.</p>
 </section>
 </section>
 <section id="poisson-en-r">
 <h3>Poisson en R<a class="headerlink" href="#poisson-en-r" title="Permalink to this heading">#</a></h3>
-<p>A continuación se presenta un ejemplo de POisson homogeneo en R. Este conjunto de datos analiza cuántas roturas de urdimbre ocurrieron en diferentes tipos de telares por telar, por una longitud fija de hilo.</p>
+<p>A continuación se presenta un ejemplo de Poisson homogeneo en R. Este conjunto de datos analiza cuántas roturas de urdimbre ocurrieron en diferentes tipos de telares por telar, por una longitud fija de hilo.</p>
 <p>Hay mediciones en 9 telares de cada uno de los seis tipos de urdimbre, para un total de 54 entradas en el conjunto de datos.</p>
 <p>Veamos cómo está estructurado el conjunto de datos usando el comando <code class="docutils literal notranslate"><span class="pre">ls.str()</span></code>:</p>
 <p>A partir de lo anterior, podemos ver tanto los tipos como los niveles presentes en los datos. Lee esto para aprender un poco más sobre los factores en R.</p>

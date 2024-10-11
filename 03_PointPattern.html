@@ -181,6 +181,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -563,7 +569,7 @@ memory usage: 547.0+ KB
 <span class="g g-Whitespace">   </span><span class="mi">3279</span> <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;cannot identify image file </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span> <span class="k">if</span> <span class="n">filename</span> <span class="k">else</span> <span class="n">fp</span><span class="p">)</span>
 <span class="ne">-&gt; </span><span class="mi">3280</span> <span class="k">raise</span> <span class="n">UnidentifiedImageError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-<span class="ne">UnidentifiedImageError</span>: cannot identify image file &lt;_io.BytesIO object at 0x000002BCA72AEF20&gt;
+<span class="ne">UnidentifiedImageError</span>: cannot identify image file &lt;_io.BytesIO object at 0x0000028A38233920&gt;
 </pre></div>
 </div>
 <img alt="_images/b2d2d693f80f2396c11766b287f5a59e139932802b1d724a4185c998f4509744.png" src="_images/b2d2d693f80f2396c11766b287f5a59e139932802b1d724a4185c998f4509744.png" />
@@ -576,7 +582,8 @@ memory usage: 547.0+ KB
 <p>Para ejemplificar este enfoque, utilizaremos las áreas administrativas que hemos cargado anteriormente. Vamos a agregarlas a la figura anterior para obtener un mejor contexto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areas</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://darribas.org/gds_course/content/data/tokyo_admin_boundaries.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">areas</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://darribas.org/gds_course/content/data/tokyo_admin_boundaries.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -587,10 +594,27 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/712073bf80b76d2b360fe693565d53600a6c7430a68776b517e9bc15a12df7fc.png" src="_images/712073bf80b76d2b360fe693565d53600a6c7430a68776b517e9bc15a12df7fc.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areas</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- undefined
+Datum: World Geodetic System 1984
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
 </pre></div>
 </div>
 </div>
@@ -603,103 +627,39 @@ memory usage: 547.0+ KB
 <span class="n">areas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;xkcd:pale lavender&quot;</span><span class="p">)</span>
 <span class="c1"># remove axis</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
-<span class="c1"># Add dark basemap</span>
-<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TonerLite</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e9b226638eb59a5da33f6e0e67f0f17c08873256def97e7ca5d7781da27c4e55.png" src="_images/e9b226638eb59a5da33f6e0e67f0f17c08873256def97e7ca5d7781da27c4e55.png" />
 </div>
 </div>
 <p>Ahora necesitamos saber cuántas fotografías contiene cada área. Nuestra tabla de fotografías ya contiene el ID del área, por lo que todo lo que necesitamos hacer aquí es contar por área y adjuntar el conteo a la tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code>. Para esto, utilizamos el operador <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, que toma todas las fotos de la tabla y las “agrupa” “por” su ID administrativo. Una vez agrupadas, aplicamos el método <code class="docutils literal notranslate"><span class="pre">size</span></code>, que cuenta cuántos elementos tiene cada grupo y devuelve una columna indexada por el código LSOA con todos los conteos como valores. Finalmente, asignamos los conteos a una columna recién creada en la tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create counts</span>
-<span class="n">photos_by_area</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;admin_area&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="c1"># Assign counts into a table of its own </span>
-<span class="c1"># and joins it to the areas table</span>
-<span class="n">areas</span> <span class="o">=</span> <span class="n">areas</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;photo_count&quot;</span><span class="p">:</span> <span class="n">photos_by_area</span><span class="p">}),</span><span class="n">on</span><span class="o">=</span><span class="s2">&quot;GID_2&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 7 columns):
+ #   Column                Non-Null Count  Dtype  
+---  ------                --------------  -----  
+ 0   user_id               10000 non-null  object 
+ 1   longitude             10000 non-null  float64
+ 2   latitude              10000 non-null  float64
+ 3   date_taken            10000 non-null  object 
+ 4   photo/video_page_url  10000 non-null  object 
+ 5   x                     10000 non-null  float64
+ 6   y                     10000 non-null  float64
+dtypes: float64(4), object(3)
+memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areas</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Las líneas anteriores han creado una nueva columna en nuestra tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code> que contiene el número de fotos que se han tomado dentro de cada uno de los polígonos en la tabla.</p>
-<p>En este punto, estamos listos para mapear los conteos. Técnicamente hablando, esto es un coropleta, tal como hemos visto muchas veces antes:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up figure and axis</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="c1"># Plot the equal interval choropleth and add a legend</span>
-<span class="n">areas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;photo_count&#39;</span><span class="p">,</span> 
-           <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;natural_breaks&#39;</span><span class="p">,</span> 
-           <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-           <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;OrRd&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
-           <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-           <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
-          <span class="p">)</span>
-<span class="c1"># Remove the axes</span>
-<span class="c1">#ax.set_axis_off()</span>
-<span class="c1"># Set the title</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Quantile map of photo counts by administrative boundary&quot;</span><span class="p">)</span>
-<span class="c1"># Add dark basemap</span>
-<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TonerLite</span><span class="p">)</span>
-<span class="c1"># Draw map</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>El mapa anterior muestra claramente una concentración de fotos en el centro de Tokio. Sin embargo, es importante recordar que el mapa está mostrando los <em>conteos brutos</em> de tweets. En el caso de las fotos, como con muchos otros fenómenos, es crucial tener en cuenta la “geografía del contenedor”. En este caso, las diferentes áreas administrativas tienen diferentes tamaños. Todo lo demás siendo igual, un polígono más grande puede contener más fotos, simplemente porque cubre un espacio más amplio. Para obtener una imagen más precisa de la <em>intensidad</em> de las fotos por área, lo que nos gustaría ver es un mapa de la <em>densidad</em> de fotos, no de los conteos brutos. Para hacer esto, podemos dividir el conteo por polígono entre el área del polígono.</p>
-<p>Primero, calculemos el área en metros cuadrados de cada delimitación administrativa:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areas</span><span class="p">[</span><span class="s2">&quot;area_sqm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">areas</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">2459</span><span class="p">)</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="mf">1e-6</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Y se puede estimar la densidad.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areas</span><span class="p">[</span><span class="s2">&quot;photo_density&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">areas</span><span class="p">[</span><span class="s2">&quot;photo_count&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">areas</span><span class="p">[</span><span class="s2">&quot;area_sqm&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up figure and axis</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="c1"># Plot the equal interval choropleth and add a legend</span>
-<span class="n">areas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;photo_density&#39;</span><span class="p">,</span> 
-           <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;quantiles&#39;</span><span class="p">,</span> 
-           <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-           <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-           <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-           <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
-          <span class="p">)</span>
-<span class="c1"># Remove the axes</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
-<span class="c1"># Set the title</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Quantile map of photo density by administrative boundary&quot;</span><span class="p">)</span>
-<span class="c1"># Add dark basemap</span>
-<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
-               <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
-               <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TonerLite</span>
-              <span class="p">)</span>
-<span class="c1"># Draw map</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>El patrón en los conteos brutos es similar al de la densidad, pero podemos ver cómo algunas áreas periféricas y grandes son “degradadas” al corregir por su tamaño, mientras que algunos polígonos más pequeños en el centro muestran un valor más alto.</p>
 </section>
 <section id="mallas-regulares-hex-binning">
 <h3>Mallas regulares: Hex-binning<a class="headerlink" href="#mallas-regulares-hex-binning" title="Permalink to this heading">#</a></h3>
@@ -708,7 +668,8 @@ memory usage: 547.0+ KB
 <p>Una solución para evitar el desorden se relaciona con lo que mencionamos anteriormente como el paso de “tablas a superficies”. Ahora podemos reformular este enfoque como un histograma <em>espacial</em> o <em>bidimensional</em>. Aquí, generamos una cuadrícula regular (ya sea cuadrada o hexagonal), contamos cuántos puntos caen dentro de cada celda de la cuadrícula y la presentamos como lo haríamos con cualquier otro coropleta. Esto es atractivo porque es simple, intuitivo y, si la cuadrícula es lo suficientemente fina, elimina algunas de las distorsiones de área que los coropletas pueden inducir. Para esta ilustración, usemos el agrupamiento hexagonal (a veces llamado hexbin) porque tiene propiedades ligeramente mejores que las cuadrículas cuadradas, como menos distorsión de forma y una conectividad más regular entre las celdas. Crear un histograma bidimensional con hexbin es sencillo en Python utilizando la función <code class="docutils literal notranslate"><span class="pre">hexbin</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up figure and axis</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Set up figure and axis</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="c1"># Generate and add hexbin with 50 hexagons in each dimension, no borderlines, half transparency, and the reverse viridis colormap</span>
 <span class="n">hb</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span>
@@ -731,6 +692,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/fcde63182c03c3c31a5693bb24068fa4d8f21ae59d2e74048f5d940cca2fd43a.png" src="_images/fcde63182c03c3c31a5693bb24068fa4d8f21ae59d2e74048f5d940cca2fd43a.png" />
+</div>
 </div>
 <p>Ahora es claro que la mayoría de las fotografías se relacionan con áreas mucho más localizadas y que el mapa anterior estaba ocultando esto. Observa cómo solo hace falta configurar la figura y llamar a <code class="docutils literal notranslate"><span class="pre">hexbin</span></code> directamente usando el conjunto de columnas de coordenadas (<code class="docutils literal notranslate"><span class="pre">db[&quot;longitude&quot;]</span></code> y <code class="docutils literal notranslate"><span class="pre">db[&quot;latitude&quot;]</span></code>). Los argumentos adicionales que incluimos son el número de hexágonos por eje (<code class="docutils literal notranslate"><span class="pre">gridsize</span></code>, 50 para una capa de 50 por 50), y la transparencia que queremos (80%). Además, incluimos una barra de color para tener una idea de cómo se mapean los conteos a los colores. Ten en cuenta que necesitamos pasar el nombre del objeto que incluye el <code class="docutils literal notranslate"><span class="pre">hexbin</span></code> (<code class="docutils literal notranslate"><span class="pre">hb</span></code> en nuestro caso), pero recuerda que esto es opcional, no siempre necesitas crear uno.</p>
 </section>
@@ -743,13 +707,16 @@ memory usage: 547.0+ KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up figure and axis</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="n">sbn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span><span class="n">n_levels</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis_r&#39;</span><span class="p">)</span>
+<span class="n">sbn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span><span class="n">n_levels</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis_r&#39;</span><span class="p">)</span>
 <span class="c1"># Add basemap</span>
 <span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">)</span>
 <span class="c1"># Remove axes</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">();</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/94968b571c03d12998ed76574cdc0fdd1ef7be8173a6a6ed98ceba5d29924115.png" src="_images/94968b571c03d12998ed76574cdc0fdd1ef7be8173a6a6ed98ceba5d29924115.png" />
 </div>
 </div>
 <p>El resultado es una salida más suave que captura la misma estructura del hexbin, pero que “suaviza” las transiciones entre diferentes áreas. Esto proporciona una mejor generalización de la probabilidad teórica de que una foto <em>podría</em> ocurrir en cualquier punto dado. Esto es útil en algunos casos, pero principalmente es útil para evitar las restricciones impuestas por una cuadrícula regular de hexágonos o cuadrados.</p>
@@ -791,6 +758,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/a859830dcc4019cafcb84525e4c67fa3d2981ba81e99ae754702a8cf56bc0f50.png" src="_images/a859830dcc4019cafcb84525e4c67fa3d2981ba81e99ae754702a8cf56bc0f50.png" />
+</div>
 </div>
 <p>La discrepancia entre los dos centros se debe a la asimetría; hay muchos “grupos” de fotos en el oeste y sur de Tokio, mientras que el norte y el este de Tokio están densamente poblados, pero la densidad disminuye muy rápidamente. Por lo tanto, los grupos de fotos más alejados tiran del centro medio hacia el oeste y sur, en relación con el centro mediano.</p>
 <section id="dispersion">
@@ -799,6 +769,11 @@ memory usage: 547.0+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centrography</span><span class="o">.</span><span class="n">std_distance</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8778.218564382098
 </pre></div>
 </div>
 </div>
@@ -815,6 +790,7 @@ memory usage: 547.0+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Set up figure and axis</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
@@ -827,7 +803,7 @@ memory usage: 547.0+ KB
 <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="n">mean_center</span><span class="p">,</span> <span class="c1"># center the ellipse on our mean center</span>
                   <span class="n">width</span><span class="o">=</span><span class="n">major</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="c1"># centrography.ellipse only gives half the axis</span>
                   <span class="n">height</span><span class="o">=</span><span class="n">minor</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> 
-                  <span class="n">angle</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">rotation</span><span class="p">),</span> <span class="c1"># Angles for this are in degrees, not radians</span>
+                  <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">rotation</span><span class="p">),</span> <span class="c1"># Angles for this are in degrees, not radians</span>
                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
                   <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Std. Ellipse&#39;</span><span class="p">)</span>
@@ -843,6 +819,9 @@ memory usage: 547.0+ KB
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b83d3d54d9c81b009153963a2eedc6b4926a5b368f6eb6ef2a8f74f5e1c4ca4e.png" src="_images/b83d3d54d9c81b009153963a2eedc6b4926a5b368f6eb6ef2a8f74f5e1c4ca4e.png" />
 </div>
 </div>
 </section>
@@ -882,6 +861,8 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/be74c2fba6229ec004c5e6e4c4341edff2afe3902ad6ec4a26d4136294f3c73b.svg" src="_images/be74c2fba6229ec004c5e6e4c4341edff2afe3902ad6ec4a26d4136294f3c73b.svg" /></div>
 </div>
 <p>Para ilustrar, la figura a continuación muestra la forma alfa única más ajustada en verde y los puntos originales en negro. Los círculos de “delimitación” mostrados en la figura tienen un radio de <span class="math notranslate nohighlight">\(8652\)</span> metros. Los círculos están trazados donde nuestro disco de “delimitación” toca dos o tres de los puntos en la nube de puntos. Puedes ver que los círculos “recortan” el envolvente convexo, mostrado en líneas azules discontinuas, hasta que tocan dos (o tres) puntos. Si fueran más ajustados, el círculo desconectaría uno de los puntos en el límite de la forma alfa.</p>
 <div class="cell docutils container">
@@ -976,6 +957,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/48e4e3a56e60f4f3a126bd4098b37b5fc0c24a35db863d765e3ec130ddb2ea1b.png" src="_images/48e4e3a56e60f4f3a126bd4098b37b5fc0c24a35db863d765e3ec130ddb2ea1b.png" />
+</div>
 </div>
 <p>Como puedes ver, la simulación (por defecto) funciona con el cuadro delimitador del patrón de puntos de entrada. Para simular a partir de áreas más restringidas formadas por el patrón de puntos, ¡pasa esos envolventes al simulador! Por ejemplo, para generar un patrón aleatorio dentro de las formas alfa:</p>
 <div class="cell docutils container">
@@ -999,6 +983,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/0888e73d0df58f61d815c140e5b3f5003feae2595dfaca41a832b35338fbd9fd.png" src="_images/0888e73d0df58f61d815c140e5b3f5003feae2595dfaca41a832b35338fbd9fd.png" />
+</div>
 </div>
 <section id="estadisticas-de-cuadrantes">
 <h3>Estadísticas de cuadrantes<a class="headerlink" href="#estadisticas-de-cuadrantes" title="Permalink to this heading">#</a></h3>
@@ -1011,11 +998,22 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
+</pre></div>
+</div>
+<img alt="_images/920ef3ea45038b86ee53e7d84d83305753a9b928bf25088cbf63c3d80b607198.png" src="_images/920ef3ea45038b86ee53e7d84d83305753a9b928bf25088cbf63c3d80b607198.png" />
+</div>
 </div>
 <p>En este caso, para la configuración predeterminada de una cuadrícula de tres por tres que abarca el patrón de puntos, vemos que la celda central tiene más de 350 observaciones, pero las celdas circundantes tienen muchas menos fotografías de Flickr. Esto significa que la prueba de chi-cuadrado (que compara cuán probable es esta distribución si los conteos en las celdas fueran uniformes) será estadísticamente significativa, con un valor p muy pequeño:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat</span><span class="o">.</span><span class="n">chi2_pvalue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1046953044368864e-37
 </pre></div>
 </div>
 </div>
@@ -1028,10 +1026,21 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
+</pre></div>
+</div>
+<img alt="_images/f79dd499ab3c899abebc00f84f5839f2fda7a1a3cc51f9024576994b0f2c04bd.png" src="_images/f79dd499ab3c899abebc00f84f5839f2fda7a1a3cc51f9024576994b0f2c04bd.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat_null</span><span class="o">.</span><span class="n">chi2_pvalue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9389143237146387
 </pre></div>
 </div>
 </div>
@@ -1074,6 +1083,9 @@ memory usage: 547.0+ KB
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6e4193ffe79e84f41605bcf8d26fb2c95a9310a918e65e7330f2eb0abd5ba68c.png" src="_images/6e4193ffe79e84f41605bcf8d26fb2c95a9310a918e65e7330f2eb0abd5ba68c.png" />
 </div>
 </div>
 <p>Ripley’s <span class="math notranslate nohighlight">\(G\)</span> lleva un registro de la proporción de puntos cuyo vecino más cercano se encuentra dentro de un umbral de distancia dado y traza ese porcentaje acumulado contra los radios de distancia crecientes. La distribución de este porcentaje acumulado tiene una forma distintiva bajo procesos completamente aleatorios en el espacio. La intuición detrás de Ripley’s <span class="math notranslate nohighlight">\(G\)</span> es la siguiente: podemos aprender qué tan similar es nuestro patrón a uno aleatorio en el espacio calculando la distribución acumulada de las distancias al vecino más cercano sobre umbrales de distancia crecientes y comparándola con la de un conjunto de patrones simulados que siguen un proceso espacialmente aleatorio conocido. Generalmente, se utiliza un proceso de puntos de Poisson espacial como distribución de referencia.</p>
@@ -1121,6 +1133,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/ace0428a2428e62af89900a0aa6142054d09cfba8e75f52ae33038eb9f75540b.png" src="_images/ace0428a2428e62af89900a0aa6142054d09cfba8e75f52ae33038eb9f75540b.png" />
+</div>
 </div>
 <p>La segunda función que introducimos es Ripley’s <span class="math notranslate nohighlight">\(F\)</span>. Mientras que la función <span class="math notranslate nohighlight">\(G\)</span> analiza la distancia <em>entre</em> los puntos en el patrón, la función <em>F</em> trabaja analizando la distancia <em>hacia</em> los puntos en el patrón desde ubicaciones en el espacio vacío. Por eso la función <span class="math notranslate nohighlight">\(F\)</span> se llama la “función de espacio vacío”, ya que caracteriza la distancia típica desde puntos arbitrarios en el espacio vacío hasta el patrón de puntos. Más explícitamente, la función <span class="math notranslate nohighlight">\(F\)</span> acumula, para un rango de distancias creciente, el porcentaje de puntos que se pueden encontrar dentro de ese rango a partir de un patrón de puntos aleatorio generado dentro de la extensión del patrón observado. Si el patrón tiene grandes huecos o áreas vacías, la función <span class="math notranslate nohighlight">\(F\)</span> aumentará lentamente. Pero, si el patrón está muy disperso, la función <span class="math notranslate nohighlight">\(F\)</span> aumentará rápidamente. La forma de esta distribución acumulada luego se compara con aquellas construidas calculando la misma distribución acumulada entre el patrón aleatorio y otro patrón aleatorio adicional generado en cada paso de la simulación.</p>
 <p>Podemos utilizar herramientas similares para investigar la función <span class="math notranslate nohighlight">\(F\)</span>, ya que es matemáticamente muy similar a la función <span class="math notranslate nohighlight">\(G\)</span>. Esto se implementa de manera idéntica usando la función <code class="docutils literal notranslate"><span class="pre">f_test</span></code> en <code class="docutils literal notranslate"><span class="pre">pointpats</span></code>. Dado que la función <span class="math notranslate nohighlight">\(F\)</span> estimada para el patrón observado aumenta <em>mucho</em> más lentamente que las funciones <span class="math notranslate nohighlight">\(F\)</span> para los patrones simulados, podemos estar seguros de que hay muchos huecos en nuestro patrón; es decir, el patrón está <em>agrupado</em>.</p>
@@ -1138,7 +1153,7 @@ memory usage: 547.0+ KB
 <span class="c1"># plot all the simulations with very fine lines</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">f_test</span><span class="o">.</span><span class="n">simulations</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.01</span><span class="p">)</span>
 <span class="c1"># and show the average of simulations</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">simulations</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;median simulation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">simulations</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;median simulation&#39;</span><span class="p">)</span>
 
 
 <span class="c1"># and the observed pattern&#39;s F function</span>
@@ -1165,6 +1180,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/04c1e55bc9bbf199c2e8a98b6a8dccb9a77983c0e7cb31864656e002344754c6.png" src="_images/04c1e55bc9bbf199c2e8a98b6a8dccb9a77983c0e7cb31864656e002344754c6.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1189,17 +1207,21 @@ memory usage: 547.0+ KB
 <p>La flexibilidad (pero también algunas de las limitaciones) del algoritmo reside en que tanto <code class="docutils literal notranslate"><span class="pre">m</span></code> como <code class="docutils literal notranslate"><span class="pre">r</span></code> deben ser predefinidos por el usuario antes de ejecutar DBSCAN. Este es un punto crítico, ya que su valor puede influir significativamente en el resultado final. Antes de explorar esto con mayor profundidad, hagamos una primera ejecución del cálculo de <code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> en Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define DBSCAN</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">DBSCAN</span>
+<span class="c1"># Define DBSCAN</span>
 <span class="n">clusterer</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">()</span>
 <span class="c1"># Fit to our data</span>
 <span class="n">clusterer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DBSCAN()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">DBSCAN</label><div class="sk-toggleable__content"><pre>DBSCAN()</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lbls</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">clusterer</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">lbls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">clusterer</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1231,6 +1253,9 @@ memory usage: 547.0+ KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/d4fae3fa19b935a53876f54e9015c07739a839528c5d87f5350040b559814c3f.png" src="_images/d4fae3fa19b935a53876f54e9015c07739a839528c5d87f5350040b559814c3f.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1245,16 +1270,16 @@ memory usage: 547.0+ KB
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "carto"
         },
         kernelOptions: {
-            name: "python3",
+            name: "carto",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'carto'</script>
 
                 </article>
               
