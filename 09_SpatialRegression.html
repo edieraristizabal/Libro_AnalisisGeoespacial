@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Regresión Ponderada Geográficamente (GWR)" href="10_MGWR.html" />
-    <link rel="prev" title="Autocorrelación espacial" href="08_ClusterEspacial.html" />
+    <link rel="prev" title="Cluster espacial" href="08_ClusterEspacial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,11 +176,17 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Análisis de datos areales: mapas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Cluster espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Análisis de datos areales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Regresión Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -421,7 +427,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sbn</span>
 </pre></div>
 </div>
 </div>
@@ -435,13 +441,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;https://geographicdata.science/book/_downloads/dcd429d1761a2d0efdbc4532e141ba14/regression_db.geojson&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -697,8 +697,8 @@ Koenker-Bassett test             10         135.581           0.0000
 Dep. Variable:              log_price   R-squared:                       0.668
 Model:                            OLS   Adj. R-squared:                  0.668
 Method:                 Least Squares   F-statistic:                     1229.
-Date:                Thu, 10 Oct 2024   Prob (F-statistic):               0.00
-Time:                        19:12:06   Log-Likelihood:                -3988.9
+Date:                Fri, 11 Oct 2024   Prob (F-statistic):               0.00
+Time:                        19:10:13   Log-Likelihood:                -3988.9
 No. Observations:                6110   AIC:                             8000.
 Df Residuals:                    6099   BIC:                             8074.
 Df Model:                          10                                         
@@ -873,28 +873,22 @@ Notes:
 
 <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span> <span class="s1">&#39;residual&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span>
-                <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">medians</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;hood_residual&#39;</span><span class="p">),</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
+<span class="n">sbn</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;residual&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">medians</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;hood_residual&#39;</span><span class="p">),</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span>  <span class="n">dodge</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span> <span class="s1">&#39;residual&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                 <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">medians</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;hood_residual&#39;</span><span class="p">),</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">f</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Local\Temp\ipykernel_23672\1987411078.py:6: FutureWarning: 
 
-<span class="ne">TypeError</span>: boxplot() got multiple values for argument &#39;data&#39;
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sbn.boxplot(x=&#39;neighborhood&#39;, y=&#39;residual&#39;, ax = ax,
 </pre></div>
 </div>
-<img alt="_images/ec55b8453c1602ca72bce439795c8b21f9e689a2f9b38d6e4a8774476853fc21.png" src="_images/ec55b8453c1602ca72bce439795c8b21f9e689a2f9b38d6e4a8774476853fc21.png" />
+<img alt="_images/e30fa6d923e8c319ea32cbabb82471e33c770ebb7e0c5701f5b0a4eac0121752.png" src="_images/e30fa6d923e8c319ea32cbabb82471e33c770ebb7e0c5701f5b0a4eac0121752.png" />
 </div>
 </div>
 <p>Ningún vecindario está completamente aislado de los demás, pero algunos parecen ser más destacados que otros, como las conocidas áreas turísticas del centro de la ciudad, como Gaslamp Quarter, Little Italy o The Core. Por lo tanto, puede haber un efecto distintivo de la moda del vecindario que importa en este modelo.</p>
@@ -906,19 +900,36 @@ Notes:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
+ There are 11 disconnected components.
+  warnings.warn(message)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Esto significa que, cuando calculamos el <em>lag espacial</em> de ese peso knn y el residuo, obtenemos el residuo del listado de Airbnb más cercano a cada observación.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_residual</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">m1</span><span class="o">.</span><span class="n">u</span><span class="p">)</span> <span class="c1"># se obtiene la columna spatial_lag de la matris denominada Weights y se le calcula el espacial lag con la matriz de KNN</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">lag_residual</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">),</span><span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">m1</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">lag_residual</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">),</span><span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Model Residuals - $u$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Spatial Lag of Model Residuals - $W u$&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/855841a0190d02bcd31e8f25f763feed4ca7ab508e208e033be767ce4340e9d4.png" src="_images/855841a0190d02bcd31e8f25f763feed4ca7ab508e208e033be767ce4340e9d4.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">lag_residual</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">m1</span><span class="o">.</span><span class="n">u</span><span class="p">)</span> <span class="c1"># se obtiene la columna spatial_lag de la matris denominada Weights y se le calcula el espacial lag con la matriz de KNN</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">m1</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">lag_residual</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">),</span><span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Model Residuals - $u$&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Spatial Lag of Model Residuals - $W u$&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;seaborn&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>En este gráfico, ¡vemos que nuestros errores de predicción tienden a agruparse!
@@ -940,12 +951,12 @@ Recordando las estadísticas de <em>Moran local</em>, podemos identificar cierta
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.8/site-packages/libpysal/weights/weights.py:172: UserWarning: The weights matrix is not fully connected: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
  There are 3 disconnected components.
   warnings.warn(message)
 </pre></div>
 </div>
-<img alt="_images/ac8fed43535a3151616a0060c9cb6e87946ea16b3cc2c78ae6ea4974764881d2.png" src="_images/ac8fed43535a3151616a0060c9cb6e87946ea16b3cc2c78ae6ea4974764881d2.png" />
+<img alt="_images/6524ac5c66324c856989fbff4462ff870f7859194f4b91d85c0a9371705fedf5.png" src="_images/6524ac5c66324c856989fbff4462ff870f7859194f4b91d85c0a9371705fedf5.png" />
 </div>
 </div>
 <p>Por lo tanto, estas áreas tienden a ser lugares donde nuestro modelo subestima significativamente el precio nocturno de Airbnb tanto para esa observación específica como para las observaciones en sus alrededores inmediatos.
@@ -961,10 +972,10 @@ Esto es crítico porque, si podemos identificar cómo están estructuradas estas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/1394c59c1f8e5bcc2cecf489ee43ca9aaa72afc59e0571f40a93263235529432.png" src="_images/1394c59c1f8e5bcc2cecf489ee43ca9aaa72afc59e0571f40a93263235529432.png" />
+<img alt="_images/a106d3306ef703abed467babcb86a473590a51fe89ec09cbd793fe4e00729f81.png" src="_images/a106d3306ef703abed467babcb86a473590a51fe89ec09cbd793fe4e00729f81.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -990,8 +1001,9 @@ Esto es crítico porque, si podemos identificar cómo están estructuradas estas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
-----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
 SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES
 -----------------------------------------
 Data set            :     unknown
@@ -1001,7 +1013,7 @@ Mean dependent var  :      4.9958                Number of Variables   :        
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6098
 R-squared           :      0.6685
 Adjusted R-squared  :      0.6679
-Sum squared residual:    1319.522                F-statistic           :   1117.9338
+Sum squared residual:     1319.52                F-statistic           :   1117.9338
 Sigma-square        :       0.216                Prob(F-statistic)     :           0
 S.E. of regression  :       0.465                Log likelihood        :   -3987.446
 Sigma-square ML     :       0.216                Akaike info criterion :    7998.892
@@ -1010,18 +1022,18 @@ S.E of regression ML:      0.4647                Schwarz criterion     :    8079
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     t-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT       4.3796237       0.0169152     258.9162210       0.0000000
-        accommodates       0.0836436       0.0050786      16.4698200       0.0000000
-           bathrooms       0.1907912       0.0110047      17.3371724       0.0000000
-            bedrooms       0.1507462       0.0111794      13.4842887       0.0000000
-                beds      -0.0414762       0.0069387      -5.9774814       0.0000000
-     rt_Private_room      -0.5529958       0.0159599     -34.6490178       0.0000000
-      rt_Shared_room      -1.2355206       0.0384618     -32.1232754       0.0000000
-      pg_Condominium       0.1404588       0.0222251       6.3198282       0.0000000
-            pg_House      -0.0133019       0.0146230      -0.9096565       0.3630396
-            pg_Other       0.1411756       0.0227980       6.1924442       0.0000000
-        pg_Townhouse      -0.0457839       0.0343557      -1.3326417       0.1826992
-            d2balboa       0.0016453       0.0009673       1.7008587       0.0890205
+            CONSTANT         4.37962         0.01692       258.91622         0.00000
+        accommodates         0.08364         0.00508        16.46982         0.00000
+           bathrooms         0.19079         0.01100        17.33717         0.00000
+            bedrooms         0.15075         0.01118        13.48429         0.00000
+                beds        -0.04148         0.00694        -5.97748         0.00000
+     rt_Private_room        -0.55300         0.01596       -34.64902         0.00000
+      rt_Shared_room        -1.23552         0.03846       -32.12328         0.00000
+      pg_Condominium         0.14046         0.02223         6.31983         0.00000
+            pg_House        -0.01330         0.01462        -0.90966         0.36304
+            pg_Other         0.14118         0.02280         6.19244         0.00000
+        pg_Townhouse        -0.04578         0.03436        -1.33264         0.18270
+            d2balboa         0.00165         0.00097         1.70086         0.08902
 ------------------------------------------------------------------------------------
 
 REGRESSION DIAGNOSTICS
@@ -1044,12 +1056,12 @@ Koenker-Bassett test             11         132.860           0.0000
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lag_residual</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">m2</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">lag_residual</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">),</span><span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">);</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">m2</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">lag_residual</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">),</span><span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/97c72aab5dea73877543be4a331e017442ee8803d598a96ca368101e6b616dea.png" src="_images/97c72aab5dea73877543be4a331e017442ee8803d598a96ca368101e6b616dea.png" />
+<img alt="_images/930a513f2272108ac09a67449b68ac1da53f283d12f08fb0339139672749d95b.png" src="_images/930a513f2272108ac09a67449b68ac1da53f283d12f08fb0339139672749d95b.png" />
 </div>
 </div>
 <p>Finalmente, la variable de distancia al Parque Balboa no se ajusta a nuestra teoría sobre cómo debería afectar el precio de un Airbnb la distancia a un lugar de interés; el estimado del coeficiente es <em>positivo</em>, lo que significa que las personas están pagando más para estar <em>más alejadas</em> del parque. Revisaremos este resultado más adelante, cuando consideremos la heterogeneidad espacial y podamos arrojar algo de luz sobre esto.</p>
@@ -1090,7 +1102,7 @@ Como ejemplo de lo primero, podemos imaginar cómo las casas en el corredor del 
 ======================================================================================
 Model:                      OLS                    Adj. R-squared:           0.709    
 Dependent Variable:         log_price              AIC:                      7229.6640
-Date:                       2022-06-11 08:50       BIC:                      7599.1365
+Date:                       2024-10-11 17:58       BIC:                      7599.1365
 No. Observations:           6110                   Log-Likelihood:           -3559.8  
 Df Model:                   54                     F-statistic:              276.9    
 Df Residuals:               6055                   Prob (F-statistic):       0.00     
@@ -1159,6 +1171,9 @@ Prob(Omnibus):             0.000                Jarque-Bera (JB):             41
 Skew:                      0.989                Prob(JB):                     0.000   
 Kurtosis:                  6.500                Condition No.:                132     
 ======================================================================================
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly
+specified.
 </pre></div>
 </div>
 </div>
@@ -1178,8 +1193,9 @@ Kurtosis:                  6.500                Condition No.:                13
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
-----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
 SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES - REGIMES
 ---------------------------------------------------
 Data set            :     unknown
@@ -1189,7 +1205,7 @@ Mean dependent var  :      4.9958                Number of Variables   :        
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6055
 R-squared           :      0.7118
 Adjusted R-squared  :      0.7092
-Sum squared residual:    1147.169                F-statistic           :    276.9408
+Sum squared residual:     1147.17                F-statistic           :    276.9408
 Sigma-square        :       0.189                Prob(F-statistic)     :           0
 S.E. of regression  :       0.435                Log likelihood        :   -3559.832
 Sigma-square ML     :       0.188                Akaike info criterion :    7229.664
@@ -1198,63 +1214,68 @@ S.E of regression ML:      0.4333                Schwarz criterion     :    7599
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     t-Statistic     Probability
 ------------------------------------------------------------------------------------
-Balboa Park_CONSTANT       4.2807664       0.0332917     128.5835585       0.0000000
-     Bay Ho_CONSTANT       4.1982505       0.0768784      54.6089479       0.0000000
-   Bay Park_CONSTANT       4.3292234       0.0509870      84.9083655       0.0000000
-Carmel Valley_CONSTANT       4.3892614       0.0565535      77.6125622       0.0000000
-City Heights West_CONSTANT       4.0535183       0.0583780      69.4357707       0.0000000
-Clairemont Mesa_CONSTANT       4.0952589       0.0476992      85.8558747       0.0000000
-College Area_CONSTANT       4.0336972       0.0582579      69.2386376       0.0000000
-       Core_CONSTANT       4.7261863       0.0526433      89.7775229       0.0000000
-Cortez Hill_CONSTANT       4.6080896       0.0515261      89.4322167       0.0000000
-Del Mar Heights_CONSTANT       4.4969102       0.0543368      82.7599068       0.0000000
-East Village_CONSTANT       4.5454690       0.0293735     154.7473234       0.0000000
-Gaslamp Quarter_CONSTANT       4.7757987       0.0473044     100.9588995       0.0000000
- Grant Hill_CONSTANT       4.3067425       0.0523653      82.2441742       0.0000000
- Grantville_CONSTANT       4.0532975       0.0713962      56.7718990       0.0000000
- Kensington_CONSTANT       4.3026710       0.0771765      55.7510746       0.0000000
-   La Jolla_CONSTANT       4.6820840       0.0258089     181.4136961       0.0000000
-La Jolla Village_CONSTANT       4.3303114       0.0772369      56.0652857       0.0000000
-Linda Vista_CONSTANT       4.1911487       0.0569155      73.6380443       0.0000000
-Little Italy_CONSTANT       4.6667423       0.0468377      99.6363950       0.0000000
-Loma Portal_CONSTANT       4.3019094       0.0332362     129.4346151       0.0000000
-     Marina_CONSTANT       4.5582979       0.0479941      94.9761422       0.0000000
-    Midtown_CONSTANT       4.3666608       0.0283936     153.7902257       0.0000000
-Midtown District_CONSTANT       4.5849382       0.0650866      70.4436292       0.0000000
-  Mira Mesa_CONSTANT       3.9895616       0.0561013      71.1135365       0.0000000
-Mission Bay_CONSTANT       4.5154791       0.0224221     201.3849675       0.0000000
-Mission Valley_CONSTANT       4.2759604       0.0742315      57.6030636       0.0000000
-Moreno Mission_CONSTANT       4.4009417       0.0567298      77.5773078       0.0000000
-Normal Heights_CONSTANT       4.0973996       0.0490225      83.5820603       0.0000000
-North Clairemont_CONSTANT       3.9844398       0.0691492      57.6208858       0.0000000
-North Hills_CONSTANT       4.2534252       0.0254777     166.9470009       0.0000000
-  Northwest_CONSTANT       4.1737520       0.0697284      59.8572467       0.0000000
-Ocean Beach_CONSTANT       4.4371642       0.0300884     147.4709376       0.0000000
-   Old Town_CONSTANT       4.4201603       0.0418934     105.5097966       0.0000000
- Otay Ranch_CONSTANT       4.1859412       0.0815974      51.2999205       0.0000000
-Pacific Beach_CONSTANT       4.4388288       0.0224168     198.0136040       0.0000000
-  Park West_CONSTANT       4.4409072       0.0447677      99.1988153       0.0000000
-Rancho Bernadino_CONSTANT       4.1809062       0.0720103      58.0598088       0.0000000
-Rancho Penasquitos_CONSTANT       4.1624276       0.0617764      67.3788989       0.0000000
-  Roseville_CONSTANT       4.3869921       0.0586225      74.8346070       0.0000000
- San Carlos_CONSTANT       4.3349911       0.0830403      52.2034885       0.0000000
-Scripps Ranch_CONSTANT       4.0823805       0.0762435      53.5439686       0.0000000
- Serra Mesa_CONSTANT       4.3129674       0.0599252      71.9725317       0.0000000
- South Park_CONSTANT       4.2253108       0.0536428      78.7675791       0.0000000
-University City_CONSTANT       4.1937181       0.0369648     113.4516038       0.0000000
-West University Heights_CONSTANT       4.2976715       0.0431338      99.6358857       0.0000000
-_Global_accommodates       0.0727766       0.0048301      15.0671860       0.0000000
-   _Global_bathrooms       0.1702080       0.0104956      16.2171367       0.0000000
-    _Global_bedrooms       0.1685720       0.0106200      15.8731267       0.0000000
-        _Global_beds      -0.0415809       0.0065474      -6.3507569       0.0000000
-_Global_rt_Private_room      -0.4872544       0.0154085     -31.6225002       0.0000000
-_Global_rt_Shared_room      -1.2395926       0.0368206     -33.6656955       0.0000000
-_Global_pg_Condominium       0.1329341       0.0209896       6.3333214       0.0000000
-    _Global_pg_House       0.0399982       0.0143528       2.7867915       0.0053399
-    _Global_pg_Other       0.0610112       0.0223565       2.7290143       0.0063707
-_Global_pg_Townhouse      -0.0075250       0.0323876      -0.2323436       0.8162790
+Balboa Park_CONSTANT         4.28077         0.03329       128.58356         0.00000
+     Bay Ho_CONSTANT         4.19825         0.07688        54.60895         0.00000
+   Bay Park_CONSTANT         4.32922         0.05099        84.90837         0.00000
+Carmel Valley_CONSTANT         4.38926         0.05655        77.61256         0.00000
+City Heights West_CONSTANT         4.05352         0.05838        69.43577         0.00000
+Clairemont Mesa_CONSTANT         4.09526         0.04770        85.85587         0.00000
+College Area_CONSTANT         4.03370         0.05826        69.23864         0.00000
+       Core_CONSTANT         4.72619         0.05264        89.77752         0.00000
+Cortez Hill_CONSTANT         4.60809         0.05153        89.43222         0.00000
+Del Mar Heights_CONSTANT         4.49691         0.05434        82.75991         0.00000
+East Village_CONSTANT         4.54547         0.02937       154.74732         0.00000
+Gaslamp Quarter_CONSTANT         4.77580         0.04730       100.95890         0.00000
+ Grant Hill_CONSTANT         4.30674         0.05237        82.24417         0.00000
+ Grantville_CONSTANT         4.05330         0.07140        56.77190         0.00000
+ Kensington_CONSTANT         4.30267         0.07718        55.75107         0.00000
+   La Jolla_CONSTANT         4.68208         0.02581       181.41370         0.00000
+La Jolla Village_CONSTANT         4.33031         0.07724        56.06529         0.00000
+Linda Vista_CONSTANT         4.19115         0.05692        73.63804         0.00000
+Little Italy_CONSTANT         4.66674         0.04684        99.63639         0.00000
+Loma Portal_CONSTANT         4.30191         0.03324       129.43462         0.00000
+     Marina_CONSTANT         4.55830         0.04799        94.97614         0.00000
+    Midtown_CONSTANT         4.36666         0.02839       153.79023         0.00000
+Midtown District_CONSTANT         4.58494         0.06509        70.44363         0.00000
+  Mira Mesa_CONSTANT         3.98956         0.05610        71.11354         0.00000
+Mission Bay_CONSTANT         4.51548         0.02242       201.38497         0.00000
+Mission Valley_CONSTANT         4.27596         0.07423        57.60306         0.00000
+Moreno Mission_CONSTANT         4.40094         0.05673        77.57731         0.00000
+Normal Heights_CONSTANT         4.09740         0.04902        83.58206         0.00000
+North Clairemont_CONSTANT         3.98444         0.06915        57.62089         0.00000
+North Hills_CONSTANT         4.25343         0.02548       166.94700         0.00000
+  Northwest_CONSTANT         4.17375         0.06973        59.85725         0.00000
+Ocean Beach_CONSTANT         4.43716         0.03009       147.47094         0.00000
+   Old Town_CONSTANT         4.42016         0.04189       105.50980         0.00000
+ Otay Ranch_CONSTANT         4.18594         0.08160        51.29992         0.00000
+Pacific Beach_CONSTANT         4.43883         0.02242       198.01360         0.00000
+  Park West_CONSTANT         4.44091         0.04477        99.19882         0.00000
+Rancho Bernadino_CONSTANT         4.18091         0.07201        58.05981         0.00000
+Rancho Penasquitos_CONSTANT         4.16243         0.06178        67.37890         0.00000
+  Roseville_CONSTANT         4.38699         0.05862        74.83461         0.00000
+ San Carlos_CONSTANT         4.33499         0.08304        52.20349         0.00000
+Scripps Ranch_CONSTANT         4.08238         0.07624        53.54397         0.00000
+ Serra Mesa_CONSTANT         4.31297         0.05993        71.97253         0.00000
+ South Park_CONSTANT         4.22531         0.05364        78.76758         0.00000
+University City_CONSTANT         4.19372         0.03696       113.45160         0.00000
+West University Heights_CONSTANT         4.29767         0.04313        99.63589         0.00000
+_Global_accommodates         0.07278         0.00483        15.06719         0.00000
+   _Global_bathrooms         0.17021         0.01050        16.21714         0.00000
+    _Global_bedrooms         0.16857         0.01062        15.87313         0.00000
+        _Global_beds        -0.04158         0.00655        -6.35076         0.00000
+_Global_rt_Private_room        -0.48725         0.01541       -31.62250         0.00000
+_Global_rt_Shared_room        -1.23959         0.03682       -33.66570         0.00000
+_Global_pg_Condominium         0.13293         0.02099         6.33332         0.00000
+    _Global_pg_House         0.04000         0.01435         2.78679         0.00534
+    _Global_pg_Other         0.06101         0.02236         2.72901         0.00637
+_Global_pg_Townhouse        -0.00753         0.03239        -0.23234         0.81628
 ------------------------------------------------------------------------------------
 Regimes variable: unknown
+
+REGIMES DIAGNOSTICS - CHOW TEST
+                 VARIABLE        DF        VALUE           PROB
+                 CONSTANT        44         913.016           0.0000
+              Global test        44         913.016           0.0000
 
 REGRESSION DIAGNOSTICS
 MULTICOLLINEARITY CONDITION NUMBER           12.143
@@ -1268,11 +1289,6 @@ RANDOM COEFFICIENTS
 TEST                             DF        VALUE           PROB
 Breusch-Pagan test               54         854.587           0.0000
 Koenker-Bassett test             54         310.744           0.0000
-
-REGIMES DIAGNOSTICS - CHOW TEST
-                 VARIABLE        DF        VALUE           PROB
-                 CONSTANT        44         913.016           0.0000
-              Global test        44         913.016           0.0000
 ================================ END OF REPORT =====================================
 </pre></div>
 </div>
@@ -1300,6 +1316,7 @@ dtype: float64
 </div>
 </div>
 <p>Después, necesitamos extraer solo el nombre del vecindario del índice de esta Serie. Una forma sencilla de hacerlo es eliminar todos los caracteres que están antes y después de nuestros nombres de vecindario:</p>
+<p>Ahora, podemos volver a unirlos con las formas de los vecindarios:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stripped</span> <span class="o">=</span> <span class="n">neighborhood_effects</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;neighborhood[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
@@ -1356,10 +1373,22 @@ dtype: float64
 </table>
 </div></div></div>
 </div>
-<p>Ahora, podemos volver a unirlos con las formas de los vecindarios:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://data.insideairbnb.com/united-states/&#39;</span>\
+      <span class="s1">&#39;ca/san-diego/2016-07-07/visualisations/&#39;</span>\
+      <span class="s1">&#39;neighbourhoods.geojson&#39;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;neighbourhoods.geojson&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+    <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;output.geojson&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1407,8 +1436,9 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
-----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
 SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES - REGIMES
 ---------------------------------------------------
 Data set            :     unknown
@@ -1418,7 +1448,7 @@ Mean dependent var  :      4.9958                Number of Variables   :        
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6088
 R-squared           :      0.6853
 Adjusted R-squared  :      0.6843
-Sum squared residual:    1252.489                F-statistic           :    631.4283
+Sum squared residual:     1252.49                F-statistic           :    631.4283
 Sigma-square        :       0.206                Prob(F-statistic)     :           0
 S.E. of regression  :       0.454                Log likelihood        :   -3828.169
 Sigma-square ML     :       0.205                Akaike info criterion :    7700.339
@@ -1427,30 +1457,45 @@ S.E of regression ML:      0.4528                Schwarz criterion     :    7848
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     t-Statistic     Probability
 ------------------------------------------------------------------------------------
-          0_CONSTANT       4.4072424       0.0215156     204.8392695       0.0000000
-      0_accommodates       0.0901860       0.0064737      13.9311338       0.0000000
-         0_bathrooms       0.1433760       0.0142680      10.0487871       0.0000000
-          0_bedrooms       0.1129626       0.0138273       8.1695568       0.0000000
-              0_beds      -0.0262719       0.0088380      -2.9726102       0.0029644
-   0_rt_Private_room      -0.5293343       0.0189179     -27.9805699       0.0000000
-    0_rt_Shared_room      -1.2244586       0.0425969     -28.7452834       0.0000000
-    0_pg_Condominium       0.1053065       0.0281309       3.7434523       0.0001832
-          0_pg_House      -0.0454471       0.0179571      -2.5308637       0.0114032
-          0_pg_Other       0.0607526       0.0276365       2.1982715       0.0279673
-      0_pg_Townhouse      -0.0103973       0.0456730      -0.2276456       0.8199294
-          1_CONSTANT       4.4799043       0.0250938     178.5260014       0.0000000
-      1_accommodates       0.0484639       0.0078806       6.1497397       0.0000000
-         1_bathrooms       0.2474779       0.0165661      14.9388057       0.0000000
-          1_bedrooms       0.1897404       0.0179229      10.5864676       0.0000000
-              1_beds      -0.0506077       0.0107429      -4.7107925       0.0000025
-   1_rt_Private_room      -0.5586281       0.0283122     -19.7309699       0.0000000
-    1_rt_Shared_room      -1.0528541       0.0841745     -12.5079997       0.0000000
-    1_pg_Condominium       0.2044470       0.0339434       6.0231780       0.0000000
-          1_pg_House       0.0753534       0.0233783       3.2232188       0.0012743
-          1_pg_Other       0.2954848       0.0386455       7.6460385       0.0000000
-      1_pg_Townhouse      -0.0735077       0.0493672      -1.4889984       0.1365396
+          0_CONSTANT         4.40724         0.02152       204.83927         0.00000
+      0_accommodates         0.09019         0.00647        13.93113         0.00000
+         0_bathrooms         0.14338         0.01427        10.04879         0.00000
+          0_bedrooms         0.11296         0.01383         8.16956         0.00000
+              0_beds        -0.02627         0.00884        -2.97261         0.00296
+   0_rt_Private_room        -0.52933         0.01892       -27.98057         0.00000
+    0_rt_Shared_room        -1.22446         0.04260       -28.74528         0.00000
+    0_pg_Condominium         0.10531         0.02813         3.74345         0.00018
+          0_pg_House        -0.04545         0.01796        -2.53086         0.01140
+          0_pg_Other         0.06075         0.02764         2.19827         0.02797
+      0_pg_Townhouse        -0.01040         0.04567        -0.22765         0.81993
+          1_CONSTANT         4.47990         0.02509       178.52600         0.00000
+      1_accommodates         0.04846         0.00788         6.14974         0.00000
+         1_bathrooms         0.24748         0.01657        14.93881         0.00000
+          1_bedrooms         0.18974         0.01792        10.58647         0.00000
+              1_beds        -0.05061         0.01074        -4.71079         0.00000
+   1_rt_Private_room        -0.55863         0.02831       -19.73097         0.00000
+    1_rt_Shared_room        -1.05285         0.08417       -12.50800         0.00000
+    1_pg_Condominium         0.20445         0.03394         6.02318         0.00000
+          1_pg_House         0.07535         0.02338         3.22322         0.00127
+          1_pg_Other         0.29548         0.03865         7.64604         0.00000
+      1_pg_Townhouse        -0.07351         0.04937        -1.48900         0.13654
 ------------------------------------------------------------------------------------
 Regimes variable: unknown
+
+REGIMES DIAGNOSTICS - CHOW TEST
+                 VARIABLE        DF        VALUE           PROB
+                 CONSTANT         1           4.832           0.0279
+             accommodates         1          16.736           0.0000
+                bathrooms         1          22.671           0.0000
+                 bedrooms         1          11.504           0.0007
+                     beds         1           3.060           0.0802
+          rt_Private_room         1           0.740           0.3896
+           rt_Shared_room         1           3.309           0.0689
+           pg_Condominium         1           5.057           0.0245
+                 pg_House         1          16.793           0.0000
+                 pg_Other         1          24.410           0.0000
+             pg_Townhouse         1           0.881           0.3480
+              Global test        11         328.869           0.0000
 
 REGRESSION DIAGNOSTICS
 MULTICOLLINEARITY CONDITION NUMBER           14.033
@@ -1464,21 +1509,6 @@ RANDOM COEFFICIENTS
 TEST                             DF        VALUE           PROB
 Breusch-Pagan test               21         443.593           0.0000
 Koenker-Bassett test             21         164.276           0.0000
-
-REGIMES DIAGNOSTICS - CHOW TEST
-                 VARIABLE        DF        VALUE           PROB
-                 CONSTANT         1           4.832           0.0279
-             accommodates         1          16.736           0.0000
-                bathrooms         1          22.671           0.0000
-                 bedrooms         1          11.504           0.0007
-                     beds         1           3.060           0.0802
-           pg_Condominium         1           5.057           0.0245
-                 pg_House         1          16.793           0.0000
-                 pg_Other         1          24.410           0.0000
-             pg_Townhouse         1           0.881           0.3480
-          rt_Private_room         1           0.740           0.3896
-           rt_Shared_room         1           3.309           0.0689
-              Global test        11         328.869           0.0000
 ================================ END OF REPORT =====================================
 </pre></div>
 </div>
@@ -1542,8 +1572,9 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
-----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
 SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES
 -----------------------------------------
 Data set            :     unknown
@@ -1553,7 +1584,7 @@ Mean dependent var  :      4.9958                Number of Variables   :        
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6095
 R-squared           :      0.6800
 Adjusted R-squared  :      0.6792
-Sum squared residual:    1273.933                F-statistic           :    924.9423
+Sum squared residual:     1273.93                F-statistic           :    924.9423
 Sigma-square        :       0.209                Prob(F-statistic)     :           0
 S.E. of regression  :       0.457                Log likelihood        :   -3880.030
 Sigma-square ML     :       0.208                Akaike info criterion :    7790.061
@@ -1562,21 +1593,21 @@ S.E of regression ML:      0.4566                Schwarz criterion     :    7890
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     t-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT       4.3205814       0.0234977     183.8727044       0.0000000
-        accommodates       0.0809972       0.0050046      16.1843874       0.0000000
-           bathrooms       0.1893447       0.0108059      17.5224026       0.0000000
-            bedrooms       0.1635998       0.0109764      14.9047058       0.0000000
-                beds      -0.0451529       0.0068249      -6.6159365       0.0000000
-     rt_Private_room      -0.5293783       0.0157308     -33.6524367       0.0000000
-      rt_Shared_room      -1.2892590       0.0381443     -33.7995105       0.0000000
-      pg_Condominium       0.1063490       0.0221782       4.7952003       0.0000017
-            pg_House       0.0327806       0.0156954       2.0885538       0.0367893
-            pg_Other       0.0861857       0.0239774       3.5944620       0.0003276
-        pg_Townhouse      -0.0277116       0.0338485      -0.8186965       0.4129916
-    w_pg_Condominium       0.5928369       0.0689612       8.5966706       0.0000000
-          w_pg_House      -0.0774462       0.0318830      -2.4290766       0.0151661
-          w_pg_Other       0.4851047       0.0551461       8.7967121       0.0000000
-      w_pg_Townhouse      -0.2724493       0.1223388      -2.2270058       0.0259833
+            CONSTANT         4.32058         0.02350       183.87270         0.00000
+        accommodates         0.08100         0.00500        16.18439         0.00000
+           bathrooms         0.18934         0.01081        17.52240         0.00000
+            bedrooms         0.16360         0.01098        14.90471         0.00000
+                beds        -0.04515         0.00682        -6.61594         0.00000
+     rt_Private_room        -0.52938         0.01573       -33.65244         0.00000
+      rt_Shared_room        -1.28926         0.03814       -33.79951         0.00000
+      pg_Condominium         0.10635         0.02218         4.79520         0.00000
+            pg_House         0.03278         0.01570         2.08855         0.03679
+            pg_Other         0.08619         0.02398         3.59446         0.00033
+        pg_Townhouse        -0.02771         0.03385        -0.81870         0.41299
+    w_pg_Condominium         0.59284         0.06896         8.59667         0.00000
+          w_pg_House        -0.07745         0.03188        -2.42908         0.01517
+          w_pg_Other         0.48510         0.05515         8.79671         0.00000
+      w_pg_Townhouse        -0.27245         0.12234        -2.22701         0.02598
 ------------------------------------------------------------------------------------
 
 REGRESSION DIAGNOSTICS
@@ -2168,7 +2199,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Autocorrelación espacial</p>
+        <p class="prev-next-title">Cluster espacial</p>
       </div>
     </a>
     <a class="right-next"

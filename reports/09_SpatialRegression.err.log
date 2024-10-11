@@ -18,27 +18,20 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-db['residual'] = m1.u
-medians = db.groupby("neighborhood").residual.median().to_frame('hood_residual')
-
-f = plt.figure(figsize=(15,3))
-ax = plt.gca()
-seaborn.boxplot('neighborhood', 'residual', ax = ax,
-                data=db.merge(medians, how='left',left_on='neighborhood',right_index=True).sort_values('hood_residual'), palette='bwr')
-f.autofmt_xdate()
-plt.show()
+lag_residual = weights.spatial_lag.lag_spatial(knn, m1.u) # se obtiene la columna spatial_lag de la matris denominada Weights y se le calcula el espacial lag con la matriz de KNN
+ax = seaborn.regplot(x=m1.u.flatten(), y=lag_residual.flatten(),line_kws=dict(color='orangered'),ci=None)
+ax.set_xlabel('Model Residuals - $u$')
+ax.set_ylabel('Spatial Lag of Model Residuals - $W u$');
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[14], line 6[0m
-[0;32m      4[0m f [38;5;241m=[39m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m15[39m,[38;5;241m3[39m))
-[0;32m      5[0m ax [38;5;241m=[39m plt[38;5;241m.[39mgca()
-[1;32m----> 6[0m [43mseaborn[49m[38;5;241;43m.[39;49m[43mboxplot[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mneighborhood[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mresidual[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43max[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43max[49m[43m,[49m
-[0;32m      7[0m [43m                [49m[43mdata[49m[38;5;241;43m=[39;49m[43mdb[49m[38;5;241;43m.[39;49m[43mmerge[49m[43m([49m[43mmedians[49m[43m,[49m[43m [49m[43mhow[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mleft[39;49m[38;5;124;43m'[39;49m[43m,[49m[43mleft_on[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mneighborhood[39;49m[38;5;124;43m'[39;49m[43m,[49m[43mright_index[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m[38;5;241;43m.[39;49m[43msort_values[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mhood_residual[39;49m[38;5;124;43m'[39;49m[43m)[49m[43m,[49m[43m [49m[43mpalette[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mbwr[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[0;32m      8[0m f[38;5;241m.[39mautofmt_xdate()
-[0;32m      9[0m plt[38;5;241m.[39mshow()
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[15], line 2[0m
+[0;32m      1[0m lag_residual [38;5;241m=[39m weights[38;5;241m.[39mspatial_lag[38;5;241m.[39mlag_spatial(knn, m1[38;5;241m.[39mu) [38;5;66;03m# se obtiene la columna spatial_lag de la matris denominada Weights y se le calcula el espacial lag con la matriz de KNN[39;00m
+[1;32m----> 2[0m ax [38;5;241m=[39m [43mseaborn[49m[38;5;241m.[39mregplot(x[38;5;241m=[39mm1[38;5;241m.[39mu[38;5;241m.[39mflatten(), y[38;5;241m=[39mlag_residual[38;5;241m.[39mflatten(),line_kws[38;5;241m=[39m[38;5;28mdict[39m(color[38;5;241m=[39m[38;5;124m'[39m[38;5;124morangered[39m[38;5;124m'[39m),ci[38;5;241m=[39m[38;5;28;01mNone[39;00m)
+[0;32m      3[0m ax[38;5;241m.[39mset_xlabel([38;5;124m'[39m[38;5;124mModel Residuals - $u$[39m[38;5;124m'[39m)
+[0;32m      4[0m ax[38;5;241m.[39mset_ylabel([38;5;124m'[39m[38;5;124mSpatial Lag of Model Residuals - $W u$[39m[38;5;124m'[39m);
 
-[1;31mTypeError[0m: boxplot() got multiple values for argument 'data'
+[1;31mNameError[0m: name 'seaborn' is not defined
 
