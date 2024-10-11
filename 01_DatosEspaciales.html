@@ -374,7 +374,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-espaciales">Datos espaciales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-espaciales">Datos espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escala">Escala</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maup">MAUP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-borde">Efecto de borde</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#falacia-ecologica">Falacia Ecológica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-desbordamiento-spillover">Efecto de desbordamiento (spillover)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-datos">Modelo de datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-datos">Estructura de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos">Objetos</a><ul class="nav section-nav flex-column">
@@ -384,14 +391,6 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superficies">Superficies</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-geograficas">Redes geográficas}</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-con-datos-espaciales">consideraciones con datos espaciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escala">Escala</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maup">MAUP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-borde">Efecto de borde</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#falacia-ecologica">Falacia Ecológica</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-desbordamiento-spillover">Efecto de desbordamiento (spillover)</a></li>
 </ul>
 </li>
 </ul>
@@ -408,18 +407,17 @@ document.write(`
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://cordmaur.medium.com/">Mauricio Cordeiro</a> y <a href="https://medium.com/euro-data-cube/harness-the-power-of-sentinel-hub-xcube-eoxhub-geodb-and-more-in-euro-data-cube-31c827a3083b">Dorothy Rono</a>, pero especialmente de los cursos y libros publicados abierta y libremente por <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="analisis-geoespacial">
 <h1>Análisis Geoespacial<a class="headerlink" href="#analisis-geoespacial" title="Permalink to this heading">#</a></h1>
 <p>La ciencia de datos geoespaciales (GDS, por sus siglas en inglés) es un subconjunto de la ciencia de datos que se enfoca en las características únicas de los datos espaciales, y va más allá de simplemente observar dónde suceden las cosas para entender por qué suceden allí. La ciencia de datos geoespaciales se define como la extracción de información significativa de datos que involucran ubicación, proximidad geográfica y/o interacción espacial mediante el uso de técnicas específicamente diseñadas para tratar adecuadamente los datos espaciales (Anselin, 2000).</p>
-<img src="http://www.isds.org.za/images/Picture1.jpg" width="700">
+<img src="http://www.isds.org.za/images/Picture1.jpg" width="300">
 <p>Existe una diferencia fundamental entre la estadística clásica y la estadística espacial. En la estadística clásica, hacemos un supuesto básico sobre la muestra: es un conjunto de observaciones independientes que siguen una distribución específica, generalmente normal. Por el contrario, en la estadística espacial, debido a la dependencia espacial inherente y al hecho de que normalmente existe autocorrelación espacial, el enfoque está en adoptar técnicas para detectar y describir estas correlaciones.</p>
 <p>En otras palabras, en la estadística clásica debe existir independencia entre las observaciones, mientras que en la estadística espacial, por lo general, existe dependencia espacial. La estadística clásica debe modificarse adecuadamente para adaptarse a esta condición.</p>
-<p><a href="https://carto.com/what-is-spatial-data-science/" style="font-size: 20px;">https://carto.com/what-is-spatial-data-science/</a></p>
 <p>Los modelos espaciales consideran dos efectos espaciales importantes en los datos, es decir, <strong>heterogeneidad</strong> (no estacionariedad) y <strong>dependencia</strong> (autocorrelación) (\cite{anselin1988spatial}). La <strong>dependencia espacial</strong> implica que las observaciones en una región están correlacionadas con las de las regiones vecinas (\cite{fletcher2018spatial}). La dependencia espacial se mide frecuentemente mediante la covarianza y, por lo tanto, es una propiedad relacionada con el segundo orden (\cite{wickham2008applied}). Por otro lado, la <strong>heterogeneidad espacial</strong> se refiere a los efectos del espacio sobre las unidades muestrales, en las cuales la media varía de un lugar a otro (\cite{zhang2023mapping}). Por lo tanto, la heterogeneidad espacial es una propiedad relacionada con el primer orden (\cite{wang2022statistics}).</p>
 <p>Los datos de entrada utilizados a menudo abarcan tanto heterogeneidad espacial como dependencia espacial (\cite{quevedo2022consideration, lombardo2020space}), lo que viola los supuestos básicos de los modelos de regresión clásicos (\cite{cressie2015statistics, ripley1988statistical, anselin1988spatial}). Esta omisión conduce a la estructura espacial en los residuos de estos modelos (\cite{rey2023geographic}). Ignorar la heterogeneidad puede tener consecuencias significativas para la validez estadística de las estimaciones del modelo, incluyendo estimaciones de parámetros sesgadas, niveles de significancia engañosos y malas previsiones (\cite{li2022consequences}). El impacto de la dependencia espacial en las pruebas de significancia y en las medidas de ajuste puede ser engañoso debido a la estimación sesgada de la varianza del error, los niveles de significancia de las pruebas <span class="math notranslate nohighlight">\(T\)</span>, y los valores de <span class="math notranslate nohighlight">\(R^2\)</span> (\cite{anselin1990spatial}).</p>
 <p>Las técnicas de modelado espacial han ganado popularidad para abordar la dependencia y la heterogeneidad en los datos geográficos (\cite{fotheringham2000quantitative, schabenberger2001contemporary}). Entre los dos enfoques principales, uno es tratar los datos como si se hubieran obtenido de un campo continuo utilizando la función de covarianza o semivariograma con modelos Gaussianos (\cite{rue2005gaussian}). El segundo enfoque es considerar los datos como un espacio discreto utilizando modelos autorregresivos (\cite{anselin1996simple}).</p>
 <p>Existen esencialmente tres tipos de análisis espaciales:</p>
 <ul class="simple">
 <li><p><strong>Análisis de patrones de puntos</strong>: distribución espacial de eventos.</p></li>
+<li><p><strong>Análisis de datos areales o discretos (<em>lattice</em>)</strong>: patrones espaciales de atributos observados para objetos espaciales discretos, donde las regiones espaciales pueden tener formas regulares (<em>grid</em> o píxeles) o formas irregulares (polígonos).</p></li>
 <li><p><strong>Análisis geoestadístico</strong>: modelado de superficies continuas.</p></li>
-<li><p><strong>Análisis de datos areales o discretos (lattice)</strong>: patrones espaciales de atributos observados para objetos espaciales discretos, donde las regiones espaciales pueden tener formas regulares (grid o píxeles) o formas irregulares (polígonos).</p></li>
 </ul>
 <p>A pesar de estos conocidos efectos espaciales, es una práctica extendida ignorar los patrones espaciales. Una razón es que la estadística espacial y, en general, las técnicas que permiten incorporar efectos espaciales en los análisis son relativamente nuevas. Sin embargo, ya se han utilizado en campos como la ecología y la cartografía de enfermedades bajo el término de econometría espacial (\cite{anselin1988spatial, arbia2016spatial}).</p>
 <section id="datos-espaciales">
@@ -428,7 +426,34 @@ document.write(`
 <p>Los datos geoespaciales son datos sobre objetos, eventos o fenómenos que tienen una ubicación en la superficie de la tierra, incluyendo información de ubicación, información de atributos (las características del objeto, evento o fenómeno en cuestión) y, a menudo, también información temporal (el tiempo o la duración en que la ubicación y los atributos existen).</p>
 <p>Los datos geográficos tienen dos características muy útiles su ubicación y la relacion con sus vecinos. Todo tiene una <strong>ubicación</strong> en el espacio-tiempo, y esta ubicación puede usarse directamente para hacer mejores predicciones o inferencias. Además, esta ubicación te permite comprender las <strong>relaciones</strong> entre las observaciones. A menudo son las relaciones las que son útiles en la ciencia de datos porque nos permiten contextualizar nuestro análisis, creando vínculos dentro de nuestros datos existentes y más allá con otros datos relevantes. Como argumentó el geógrafo Waldo Tobler, las cosas cercanas tienden a estar más relacionadas que las cosas distantes, tanto en el espacio como en el tiempo. Por lo tanto, si aprendemos de los alrededores de manera adecuada, es posible que podamos construir mejores modelos. Un <strong>patrón espacial</strong> observado puede deberse estrictamente a variables <strong>dependientes de la ubicación</strong>, o debido a <strong>interacciones directas</strong> entre las observaciones.</p>
 <p>En otras palabras, <strong>los datos espaciales son dependientes o correlacionados espacialmente</strong>, y la independencia entre las observaciones, que es una suposición común en muchas técnicas estadísticas, no se cumple. Existe una diferencia fundamental entre la estadística clásica y la estadística espacial. En la estadística clásica, hacemos una suposición básica sobre la muestra: es una colección de <strong>observaciones independientes</strong> que siguen una distribución específica, generalmente normal. Por el contrario, en la estadística espacial, debido a la inherente <strong>dependencia espacial</strong> y al hecho de que generalmente existe <strong>autocorrelación espacial</strong>, el enfoque se centra en adoptar técnicas para detectar y describir estas correlaciones. En otras palabras, en la estadística clásica, debe existir independencia entre las observaciones, mientras que en la estadística espacial, generalmente existe dependencia espacial.</p>
+<p>A continuación se destacan algunos elementos que hacen especial los datos espaciales:</p>
+<section id="escala">
+<h3>Escala<a class="headerlink" href="#escala" title="Permalink to this heading">#</a></h3>
+<p>La escala es importante porque puede informar sobre el muestreo para la experiencia de entrenamiento. El aprendizaje es más confiable cuando la distribución de las muestras en la experiencia de entrenamiento es similar a la distribución en la experiencia de prueba. En muchos estudios geográficos, el entrenamiento se realiza con datos de un área geográfica específica. Esto hace que sea un desafío usar el modelo entrenado en otras regiones geográficas debido a que la distribución de los conjuntos de datos de prueba y entrenamiento no es similar, debido a la heterogeneidad espacial.</p>
+<p>Esto significa que la estrategia de muestreo para el conjunto de datos de entrenamiento es esencial para cubrir la heterogeneidad de los fenómenos de interés en el marco espacial del estudio. Al aumentar la extensión del área de estudio, más procesos y factores ambientales contextuales pueden alterar la variable y resultar en no estacionariedad, entrelazando patrones espaciales de diferentes escalas o efectos inconsistentes de procesos en diferentes regiones.</p>
+</section>
+<section id="maup">
+<h3>MAUP<a class="headerlink" href="#maup" title="Permalink to this heading">#</a></h3>
+<p>El problema de la Unidad de Área Modificable (MAUP, por sus siglas en inglés) se refiere a la influencia que el diseño de las zonas tiene en los resultados del análisis. Una designación diferente probablemente llevaría a resultados distintos.</p>
+<img src="https://pbs.twimg.com/media/B-8ljgjU0AASq8g.jpg" width="400">
+<p>There are two types of biases for the MAUP. El <strong>efecto de escala</strong> ocurre cuando los mapas muestran diferentes resultados analíticos en distintos niveles de agregación. A pesar de usar los mismos puntos, cada unidad sucesivamente más pequeña cambia el patrón de manera consecuente. El <strong>efecto zonal</strong> ocurre cuando agrupas datos mediante varias fronteras artificiales. En este tipo de error del MAUP, cada frontera subsecuente produce diferencias analíticas significativas.</p>
+<img src="https://gdsl-ul.github.io/san/figs/ch1/maup.png" width="700">
+<figcaption>Source: <a href="https://gdsl-ul.github.io/san/">Spatial Modelling for Data Scientist</a> by Francisco Rowe and Dani Arribas-Bel (2022)</figcaption>
+</section>
+<section id="efecto-de-borde">
+<h3>Efecto de borde<a class="headerlink" href="#efecto-de-borde" title="Permalink to this heading">#</a></h3>
+<p>En el problema de los efectos de borde, las unidades espaciales que se encuentran en el centro del área de estudio tienden a tener vecinos en todas las direcciones, mientras que las unidades espaciales en los bordes del área de estudio solo tienen vecinos en algunas direcciones específicas.</p>
+</section>
+<section id="falacia-ecologica">
+<h3>Falacia Ecológica<a class="headerlink" href="#falacia-ecologica" title="Permalink to this heading">#</a></h3>
+<p>Este problema ocurre cuando se asume que una relación que es estadísticamente significativa en un nivel de análisis también se mantiene en un nivel más detallado. Este es un error típico que ocurre cuando utilizamos datos agregados para describir el comportamiento de individuos.</p>
+<img src="https://pbs.twimg.com/media/EeuQ4LjWsAEZZLD.png" width="600">
+</section>
+<section id="efecto-de-desbordamiento-spillover">
+<h3>Efecto de desbordamiento (spillover)<a class="headerlink" href="#efecto-de-desbordamiento-spillover" title="Permalink to this heading">#</a></h3>
+<p>Las externalidades (a veces llamadas efectos de desbordamiento) son costos o beneficios impuestos a otros (sin compensación). Las características de las propiedades vecinas pueden tener cierto impacto en una característica diferente de los vecinos. <em>Si un grupo de bloques A está junto a un centro comercial, entonces el grupo de bloques A experimentará una alta tasa de criminalidad</em>.</p>
 <p>Al igual que un modelo estadístico, un <em>mapa</em> es solo una representación del proceso geográfico subyacente. En este sentido, utilizaremos el término <strong>modelo de datos</strong> para referirnos a cómo representamos conceptualmente un proceso geográfico; y usaremos <strong>estructura de datos</strong> para referirnos a cómo se representan los datos geográficos en una computadora.</p>
+</section>
 </section>
 <section id="modelo-de-datos">
 <h2>Modelo de datos<a class="headerlink" href="#modelo-de-datos" title="Permalink to this heading">#</a></h2>
@@ -1252,35 +1277,6 @@ Attributes:
 <p>La separación de raster/imagen de vector/tabla y la omisión general de redes provienen de decisiones de implementación realizadas en uno de los primeros sistemas de información geográfica comercialmente exitosos, el paquete ARC/INFO del Instituto de Investigación Ambiental. Este fue un precursor en la línea de comandos de los sistemas modernos de procesamiento de información gráfica, como QGIS gratuito y de código abierto o los paquetes ArcGIS del Instituto de Investigación Ambiental (ESRI). Esta asociación entre campo-y-raster, objeto-y-vector a veces se denomina la “visión de escritorio” de la información geográfica debido al dominio de estos paquetes GIS gráficos.</p>
 </section>
 </section>
-<section id="consideraciones-con-datos-espaciales">
-<h2>consideraciones con datos espaciales<a class="headerlink" href="#consideraciones-con-datos-espaciales" title="Permalink to this heading">#</a></h2>
-<section id="escala">
-<h3>Escala<a class="headerlink" href="#escala" title="Permalink to this heading">#</a></h3>
-<p>La escala es importante porque puede informar sobre el muestreo para la experiencia de entrenamiento. El aprendizaje es más confiable cuando la distribución de las muestras en la experiencia de entrenamiento es similar a la distribución en la experiencia de prueba. En muchos estudios geográficos, el entrenamiento se realiza con datos de un área geográfica específica. Esto hace que sea un desafío usar el modelo entrenado en otras regiones geográficas debido a que la distribución de los conjuntos de datos de prueba y entrenamiento no es similar, debido a la heterogeneidad espacial.</p>
-<p>Esto significa que la estrategia de muestreo para el conjunto de datos de entrenamiento es esencial para cubrir la heterogeneidad de los fenómenos de interés en el marco espacial del estudio. Al aumentar la extensión del área de estudio, más procesos y factores ambientales contextuales pueden alterar la variable y resultar en no estacionariedad, entrelazando patrones espaciales de diferentes escalas o efectos inconsistentes de procesos en diferentes regiones.</p>
-</section>
-<section id="maup">
-<h3>MAUP<a class="headerlink" href="#maup" title="Permalink to this heading">#</a></h3>
-<p>El problema de la Unidad de Área Modificable (MAUP, por sus siglas en inglés) se refiere a la influencia que el diseño de las zonas tiene en los resultados del análisis. Una designación diferente probablemente llevaría a resultados distintos.</p>
-<img src="https://pbs.twimg.com/media/B-8ljgjU0AASq8g.jpg" width="400">
-<p>There are two types of biases for the MAUP. El <strong>efecto de escala</strong> ocurre cuando los mapas muestran diferentes resultados analíticos en distintos niveles de agregación. A pesar de usar los mismos puntos, cada unidad sucesivamente más pequeña cambia el patrón de manera consecuente. El <strong>efecto zonal</strong> ocurre cuando agrupas datos mediante varias fronteras artificiales. En este tipo de error del MAUP, cada frontera subsecuente produce diferencias analíticas significativas.</p>
-<img src="https://gdsl-ul.github.io/san/figs/ch1/maup.png" width="700">
-<figcaption>Source: <a href="https://gdsl-ul.github.io/san/">Spatial Modelling for Data Scientist</a> by Francisco Rowe and Dani Arribas-Bel (2022)</figcaption>
-</section>
-<section id="efecto-de-borde">
-<h3>Efecto de borde<a class="headerlink" href="#efecto-de-borde" title="Permalink to this heading">#</a></h3>
-<p>En el problema de los efectos de borde, las unidades espaciales que se encuentran en el centro del área de estudio tienden a tener vecinos en todas las direcciones, mientras que las unidades espaciales en los bordes del área de estudio solo tienen vecinos en algunas direcciones específicas.</p>
-</section>
-<section id="falacia-ecologica">
-<h3>Falacia Ecológica<a class="headerlink" href="#falacia-ecologica" title="Permalink to this heading">#</a></h3>
-<p>Este problema ocurre cuando se asume que una relación que es estadísticamente significativa en un nivel de análisis también se mantiene en un nivel más detallado. Este es un error típico que ocurre cuando utilizamos datos agregados para describir el comportamiento de individuos.</p>
-<img src="https://pbs.twimg.com/media/EeuQ4LjWsAEZZLD.png" width="600">
-</section>
-<section id="efecto-de-desbordamiento-spillover">
-<h3>Efecto de desbordamiento (spillover)<a class="headerlink" href="#efecto-de-desbordamiento-spillover" title="Permalink to this heading">#</a></h3>
-<p>Las externalidades (a veces llamadas efectos de desbordamiento) son costos o beneficios impuestos a otros (sin compensación). Las características de las propiedades vecinas pueden tener cierto impacto en una característica diferente de los vecinos. <em>Si un grupo de bloques A está junto a un centro comercial, entonces el grupo de bloques A experimentará una alta tasa de criminalidad</em>.</p>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1346,7 +1342,14 @@ Attributes:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-espaciales">Datos espaciales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-espaciales">Datos espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escala">Escala</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maup">MAUP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-borde">Efecto de borde</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#falacia-ecologica">Falacia Ecológica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-desbordamiento-spillover">Efecto de desbordamiento (spillover)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-datos">Modelo de datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-datos">Estructura de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos">Objetos</a><ul class="nav section-nav flex-column">
@@ -1356,14 +1359,6 @@ Attributes:
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superficies">Superficies</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redes-geograficas">Redes geográficas}</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-con-datos-espaciales">consideraciones con datos espaciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escala">Escala</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maup">MAUP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-borde">Efecto de borde</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#falacia-ecologica">Falacia Ecológica</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-desbordamiento-spillover">Efecto de desbordamiento (spillover)</a></li>
 </ul>
 </li>
 </ul>
