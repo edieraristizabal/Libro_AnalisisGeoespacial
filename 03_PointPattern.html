@@ -176,17 +176,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Patrón de puntos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Análisis de datos areales: mapas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Cluster espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos areales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_Heterogeneidad.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_SAR.html">Modelos de Regresión para Dependencia Espacial SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CAR.html">Modelos de Regresión para Dependencia Espacial CAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -381,7 +379,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion">Visualización</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mallas-irregulares-irregular-lattices">Mallas irregulares (irregular lattices)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mallas-irregulares">Mallas irregulares</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mallas-regulares-hex-binning">Mallas regulares: Hex-binning</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-densidad-de-kernel-kde">Estimación de Densidad de Kernel (KDE)</a></li>
 </ul>
@@ -569,7 +567,7 @@ memory usage: 547.0+ KB
 <span class="g g-Whitespace">   </span><span class="mi">3279</span> <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;cannot identify image file </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span> <span class="k">if</span> <span class="n">filename</span> <span class="k">else</span> <span class="n">fp</span><span class="p">)</span>
 <span class="ne">-&gt; </span><span class="mi">3280</span> <span class="k">raise</span> <span class="n">UnidentifiedImageError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-<span class="ne">UnidentifiedImageError</span>: cannot identify image file &lt;_io.BytesIO object at 0x0000028A38233920&gt;
+<span class="ne">UnidentifiedImageError</span>: cannot identify image file &lt;_io.BytesIO object at 0x00000139F013B150&gt;
 </pre></div>
 </div>
 <img alt="_images/b2d2d693f80f2396c11766b287f5a59e139932802b1d724a4185c998f4509744.png" src="_images/b2d2d693f80f2396c11766b287f5a59e139932802b1d724a4185c998f4509744.png" />
@@ -577,8 +575,8 @@ memory usage: 547.0+ KB
 </div>
 <p>El enfoque presentado anteriormente funciona hasta un cierto número de puntos a graficar; ajustar la transparencia y el tamaño de los puntos solo nos lleva hasta cierto punto, y en algún momento, necesitamos cambiar el enfoque. Después de aprender sobre la visualización de datos en mallas (polígonos), una opción es “convertir” puntos en polígonos y aplicar técnicas como el mapeo coroplético para visualizar su distribución espacial. Para hacerlo, superpondremos una capa de polígonos sobre el patrón de puntos, <em>asignando</em> los puntos a los polígonos al asignar a cada punto el polígono en el que se encuentra, y crearemos un coropleta de los conteos por polígono.</p>
 <p>Este enfoque es intuitivo pero, por supuesto, plantea la siguiente pregunta: <em>¿qué polígonos usamos para agregar los puntos?</em> Idealmente, queremos una delimitación que coincida lo más posible con el proceso generador de puntos y que divida el espacio en áreas con una intensidad interna de puntos similar. Sin embargo, ese no suele ser el caso, sobre todo porque una de las principales razones por las que normalmente queremos visualizar el patrón de puntos es aprender sobre dicho proceso generador, por lo que, típicamente, no sabríamos de antemano si un conjunto de polígonos coincide con este. Si no podemos contar con el conjunto ideal de polígonos desde el principio, podemos adoptar dos enfoques más realistas: usar un conjunto de áreas irregulares preexistentes o crear un conjunto artificial de polígonos regulares. Exploremos ambos.</p>
-<section id="mallas-irregulares-irregular-lattices">
-<h3>Mallas irregulares (irregular lattices)<a class="headerlink" href="#mallas-irregulares-irregular-lattices" title="Permalink to this heading">#</a></h3>
+<section id="mallas-irregulares">
+<h3>Mallas irregulares<a class="headerlink" href="#mallas-irregulares" title="Permalink to this heading">#</a></h3>
 <p>Para ejemplificar este enfoque, utilizaremos las áreas administrativas que hemos cargado anteriormente. Vamos a agregarlas a la figura anterior para obtener un mejor contexto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,7 +632,7 @@ Datum: World Geodetic System 1984
 <img alt="_images/e9b226638eb59a5da33f6e0e67f0f17c08873256def97e7ca5d7781da27c4e55.png" src="_images/e9b226638eb59a5da33f6e0e67f0f17c08873256def97e7ca5d7781da27c4e55.png" />
 </div>
 </div>
-<p>Ahora necesitamos saber cuántas fotografías contiene cada área. Nuestra tabla de fotografías ya contiene el ID del área, por lo que todo lo que necesitamos hacer aquí es contar por área y adjuntar el conteo a la tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code>. Para esto, utilizamos el operador <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, que toma todas las fotos de la tabla y las “agrupa” “por” su ID administrativo. Una vez agrupadas, aplicamos el método <code class="docutils literal notranslate"><span class="pre">size</span></code>, que cuenta cuántos elementos tiene cada grupo y devuelve una columna indexada por el código LSOA con todos los conteos como valores. Finalmente, asignamos los conteos a una columna recién creada en la tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code>.</p>
+<p>Ahora necesitamos saber cuántas fotografías contiene cada área. Nuestra tabla de fotografías ya contiene el ID del área, por lo que todo lo que necesitamos hacer aquí es contar por área y adjuntar el conteo a la tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code>. Para esto, podemos utilizar el operador <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, que toma todas las fotos de la tabla y las “agrupa” “por” su ID administrativo. Una vez agrupadas, aplicamos el método <code class="docutils literal notranslate"><span class="pre">size</span></code>, que cuenta cuántos elementos tiene cada grupo y devuelve una columna indexada por el código LSOA con todos los conteos como valores. Finalmente, asignamos los conteos a una columna recién creada en la tabla <code class="docutils literal notranslate"><span class="pre">areas</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -1325,7 +1323,7 @@ memory usage: 547.0+ KB
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion">Visualización</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mallas-irregulares-irregular-lattices">Mallas irregulares (irregular lattices)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mallas-irregulares">Mallas irregulares</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mallas-regulares-hex-binning">Mallas regulares: Hex-binning</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-densidad-de-kernel-kde">Estimación de Densidad de Kernel (KDE)</a></li>
 </ul>

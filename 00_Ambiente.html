@@ -174,17 +174,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPoisson.html">Modelos Lineales Generalizados (GLM) para Poisson</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Análisis de datos areales: mapas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Cluster espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos areales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos Lineales Jerárquicos Generalizados Espaciales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_Kriging.html">Kriging con Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="14_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_Heterogeneidad.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_SAR.html">Modelos de Regresión para Dependencia Espacial SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CAR.html">Modelos de Regresión para Dependencia Espacial CAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="16_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -407,26 +405,17 @@ document.write(`
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="ambiente-computacional">
 <h1>Ambiente computacional<a class="headerlink" href="#ambiente-computacional" title="Permalink to this heading">#</a></h1>
-<p>Este curso se enmarca dentro del gran ecosistema <a class="reference external" href="https://es.wikipedia.org/wiki/C%C3%B3digo_abierto">de código abierto</a>. No solo por que su contenido y código fuente está a disposición para que las personas lo utilicen, estudien, modifiquen y redistribuyan, sino además por que ha sido construido a partir de fuentes de información con similares características.</p>
-<p>El grueso principal del curso se basa en el lenguaje de programación <a class="reference external" href="https://www.python.org/">Python</a> y <a class="reference external" href="https://www.r-project.org/">R</a>. Python y R son lenguajes de programación <a class="reference external" href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n_de_alto_nivel">de alto nivel</a> ampliamente utilizado en la actualidad. Ser un lenguaje de alto nivel significa que el código puede ser “interpretado dinámicamente”, lo que significa que se ejecuta sobre la marcha sin necesidad de compilarlo. Esto contrasta con los lenguajes de programación “de bajo nivel”, que primero deben convertirse en código máquina (es decir, compilados) antes de que puedan ejecutarse. Con Python, no necesitas preocuparte por la compilación y puedes simplemente escribir código, evaluarlo, corregirlo, volver a evaluarlo, etc., en un ciclo rápido, lo que lo convierte en una herramienta muy productiva.</p>
-<p>Python es un lenguaje extremadamente útil para aprender en términos de SIG (Sistemas de Información Geográfica), ya que muchos (o la mayoría) de los diferentes paquetes de software SIG (como ArcGIS, QGIS, PostGIS, etc.) proporcionan una interfaz para hacer análisis usando scripts en Python. Durante este curso, nos centraremos principalmente en hacer análisis geoespaciales sin ningún software de terceros, como <a class="reference external" href="http://www.esri.com/software/arcgis">ArcGIS</a> y <a class="reference external" href="http://qgis.org">QGIS</a>. Entre las ventajas se encuentran:</p>
-<ul class="simple">
-<li><p>Todo es gratis: no necesitas comprar una costosa licencia para ArcGIS (por ejemplo).</p></li>
-<li><p>Aprenderás y entenderás mucho más profundamente cómo funcionan las diferentes operaciones de geoprocesamiento.</p></li>
-<li><p>Python es altamente eficiente: se utiliza para analizar Big Data.</p></li>
-<li><p>Python es altamente flexible: admite todos los formatos de datos que puedas imaginar.</p></li>
-<li><p>Usar Python (o cualquier otro lenguaje de programación de código abierto) apoya el software/código de fuente abierta y la ciencia abierta al hacer posible que cualquiera reproduzca tu trabajo, sin costo alguno.</p></li>
-<li><p>Con Python puedes conectar y encadenar diferentes programas de terceros para construir, por ejemplo, aplicaciones web-GIS sofisticadas.</p></li>
-</ul>
-<p>En el mundo geoespacial, Python también ha sido ampliamente adoptado, siendo el lenguaje seleccionado para scripting en ambos, <a class="reference external" href="http://www.esri.com/software/arcgis">ArcGIS</a> y <a class="reference external" href="http://qgis.org">QGIS</a>. Sin embargo desde el punto de vista netamente estadístico R tiene ventajas. Existen librerías estadísticas mas sofisticadas en R que aun no han sido desarrolladas en Python.</p>
+<p>El curso se basa principalmente en el lenguaje de programación <a class="reference external" href="https://www.python.org/">Python</a> y <a class="reference external" href="https://www.r-project.org/">R</a>. Python y R son lenguajes de programación <a class="reference external" href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n_de_alto_nivel">de alto nivel</a> ampliamente utilizados en la actualidad. Ser un lenguaje de alto nivel significa que el código puede ser “interpretado dinámicamente”, lo que significa que se ejecuta sobre la marcha sin necesidad de compilarlo. Esto contrasta con los lenguajes de programación “de bajo nivel”, que primero deben convertirse en código máquina (es decir, compilados) antes de que puedan ejecutarse. Con Python y R, no necesitas preocuparte por la compilación y puedes simplemente escribir código, evaluarlo, corregirlo, volver a evaluarlo, etc., en un ciclo rápido, lo que lo convierte en una herramienta muy productiva.</p>
+<p>Python es un lenguaje extremadamente útil para aprender en términos de SIG (Sistemas de Información Geográfica), ya que muchos (o la mayoría) de los diferentes paquetes de software SIG (como ArcGIS, QGIS, PostGIS, etc.) proporcionan una interfaz para hacer análisis usando scripts en Python. Durante este curso, nos centraremos principalmente en hacer análisis geoespaciales sin ningún software de terceros, como <a class="reference external" href="http://www.esri.com/software/arcgis">ArcGIS</a> y <a class="reference external" href="http://qgis.org">QGIS</a>.</p>
+<p>En el mundo geoespacial, Python también ha sido ampliamente adoptado, siendo el lenguaje seleccionado para scripting en ambos, <a class="reference external" href="http://www.esri.com/software/arcgis">ArcGIS</a> y <a class="reference external" href="http://qgis.org">QGIS</a>. Sin embargo desde el punto de vista netamente estadístico R tiene todavia ventajas. Existen librerías estadísticas mas sofisticadas en R que aun no han sido desarrolladas en Python.</p>
 <section id="conda">
 <h2>Conda<a class="headerlink" href="#conda" title="Permalink to this heading">#</a></h2>
-<p>Las dos distribuciones más populares de Python son <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#anaconda-or-miniconda"><strong>Anaconda</strong> y <strong>Miniconda</strong></a>, que son compatibles con R. <strong>Anaconda</strong> es una distribución de Python de código abierto diseñada específicamente para la ciencia de datos, el aprendizaje automático y el procesamiento de datos a gran escala. Incluye el lenguaje Python, más de 1,500 paquetes de ciencia de datos, un sistema de gestión de paquetes llamado conda, IPython (un intérprete interactivo de Python) y mucho más. Si bien es una distribución muy completa, también es bastante grande y, por lo tanto, puede tardar un tiempo en descargarse y consumir mucho espacio en disco. <strong>Miniconda</strong>, por otro lado, es una versión reducida de Anaconda e incluye todos los mismos componentes excepto los 1,500 paquetes de ciencia de datos preinstalados. En su lugar, podemos simplemente instalar estos paquetes individualmente según sea necesario utilizando <strong>Conda</strong> (el gestor de paquetes de Anaconda/Miniconda).</p>
+<p>Las dos distribuciones más populares de Python son <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#anaconda-or-miniconda"><strong>Anaconda</strong> y <strong>Miniconda</strong></a>, que son compatibles con R. <strong>Anaconda</strong> es una distribución de Python de código abierto diseñada específicamente para la ciencia de datos, el aprendizaje automático y el procesamiento de datos a gran escala. Incluye el lenguaje Python y R, más de 1,500 paquetes de ciencia de datos, un sistema de gestión de paquetes llamado conda, IPython (un intérprete interactivo de Python) y mucho más. Si bien es una distribución muy completa, también es bastante grande y, por lo tanto, puede tardar un tiempo en descargarse y consumir mucho espacio en disco. <strong>Miniconda</strong>, por otro lado, es una versión reducida de Anaconda e incluye todos los mismos componentes excepto los 1,500 paquetes de ciencia de datos pre-instalados. En su lugar, podemos simplemente instalar estos paquetes individualmente según sea necesario utilizando <strong>Conda</strong> (el gestor de paquetes de Anaconda/Miniconda). Tal vez la mayor diferencia es que Miniconda no tiene una interfaz de usuario como Anaconda, debe ser a través de la línea de comando.</p>
 <p>Elige <strong>Anaconda</strong> si:</p>
 <ul class="simple">
 <li><p>Eres nuevo en conda o Python.</p></li>
 <li><p>Te gusta la conveniencia de tener Python y más de 1,500 paquetes científicos instalados automáticamente de una vez.</p></li>
-<li><p>Tienes tiempo y espacio en disco—unos minutos y 3 GB.</p></li>
+<li><p>Tienes tiempo y espacio en disco.</p></li>
 <li><p>No deseas instalar individualmente cada uno de los paquetes que deseas usar.</p></li>
 </ul>
 <p>Elige <strong>Miniconda</strong> si:</p>
@@ -435,7 +424,6 @@ document.write(`
 <li><p>No te importa instalar individualmente los paquetes que deseas usar.</p></li>
 <li><p>No tienes tiempo o espacio en disco para instalar más de 1,500 paquetes de una vez.</p></li>
 <li><p>Quieres un acceso rápido a Python y los comandos conda, y deseas resolver el resto de los programas más tarde.</p></li>
-<li><p>Miniconda no tiene una interfaz de usuario como Anaconda, debe ser a través de la línea de comando.</p></li>
 </ul>
 <center><img src="https://www.alpha-quantum.com/blog/wp-content/uploads/2020/05/img_5ecd875868599.png" width="1000" class="center"></center>
 <center><img src="https://miro.medium.com/max/700/1*TaL5qaSnR2QOef69e49LPQ.png" width="1000"></center>
@@ -445,12 +433,12 @@ document.write(`
 <li><p>Agregar “Anaconda” a la variable de entorno “PATH”. Aunque en el texto del instalador dice que no lo hagas, te recomiendo que lo marques. Si no lo haces, cuando digites Python en la línea de comando, el sistema no reconocerá la orden ya que no encuentra la ruta de Python. Por lo tanto deberá manualmente incluir en las variables de entrono la ruta donde se encuentra Conda.</p></li>
 <li><p>Registrar “Anaconda” como mi “Python 3.7 predeterminado”. Esto viene marcado por defecto y lo recomiendan.</p></li>
 </ul>
-<p>Si prefieres instalar Python sin Anaconda o Miniconda, ve a la página de <a class="reference external" href="https://www.python.org/downloads/">Python</a> y descarga el instalador ejecutable de la última versión estable. Una vez completada la descarga, ejecuta el instalador. En la primera página del instalador, asegúrate de seleccionar la opción “Agregar Python al PATH” y haz clic en los pasos de instalación restantes dejando todas las opciones predeterminadas preseleccionadas.</p>
+<p>Si prefieres instalar Python sin Anaconda o Miniconda, ve a la página de <a class="reference external" href="https://www.python.org/downloads/">Python</a> y descarga el instalador ejecutable de la última versión estable. Una vez completada la descarga, ejecuta el instalador. En la primera página del instalador, asegúrate de seleccionar la opción “Agregar Python al PATH” y haz click en los pasos de instalación restantes dejando todas las opciones predeterminadas preseleccionadas.</p>
 <center><img src="https://docs.blender.org/manual/es/2.79/_images/about_contribute_install_windows_installer.png" width="1000"></center></section>
 <section id="pip">
 <h2>PIP<a class="headerlink" href="#pip" title="Permalink to this heading">#</a></h2>
-<p>Para trabajar con Python o R debes utilizar librerias. Las cuales ofrecen paquetes de funciones que procesan los datos o análisis que queremos ejecutar. Para isntalar librearias se utiliza <strong>Conda</strong> o <strong>pip</strong>. <a class="reference external" href="https://pypi.org/project/pip/">Pip</a> es un gestor de librerias diseñado específicamente para instalar paquetes de Python exclusivamente. La diferencia con Conda, es que PIP es exclusivo para Python.</p>
-<p>Si trabaja en un ambiente Conda se recomienda utilizar dicho gestior de librerias, sin embargo existen librerias que no están disponibles en Conda, lo cual requiere que se instalen con PIP. El cambio de gestor de librerias puede generar en algunas ocasiones incompatibilidades entre las librerias.</p>
+<p>Para trabajar con Python o R debes utilizar librerías. Las cuales ofrecen paquetes de funciones que procesan los datos o análisis que queremos ejecutar. Para instalar librerías se utiliza <strong>Conda</strong> o <strong>pip</strong>. <a class="reference external" href="https://pypi.org/project/pip/">Pip</a> es un gestor de librerías diseñado específicamente para instalar paquetes de Python exclusivamente. La diferencia con Conda, es que PIP es exclusivo para Python.</p>
+<p>Si trabaja en un ambiente Conda se recomienda utilizar dicho gestor de librerías, sin embargo existen librerías que no están disponibles en Conda, lo cual requiere que se instalen con PIP. El cambio de gestor de librerías puede generar en algunas ocasiones incompatibilidades entre las librerías.</p>
 <p>Es por esta razon que es común, tanto con Python como R, trabajar dentro de entornos o ambientes virtuales.</p>
 </section>
 <section id="ambiente-virtual-y-librerias">
@@ -473,7 +461,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Ya le debe aparecer el command prompt pero en el ambiente geo. Para instalar las librerias que desee en este utilice el comando:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">pandas</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pandas</span>
 </pre></div>
 </div>
 <p>o para utilizar el gestor PIP:</p>
@@ -492,7 +480,7 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">jupyterlab</span>
 </pre></div>
 </div>
-<p>Una vez completada la instalación, podemos verificar que Jupyter Notebook se haya instalado correctamente ejecutando <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> desde la linea de comandos. Esto iniciará el servidor Jupyter Notebook, imprimirá información sobre el servidor en la consola y abrirá una nueva pestaña en el navegador en <a class="reference external" href="http://localhost:8888">http://localhost:8888</a>.</p>
+<p>Una vez completada la instalación, podemos verificar que Jupyter Notebook se haya instalado correctamente ejecutando <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> desde la línea de comandos. Esto iniciará el servidor Jupyter Notebook, imprimirá información sobre el servidor en la consola y abrirá una nueva pestaña en el navegador en <a class="reference external" href="http://localhost:8888">http://localhost:8888</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
 </pre></div>
 </div>
