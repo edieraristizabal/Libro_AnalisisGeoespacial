@@ -184,7 +184,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="11_SAR.html">Modelos de Regresión para Dependencia Espacial SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_CAR.html">Modelos de Regresión para Dependencia Espacial CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_DB.html">Bases de datos geoespaciales</a></li>
 </ul>
 
     </div>
@@ -380,7 +383,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-pesos-basada-en-contiguidad">Matriz de pesos basada en contiguidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-pesos-basada-en-distancias">Matriz de pesos basada en distancias</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-lag">Spatial lag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-lag-rezago-espacial">Spatial lag (<em>rezago espacial</em>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-global">Autocorrelación espacial global</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-binario-conteos-de-union">Caso binario: conteos de unión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-moran">Gráfico de Moran</a></li>
@@ -454,47 +457,31 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 <span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">datetime_fields</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">as_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:640,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span>     <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ne">--&gt; </span><span class="mi">640</span>     <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">641</span> <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="c1"># load properties</span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:635,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">features_lst</span> <span class="o">=</span> <span class="n">features</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">635</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features_lst</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span>     <span class="c1"># load geometry</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\geo.py:108,</span> in <span class="ni">shape</span><span class="nt">(context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="k">return</span> <span class="n">MultiLineString</span><span class="p">(</span><span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="k">elif</span> <span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;multipolygon&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">108</span>     <span class="k">return</span> <span class="n">MultiPolygon</span><span class="p">([[</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">]])</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="k">elif</span> <span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;geometrycollection&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">geoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">ob</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;geometries&quot;</span><span class="p">,</span> <span class="p">[])]</span>
+<span class="nn">File fiona\ogrext.pyx:1739,</span> in <span class="ni">fiona.ogrext.Iterator.__next__</span><span class="nt">()</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\multipolygon.py:81,</span> in <span class="ni">MultiPolygon.__new__</span><span class="nt">(self, polygons)</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="n">shell</span> <span class="o">=</span> <span class="n">ob</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="n">holes</span> <span class="o">=</span> <span class="n">ob</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">81</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="p">,</span> <span class="n">holes</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span>
+<span class="nn">File fiona\ogrext.pyx:389,</span> in <span class="ni">fiona.ogrext.FeatureBuilder.build</span><span class="nt">()</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:239,</span> in <span class="ni">Polygon.__new__</span><span class="nt">(self, shell, holes)</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span>         <span class="n">holes</span> <span class="o">=</span> <span class="p">[</span><span class="n">LinearRing</span><span class="p">(</span><span class="n">ring</span><span class="p">)</span> <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="n">holes</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">239</span> <span class="n">geom</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">polygons</span><span class="p">(</span><span class="n">shell</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="n">holes</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid values passed to Polygon constructor&quot;</span><span class="p">)</span>
+<span class="nn">File fiona\_geometry.pyx:188,</span> in <span class="ni">fiona._geometry.GeomBuilder.build_from_feature</span><span class="nt">()</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\decorators.py:77,</span> in <span class="ni">multithreading_enabled.&lt;locals&gt;.wrapped</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">array_args</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span>         <span class="n">arr</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">writeable</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="ne">---&gt; </span><span class="mi">77</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="k">for</span> <span class="n">arr</span><span class="p">,</span> <span class="n">old_flag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">array_args</span><span class="p">,</span> <span class="n">old_flags</span><span class="p">):</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\creation.py:268,</span> in <span class="ni">polygons</span><span class="nt">(geometries, holes, indices, out, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span>     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">holes</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span>         <span class="n">holes</span> <span class="o">=</span> <span class="n">linearrings</span><span class="p">(</span><span class="n">holes</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">268</span> <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">polygons</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">holes</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~\miniconda3\Lib\enum.py:192,</span> in <span class="ni">property.__get__</span><span class="nt">(self, instance, ownerclass)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">class</span> <span class="nc">property</span><span class="p">(</span><span class="n">DynamicClassAttribute</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="sd">     This is a descriptor, used to define attributes that act differently</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd">     when accessed through an enum member and through an enum class.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd">     a corresponding enum member.</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">192</span>     <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">ownerclass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>         <span class="k">if</span> <span class="n">instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>             <span class="k">try</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1016,8 +1003,8 @@ w_{ij} = \dfrac{1}{d_{ij}}
 </div>
 </div>
 </section>
-<section id="spatial-lag">
-<h2>Spatial lag<a class="headerlink" href="#spatial-lag" title="Permalink to this heading">#</a></h2>
+<section id="spatial-lag-rezago-espacial">
+<h2>Spatial lag (<em>rezago espacial</em>)<a class="headerlink" href="#spatial-lag-rezago-espacial" title="Permalink to this heading">#</a></h2>
 <p>El <em>spatial lag</em> de una variable es el producto de la matriz de pesos con la variable misma.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1842,7 +1829,7 @@ Name: quadrant, dtype: int32
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-pesos-basada-en-contiguidad">Matriz de pesos basada en contiguidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-pesos-basada-en-distancias">Matriz de pesos basada en distancias</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-lag">Spatial lag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-lag-rezago-espacial">Spatial lag (<em>rezago espacial</em>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-global">Autocorrelación espacial global</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-binario-conteos-de-union">Caso binario: conteos de unión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-moran">Gráfico de Moran</a></li>
