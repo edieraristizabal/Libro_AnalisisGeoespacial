@@ -385,6 +385,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras">Efectos de autocorrelación exógena entre las variables predictoras</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-con-el-error-espacial">Efectos de autocorrelación endógena con el error espacial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-entre-la-variable-dependiente">Efectos de autocorrelación endógena entre la variable dependiente</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-sar-en-r">Modelos SAR en R</a></li>
 </ul>
 </li>
 </ul>
@@ -425,7 +426,7 @@ El modelo general, que incluye todos los tipos de efectos de autocorrelación, e
 y = \textbf{X} \beta + \textbf{W} \textbf{X} y + \rho \textbf{W} y + \lambda \textbf{W} \mu + \epsilon 
 \]</div>
 <p>Aquí, la matriz de pesos espaciales positiva <span class="math notranslate nohighlight">\(\textit{n}\times\textit{n}\)</span> <span class="math notranslate nohighlight">\(\textbf{W}\)</span> describe la estructura de dependencia entre las observaciones en un vector <span class="math notranslate nohighlight">\(n\times1\)</span> <span class="math notranslate nohighlight">\(y\)</span> con entradas indexadas por <span class="math notranslate nohighlight">\(\textit{i}\)</span>; <span class="math notranslate nohighlight">\(\beta\)</span> es un vector <span class="math notranslate nohighlight">\(k\times1\)</span> de <span class="math notranslate nohighlight">\(k\)</span> coeficientes asociados con las variables exógenas o predictoras <span class="math notranslate nohighlight">\(\textbf{X}\)</span>, <span class="math notranslate nohighlight">\(\rho\)</span> es el coeficiente de la variable dependiente espacialmente rezagada, y <span class="math notranslate nohighlight">\(\lambda\)</span> es el coeficiente en una estructura autorregresiva espacial para el error.
-\textcolor{red}{En cuanto a los términos} <span class="math notranslate nohighlight">\(\mu\)</span> y <span class="math notranslate nohighlight">\(\epsilon\)</span>, \textcolor{red}{estos} denotan los términos de error espacial y local del modelo. Notablemente, <span class="math notranslate nohighlight">\(\mu\)</span> sigue un proceso autorregresivo espacial de primer orden, y <span class="math notranslate nohighlight">\(\epsilon\)</span> es un vector <span class="math notranslate nohighlight">\(N\times1\)</span> que almacena un término de error distribuido independiente e idénticamente con media cero y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.
+En cuanto a los términos <span class="math notranslate nohighlight">\(\mu\)</span> y <span class="math notranslate nohighlight">\(\epsilon\)</span>, estos denotan los términos de error espacial y local del modelo. Notablemente, <span class="math notranslate nohighlight">\(\mu\)</span> sigue un proceso autorregresivo espacial de primer orden, y <span class="math notranslate nohighlight">\(\epsilon\)</span> es un vector <span class="math notranslate nohighlight">\(N\times1\)</span> que almacena un término de error distribuido independiente e idénticamente con media cero y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.
 La variable <span class="math notranslate nohighlight">\(W_y\)</span> denota los efectos de interacción endógena entre las variables dependientes, <span class="math notranslate nohighlight">\(WX_y\)</span> los efectos de interacción exógena entre las variables explicativas, y <span class="math notranslate nohighlight">\(W_u\)</span> los efectos de interacción entre los términos residuales de las diferentes observaciones.</p>
 <p>El modelo Autorregresivo Simultáneo tiene diferentes especificaciones (Elhorst, 2013): el más común es el modelo espacialmente rezagado (SAR), donde <span class="math notranslate nohighlight">\(\lambda=0\)</span>, que solo conserva la variable dependiente espacialmente rezagada, <span class="math notranslate nohighlight">\(\rho \textbf{W}y\)</span>.
 Para <span class="math notranslate nohighlight">\(\rho=0\)</span>, el modelo de error espacial (SEM) retiene los términos de error <span class="math notranslate nohighlight">\(\lambda \textbf{W} \mu\)</span>, mientras que el modelo rezagado de X espacial (SLX) incluye los rezagos espaciales de los predictores, <span class="math notranslate nohighlight">\(\textbf{W} \textbf{X} y\)</span>.
@@ -1293,6 +1294,9 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </div>
 </div>
+</section>
+<section id="modelos-sar-en-r">
+<h3>Modelos SAR en R<a class="headerlink" href="#modelos-sar-en-r" title="Permalink to this heading">#</a></h3>
 <p>Para trabajar en R modelos espaciales con matrices SAR se deben utilizar las siguientes librerías</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w"> </span><span class="c1">#simple features for spatial data</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">spdep</span><span class="p">)</span>
@@ -1409,6 +1413,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras">Efectos de autocorrelación exógena entre las variables predictoras</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-con-el-error-espacial">Efectos de autocorrelación endógena con el error espacial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-entre-la-variable-dependiente">Efectos de autocorrelación endógena entre la variable dependiente</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-sar-en-r">Modelos SAR en R</a></li>
 </ul>
 </li>
 </ul>
