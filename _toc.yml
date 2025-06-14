@@ -1,9 +1,25 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: 00_Ambiente
+- file: 01_DatosEspaciales
+- file: 02_Mapping
+- file: 03_PointPattern
+- file: 04_GLMPhyton
+- file: 06_Coropleta
+- file: 07_MatrizCorrelacion
+- file: 08_ClusterEspacial
+- file: 09_SpatialRegression
+- file: 10_SAR
+- file: 11_CAR
+- file: 12_Jerarquicos
+- file: 13_MGWR
+- file: 14_Kriging
+- file: 15_GP
+- file: 16_GP
+- file: 17_LGCP
+- file: 18_DB
+- file: 100_references
+
