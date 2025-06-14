@@ -1,0 +1,1266 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modelo GLM de Poisson no-homogéneo &#8212; Análisis Geoespacial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '17_LGCP';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bases de datos geoespaciales" href="18_DB.html" />
+    <link rel="prev" title="Procesos Gaussianos con R" href="16_GP.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelo GLM de Poisson no-homogéneo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_DB.html">Bases de datos geoespaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial/issues/new?title=Issue%20on%20page%20%2F17_LGCP.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/17_LGCP.Rmd" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.Rmd</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelo GLM de Poisson no-homogéneo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2">Ejemplo 2</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://www.paulamoraga.com/book-spatial/point-process-modeling.html">Spatial Statistics for Data Science: Theory and Practice with R</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelo-glm-de-poisson-no-homogeneo">
+<h1>Modelo GLM de Poisson no-homogéneo<a class="headerlink" href="#modelo-glm-de-poisson-no-homogeneo" title="Permalink to this heading">#</a></h1>
+<p>Los modelos GLM de Poisson no-homogeneo, también llamados Log-Gaussianos Cox (LGCPs), se refieren a que la intensidad <span class="math notranslate nohighlight">\(\lambda(s)\)</span> varía en el espacio.
+Un LGCP es un proceso de Poisson con una intensidad variable. Dada un area <span class="math notranslate nohighlight">\(A\)</span>, la probabilidad de observar un
+cierto número de puntos en dicha área sigue una distribución de Poisson con intensidad (valor esperado):</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_A=\int{\lambda(s)ds}
+\]</div>
+<p>La parte gaussiana de LGCP viene de la modelación <span class="math notranslate nohighlight">\(log(\lambda(s))\)</span> como un Gaussiano latente (condicionado a un conjunto de parámetros),
+en un marco típico de GLM or GAM.</p>
+<p>El proceso de Cox log-Gaussiano (LGCP) es un modelo probabilístico de patrones de puntos que se observan típicamente en el espacio o el tiempo.
+Tiene dos componentes principales. Primero, un campo de <em>intensidad</em> subyacente <span class="math notranslate nohighlight">\(\lambda(s)\)</span> de valores reales positivos se modela sobre todo el
+dominio <span class="math notranslate nohighlight">\(X\)</span> utilizando un proceso Gaussiano transformado exponencialmente, lo que obliga a que <span class="math notranslate nohighlight">\(\lambda\)</span> sea positivo. Luego, este campo de intensidad
+se utiliza para parametrizar un proceso de puntos de Poisson, que representa un mecanismo estocástico para colocar puntos en el espacio.
+Algunos fenómenos que pueden representarse con este modelo incluyen la incidencia de casos de cáncer en un condado o las ubicaciones espaciotemporales
+de eventos delictivos en una ciudad. Tanto las dimensiones espaciales como temporales se pueden manejar de manera equivalente dentro de este marco,
+aunque este tutorial solo aborda datos en dos dimensiones espaciales.</p>
+<p>En términos más formales, si tenemos un espacio <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(A\subseteq X\)</span>, la distribución sobre el número de puntos <span class="math notranslate nohighlight">\(Y_A\)</span> que ocurren dentro del
+subconjunto <span class="math notranslate nohighlight">\(A\)</span> se define como:</p>
+<div class="math notranslate nohighlight">
+\[Y_A \sim Poisson\left(\int_A \lambda(s) ds\right)\]</div>
+<p>y el campo de intensidad se define como</p>
+<div class="math notranslate nohighlight">
+\[\log \lambda(s) \sim GP(\mu(s), K(s,s'))\]</div>
+<p>donde <span class="math notranslate nohighlight">\(GP(\mu(s), K(s,s'))\)</span> denota un proceso Gaussiano con función de media <span class="math notranslate nohighlight">\(\mu(s)\)</span> y núcleo de covarianza <span class="math notranslate nohighlight">\(K(s,s')\)</span> para una ubicación <span class="math notranslate nohighlight">\(s \in X\)</span>.</p>
+<p>Un LGCP es un proceso estocástico que tambien puede expresarce de la forma:</p>
+<p><span class="math notranslate nohighlight">\(\lambda_s = e^{Z(s)}\)</span>,</p>
+<p>donde Z = {Z(s) : s ∈ R²} es un proceso Gaussiano. Entonces, condicionado a <span class="math notranslate nohighlight">\(\lambda(s)\)</span>, el proceso de puntos es un proceso de Poisson no-homogéneo
+con intensidad <span class="math notranslate nohighlight">\(\lambda(s)\)</span>. Esto implica que el número de eventos en cualquier región A se distribuye según una Poisson con media <span class="math notranslate nohighlight">\(\int_A \lambda(s)\)</span>
+ds, y las ubicaciones de los eventos son una muestra aleatoria independiente de la distribución en A con una densidad de probabilidad proporcional
+a <span class="math notranslate nohighlight">\(\lambda(s)\)</span>. Un modelo LGCP también puede incluir variables explicativas espaciales, proporcionando un enfoque flexible para describir y
+predecir una amplia gama de fenómenos espaciales.</p>
+<section id="ejemplo-1">
+<h2>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Permalink to this heading">#</a></h2>
+<p>En este notebook, asumimos que hemos observado un patrón espacial de puntos de ubicaciones de eventos {x_i : i = 1, …, n} que ha sido generado como una realización de un LGCP, y mostramos cómo ajustar un modelo LGCP a los datos utilizando los enfoques INLA y SPDE. El Capítulo 15 introdujo el enfoque SPDE y describió su implementación en el contexto de la geoestadística basada en modelos utilizando un ejemplo de predicción de contaminación del aire. Aquí, describimos cómo usar SPDE para ajustar un modelo LGCP a un patrón de puntos de especies de plantas para estimar la intensidad del proceso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="s2">&quot;spocc&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rnaturalearth</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;spocc&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;library&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">devtools</span><span class="p">::</span><span class="n">install_github</span><span class="p">(</span><span class="s2">&quot;cran/rgeos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, estimamos la intensidad de las especies de plantas de Solanum en Bolivia desde enero de 2015 hasta diciembre de 2022, obtenidas de
+la base de datos Global Biodiversity Information Facility (GBIF) con el paquete <code class="docutils literal notranslate"><span class="pre">spocc</span></code>. Recuperamos los datos utilizando la función <code class="docutils literal notranslate"><span class="pre">occ()</span></code>,
+especificando el nombre científico de la especie de planta, la fuente de datos, las fechas y el código del país. También especificamos
+<code class="docutils literal notranslate"><span class="pre">has_coords</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> para devolver solo las ocurrencias que tienen coordenadas, y <code class="docutils literal notranslate"><span class="pre">limit</span> <span class="pre">=</span> <span class="pre">1000</span></code> para establecer el límite en el número de registros.
+Aquí, mostramos cómo formular y ajustar un modelo LGCP para las especies de plantas de Solanum en Bolivia utilizando un campo aleatorio Gaussiano
+continuo con INLA y SPDE. El modelo nos permite estimar la intensidad del proceso que genera las ubicaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">occ</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;solanum&quot;</span><span class="p">,</span> <span class="kn">from</span> <span class="o">=</span> <span class="s2">&quot;gbif&quot;</span><span class="p">,</span>
+          <span class="n">date</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;2015-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2022-12-31&quot;</span><span class="p">),</span>
+          <span class="n">gbifopts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;BO&quot;</span><span class="p">),</span>
+          <span class="n">has_coords</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">occ2df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizamos la función <code class="docutils literal notranslate"><span class="pre">st_as_sf()</span></code> para crear un objeto <code class="docutils literal notranslate"><span class="pre">sf</span></code> llamado <code class="docutils literal notranslate"><span class="pre">d</span></code> que contiene las nrow(d) = 263 ubicaciones recuperadas. Establecemos el
+sistema de referencia de coordenadas (CRS) al código EPSG 4326 ya que las coordenadas de las ubicaciones están dadas por valores de longitud y
+latitud.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">&lt;-</span> <span class="n">st_as_sf</span><span class="p">(</span><span class="n">d</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">))</span>
+<span class="n">st_crs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s2">&quot;EPSG:4326&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para trabajar con kilómetros en lugar de grados, proyectamos los datos a UTM 19S correspondiente al código EPSG 5356 con kilómetros como unidades.
+Para hacerlo, obtenemos <code class="docutils literal notranslate"><span class="pre">st_crs(&quot;EPSG:5356&quot;)$proj4string</span></code> y cambiamos <code class="docutils literal notranslate"><span class="pre">+units=m</span></code> por <code class="docutils literal notranslate"><span class="pre">+units=km</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>st_crs(&quot;EPSG:5356&quot;)$proj4string
+projUTM &lt;- &quot;+proj=utm +zone=19 +south +ellps=GRS80
++towgs84=0,0,0,0,0,0,0 +units=km +no_defs&quot;
+d &lt;- st_transform(d, crs = projUTM)
+</pre></div>
+</div>
+</div>
+</div>
+<p>También obtenemos el mapa de Bolivia con el paquete <code class="docutils literal notranslate"><span class="pre">rnaturalearth</span></code> y lo proyectamos a UTM 19S con kilómetros como unidades.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span> <span class="o">&lt;-</span> <span class="n">ne_countries</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;countries&quot;</span><span class="p">,</span> <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;Bolivia&quot;</span><span class="p">,</span>
+                    <span class="n">scale</span> <span class="o">=</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="n">returnclass</span> <span class="o">=</span> <span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="nb">map</span> <span class="o">&lt;-</span> <span class="n">st_transform</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">coord_sf</span><span class="p">(</span><span class="n">datum</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente, creamos un data frame llamado <code class="docutils literal notranslate"><span class="pre">coo</span></code> con las ubicaciones de los eventos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coo</span> <span class="o">&lt;-</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, construimos una matriz con las ubicaciones <code class="docutils literal notranslate"><span class="pre">coop</span></code> donde queremos predecir la intensidad del proceso puntual. Para hacerlo, primero creamos un
+raster que cubra el mapa utilizando la función <code class="docutils literal notranslate"><span class="pre">rast()</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">terra</span></code>. Luego, recuperamos las coordenadas de las celdas con la función
+<code class="docutils literal notranslate"><span class="pre">xyFromCell()</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">terra</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raster grid covering map</span>
+<span class="n">grid</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="p">::</span><span class="n">rast</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># coordinates of all cells</span>
+<span class="n">xy</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="p">::</span><span class="n">xyFromCell</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">ncell</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creamos un objeto <code class="docutils literal notranslate"><span class="pre">sf</span></code> llamado <code class="docutils literal notranslate"><span class="pre">dp</span></code> con las ubicaciones de predicción utilizando <code class="docutils literal notranslate"><span class="pre">st_as_sf()</span></code>, y usamos <code class="docutils literal notranslate"><span class="pre">st_filter()</span></code> para conservar las
+ubicaciones de predicción que se encuentran dentro del mapa. También recuperamos los índices de los puntos dentro del mapa utilizando
+<code class="docutils literal notranslate"><span class="pre">st_intersects()</span></code>, configurando <code class="docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transform points to a sf object</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_as_sf</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">),</span>
+               <span class="n">crs</span> <span class="o">=</span> <span class="n">st_crs</span><span class="p">(</span><span class="nb">map</span><span class="p">))</span>
+
+<span class="c1"># indices points within the map</span>
+<span class="n">indicespointswithin</span> <span class="o">&lt;-</span> <span class="n">which</span><span class="p">(</span><span class="n">st_intersects</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span>
+                                           <span class="n">sparse</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">))</span>
+
+<span class="c1"># points within the map</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_filter</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="nb">map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">dp</span><span class="p">)</span> <span class="o">+</span> <span class="n">coord_sf</span><span class="p">(</span><span class="n">datum</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coop</span> <span class="o">&lt;-</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizamos un LGCP para modelar el patrón de puntos de las especies de plantas. Así, asumimos que el proceso que origina las ubicaciones de las
+especies de plantas es un proceso de Poisson con una intensidad variable expresada como:</p>
+<p><span class="math notranslate nohighlight">\(log(Λ(s)) = β₀ + Z(s),\)</span></p>
+<p>donde β₀ es el intercepto y Z(⋅) es un proceso espacial gaussiano de media cero con función de covarianza Matérn.</p>
+<p>Para ajustar el modelo utilizando INLA y SPDE, primero construimos una malla. En el análisis de patrones de puntos, generalmente no empleamos
+las ubicaciones como vértices de la malla. Construimos una malla que cubre la región de estudio utilizando la función <code class="docutils literal notranslate"><span class="pre">inla.mesh.2d()</span></code>,
+estableciendo <code class="docutils literal notranslate"><span class="pre">loc.domain</span></code> igual a una matriz con las ubicaciones de los puntos en el límite de la región. Los otros argumentos son los
+siguientes: <code class="docutils literal notranslate"><span class="pre">max.edge</span></code> denota las longitudes máximas permitidas de los bordes de los triángulos en la región interior y la extensión. <code class="docutils literal notranslate"><span class="pre">offset</span></code>
+especifica el tamaño de las extensiones interior y exterior alrededor de las ubicaciones de los datos. <code class="docutils literal notranslate"><span class="pre">cutoff</span></code> es la distancia mínima permitida
+entre puntos que utilizamos para evitar construir muchos triángulos pequeños alrededor de ubicaciones agrupadas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">coo</span><span class="p">))</span> <span class="c1"># summary of distances between event locations</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loc</span><span class="o">.</span><span class="n">d</span> <span class="o">&lt;-</span> <span class="n">cbind</span><span class="p">(</span><span class="n">st_coordinates</span><span class="p">(</span><span class="nb">map</span><span class="p">)[,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="nb">map</span><span class="p">)[,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">mesh</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">mesh</span><span class="mf">.2</span><span class="n">d</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">domain</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="nb">max</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">points</span><span class="p">(</span><span class="n">coo</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>También creamos las variables <code class="docutils literal notranslate"><span class="pre">nv</span></code> con el número de vértices de la malla y la variable <code class="docutils literal notranslate"><span class="pre">n</span></code> con el número de eventos del patrón de puntos.
+Más adelante, utilizaremos estas variables para construir las pilas de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(nv &lt;- mesh$n)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;-</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coo</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spde</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde2</span><span class="o">.</span><span class="n">matern</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constr</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizamos la función <code class="docutils literal notranslate"><span class="pre">inla.spde2.matern()</span></code> para construir el modelo SPDE en la malla.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>book.mesh.dual &lt;- function(mesh) {
+    if (mesh$manifold==&#39;R2&#39;) {
+        ce &lt;- t(sapply(1:nrow(mesh$graph$tv), function(i)
+            colMeans(mesh$loc[mesh$graph$tv[i, ], 1:2])))
+        library(parallel)
+        pls &lt;- mclapply(1:mesh$n, function(i) {
+            p &lt;- unique(Reduce(&#39;rbind&#39;, lapply(1:3, function(k) {
+            j &lt;- which(mesh$graph$tv[,k]==i)
+            if (length(j)&gt;0) 
+            return(rbind(ce[j, , drop=FALSE],
+            cbind(mesh$loc[mesh$graph$tv[j, k], 1] +
+            mesh$loc[mesh$graph$tv[j, c(2:3,1)[k]], 1], 
+            mesh$loc[mesh$graph$tv[j, k], 2] +
+            mesh$loc[mesh$graph$tv[j, c(2:3,1)[k]], 2])/2))
+            else return(ce[j, , drop=FALSE])
+            })))
+            j1 &lt;- which(mesh$segm$bnd$idx[,1]==i)
+            j2 &lt;- which(mesh$segm$bnd$idx[,2]==i)
+            if ((length(j1)&gt;0) | (length(j2)&gt;0)) {
+            p &lt;- unique(rbind(mesh$loc[i, 1:2], p,
+            mesh$loc[mesh$segm$bnd$idx[j1, 1], 1:2]/2 +
+            mesh$loc[mesh$segm$bnd$idx[j1, 2], 1:2]/2, 
+            mesh$loc[mesh$segm$bnd$idx[j2, 1], 1:2]/2 +
+            mesh$loc[mesh$segm$bnd$idx[j2, 2], 1:2]/2))
+            yy &lt;- p[,2]-mean(p[,2])/2-mesh$loc[i, 2]/2
+            xx &lt;- p[,1]-mean(p[,1])/2-mesh$loc[i, 1]/2
+            }
+            else {
+            yy &lt;- p[,2]-mesh$loc[i, 2]
+            xx &lt;- p[,1]-mesh$loc[i, 1]
+            }
+            Polygon(p[order(atan2(yy,xx)), ])
+        })
+        return(SpatialPolygons(lapply(1:mesh$n, function(i)
+            Polygons(list(pls[[i]]), i))))
+    }
+    else stop(&quot;It only works for R2!&quot;)
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí, creamos los vectores con el número observado y esperado de eventos. Primero, creamos la malla dual que consiste en un conjunto de polígonos
+alrededor de cada vértice de la malla original. Podemos crear la malla dual utilizando la función <code class="docutils literal notranslate"><span class="pre">book.mesh.dual()</span></code> que se proporciona en
+Krainski et al. (2019).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmesh</span> <span class="o">&lt;-</span> <span class="n">book</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dual</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">dmesh</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para ajustar el LGCP, los vértices de la malla se consideran como puntos de integración. Los valores esperados correspondientes a los vértices de
+la malla son proporcionales a las áreas alrededor de los vértices de la malla, es decir, las áreas de los polígonos de la malla dual. Calculamos
+un vector de pesos llamado <code class="docutils literal notranslate"><span class="pre">w</span></code> con las áreas de la intersección entre cada polígono de la malla dual y la región de estudio utilizando el siguiente
+código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Domain polygon is converted into a SpatialPolygons</span>
+<span class="n">domain</span><span class="o">.</span><span class="n">polys</span> <span class="o">&lt;-</span> <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">)),</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">domainSP</span> <span class="o">&lt;-</span> <span class="n">SpatialPolygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">polys</span><span class="p">))</span>
+
+<span class="c1"># Because the mesh is larger than the study area, we need to</span>
+<span class="c1"># compute the intersection between each polygon</span>
+<span class="c1"># in the dual mesh and the study area</span>
+
+<span class="n">w</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">dmesh</span><span class="p">),</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gIntersects</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">gArea</span><span class="p">(</span><span class="n">gIntersection</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">)))</span>
+  <span class="k">else</span> <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="c1"># sum weights</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st_area</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span> <span class="c1"># area of the study region</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot(mesh)
+points(mesh$loc[which(w &gt; 0), 1:2], col = &quot;black&quot;, pch = 20)
+points(mesh$loc[which(w == 0), 1:2], col = &quot;red&quot;, pch = 20)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego, creamos vectores de los conjuntos de datos aumentados con los valores observados y esperados. Los valores observados se especificarán en la
+fórmula del modelo como respuesta. Los valores esperados se especificarán en la fórmula del modelo como el componente <code class="docutils literal notranslate"><span class="pre">E</span></code> de la media para la
+verosimilitud de Poisson definida como</p>
+<p><span class="math notranslate nohighlight">\(E_i = \exp(\eta_i)\)</span></p>
+<p>donde <span class="math notranslate nohighlight">\(\eta_i\)</span> es el predictor lineal.</p>
+<p>El vector <code class="docutils literal notranslate"><span class="pre">y.pp</span></code> contiene la variable de respuesta. Los primeros <code class="docutils literal notranslate"><span class="pre">nv</span></code> elementos son ceros correspondientes a los vértices de la malla. Los últimos <code class="docutils literal notranslate"><span class="pre">n</span></code>
+elementos son unos correspondientes a los eventos observados.</p>
+<p>El vector <code class="docutils literal notranslate"><span class="pre">e.pp</span></code> contiene los valores esperados. Los primeros <code class="docutils literal notranslate"><span class="pre">nv</span></code> elementos son los pesos <code class="docutils literal notranslate"><span class="pre">w</span></code> que representan la intersección entre las áreas
+alrededor de cada uno de los vértices de la malla y la región de estudio. Los siguientes <code class="docutils literal notranslate"><span class="pre">n</span></code> elementos son ceros correspondientes a los eventos
+puntuales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">e</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Construimos la matriz de proyección <code class="docutils literal notranslate"><span class="pre">A.pp</span></code> para proyectar el campo aleatorio Gaussiano desde las observaciones a los vértices de la triangulación.
+Esta matriz se construye utilizando la matriz de proyección para los vértices de la malla, que es una matriz diagonal (<code class="docutils literal notranslate"><span class="pre">A.int</span></code>), y la matriz de
+proyección para las ubicaciones de eventos (<code class="docutils literal notranslate"><span class="pre">A.y</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Projection matrix for the integration points (mesh vertices)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">int</span> <span class="o">&lt;-</span> <span class="n">Diagonal</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span><span class="p">))</span>
+<span class="c1"># Projection matrix for observed points (event locations)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">coo</span><span class="p">)</span>
+<span class="c1"># Projection matrix for mesh vertices and event locations</span>
+<span class="n">A</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rbind</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>También creamos la matriz de proyección <code class="docutils literal notranslate"><span class="pre">Ap.pp</span></code> para las ubicaciones de predicción.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ap</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">coop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora usamos la función <code class="docutils literal notranslate"><span class="pre">inla.stack()</span></code> para construir pilas para estimación y predicción que organizan los datos, efectos y matrices de proyección.
+En los argumentos de <code class="docutils literal notranslate"><span class="pre">inla.stack()</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code> es una lista con los valores observados (<code class="docutils literal notranslate"><span class="pre">y</span></code>) y esperados (<code class="docutils literal notranslate"><span class="pre">e</span></code>). El argumento <code class="docutils literal notranslate"><span class="pre">A</span></code> contiene las matrices
+de proyección, y el argumento <code class="docutils literal notranslate"><span class="pre">effects</span></code> es una lista con los efectos fijos y aleatorios. Luego, las pilas de estimación y predicción se combinan en
+una pila completa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># stack for estimation</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;est.pp&quot;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span> 
+<span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+<span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span> <span class="o">+</span> <span class="n">n</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nv</span><span class="p">)))</span>
+
+<span class="c1"># stack for prediction stk.p</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;pred.pp&quot;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">NA</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coop</span><span class="p">)),</span> <span class="n">e</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coop</span><span class="p">))),</span>
+<span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ap</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+<span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coop</span><span class="p">))),</span>
+               <span class="nb">list</span><span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nv</span><span class="p">)))</span>
+
+<span class="c1"># stk.full has stk.e and stk.p</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">stk</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La fórmula se especifica incluyendo la variable de respuesta en el lado izquierdo y los efectos aleatorios en el lado derecho.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">~</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">spde</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ajustamos el modelo llamando a <code class="docutils literal notranslate"><span class="pre">inla()</span></code>. En la función, especificamos <code class="docutils literal notranslate"><span class="pre">link</span> <span class="pre">=</span> <span class="pre">1</span></code> para calcular los valores ajustados que se encuentran en
+<code class="docutils literal notranslate"><span class="pre">res$summary.fitted.values</span></code> y <code class="docutils literal notranslate"><span class="pre">res$marginals.fitted.values</span></code> con la misma función de enlace que la familia especificada en el modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>res &lt;- inla(formula,  family = &#39;poisson&#39;,
+data = inla.stack.data(stk.full.pp),
+control.predictor = list(compute = TRUE, link = 1,
+                         A = inla.stack.A(stk.full.pp)),
+E = inla.stack.data(stk.full.pp)$e)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un resumen de los resultados se puede inspeccionar escribiendo <code class="docutils literal notranslate"><span class="pre">summary(res)</span></code>. El marco de datos <code class="docutils literal notranslate"><span class="pre">res$summary.fitted.values</span></code> contiene los valores
+ajustados. Los índices de las filas correspondientes a las predicciones se pueden obtener con <code class="docutils literal notranslate"><span class="pre">inla.stack.index()</span></code> especificando la etiqueta “pred.pp”
+del stack de predicción.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>index &lt;- inla.stack.index(stk.full.pp, tag = &quot;pred.pp&quot;)$data
+pred_mean &lt;- res$summary.fitted.values[index, &quot;mean&quot;]
+pred_ll &lt;- res$summary.fitted.values[index, &quot;0.025quant&quot;]
+pred_ul &lt;- res$summary.fitted.values[index, &quot;0.975quant&quot;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego, añadimos capas a la cuadrícula raster con la media posterior y los percentiles 2.5 y 97.5 en las celdas que están dentro del mapa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>grid$mean &lt;- NA
+grid$ll &lt;- NA
+grid$ul &lt;- NA
+
+grid$mean[indicespointswithin] &lt;- pred_mean
+grid$ll[indicespointswithin] &lt;- pred_ll
+grid$ul[indicespointswithin] &lt;- pred_ul
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente, creamos mapas de la media posterior y los límites inferior y superior de los intervalos creíbles del 95% de la intensidad del proceso
+puntual de especies en Bolivia (Figura 23.4). Para ello, utilizamos la función <code class="docutils literal notranslate"><span class="pre">levelplot()</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">rasterVis</span></code>, especificando <code class="docutils literal notranslate"><span class="pre">names.attr</span></code>
+con el nombre de cada panel y <code class="docutils literal notranslate"><span class="pre">layout</span></code> con el número de columnas y filas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">rasterVis</span><span class="p">)</span>
+<span class="n">levelplot</span><span class="p">(</span><span class="n">raster</span><span class="p">::</span><span class="n">brick</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="n">names</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;2.5 percentile&quot;</span><span class="p">,</span> <span class="s2">&quot;97.5 percentile&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En general, observamos una baja intensidad de especies, con mayor intensidad en la parte centro-occidental de Bolivia. Cabe destacar que hemos
+modelado los datos de ocurrencia de especies recuperados de GBIF asumiendo que el patrón puntual espacial observado es una realización del proceso
+subyacente que genera las ubicaciones de las especies. En aplicaciones reales, es importante entender cómo se recolectaron los datos y evaluar
+posibles sesgos en los datos, como la sobrerepresentación de ciertas áreas, que pueden invalidar los resultados. Además, es importante incorporar
+el conocimiento de expertos para crear modelos que incluyan covariables relevantes y efectos aleatorios para tener en cuenta diversos tipos de
+variabilidad, lo que permite una comprensión más completa de la variable en investigación.</p>
+</section>
+<section id="ejemplo-2">
+<h2>Ejemplo 2<a class="headerlink" href="#ejemplo-2" title="Permalink to this heading">#</a></h2>
+<p>Un patrón de puntos registra la ocurrencia de eventos en una región de estudio. Ejemplos típicos incluyen la ubicación de árboles en un bosque o
+las coordenadas GPS de casos de enfermedades en una región. Las ubicaciones de los eventos observados dependen de un proceso espacial subyacente,
+que a menudo se modela utilizando una función de intensidad <span class="math notranslate nohighlight">\(\lambda(s)\)</span>. La función de intensidad mide el número promedio de eventos por unidad de
+espacio, y puede ser modelada para depender de covariables y otros efectos.</p>
+<p>Bajo el supuesto del modelo de proceso de puntos log-Cox, modelamos la log-intensidad del proceso de Cox con un predictor lineal Gaussiano. En este
+caso, el proceso log-Cox se conoce como un proceso Cox log-Gaussiano (LGCP, Møller, Syversveen y Waagepetersen 1998), y la inferencia se puede
+realizar utilizando INLA. Un proceso de Cox es simplemente un nombre para un proceso de Poisson con intensidad variable; por lo tanto, utilizamos
+la verosimilitud de Poisson. El enfoque original utilizado para ajustar estos modelos en INLA (y en otro software) divide la región de estudio en
+celdas, que forman una cuadrícula, y cuenta el número de puntos en cada una (Møller y Waagepetersen 2003). Estos conteos pueden modelarse utilizando
+una verosimilitud de Poisson condicionada a un predictor lineal Gaussiano, y se puede usar INLA para ajustar el modelo (Illian, Sørbye y Rue 2012).</p>
+<p>En este capítulo nos enfocamos en un nuevo enfoque que considera modelos Stochastic Partial Differential Equation (SPDE) directamente, desarrollado
+en Simpson et al. (2016). Este enfoque tiene una buena justificación teórica y considera una aproximación directa de la verosimilitud del modelo de
+proceso de puntos log-Cox. Las observaciones se modelan considerando su ubicación exacta en lugar de agruparlas en celdas. Junto con la flexibilidad
+para definir una malla, este enfoque puede manejar áreas no rectangulares sin desperdiciar esfuerzo computacional en un área rectangular grande.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">spatstat</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">RandomFields</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La función <code class="docutils literal notranslate"><span class="pre">rLGCP</span></code> utiliza la función <code class="docutils literal notranslate"><span class="pre">GaussRF()</span></code> del paquete <strong>RandomFields</strong> (Schlather et al. 2015) para simular desde el campo espacial sobre una cuadrícula. Hay un parámetro interno para controlar la resolución de la cuadrícula, que especificamos para dar 300 píxeles en cada dirección:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">win</span> <span class="o">&lt;-</span> <span class="n">owin</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Modelamos la intensidad como</p>
+<div class="math notranslate nohighlight">
+\[
+\log(\lambda(s)) = \beta_0 + S(s),
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\beta_0\)</span> es un valor fijo y <span class="math notranslate nohighlight">\(S(s)\)</span> es un proceso espacial Gaussiano con covarianza de Matérn y media cero. El parámetro <span class="math notranslate nohighlight">\(\beta_0\)</span> puede
+considerarse como un nivel medio global para la log-intensidad; es decir, la log-intensidad fluctúa alrededor de este valor según el proceso
+espacial <span class="math notranslate nohighlight">\(S(s)\)</span>.</p>
+<p>Si no hay campo espacial, el número esperado de puntos es <span class="math notranslate nohighlight">\(e^{\beta_0}\)</span> multiplicado por el área de la ventana. Esto significa que el número
+esperado de puntos es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>beta0 &lt;- 3
+exp(beta0) * diff(range(win$x)) * diff(range(win$y))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por lo tanto, este valor de <span class="math notranslate nohighlight">\(\beta_0\)</span> producirá un número razonable de puntos en las siguientes simulaciones. Si establecemos <span class="math notranslate nohighlight">\(\beta_0\)</span> demasiado bajo,
+obtendremos casi ningún punto, y no seremos capaces de producir resultados razonables. También es posible utilizar una función en varias covariables,
+por ejemplo, un GLM.</p>
+<p>En este taller, utilizamos una función de covarianza de Matérn con <span class="math notranslate nohighlight">\(\nu = 1\)</span>. Los otros parámetros son la varianza y la escala. Los siguientes valores
+para estos parámetros producirán una intensidad suave del proceso puntual:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma2x</span> <span class="o">&lt;-</span> <span class="mf">0.2</span>
+<span class="nb">range</span> <span class="o">&lt;-</span> <span class="mf">1.2</span>
+<span class="n">nu</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El valor de <span class="math notranslate nohighlight">\(\sigma^2_x\)</span> se establece para hacer que la log-intensidad varíe un poco alrededor de la media, pero siempre dentro de un rango razonable
+de valores. Además, con estos parámetros <span class="math notranslate nohighlight">\(\nu = 1\)</span> y el rango del proceso espacial <span class="math notranslate nohighlight">\(S(s)\)</span> es (aproximadamente) 2, lo que produce cambios suaves en la
+ventana de estudio actual. Valores más pequeños del rango práctico producirán un proceso espacial <span class="math notranslate nohighlight">\(S(s)\)</span> (y, a su vez, la intensidad del proceso
+espacial) que cambia rápidamente en la ventana de estudio. De manera similar, valores muy grandes del rango práctico producirán un proceso espacial
+casi constante <span class="math notranslate nohighlight">\(S(s)\)</span>, de modo que la log-intensidad estará muy cerca de <span class="math notranslate nohighlight">\(\beta_0\)</span> en todos los puntos de la ventana de estudio.</p>
+<p>Los puntos del proceso puntual se simulan de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">lg</span><span class="o">.</span><span class="n">s</span> <span class="o">&lt;-</span> <span class="n">rLGCP</span><span class="p">(</span><span class="s1">&#39;matern&#39;</span><span class="p">,</span> <span class="n">beta0</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">sigma2x</span><span class="p">,</span><span class="n">scale</span> <span class="o">=</span> <span class="nb">range</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">nu</span> <span class="o">=</span> <span class="n">nu</span><span class="p">,</span> <span class="n">win</span> <span class="o">=</span> <span class="n">win</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tanto el campo espacial como el patrón de puntos son devueltos. Las coordenadas de los eventos observados del patrón de puntos se pueden obtener
+de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xy &lt;- cbind(lg.s$x, lg.s$y)[, 2:1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>El numero de puntos simulados es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;-</span> <span class="n">nrow</span><span class="p">(</span><span class="n">xy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La exponencial de los valores simulados del campo espacial se devuelve como el atributo Lambda del objeto. A continuación, extraemos los valores
+de λ(s) y resumimos el log(λ(s)).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Lam &lt;- attr(lg.s, &#39;Lambda&#39;)
+rf.s &lt;- log(Lam$v)
+summary(as.vector(rf.s))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Siguiendo a Simpson et al. (2016), los parámetros del modelo de proceso puntual de Cox log-Gaussiano pueden estimarse con INLA.</p>
+<p>INLA es un paquete que permite ajustar una amplia gama de modelos. Utiliza la aproximación de Laplace para ajustar modelos bayesianos de manera mucho
+más rápida que algoritmos como MCMC (Cadena de Markov Monte Carlo). INLA permite ajustar modelos geoestadísticos a través de ecuaciones diferenciales parciales estocásticas (EDPE). Puedes encontrar más información sobre esto en estos dos Gitbooks:</p>
+<ul class="simple">
+<li><p>spde-gitbook [<a class="reference external" href="https://becarioprecario.bitbucket.io/spde-gitbook">https://becarioprecario.bitbucket.io/spde-gitbook</a>]</p></li>
+<li><p>inla-gitbook [<a class="reference external" href="https://becarioprecario.bitbucket.io/inla-gitbook">https://becarioprecario.bitbucket.io/inla-gitbook</a>]</p></li>
+</ul>
+<p>Ajustar un modelo espacial en INLA requiere un conjunto específico de pasos:</p>
+<ol class="arabic simple">
+<li><p><strong>Crear una malla:</strong> Se crea una malla para aproximar el efecto espacial. Esta malla discretiza el espacio de estudio en pequeñas unidades
+(píxeles o celdas) que permiten modelar la variación espacial continua.</p></li>
+<li><p><strong>Crear una matriz de proyección:</strong> Esta matriz vincula las observaciones puntuales a la malla creada. Básicamente, indica a qué celda de
+la malla pertenece cada observación.</p></li>
+<li><p><strong>Definir la ecuación diferencial parcial estocástica (EDPE):</strong> La EDPE describe la relación espacial entre las variables del modelo.
+Diferentes tipos de EDPE capturan diferentes patrones de dependencia espacial.</p></li>
+<li><p><strong>Especificar opcionalmente un conjunto de datos para predicciones:</strong> Si deseas realizar predicciones en ubicaciones no observadas, puedes
+especificar un conjunto de datos adicional que contenga las coordenadas de los puntos de predicción.</p></li>
+<li><p><strong>Apilar los objetos en un objeto stack:</strong> INLA trabaja con un objeto especial llamado “stack” que combina la información de la malla, la
+matriz de proyección, la EDPE y cualquier otro dato relevante para el modelo.</p></li>
+<li><p><strong>Ajustar el modelo:</strong> Una vez creado el objeto stack, se utiliza la función <code class="docutils literal notranslate"><span class="pre">inla()</span></code> del paquete INLA para ajustar el modelo y obtener los
+resultados de la inferencia bayesiana.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="p">::</span><span class="n">install_github</span><span class="p">(</span><span class="n">repo</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/hrue/r-inla&quot;</span><span class="p">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="s2">&quot;stable&quot;</span><span class="p">,</span> <span class="n">subdir</span> <span class="o">=</span> <span class="s2">&quot;rinla&quot;</span><span class="p">,</span> <span class="n">build</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inla</span><span class="o">.</span><span class="n">upgrade</span><span class="p">()</span> <span class="c1"># for the stable version</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En términos simplificados, construiremos un conjunto de datos ampliado y ejecutaremos una regresión de Poisson con INLA. El conjunto de datos ampliado
+se compone de una respuesta binaria, con 1 para los puntos observados y 0 para algunas observaciones ficticias. Tanto las observaciones reales como
+las ficticias tendrán valores “esperados” o pesos asociados que se incluirán en la regresión de Poisson. Esto se explicará paso a paso en las
+siguientes secciones.</p>
+<p>Para una inferencia adecuada con el LGCP, debemos tener cuidado al construir la malla. En el caso particular del análisis de patrones de puntos,
+generalmente no usamos los puntos de ubicación como nodos de la malla. Necesitamos una malla que cubra la región de estudio; para esto utilizamos
+<code class="docutils literal notranslate"><span class="pre">loc.domain</span></code> para construir la malla. Además, solo usamos una pequeña primera extensión exterior, pero no una segunda extensión exterior.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>loc.d &lt;- 3 * cbind(c(0, 1, 1, 0, 0), c(0, 0, 1, 1, 0))
+mesh &lt;- inla.mesh.2d(loc.domain = loc.d, offset = c(0.3, 1), 
+  max.edge = c(0.3, 0.7), cutoff = 0.05)
+nv &lt;- mesh$n
+</pre></div>
+</div>
+</div>
+</div>
+<p>El modelo SPDE se definirá considerando los PC-priors derivados en Fuglstad et al. (2018) para los parámetros del modelo: rango y desviación estándar
+marginal. Estos se definen de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spde</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde2</span><span class="o">.</span><span class="n">pcmatern</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span>
+  <span class="c1"># PC-prior on range: P(practic.range &lt; 0.05) = 0.01</span>
+  <span class="n">prior</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span>
+  <span class="c1"># PC-prior on sigma: P(sigma &gt; 1) = 0.01</span>
+  <span class="n">prior</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>El enfoque SPDE para el análisis de patrones puntuales define el modelo en los nodos de la malla. Para ajustar el modelo de proceso puntual de
+log-Cox, estos puntos se consideran como puntos de integración. El método en Simpson et al. (2016) define que el número esperado de eventos es
+proporcional al área alrededor del nodo (las áreas de los polígonos en la malla dual). Esto significa que en los nodos de la malla con triángulos
+más grandes, también hay valores esperados más grandes. El comando <code class="docutils literal notranslate"><span class="pre">inla.mesh.fem(mesh)$va</span></code> proporciona este valor para cada nodo de la malla.
+Estos valores para los nodos en el dominio interno se pueden usar para calcular la intersección entre los polígonos de la malla dual y el polígono
+del dominio de estudio. Para ello, utilizamos la función <code class="docutils literal notranslate"><span class="pre">book.mesh.dual()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmesh</span> <span class="o">&lt;-</span> <span class="n">book</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dual</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta función está disponible en el archivo <code class="docutils literal notranslate"><span class="pre">spde-book-functions.R</span></code> y devuelve la malla dual en un objeto de la clase <code class="docutils literal notranslate"><span class="pre">SpatialPolygons</span></code>. El polígono
+del dominio se puede convertir en una clase <code class="docutils literal notranslate"><span class="pre">SpatialPolygons</span></code> de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span><span class="o">.</span><span class="n">polys</span> <span class="o">&lt;-</span> <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">)),</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">domainSP</span> <span class="o">&lt;-</span> <span class="n">SpatialPolygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">polys</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El vector de pesos que hemos calculado es exactamente lo que necesitamos usar como exposición (E) en la verosimilitud de Poisson en INLA (con la
+pequeña modificación de que log(E) se define como cero si E=0. Aumentamos el vector de unos para las observaciones (que representan los puntos)
+con una secuencia de ceros (que representan los nodos de la malla):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">dmesh</span><span class="p">),</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gIntersects</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">gArea</span><span class="p">(</span><span class="n">gIntersection</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">)))</span>
+  <span class="k">else</span> <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El vector de exposición y la matriz de proyección se definen. Para los puntos de integración, esta es simplemente una matriz diagonal porque
+estos lugares son solo los vértices de la malla. La matriz de proyección completa es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">e</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> 
+<span class="n">imat</span> <span class="o">&lt;-</span> <span class="n">Diagonal</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span><span class="p">))</span>
+<span class="n">lmat</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rbind</span><span class="p">(</span><span class="n">imat</span><span class="p">,</span> <span class="n">lmat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Configuramos el conjunto de datos de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stk</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span> 
+  <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+  <span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span> <span class="o">+</span> <span class="n">n</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nv</span><span class="p">)),</span>
+  <span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;pp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las marginales posteriores para todos los parámetros del modelo se obtienen ajustando el modelo con INLA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pp.res &lt;- inla(y ~ 0 + b0 + f(i, model = spde), 
+  family = &#39;poisson&#39;, data = inla.stack.data(stk.pp), 
+  control.predictor = list(A = inla.stack.A(stk.pp)), 
+  E = inla.stack.data(stk.pp)$e)
+
+pp.res$summary.hyperpar
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_GP.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Procesos Gaussianos con R</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="18_DB.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bases de datos geoespaciales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2">Ejemplo 2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Edier V. Aristizábal G.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
