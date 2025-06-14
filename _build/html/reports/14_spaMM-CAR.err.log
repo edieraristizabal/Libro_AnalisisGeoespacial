@@ -1,0 +1,49 @@
+Traceback (most recent call last):
+  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# load libraries
+library(tidyverse)
+library(gridExtra)
+library(NLMR)
+library(DHARMa)
+
+# simulate a random temperature gradient
+temp <- nlm_distancegradient(ncol = 100, nrow = 100, origin = c(1,10,1,10), rescale = TRUE)
+
+# extract the temperature values at 100 random points
+dat <- data.frame(x = runif(100,0,100), y = runif(100,0,100))
+dat$temperature <- raster::extract(temp, dat)
+
+# simulate tree height
+dat$height <- 20 + 35 * dat$temperature + rnorm(100)
+
+# plot spatial pattern in tree height
+ggplot(dat, aes(x = x, y = y, size = height)) +
+  geom_point() +
+  scale_size_continuous(range = c(1,10))
+------------------
+
+
+[1;36m  Cell [1;32mIn[1], line 12[1;36m[0m
+[1;33m    dat$temperature <- raster::extract(temp, dat)[0m
+[1;37m       ^[0m
+[1;31mSyntaxError[0m[1;31m:[0m invalid syntax
+
+

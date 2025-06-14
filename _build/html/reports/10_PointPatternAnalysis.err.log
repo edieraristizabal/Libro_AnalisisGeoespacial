@@ -1,0 +1,106 @@
+Traceback (most recent call last):
+  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Generate scatter plot
+joint_axes = sbn.jointplot(x='longitude', y='latitude', data=db, s=0.5)
+# Add dark basemap
+ctx.add_basemap(joint_axes.ax_joint,crs="EPSG:4326",source=ctx.providers.Stamen.TonerLite);
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mUnidentifiedImageError[0m                    Traceback (most recent call last)
+Cell [1;32mIn[18], line 4[0m
+[0;32m      2[0m joint_axes [38;5;241m=[39m sbn[38;5;241m.[39mjointplot(x[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlongitude[39m[38;5;124m'[39m, y[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlatitude[39m[38;5;124m'[39m, data[38;5;241m=[39mdb, s[38;5;241m=[39m[38;5;241m0.5[39m)
+[0;32m      3[0m [38;5;66;03m# Add dark basemap[39;00m
+[1;32m----> 4[0m [43mctx[49m[38;5;241;43m.[39;49m[43madd_basemap[49m[43m([49m[43mjoint_axes[49m[38;5;241;43m.[39;49m[43max_joint[49m[43m,[49m[43mcrs[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mEPSG:4326[39;49m[38;5;124;43m"[39;49m[43m,[49m[43msource[49m[38;5;241;43m=[39;49m[43mctx[49m[38;5;241;43m.[39;49m[43mproviders[49m[38;5;241;43m.[39;49m[43mStamen[49m[38;5;241;43m.[39;49m[43mTonerLite[49m[43m)[49m;
+
+File [1;32m~\miniconda3\Lib\site-packages\contextily\plotting.py:129[0m, in [0;36madd_basemap[1;34m(ax, zoom, source, interpolation, attribution, attribution_size, reset_extent, crs, resampling, **extra_imshow_args)[0m
+[0;32m    125[0m     left, right, bottom, top [38;5;241m=[39m _reproj_bb(
+[0;32m    126[0m         left, right, bottom, top, crs, [38;5;124m"[39m[38;5;124mepsg:3857[39m[38;5;124m"[39m
+[0;32m    127[0m     )
+[0;32m    128[0m [38;5;66;03m# Download image[39;00m
+[1;32m--> 129[0m image, extent [38;5;241m=[39m [43mbounds2img[49m[43m([49m
+[0;32m    130[0m [43m    [49m[43mleft[49m[43m,[49m[43m [49m[43mbottom[49m[43m,[49m[43m [49m[43mright[49m[43m,[49m[43m [49m[43mtop[49m[43m,[49m[43m [49m[43mzoom[49m[38;5;241;43m=[39;49m[43mzoom[49m[43m,[49m[43m [49m[43msource[49m[38;5;241;43m=[39;49m[43msource[49m[43m,[49m[43m [49m[43mll[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m
+[0;32m    131[0m [43m[49m[43m)[49m
+[0;32m    132[0m [38;5;66;03m# Warping[39;00m
+[0;32m    133[0m [38;5;28;01mif[39;00m crs [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [1;32m~\miniconda3\Lib\site-packages\contextily\tile.py:256[0m, in [0;36mbounds2img[1;34m(w, s, e, n, zoom, source, ll, wait, max_retries, n_connections, use_cache)[0m
+[0;32m    254[0m preferred_backend [38;5;241m=[39m [38;5;124m"[39m[38;5;124mthreads[39m[38;5;124m"[39m [38;5;28;01mif[39;00m (n_connections [38;5;241m==[39m [38;5;241m1[39m [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m use_cache) [38;5;28;01melse[39;00m [38;5;124m"[39m[38;5;124mprocesses[39m[38;5;124m"[39m
+[0;32m    255[0m fetch_tile_fn [38;5;241m=[39m memory[38;5;241m.[39mcache(_fetch_tile) [38;5;28;01mif[39;00m use_cache [38;5;28;01melse[39;00m _fetch_tile
+[1;32m--> 256[0m arrays [38;5;241m=[39m [43mParallel[49m[43m([49m[43mn_jobs[49m[38;5;241;43m=[39;49m[43mn_connections[49m[43m,[49m[43m [49m[43mprefer[49m[38;5;241;43m=[39;49m[43mpreferred_backend[49m[43m)[49m[43m([49m
+[0;32m    257[0m [43m    [49m[43mdelayed[49m[43m([49m[43mfetch_tile_fn[49m[43m)[49m[43m([49m[43mtile_url[49m[43m,[49m[43m [49m[43mwait[49m[43m,[49m[43m [49m[43mmax_retries[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mtile_url[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mtile_urls[49m[43m)[49m
+[0;32m    258[0m [38;5;66;03m# merge downloaded tiles[39;00m
+[0;32m    259[0m merged, extent [38;5;241m=[39m _merge_tiles(tiles, arrays)
+
+File [1;32m~\miniconda3\Lib\site-packages\joblib\parallel.py:1863[0m, in [0;36mParallel.__call__[1;34m(self, iterable)[0m
+[0;32m   1861[0m     output [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_get_sequential_output(iterable)
+[0;32m   1862[0m     [38;5;28mnext[39m(output)
+[1;32m-> 1863[0m     [38;5;28;01mreturn[39;00m output [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mreturn_generator [38;5;28;01melse[39;00m [38;5;28;43mlist[39;49m[43m([49m[43moutput[49m[43m)[49m
+[0;32m   1865[0m [38;5;66;03m# Let's create an ID that uniquely identifies the current call. If the[39;00m
+[0;32m   1866[0m [38;5;66;03m# call is interrupted early and that the same instance is immediately[39;00m
+[0;32m   1867[0m [38;5;66;03m# re-used, this id will be used to prevent workers that were[39;00m
+[0;32m   1868[0m [38;5;66;03m# concurrently finalizing a task from the previous call to run the[39;00m
+[0;32m   1869[0m [38;5;66;03m# callback.[39;00m
+[0;32m   1870[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39m_lock:
+
+File [1;32m~\miniconda3\Lib\site-packages\joblib\parallel.py:1792[0m, in [0;36mParallel._get_sequential_output[1;34m(self, iterable)[0m
+[0;32m   1790[0m [38;5;28mself[39m[38;5;241m.[39mn_dispatched_batches [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m   1791[0m [38;5;28mself[39m[38;5;241m.[39mn_dispatched_tasks [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[1;32m-> 1792[0m res [38;5;241m=[39m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[0;32m   1793[0m [38;5;28mself[39m[38;5;241m.[39mn_completed_tasks [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m   1794[0m [38;5;28mself[39m[38;5;241m.[39mprint_progress()
+
+File [1;32m~\miniconda3\Lib\site-packages\joblib\memory.py:655[0m, in [0;36mMemorizedFunc.__call__[1;34m(self, *args, **kwargs)[0m
+[0;32m    654[0m [38;5;28;01mdef[39;00m [38;5;21m__call__[39m([38;5;28mself[39m, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[1;32m--> 655[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_cached_call[49m[43m([49m[43margs[49m[43m,[49m[43m [49m[43mkwargs[49m[43m)[49m[[38;5;241m0[39m]
+
+File [1;32m~\miniconda3\Lib\site-packages\joblib\memory.py:598[0m, in [0;36mMemorizedFunc._cached_call[1;34m(self, args, kwargs, shelving)[0m
+[0;32m    595[0m     must_call [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m    597[0m [38;5;28;01mif[39;00m must_call:
+[1;32m--> 598[0m     out, metadata [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcall[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[0;32m    599[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mmmap_mode [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    600[0m         [38;5;66;03m# Memmap the output at the first call to be consistent with[39;00m
+[0;32m    601[0m         [38;5;66;03m# later calls[39;00m
+[0;32m    602[0m         [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_verbose:
+
+File [1;32m~\miniconda3\Lib\site-packages\joblib\memory.py:856[0m, in [0;36mMemorizedFunc.call[1;34m(self, *args, **kwargs)[0m
+[0;32m    854[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_verbose [38;5;241m>[39m [38;5;241m0[39m:
+[0;32m    855[0m     [38;5;28mprint[39m(format_call([38;5;28mself[39m[38;5;241m.[39mfunc, args, kwargs))
+[1;32m--> 856[0m output [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[0;32m    857[0m [38;5;28mself[39m[38;5;241m.[39mstore_backend[38;5;241m.[39mdump_item(
+[0;32m    858[0m     [func_id, args_id], output, verbose[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39m_verbose)
+[0;32m    860[0m duration [38;5;241m=[39m time[38;5;241m.[39mtime() [38;5;241m-[39m start_time
+
+File [1;32m~\miniconda3\Lib\site-packages\contextily\tile.py:287[0m, in [0;36m_fetch_tile[1;34m(tile_url, wait, max_retries)[0m
+[0;32m    285[0m request [38;5;241m=[39m _retryer(tile_url, wait, max_retries)
+[0;32m    286[0m [38;5;28;01mwith[39;00m io[38;5;241m.[39mBytesIO(request[38;5;241m.[39mcontent) [38;5;28;01mas[39;00m image_stream:
+[1;32m--> 287[0m     image [38;5;241m=[39m [43mImage[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43mimage_stream[49m[43m)[49m[38;5;241m.[39mconvert([38;5;124m"[39m[38;5;124mRGBA[39m[38;5;124m"[39m)
+[0;32m    288[0m     array [38;5;241m=[39m np[38;5;241m.[39masarray(image)
+[0;32m    289[0m     image[38;5;241m.[39mclose()
+
+File [1;32m~\miniconda3\Lib\site-packages\PIL\Image.py:3280[0m, in [0;36mopen[1;34m(fp, mode, formats)[0m
+[0;32m   3278[0m     warnings[38;5;241m.[39mwarn(message)
+[0;32m   3279[0m msg [38;5;241m=[39m [38;5;124m"[39m[38;5;124mcannot identify image file [39m[38;5;132;01m%r[39;00m[38;5;124m"[39m [38;5;241m%[39m (filename [38;5;28;01mif[39;00m filename [38;5;28;01melse[39;00m fp)
+[1;32m-> 3280[0m [38;5;28;01mraise[39;00m UnidentifiedImageError(msg)
+
+[1;31mUnidentifiedImageError[0m: cannot identify image file <_io.BytesIO object at 0x0000018E8D20D350>
+

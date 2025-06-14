@@ -1,0 +1,1153 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modelos de regresión para dependencia espacial tipo CAR &#8212; Análisis Geoespacial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '11_CAR';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modelos de Regresión para Heterogeneidad Espacial" href="12_Jerarquicos.html" />
+    <link rel="prev" title="Modelos de regresión para dependencia espacial tipo SAR" href="10_SAR.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de regresión para dependencia espacial tipo CAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_LGCP.html">Modelo GLM de Poisson no-homogéneo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_DB.html">Bases de datos geoespaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial/issues/new?title=Issue%20on%20page%20%2F11_CAR.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/11_CAR.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelos de regresión para dependencia espacial tipo CAR</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-carbayes-en-r">Modelos con la librería CARBayes en R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-inla-en-r">Modelos con la librería INLA en R</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-clasico">Modelo Gaussiano clásico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados">Modelo Gaussiano con efectos aleatorios NO estructurados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados">Modelo Gaussiano con efectos aleatorios estructurados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-icar">Modelo ICAR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-bym-besag-york-y-mollie">Modelo BYM (Besag, York y Mollié)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-leroux-et-al">Modelo de Leroux et al.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-cuencas-y-subcuencas">Ejemplo cuencas y subcuencas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-inla">con INLA</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://rpubs.com/jimclark/883880">Jim Clark</a>, <a href="https://cran.r-project.org/web/packages/CARBayes/vignettes/CARBayes.pdf">CARBayes</a>, <a href="https://search.r-project.org/CRAN/refmans/CARBayes/html/00Index.html">CRAN</a>, <a href="https://datascienceplus.com/spatial-regression-in-r-part-1-spamm-vs-glmmtmb/">Lionel Hertzog</a>, <a href="https://codingclubuc3m.rbind.io/post/2019-11-05/">Virgilio Gómez Rubio</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p>
+<section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-dependencia-espacial-tipo-car">
+<h1>Modelos de regresión para dependencia espacial tipo CAR<a class="headerlink" href="#modelos-de-regresion-para-dependencia-espacial-tipo-car" title="Permalink to this heading">#</a></h1>
+<p>Los modelos CAR con Campos Aleatorios de Markov (MRF) se utilizan ampliamente en estadísticas espaciales para modelar datos observados, así como
+variables latentes y efectos aleatorios que varían espacialmente. Las estructuras CAR se implementan en modelos jerárquicos con efectos aleatorios latentes
+(<span id="id1"></span>). CAR es un tipo de Campo Aleatorio de Markov (MRF) (<span id="id2"></span>), que es el enfoque dominante para
+analizar datos espaciales discretos dentro de un marco jerárquico. Un proceso espacial se considera que tiene propiedades de Markov si el estado
+futuro esperado de un parámetro depende únicamente del estado adyacente inmediato, haciendo que el estado futuro sea condicionalmente independiente.
+Extender esto a múltiples efectos aleatorios da como resultado un MRF ({cite:t}<code class="docutils literal notranslate"><span class="pre">clifford1990</span></code>, <span id="id3"></span>). La forma más común de MRF
+representa una conectividad de vecindad de primer orden en términos de contigüidad, donde las observaciones que comparten un límite se consideran vecinas.</p>
+<p>Los efectos aleatorios latentes (o simplemente efectos aleatorios espaciales) ofrecen una forma diferente y muy flexible de capturar la dependencia espacial, a menudo representando la variabilidad espacial no observada o no explicada por las covariables fijas en tu modelo.</p>
+<p>Los efectos aleatorios latentes pueden ser de dos tipos principales en el contexto espacial:</p>
+<ul class="simple">
+<li><p>Efecto Aleatorio Espacial Estructurado (Structured Spatial Random Effect): Este componente captura la dependencia espacial “suave” o de “vecindad”. Modela la correlación entre observaciones cercanas, asumiendo que las ubicaciones más próximas son más similares.</p></li>
+<li><p>Efecto Aleatorio Espacial No Estructurado (Unstructured Spatial Random Effect): Este es un componente aleatorio independiente e idénticamente distribuido (i.i.d.) para cada ubicación. Captura la variabilidad “ruidosa” que no tiene una estructura espacial discernible. Podría pensarse como una variabilidad aleatoria intrínseca a cada observación o ubicación.</p></li>
+</ul>
+<p>La idea es que la combinación de estos efectos aleatorios (junto con los efectos fijos de las covariables) puede explicar completamente la variación en tu variable dependiente, incluyendo la dependencia espacial.</p>
+<p>Varios modelos han sido propuestos dentro de esta clase general de estructuras CAR, incluidos los modelos intrínsecos y de convolución
+(<span id="id4"></span>), así como alternativas como la propuesta por <span id="id5"></span>. El modelo CAR intrínseco (ICAR) es el
+CAR más simple, que asume un efecto aleatorio autorregresivo espacial para abordar las asociaciones entre regiones vecinas (<span id="id6"></span>).
+La expectativa condicional es igual a la media de los efectos aleatorios en las unidades de mapeo de terreno vecinas, mientras que la varianza
+condicional es inversamente proporcional al número de sus vecinos. Este modelo representa estructuras de correlación espacial fuertes y puede
+no ser adecuado si los datos están débilmente correlacionados.</p>
+<p><span id="id7"></span> propuso el modelo de convolución, o modelo Besag-York-Mollié (BYM), que combina dos efectos aleatorios latentes: un efecto
+latente ICAR (<span class="math notranslate nohighlight">\(\rho\)</span>) y un efecto latente Gaussiano i.i.d. (<span class="math notranslate nohighlight">\(\sigma\)</span>). Sin embargo, los dos componentes de efectos aleatorios separados no se pueden
+identificar individualmente, y solo se puede identificar su suma.</p>
+<p><span id="id8"></span> propuso utilizar un único efecto aleatorio en su lugar, que incluye un parámetro (<span class="math notranslate nohighlight">\(\rho\)</span>) para medir el nivel de
+correlación espacial entre las unidades de mapeo de terreno, tomando valores en el intervalo unitario [0-1]. Este modelo es una variación de los
+modelos BYM e ICAR. Al igual que el modelo ICAR, tiene un parámetro de efecto aleatorio espacial para cada observacion. Sin embargo, la distribución
+condicional incorpora características tanto de efectos aleatorios espaciales estructurados como no estructurados (del modelo BYM) en un solo
+parámetro (<span class="math notranslate nohighlight">\(\rho\)</span>). El modelo de Leroux generaliza el modelo ICAR y el modelo independiente (es decir, un modelo sin ningún efecto aleatorio
+espacial estructurado). Cuando <span class="math notranslate nohighlight">\(\rho=1\)</span>, se recupera el modelo ICAR; cuando <span class="math notranslate nohighlight">\(\rho=0\)</span>, se recupera el modelo independiente. Así, el modelo de
+Leroux busca equilibrar estos dos modelos estimando el valor de <span class="math notranslate nohighlight">\(\rho\)</span>.</p>
+<section id="modelos-con-la-libreria-carbayes-en-r">
+<h2>Modelos con la librería CARBayes en R<a class="headerlink" href="#modelos-con-la-libreria-carbayes-en-r" title="Permalink to this heading">#</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">spBayes</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">RANN</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gjam</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">CARBayes</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">CARBayesdata</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">mgcv</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#### Set up a square lattice region</span>
+<span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">12</span>
+<span class="n">xEast</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">m</span>
+<span class="n">xNorth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">m</span>
+<span class="n">grid</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">xEast</span><span class="p">,</span><span class="w"> </span><span class="n">xNorth</span><span class="p">)</span>
+<span class="n">n</span><span class="w">      </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s">&#39;East&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s">&#39;North&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="n">grid</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">h</span><span class="o">=</span><span class="n">grid</span><span class="p">[,</span><span class="m">2</span><span class="p">])</span>
+<span class="nf">text</span><span class="p">(</span><span class="n">grid</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="n">.</span><span class="m">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Se construye una matriz de vecindad (W).</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">D</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="nf">dist</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="n">W</span><span class="p">[</span><span class="n">W</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span>
+<span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">Q</span><span class="o">*</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="p">)</span>
+<span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="n">x2</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">x3</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span>
+<span class="n">beta</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">Q</span><span class="p">),</span><span class="w"> </span><span class="n">Q</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">.</span><span class="m">1</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.formula</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span>
+
+<span class="n">gaussianModel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.CARleroux</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">form</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">W</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                             </span><span class="n">burnin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)</span>
+<span class="n">gaussianModel</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#random effect</span>
+<span class="n">fv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gaussianModel</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="n">mf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">fv</span><span class="p">)</span>
+<span class="n">cc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fv</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mf</span>
+<span class="n">ss</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">cc</span><span class="p">),</span><span class="w"> </span><span class="n">length.out</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="n">cc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">findInterval</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="n">ss</span><span class="p">)</span>
+
+<span class="n">colM</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colorRampPalette</span><span class="p">(</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;blue&quot;</span><span class="p">))</span>
+<span class="n">colm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colM</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+
+<span class="nf">symbols</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">grid</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">grid</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">squares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cc</span><span class="o">*</span><span class="m">0+1</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="o">=</span><span class="n">colm</span><span class="p">[</span><span class="n">cc</span><span class="p">],</span>
+<span class="w">        </span><span class="n">fg</span><span class="o">=</span><span class="n">colm</span><span class="p">[</span><span class="n">cc</span><span class="p">],</span><span class="n">inches</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s">&#39;East&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s">&#39;North&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lambda</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">x</span><span class="o">%*%</span><span class="n">beta</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">))</span>
+<span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rpois</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span>
+
+<span class="n">poissonModel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.CARbym</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">form</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">W</span><span class="o">=</span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">burnin</span><span class="o">=</span><span class="m">20000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="o">=</span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<span class="n">poissonModel</span>
+</pre></div>
+</div>
+</section>
+<section id="modelos-con-la-libreria-inla-en-r">
+<h2>Modelos con la librería INLA en R<a class="headerlink" href="#modelos-con-la-libreria-inla-en-r" title="Permalink to this heading">#</a></h2>
+<p>Para ilustrar cómo se ajustan los modelos espaciales con INLA, se utilizará el conjunto de datos de leucemia de Nueva York. Éste ha sido ampliamente analizado en la literatura (ver, por ejemplo, Waller y Gotway, 2004) y está disponible en el paquete <code class="docutils literal notranslate"><span class="pre">DClusterm</span></code>. El conjunto de datos registra una serie de casos de leucemia en el norte del estado de Nueva York a nivel de distrito censal. Algunas de las variables en el conjunto de datos son:</p>
+<ul class="simple">
+<li><p><strong>Casos:</strong> Número de casos de leucemia en el período 1978-1982.</p></li>
+<li><p><strong>POP8:</strong> Población en 1980.</p></li>
+<li><p><strong>PCTOWNHOME:</strong> Proporción de personas que son propietarias de su vivienda.</p></li>
+<li><p><strong>PCTAGE65P:</strong> Proporción de personas de 65 años o más.</p></li>
+<li><p><strong>AVGIDIST:</strong> Distancia inversa promedio al sitio de tricloroetileno (TCE) más cercano.</p></li>
+</ul>
+<p>Tenga en cuenta que el interés se centra en la exposición al TCE, utilizando AVGIDIST como un indicador de exposición. Las variables PCTOWNHOME y PCTAGE65P actuarán como posibles factores de confusión que deben incluirse en el modelo. Sin embargo, no lo haremos aquí porque queremos probar cómo los efectos espaciales latentes capturan la variación espacial residual.</p>
+<p>El conjunto de datos se puede cargar de la siguiente manera:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">spdep</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DClusterm</span><span class="p">)</span>
+<span class="nf">data</span><span class="p">(</span><span class="n">NY8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dado que el interés se centra en estudiar el riesgo de leucemia en el norte del estado de Nueva York, primero se calcula el número esperado de casos. Esto se hace calculando la tasa de mortalidad general (total de casos dividido por la población total) y multiplicándola por la población:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">NY8</span><span class="o">$</span><span class="n">Cases</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">NY8</span><span class="o">$</span><span class="n">POP8</span><span class="p">)</span>
+<span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">POP8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rate</span>
+</pre></div>
+</div>
+<p>Una vez que se obtiene el número esperado de casos, se puede obtener una estimación aproximada del riesgo con la razón de mortalidad estandarizada (SMR), que se calcula como el número de casos observados dividido por el número de casos esperados.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NY8</span><span class="o">$</span><span class="n">SMR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Cases</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span>
+</pre></div>
+</div>
+<p>En epidemiología, es importante producir mapas para mostrar la distribución espacial del riesgo relativo. En este ejemplo, nos centraremos en la ciudad de Syracuse para reducir el tiempo de cómputo necesario para producir el mapa. Por lo tanto, creamos un índice con las áreas de la ciudad de Syracuse:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subset Syracuse city</span>
+<span class="n">syracuse</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">NY8</span><span class="o">$</span><span class="n">AREANAME</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Syracuse city&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Un mapa de enfermedades se puede crear simplemente con la función <code class="docutils literal notranslate"><span class="pre">spplot</span></code> (del paquete <code class="docutils literal notranslate"><span class="pre">sp</span></code>):</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">viridis</span><span class="p">)</span>
+<span class="nf">spplot</span><span class="p">(</span><span class="n">NY8</span><span class="p">[</span><span class="n">syracuse</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="s">&quot;SMR&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">#at = c(0.6, 0.9801, 1.055, 1.087, 1.125, 13),</span>
+<span class="w">   </span><span class="n">col.regions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rev</span><span class="p">(</span><span class="nf">magma</span><span class="p">(</span><span class="m">16</span><span class="p">)))</span><span class="w"> </span><span class="c1">#gray.colors(16, 0.9, 0.4))</span>
+</pre></div>
+</div>
+<section id="modelo-gaussiano-clasico">
+<h3>Modelo Gaussiano clásico<a class="headerlink" href="#modelo-gaussiano-clasico" title="Permalink to this heading">#</a></h3>
+<p>El primer modelo que consideraremos es un modelo Gausiano sin efectos aleatorios latentes, ya que proporcionará una línea base para comparar con otros modelos. Para ajustar el modelo con INLA, se utiliza la función <code class="docutils literal notranslate"><span class="pre">inla</span></code>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AVGIDIST</span><span class="p">,</span>
+<span class="w">   </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span>
+<span class="w">   </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Gaussian&quot;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span>
+<span class="w">   </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="p">,</span><span class="w"> </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">   </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span>
+<span class="n">NY8</span><span class="o">$</span><span class="n">FIXED.EFF</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m1</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="modelo-gaussiano-con-efectos-aleatorios-no-estructurados">
+<h3>Modelo Gaussiano con efectos aleatorios NO estructurados<a class="headerlink" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados" title="Permalink to this heading">#</a></h3>
+<p>Se pueden agregar efectos aleatorios latentes al modelo para tener en cuenta la sobredispersión incluyendo efectos aleatorios Gaussianos i.i.d. en el predictor lineal. Para ajustar el modelo con INLA, primero se crea un índice para identificar los efectos aleatorios (ID). Los efectos aleatorios latentes se especifican con la función <code class="docutils literal notranslate"><span class="pre">f</span></code> en INLA:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NY8</span><span class="o">$</span><span class="n">ID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">NY8</span><span class="p">)</span>
+<span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AVGIDIST</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Gaussian&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
+<span class="n">NY8</span><span class="o">$</span><span class="n">IID.EFF</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m2</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">spplot</span><span class="p">(</span><span class="n">NY8</span><span class="p">[</span><span class="n">syracuse</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;SMR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FIXED.EFF&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;IID.EFF&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">col.regions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rev</span><span class="p">(</span><span class="nf">magma</span><span class="p">(</span><span class="m">16</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="modelo-gaussiano-con-efectos-aleatorios-estructurados">
+<h3>Modelo Gaussiano con efectos aleatorios estructurados<a class="headerlink" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados" title="Permalink to this heading">#</a></h3>
+<p>Tenemos observaciones <span class="math notranslate nohighlight">\(y = {y_i}_{i=1}^n\)</span> donde n es el número de áreas. A y se le asigna una distribución multivariante que tiene en cuenta la dependencia espacial. Una forma común de describir la proximidad espacial en datos discretos es mediante una matriz de adyacencia W. El elemento <span class="math notranslate nohighlight">\(W_{i,j}\)</span> es distinto de cero si las áreas i y j son vecinas. Por lo general, dos áreas son vecinas si comparten un límite común.</p>
+<p>La matriz de adyacencia se puede calcular utilizando la función <code class="docutils literal notranslate"><span class="pre">poly2nb</span></code> en el paquete <code class="docutils literal notranslate"><span class="pre">spdep</span></code>. Esta función considerará dos áreas como vecinas si sus bordes se tocan al menos en un punto (es decir, adyacencia de “Queen”):</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NY8.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">poly2nb</span><span class="p">(</span><span class="n">NY8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esto devolverá un objeto <code class="docutils literal notranslate"><span class="pre">nb</span></code> con la definición de la estructura del vecindario.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NY8.nb</span>
+</pre></div>
+</div>
+<p>Además, estos objetos creados con la función <code class="docutils literal notranslate"><span class="pre">nb</span></code> se pueden visualizar gráficamente cuando se conoce información adicional sobre las áreas, como la ubicación de su centro.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">NY8</span><span class="p">)</span><span class="w"> </span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">NY8.nb</span><span class="p">,</span><span class="w"> </span><span class="nf">coordinates</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="modelo-icar">
+<h4>Modelo ICAR<a class="headerlink" href="#modelo-icar" title="Permalink to this heading">#</a></h4>
+<p>El primer ejemplo se basará en la especificación ICAR. Tenga en cuenta que el efecto latente espacial se define usando la función f. Esto requerirá un índice para identificar los efectos aleatorios en cada área, el tipo de modelo y la matriz de adyacencia. Para ello, se utilizará una matriz dispersa.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sparse adjacency matrix</span>
+<span class="n">NY8.mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as</span><span class="p">(</span><span class="nf">nb2mat</span><span class="p">(</span><span class="n">NY8.nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Matrix&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit model</span>
+<span class="n">m.icar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">AVGIDIST</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;besag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8.mat</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;Gaussian&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m.icar</span><span class="p">)</span>
+<span class="n">NY8</span><span class="o">$</span><span class="n">ICAR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m.icar</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="modelo-bym-besag-york-y-mollie">
+<h4>Modelo BYM (Besag, York y Mollié)<a class="headerlink" href="#modelo-bym-besag-york-y-mollie" title="Permalink to this heading">#</a></h4>
+<p>El modelo de Besag, York y Mollié incluye dos efectos aleatorios latentes: un efecto latente ICAR y un efecto latente Gaussiano i.i.d. No es necesario definir estos dos efectos latentes si se establece el argumento <code class="docutils literal notranslate"><span class="pre">model</span></code> como “bym” cuando se define el efecto aleatorio latente con la función <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m.bym</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">AVGIDIST</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bym&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8.mat</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;Gaussian&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m.bym</span><span class="p">)</span>
+<span class="n">NY8</span><span class="o">$</span><span class="n">BYM</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m.bym</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="modelo-de-leroux-et-al">
+<h4>Modelo de Leroux et al.<a class="headerlink" href="#modelo-de-leroux-et-al" title="Permalink to this heading">#</a></h4>
+<p>Este modelo se define utilizando una “mezcla” de matrices (modelo de Leroux et al.) para definir la matriz de precisión del efecto latente. Este modelo se implementa utilizando el efecto latente <code class="docutils literal notranslate"><span class="pre">generic1</span></code>, que utiliza la siguiente matriz de precisión:</p>
+<div class="math notranslate nohighlight">
+\[Σ^{-1} = 1 / τ (I_n - ρ * λ_max * C); ρ ∈ [0,1)\]</div>
+<p>En esta ecuación, C es una matriz y λ_max su autovalor máximo.</p>
+<p>Para definir el modelo correcto, debemos tomar la matriz C de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[C = I_n - M; M = diag(n_i) - W\]</div>
+<p>Entonces, λ_max = 1 y:</p>
+<div class="math notranslate nohighlight">
+\[Σ^{-1} = 1 / τ (I_n - ρ * λ_max * C) = 1 / τ (I_n - ρ * (I_n - M)) = 1 / τ ((1 - ρ)I_n + ρM)\]</div>
+<p>Para ajustar el modelo, el primer paso es crear la matriz M.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ICARmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Diagonal</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">NY8.mat</span><span class="p">),</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">NY8.mat</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">NY8.mat</span>
+<span class="n">Cmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Diagonal</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w">  </span><span class="n">ICARmatrix</span>
+</pre></div>
+</div>
+<p>El modelo se ajusta como de costumbre con la función <code class="docutils literal notranslate"><span class="pre">inla</span></code>. Tenga en cuenta que la matriz C se pasa a la función <code class="docutils literal notranslate"><span class="pre">f</span></code> usando el argumento <code class="docutils literal notranslate"><span class="pre">Cmatrix</span></code>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m.ler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">AVGIDIST</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;generic1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Cmatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cmatrix</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;Gaussian&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">m.ler</span><span class="p">)</span>
+<span class="n">NY8</span><span class="o">$</span><span class="n">LEROUX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m.ler</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="ejemplo-cuencas-y-subcuencas">
+<h2>Ejemplo cuencas y subcuencas<a class="headerlink" href="#ejemplo-cuencas-y-subcuencas" title="Permalink to this heading">#</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;https://github.com/edieraristizabal/ModeloMultinivel/blob/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+<span class="n">aoi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">aoi</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate_at</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;elev_mean&#39;</span><span class="p">,</span><span class="s">&#39;slope_mean&#39;</span><span class="p">,</span><span class="s">&#39;RainfallDaysmean&#39;</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="p">(</span><span class="nf">scale</span><span class="p">(</span><span class="n">.</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.vector</span><span class="p">))</span>
+<span class="n">aoi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">aoi</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">cuenca_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">cuenca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;Atrato&#39;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">cuenca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;Cauca&#39;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">cuenca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;Magdalena&#39;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+<span class="n">aoi_sp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Spatial matrix</span>
+<span class="n">W.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">poly2nb</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+<span class="n">W.mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nb2mat</span><span class="p">(</span><span class="n">W.nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="o">=</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">W.list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nb2listw</span><span class="p">(</span><span class="n">W.nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="o">=</span><span class="s">&quot;B&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Standard Poisson model in CARBayes</span>
+<span class="n">m1_carbayes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.glm</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">offset</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">)),</span>
+<span class="w">                    </span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">burnin</span><span class="o">=</span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="o">=</span><span class="m">300000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">n.chains</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">n.cores</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+
+
+<span class="n">m1_carbayes</span>
+<span class="n">m1_carbayes</span><span class="o">$</span><span class="n">modelfit</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">carm1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m1_carbayes</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">residuals</span><span class="p">(</span><span class="n">m1_carbayes</span><span class="p">),</span><span class="w"> </span><span class="n">listw</span><span class="o">=</span><span class="n">W.list</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Leroux=proper</span>
+<span class="n">cariid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.CARleroux</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">offset</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">)),</span>
+<span class="w">                      </span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">=</span><span class="n">W.mat</span><span class="p">,</span><span class="n">rho</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span>
+<span class="w">                      </span><span class="n">burnin</span><span class="o">=</span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="o">=</span><span class="m">300000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">n.chains</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">n.cores</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">cariid</span>
+<span class="n">cariid</span><span class="o">$</span><span class="n">modelfit</span>
+<span class="nf">plot</span><span class="p">(</span><span class="w"> </span><span class="n">cariid</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;n&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">cariid</span><span class="o">$</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">summary.beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">cariid</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">quantiles</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span><span class="w"> </span><span class="m">0.975</span><span class="p">))</span>
+<span class="n">beta.mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">statistics</span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="s">&quot;Mean&quot;</span><span class="p">]</span>
+<span class="n">beta.ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">quantiles</span>
+<span class="n">beta.results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">beta.mean</span><span class="p">,</span><span class="w"> </span><span class="n">beta.ci</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">beta.results</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">cariid</span><span class="o">$</span><span class="n">X</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">beta.results</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">cariid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cariid</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">cariid_res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cariid</span><span class="o">$</span><span class="n">residuals</span>
+<span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">residuals</span><span class="p">(</span><span class="n">cariid</span><span class="p">),</span><span class="w"> </span><span class="n">listw</span><span class="o">=</span><span class="n">W.list</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Leroux=ICAR</span>
+<span class="n">caricar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.CARleroux</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">offset</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">)),</span>
+<span class="w">                       </span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">=</span><span class="n">W.mat</span><span class="p">,</span><span class="n">rho</span><span class="o">=</span><span class="m">1</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">burnin</span><span class="o">=</span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="o">=</span><span class="m">300000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">n.chains</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">n.cores</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">caricar</span>
+<span class="n">caricar</span><span class="o">$</span><span class="n">modelfit</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">caricar</span><span class="o">$</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">summary.beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">caricar</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">quantiles</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span><span class="w"> </span><span class="m">0.975</span><span class="p">))</span>
+<span class="n">beta.mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">statistics</span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="s">&quot;Mean&quot;</span><span class="p">]</span>
+<span class="n">beta.ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">quantiles</span>
+<span class="n">beta.results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">beta.mean</span><span class="p">,</span><span class="w"> </span><span class="n">beta.ci</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">beta.results</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">caricar</span><span class="o">$</span><span class="n">X</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">beta.results</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">caricar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caricar</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">caricar_res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caricar</span><span class="o">$</span><span class="n">residuals</span>
+<span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">residuals</span><span class="p">(</span><span class="n">caricar</span><span class="p">),</span><span class="w"> </span><span class="n">listw</span><span class="o">=</span><span class="n">W.list</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#BYM</span>
+<span class="n">carbym</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.CARbym</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">offset</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">)),</span>
+<span class="w">                   </span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">=</span><span class="n">W.mat</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">burnin</span><span class="o">=</span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="o">=</span><span class="m">300000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">n.chains</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">n.cores</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">carbym</span>
+<span class="n">carbym</span><span class="o">$</span><span class="n">modelfit</span>
+<span class="nf">plot</span><span class="p">(</span><span class="w"> </span><span class="n">carbym</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;n&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">carbym</span><span class="o">$</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">summary.beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">carbym</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">quantiles</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span><span class="w"> </span><span class="m">0.975</span><span class="p">))</span>
+<span class="n">beta.mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">statistics</span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="s">&quot;Mean&quot;</span><span class="p">]</span>
+<span class="n">beta.ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">quantiles</span>
+<span class="n">beta.results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">beta.mean</span><span class="p">,</span><span class="w"> </span><span class="n">beta.ci</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">beta.results</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">carbym</span><span class="o">$</span><span class="n">X</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">beta.results</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">carbym</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">carbym</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">carbym_res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">carbym</span><span class="o">$</span><span class="n">residuals</span>
+<span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">residuals</span><span class="p">(</span><span class="n">carbym</span><span class="p">),</span><span class="w"> </span><span class="n">listw</span><span class="o">=</span><span class="n">W.list</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">carleroux</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">S.CARleroux</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">offset</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">)),</span>
+<span class="w">                  </span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">=</span><span class="n">W.mat</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">burnin</span><span class="o">=</span><span class="m">100000</span><span class="p">,</span><span class="w"> </span><span class="n">n.sample</span><span class="o">=</span><span class="m">300000</span><span class="p">,</span><span class="w"> </span><span class="n">thin</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">n.chains</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">n.cores</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="n">carleroux</span>
+<span class="n">carleroux</span><span class="o">$</span><span class="n">modelfit</span>
+<span class="nf">plot</span><span class="p">(</span><span class="w"> </span><span class="n">carleroux</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;n&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">carleroux</span><span class="o">$</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">summary.beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">carleroux</span><span class="o">$</span><span class="n">samples</span><span class="o">$</span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">quantiles</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span><span class="w"> </span><span class="m">0.975</span><span class="p">))</span>
+<span class="n">beta.mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">statistics</span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="s">&quot;Mean&quot;</span><span class="p">]</span>
+<span class="n">beta.ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary.beta</span><span class="o">$</span><span class="n">quantiles</span>
+<span class="n">beta.results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">beta.mean</span><span class="p">,</span><span class="w"> </span><span class="n">beta.ci</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">beta.results</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">carleroux</span><span class="o">$</span><span class="n">X</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">beta.results</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">carleroux</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">carleroux</span><span class="o">$</span><span class="n">fitted.values</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">carleroux_res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">carleroux</span><span class="o">$</span><span class="n">residuals</span>
+<span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">residuals</span><span class="p">(</span><span class="n">carleroux</span><span class="p">),</span><span class="w"> </span><span class="n">listw</span><span class="o">=</span><span class="n">W.list</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">carbym</span><span class="p">),</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotation_scale</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s">&quot;br&quot;</span><span class="p">,</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ticks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotation_north_arrow</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tr&quot;</span><span class="p">,</span><span class="n">which_north</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_gradientn</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="s">&quot;red&quot;</span><span class="p">),</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Landslides&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_rect</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.ticks.length</span><span class="o">=</span><span class="nf">unit</span><span class="p">(</span><span class="m">-0.1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mm&quot;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mm&quot;</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.title.align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.34</span><span class="p">,</span><span class="m">0.9</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">legend.key.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;cm&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;center&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend.direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;horizontal&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="con-inla">
+<h3>con INLA<a class="headerlink" href="#con-inla" title="Permalink to this heading">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Spatial matrix</span>
+<span class="n">aoi.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">poly2nb</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span><span class="w"> </span><span class="c1">#Queen matrix</span>
+<span class="n">aoi.mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as</span><span class="p">(</span><span class="nf">nb2mat</span><span class="p">(</span><span class="n">aoi.nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Matrix&quot;</span><span class="p">)</span>
+<span class="n">aoi.listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nb2listw</span><span class="p">(</span><span class="n">aoi.nb</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">)</span><span class="w"> </span>
+<span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">)[</span><span class="m">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Graph</span>
+<span class="nf">nb2INLA</span><span class="p">(</span><span class="s">&quot;cl_graph&quot;</span><span class="p">,</span><span class="n">aoi.nb</span><span class="p">)</span>
+<span class="n">am_adj</span><span class="w"> </span><span class="o">&lt;-</span><span class="nf">paste</span><span class="p">(</span><span class="nf">getwd</span><span class="p">(),</span><span class="s">&quot;G:/My Drive/INVESTIGACION/POSDOC/Figuras3/inla.graph&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="n">H</span><span class="o">&lt;-</span><span class="nf">inla.read.graph</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;G:/My Drive/INVESTIGACION/POSDOC/Figuras3/inla.graph&quot;</span><span class="p">)</span>
+<span class="nf">image</span><span class="p">(</span><span class="nf">inla.graph2matrix</span><span class="p">(</span><span class="n">H</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">m1_inla</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">m1_inla</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m1_inla</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">res_pearson_m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m1_inla</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">m1_inla</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">res_pearson_m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res_pearson_m1</span>
+<span class="n">moran_m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m1</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.listw</span><span class="p">,</span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#basic random intercept (cuenca)</span>
+<span class="n">m2_cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">           </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">),</span>
+<span class="w">           </span><span class="n">offset</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">           </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m2_cuenca</span><span class="p">)</span>
+<span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.random</span><span class="o">$</span><span class="n">cuenca</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">m2_cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">res_pearson_m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">res_pearson_m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res_pearson_m2</span>
+<span class="n">moran_m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m2</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.listw</span><span class="p">,</span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ICAR model</span>
+<span class="n">m3_icar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">                  </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                  </span><span class="nf">f</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;besag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.mat</span><span class="p">),</span>
+<span class="w">                  </span><span class="n">offset</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">                  </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m3_icar</span><span class="p">)</span>
+<span class="n">m3_icar</span><span class="o">$</span><span class="n">summary.random</span><span class="o">$</span><span class="n">cuenca</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">ICAR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m3_icar</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">res_pearson_m3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m3_icar</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">m3_icar</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">res_pearson_m3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res_pearson_m3</span>
+<span class="n">moran_m3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m3</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.listw</span><span class="p">,</span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># BYM model</span>
+<span class="n">m4_bym</span><span class="o">&lt;-</span><span class="nf">inla</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span>
+<span class="w">           </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">           </span><span class="nf">f</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bym&quot;</span><span class="p">,</span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.mat</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">offset</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="o">=</span><span class="bp">T</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m4_bym</span><span class="p">)</span>
+<span class="n">m4_bym</span><span class="o">$</span><span class="n">summary.random</span><span class="o">$</span><span class="n">cuenca</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">BYM</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m4_bym</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">aoi_sp</span><span class="o">$</span><span class="n">BYM</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m4_bym</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="p">[,</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">res_pearson_m4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m4_bym</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">m4_bym</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">res_pearson_m4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res_pearson_m4</span>
+<span class="n">moran_m4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m4</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.listw</span><span class="p">,</span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Leroux et al. model</span>
+<span class="n">m5_leroux</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Diagonal</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">),</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">aoi.mat</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">aoi.mat</span>
+<span class="n">Cmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Diagonal</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w">  </span><span class="n">m5_leroux</span>
+<span class="nf">max</span><span class="p">(</span><span class="nf">eigen</span><span class="p">(</span><span class="n">Cmatrix</span><span class="p">)</span><span class="o">$</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="c1">#just to check =1</span>
+
+<span class="n">m5_ler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">elev_mean</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="nf">f</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;generic1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Cmatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cmatrix</span><span class="p">),</span>
+<span class="w">                </span><span class="n">offset</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">                </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m5_ler</span><span class="p">)</span>
+<span class="n">m5_ler</span><span class="o">$</span><span class="n">summary.random</span><span class="o">$</span><span class="n">cuenca</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">LEROUX</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m5_ler</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">res_pearson_m5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m5_ler</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">m5_ler</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">res_pearson_m5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res_pearson_m5</span>
+<span class="n">moran_m5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m5</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.listw</span><span class="p">,</span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cuenca_colors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Atrato&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;green&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cauca&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Magdalena&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m1</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca_colors</span><span class="p">,</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_gradient2</span><span class="p">(</span>
+<span class="w">    </span><span class="n">low</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yellow&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;purple&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">midpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Res. Pearson&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotation_scale</span><span class="p">(</span>
+<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;br&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ticks&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">text_cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.0</span><span class="w">  </span><span class="c1"># Tamaño de fuente en escala</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotation_north_arrow</span><span class="p">(</span>
+<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tr&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">which_north</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">pad_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">pad_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">0.9</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;horizontal&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.key.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.key.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">),</span><span class="w">          </span><span class="c1"># Coordenadas del mapa</span>
+<span class="w">    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13</span><span class="p">),</span><span class="w">         </span><span class="c1"># Si decides añadir títulos</span>
+<span class="w">    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">()</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">aoi</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m1</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">notch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Res. Pearson&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">  </span><span class="c1"># Etiqueta eje Y</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<span class="w">    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">         </span><span class="c1"># Etiquetas cuenca</span>
+<span class="w">    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w">         </span><span class="c1"># Ticks eje Y</span>
+<span class="w">    </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">  </span><span class="c1"># Título eje Y</span>
+<span class="w">    </span><span class="n">aspect.ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.95</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="n">combined_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plot_grid</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">rel_widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">))</span>
+
+<span class="n">final_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggdraw</span><span class="p">(</span><span class="n">combined_plot</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">draw_plot_label</span><span class="p">(</span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.7</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.92</span><span class="p">,</span><span class="w"> </span><span class="m">0.92</span><span class="p">),</span>
+<span class="w">    </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fontface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">final_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para añadir coeficientes aleatorios espaciales (p. ej. para la pendiente) en un modelo CAR con INLA, lo más sencillo es definir un segundo campo latente que modere justamente ese covariable. La idea es que en la fórmula incluyas:</p>
+<p>Un campo latente para el intercepto espacial (como ya haces con f(id, model=”besag”, graph=graph)), y</p>
+<p>Un campo latente “pesado” por la covariable cuya pendiente quieres aleatorizar (por ejemplo slope_mean).</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Primero, crea dos índices idénticos (uno para intercepto y otro para pendiente)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">id_int</span><span class="w">   </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">id_slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">aoi</span><span class="o">$</span><span class="n">id_int</span>
+
+<span class="c1"># Ahora la fórmula:</span>
+<span class="n">m6_spatial_slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span>
+<span class="w">  </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span>
+<span class="w">    </span><span class="m">1</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w">                  </span><span class="c1"># efecto fijo de la pendiente</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">)</span><span class="w">      </span><span class="c1"># efecto aleatorio no espacial por cuenca</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">id_int</span><span class="p">,</span><span class="w">   </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;besag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="o">=</span><span class="n">cl_graph</span><span class="p">)</span><span class="w">              </span><span class="c1"># intercepto espacial</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">id_slope</span><span class="p">,</span><span class="w"> </span><span class="n">slope_mean</span><span class="p">,</span><span class="w">      </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;besag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="o">=</span><span class="n">cl_graph</span><span class="p">),</span><span class="w">  </span><span class="c1"># pendiente espacial</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Si tu objetivo fuera que la pendiente de slope_mean variara entre cuencas (no dentro de ellas), basta con usar el índice cuenca en lugar de id_slope. Por ejemplo:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m7_basin_slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span>
+<span class="w">  </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span>
+<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w">   </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">                         </span><span class="c1"># intercepto por cuenca</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">slope_mean</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">),</span><span class="w">                </span><span class="c1"># pendiente aleatoria por cuenca</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Para incluir a la vez</p>
+<ul class="simple">
+<li><p>Intercepto aleatorio por cuenca,</p></li>
+<li><p>Pendientes aleatorias por cuenca para cada covariable, y</p></li>
+<li><p>Un efecto CAR espacial a nivel de ID (cada polígono)</p></li>
+</ul>
+<p>puedes usar una fórmula como esta en R‑INLA. Supongamos que ya tienes en tu data.frame aoi:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># índice numérico de cuenca (1,2,3)  </span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">basin_id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">cuenca</span><span class="p">)</span><span class="w">  </span>
+<span class="c1"># índice numérico de polígono (ID)  </span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">id</span><span class="w">        </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m_complex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span>
+<span class="w">  </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span>
+<span class="w">    </span><span class="m">1</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w">          </span><span class="c1"># efecto fijo</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w">                 </span><span class="c1"># efecto fijo</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w">                </span><span class="c1"># efecto fijo</span>
+
+<span class="w">    </span><span class="c1"># 1) Intercepto aleatorio por cuenca</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">basin_id</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># 2) Pendientes aleatorias por cuenca</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">basin_id</span><span class="p">,</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">basin_id</span><span class="p">,</span><span class="w"> </span><span class="n">elev_mean</span><span class="p">,</span><span class="w">        </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">basin_id</span><span class="p">,</span><span class="w"> </span><span class="n">slope_mean</span><span class="p">,</span><span class="w">       </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;iid&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># 3) Efecto espacial CAR a nivel de polígono</span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="s">&quot;besag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="o">=</span><span class="n">cl_graph</span><span class="p">),</span>
+
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi</span><span class="p">,</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_SAR.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelos de regresión para dependencia espacial tipo SAR</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12_Jerarquicos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modelos de Regresión para Heterogeneidad Espacial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-carbayes-en-r">Modelos con la librería CARBayes en R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-inla-en-r">Modelos con la librería INLA en R</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-clasico">Modelo Gaussiano clásico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados">Modelo Gaussiano con efectos aleatorios NO estructurados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados">Modelo Gaussiano con efectos aleatorios estructurados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-icar">Modelo ICAR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-bym-besag-york-y-mollie">Modelo BYM (Besag, York y Mollié)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-leroux-et-al">Modelo de Leroux et al.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-cuencas-y-subcuencas">Ejemplo cuencas y subcuencas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-inla">con INLA</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Edier V. Aristizábal G.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

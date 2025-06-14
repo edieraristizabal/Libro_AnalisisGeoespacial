@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modelos de Poisson en R &#8212; Análisis Geoespacial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_GLMR';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Procesos Log-Gaussian Cox" href="05_LGCP.html" />
+    <link rel="prev" title="Modelos de Poisson en Python" href="04_GLMPhyton.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos de Poisson en Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de Poisson en R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_LGCP.html">Procesos Log-Gaussian Cox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos areales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Autocorrelación espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_Heterogeneidad.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_SAR.html">Modelos de Regresión para Dependencia Espacial SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CAR.html">Modelos de Regresión para Dependencia Espacial CAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_DB.html">Bases de datos geoespaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial/issues/new?title=Issue%20on%20page%20%2F04_GLMR.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04_GLMR.Rmd" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.Rmd</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelos de Poisson en R</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-de-poisson-en-r">
+<h1>Modelos de Poisson en R<a class="headerlink" href="#modelos-de-poisson-en-r" title="Permalink to this heading">#</a></h1>
+<p>A continuación se presenta un ejemplo de Poisson homogeneo en R. Este conjunto de datos analiza cuántas roturas de urdimbre ocurrieron en diferentes tipos de telares por telar, por una longitud fija de hilo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">&lt;-</span> <span class="n">warpbreaks</span>
+<span class="n">columns</span> <span class="o">&lt;-</span> <span class="n">names</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># Extract column names from dataframe</span>
+<span class="n">columns</span> <span class="c1"># show columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">data</span> <span class="o">&lt;-</span> <span class="n">warpbreaks</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">columns</span> <span class="o">&lt;-</span> <span class="n">names</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># Extract column names from dataframe</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">columns</span> <span class="c1"># show columns</span>
+
+<span class="ne">NameError</span>: name &#39;data&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hay mediciones en 9 telares de cada uno de los seis tipos de urdimbre, para un total de 54 entradas en el conjunto de datos.</p>
+<p>Veamos cómo está estructurado el conjunto de datos usando el comando <code class="docutils literal notranslate"><span class="pre">ls.str()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="n">warpbreaks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A partir de lo anterior, podemos ver tanto los tipos como los niveles presentes en los datos. Lee esto para aprender un poco más sobre los factores en R.</p>
+<p>Ahora trabajaremos con el dataframe de datos. Recuerda, con un modelo de Distribución de Poisson estamos tratando de averiguar cómo algunas variables predictoras afectan a una variable de respuesta. Aquí, <code class="docutils literal notranslate"><span class="pre">breaks</span></code> es la variable de respuesta y <code class="docutils literal notranslate"><span class="pre">wool</span></code> y <code class="docutils literal notranslate"><span class="pre">tension</span></code> son las variables predictoras.</p>
+<p>Podemos visualizar la continuidad de los datos de la variable dependiente <code class="docutils literal notranslate"><span class="pre">breaks</span></code> creando un histograma:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>hist(data$breaks)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Claramente, los datos no tienen la forma de una curva de campana como en una distribución normal.</p>
+<p>Veamos la media (<code class="docutils literal notranslate"><span class="pre">mean()</span></code>) y la varianza (<code class="docutils literal notranslate"><span class="pre">var()</span></code>) de la variable dependiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mean(data$breaks) # calculate mean
+var(data$breaks) # calculate variance
+</pre></div>
+</div>
+</div>
+</div>
+<p>La varianza es mucho mayor que la media, lo que sugiere que tendremos sobredispersión en el modelo.</p>
+<p>Vamos a ajustar el modelo de Poisson utilizando el comando <code class="docutils literal notranslate"><span class="pre">glm()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model poisson regression using glm()</span>
+<span class="n">poisson</span><span class="o">.</span><span class="n">model</span> <span class="o">&lt;-</span> <span class="n">glm</span><span class="p">(</span><span class="n">breaks</span> <span class="o">~</span> <span class="n">wool</span> <span class="o">+</span> <span class="n">tension</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="n">poisson</span><span class="p">(</span><span class="n">link</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="p">))</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">poisson</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se nos ha proporcionado mucha información, ahora necesitamos interpretarla. La primera columna llamada <em>Estimate</em> muestra los valores de los coeficientes de <span class="math notranslate nohighlight">\(\alpha\)</span> (intercepto), <span class="math notranslate nohighlight">\(\beta_1\)</span>, y así sucesivamente. A continuación, se presenta la interpretación de las estimaciones de los parámetros:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(exp(\alpha) =\)</span> efecto sobre la media <span class="math notranslate nohighlight">\(\mu\)</span>, cuando <span class="math notranslate nohighlight">\(X = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(exp(\beta) =\)</span> con cada aumento unitario en <span class="math notranslate nohighlight">\(X\)</span>, la variable predictora tiene un efecto multiplicativo de <span class="math notranslate nohighlight">\(exp(\beta)\)</span> sobre la media de <span class="math notranslate nohighlight">\(Y\)</span>, es decir, <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\beta = 0\)</span>, entonces <span class="math notranslate nohighlight">\(exp(\beta) = 1\)</span>, y el conteo esperado es <span class="math notranslate nohighlight">\(exp(\alpha)\)</span>, y <span class="math notranslate nohighlight">\(Y\)</span> y <span class="math notranslate nohighlight">\(X\)</span> no están relacionados.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\beta &gt; 0\)</span>, entonces <span class="math notranslate nohighlight">\(exp(\beta) &gt; 1\)</span>, y el conteo esperado es <span class="math notranslate nohighlight">\(exp(\beta)\)</span> veces mayor que cuando <span class="math notranslate nohighlight">\(X = 0\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\beta &lt; 0\)</span>, entonces <span class="math notranslate nohighlight">\(exp(\beta) &lt; 1\)</span>, y el conteo esperado es <span class="math notranslate nohighlight">\(exp(\beta)\)</span> veces menor que cuando <span class="math notranslate nohighlight">\(X = 0\)</span>.</p></li>
+</ul>
+<p>Si <code class="docutils literal notranslate"><span class="pre">family</span> <span class="pre">=</span> <span class="pre">poisson</span></code> se mantiene en <code class="docutils literal notranslate"><span class="pre">glm()</span></code>, estos parámetros se calculan utilizando la Estimación de Máxima Verosimilitud (MLE).</p>
+<p>R trata las variables categóricas como variables ficticias (<em>dummy variables</em>). Las variables categóricas, también llamadas variables indicadoras, se convierten en variables ficticias asignando a los niveles en la variable una representación numérica. La regla general es que si hay <span class="math notranslate nohighlight">\(k\)</span> categorías en una variable de factor, la salida de <code class="docutils literal notranslate"><span class="pre">glm()</span></code> tendrá <span class="math notranslate nohighlight">\(k-1\)</span> categorías con 1 restante como categoría base.</p>
+<p>Podemos ver en el resumen anterior que para <code class="docutils literal notranslate"><span class="pre">wool</span></code>, ‘A’ se ha hecho la base y no se muestra en el resumen. De manera similar, para <code class="docutils literal notranslate"><span class="pre">tension</span></code> ‘L’ se ha hecho la categoría base.</p>
+<p>Para ver qué variables explicativas tienen un efecto sobre la variable de respuesta, observaremos los valores <em>p</em>. Si el <em>p</em> es menor que 0.05, entonces la variable tiene un efecto sobre la variable de respuesta. En el resumen anterior, podemos ver que todos los valores <em>p</em> son menores que 0.05, por lo tanto, ambas variables explicativas (<code class="docutils literal notranslate"><span class="pre">wool</span></code> y <code class="docutils literal notranslate"><span class="pre">tension</span></code>) tienen un efecto significativo en <code class="docutils literal notranslate"><span class="pre">breaks</span></code>. Observa cómo la salida de R utiliza *** al final de cada variable. El número de estrellas indica la significancia.</p>
+<p>Antes de comenzar a interpretar los resultados, verifiquemos si el modelo tiene sobredispersión o subdispersión. Si la Desviación Residual es mayor que los grados de libertad, entonces existe sobredispersión. Esto significa que las estimaciones son correctas, pero los errores estándar (desviación estándar) son incorrectos y no son tenidos en cuenta por el modelo.</p>
+<p>La desviación nula (<em>Null deviance</em>) muestra qué tan bien la variable de respuesta es predicha por un modelo que incluye solo el intercepto (media general), mientras que la residual lo hace con la inclusión de variables independientes. Arriba, podemos ver que la adición de 3 (53-50 =3) variables independientes disminuyó la desviación a 210.39 desde 297.37. Una mayor diferencia en los valores significa un mal ajuste.</p>
+<p>Entonces, para tener un error estándar más correcto, podemos usar un modelo <em>quasi-poisson</em>.</p>
+<p>Una vez que se ha creado el modelo, podemos usar <code class="docutils literal notranslate"><span class="pre">predict(model,</span> <span class="pre">data,</span> <span class="pre">type)</span></code> para predecir resultados utilizando nuevos <em>dataframes</em> que contengan datos diferentes a los datos de entrenamiento. Veamos un ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a dataframe with new data</span>
+<span class="n">newdata</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">wool</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">tension</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+
+<span class="c1"># use &#39;predict()&#39; to run model on new data</span>
+<span class="n">predict</span><span class="p">(</span><span class="n">poisson</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">newdata</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;response&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>jtools</em> proporciona <code class="docutils literal notranslate"><span class="pre">plot_summs()</span></code> y <code class="docutils literal notranslate"><span class="pre">plot_coefs()</span></code> para visualizar el resumen del modelo y también nos permite comparar diferentes modelos con <em>ggplot2</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_summs</span><span class="p">(</span><span class="n">poisson</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">exp</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_GLMPhyton.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelos de Poisson en Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_LGCP.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Procesos Log-Gaussian Cox</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Edier V. Aristizábal G.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

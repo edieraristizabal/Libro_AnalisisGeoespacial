@@ -1,0 +1,87 @@
+<p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes.</em></p>
+
+
+# Modelos de Poisson en R
+
+A continuación se presenta un ejemplo de Poisson homogeneo en R. Este conjunto de datos analiza cuántas roturas de urdimbre ocurrieron en diferentes tipos de telares por telar, por una longitud fija de hilo.
+
+```{r}
+data <- warpbreaks
+columns <- names(data) # Extract column names from dataframe
+columns # show columns
+```
+
+Hay mediciones en 9 telares de cada uno de los seis tipos de urdimbre, para un total de 54 entradas en el conjunto de datos.
+
+Veamos cómo está estructurado el conjunto de datos usando el comando `ls.str()`:
+
+```{r}
+ls.str(warpbreaks)
+```
+
+A partir de lo anterior, podemos ver tanto los tipos como los niveles presentes en los datos. Lee esto para aprender un poco más sobre los factores en R.
+
+Ahora trabajaremos con el dataframe de datos. Recuerda, con un modelo de Distribución de Poisson estamos tratando de averiguar cómo algunas variables predictoras afectan a una variable de respuesta. Aquí, `breaks` es la variable de respuesta y `wool` y `tension` son las variables predictoras.
+
+Podemos visualizar la continuidad de los datos de la variable dependiente `breaks` creando un histograma:
+
+```{r}
+hist(data$breaks)
+```
+
+Claramente, los datos no tienen la forma de una curva de campana como en una distribución normal.
+
+Veamos la media (`mean()`) y la varianza (`var()`) de la variable dependiente:
+
+```{r}
+mean(data$breaks) # calculate mean
+var(data$breaks) # calculate variance
+```
+
+La varianza es mucho mayor que la media, lo que sugiere que tendremos sobredispersión en el modelo.
+
+Vamos a ajustar el modelo de Poisson utilizando el comando `glm()`.
+
+```{r}
+# model poisson regression using glm()
+poisson.model <- glm(breaks ~ wool + tension, data, family = poisson(link = "log"))
+summary(poisson.model)
+```
+
+Se nos ha proporcionado mucha información, ahora necesitamos interpretarla. La primera columna llamada *Estimate* muestra los valores de los coeficientes de $\alpha$ (intercepto), $\beta_1$, y así sucesivamente. A continuación, se presenta la interpretación de las estimaciones de los parámetros:
+
+-   $exp(\alpha) =$ efecto sobre la media $\mu$, cuando $X = 0$.
+-   $exp(\beta) =$ con cada aumento unitario en $X$, la variable predictora tiene un efecto multiplicativo de $exp(\beta)$ sobre la media de $Y$, es decir, $\mu$.
+-   Si $\beta = 0$, entonces $exp(\beta) = 1$, y el conteo esperado es $exp(\alpha)$, y $Y$ y $X$ no están relacionados.
+-   Si $\beta > 0$, entonces $exp(\beta) > 1$, y el conteo esperado es $exp(\beta)$ veces mayor que cuando $X = 0$.
+-   Si $\beta < 0$, entonces $exp(\beta) < 1$, y el conteo esperado es $exp(\beta)$ veces menor que cuando $X = 0$.
+
+Si `family = poisson` se mantiene en `glm()`, estos parámetros se calculan utilizando la Estimación de Máxima Verosimilitud (MLE).
+
+R trata las variables categóricas como variables ficticias (*dummy variables*). Las variables categóricas, también llamadas variables indicadoras, se convierten en variables ficticias asignando a los niveles en la variable una representación numérica. La regla general es que si hay $k$ categorías en una variable de factor, la salida de `glm()` tendrá $k-1$ categorías con 1 restante como categoría base.
+
+Podemos ver en el resumen anterior que para `wool`, 'A' se ha hecho la base y no se muestra en el resumen. De manera similar, para `tension` 'L' se ha hecho la categoría base.
+
+Para ver qué variables explicativas tienen un efecto sobre la variable de respuesta, observaremos los valores *p*. Si el *p* es menor que 0.05, entonces la variable tiene un efecto sobre la variable de respuesta. En el resumen anterior, podemos ver que todos los valores *p* son menores que 0.05, por lo tanto, ambas variables explicativas (`wool` y `tension`) tienen un efecto significativo en `breaks`. Observa cómo la salida de R utiliza \*\*\* al final de cada variable. El número de estrellas indica la significancia.
+
+Antes de comenzar a interpretar los resultados, verifiquemos si el modelo tiene sobredispersión o subdispersión. Si la Desviación Residual es mayor que los grados de libertad, entonces existe sobredispersión. Esto significa que las estimaciones son correctas, pero los errores estándar (desviación estándar) son incorrectos y no son tenidos en cuenta por el modelo.
+
+La desviación nula (*Null deviance*) muestra qué tan bien la variable de respuesta es predicha por un modelo que incluye solo el intercepto (media general), mientras que la residual lo hace con la inclusión de variables independientes. Arriba, podemos ver que la adición de 3 (53-50 =3) variables independientes disminuyó la desviación a 210.39 desde 297.37. Una mayor diferencia en los valores significa un mal ajuste.
+
+Entonces, para tener un error estándar más correcto, podemos usar un modelo *quasi-poisson*.
+
+Una vez que se ha creado el modelo, podemos usar `predict(model, data, type)` para predecir resultados utilizando nuevos *dataframes* que contengan datos diferentes a los datos de entrenamiento. Veamos un ejemplo.
+
+```{r}
+# make a dataframe with new data
+newdata = data.frame(wool = "B", tension = "M")
+
+# use 'predict()' to run model on new data
+predict(poisson.model, newdata = newdata, type = "response")
+```
+
+*jtools* proporciona `plot_summs()` y `plot_coefs()` para visualizar el resumen del modelo y también nos permite comparar diferentes modelos con *ggplot2*.
+
+```{r}
+plot_summs(poisson.model, scale = TRUE, exp = TRUE)
+```

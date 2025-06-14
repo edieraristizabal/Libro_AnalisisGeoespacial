@@ -1,0 +1,1787 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Bases de datos geoespaciales &#8212; Análisis Geoespacial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '18_DB';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Modelo GLM de Poisson no-homogéneo" href="17_LGCP.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_LGCP.html">Modelo GLM de Poisson no-homogéneo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bases de datos geoespaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial/issues/new?title=Issue%20on%20page%20%2F18_DB.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/18_DB.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bases de datos geoespaciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis">PostGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis-y-qgis">PostGIS y QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-importar-en-qgis-desde-postgis">Para importar en QGIS desde PostGIS:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mongodb">MongoDB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mongodb-con-python">MongoDB con Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-connection">Local connection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-server-connection">External server connection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrar-el-vecindario-actual">Encontrar el Vecindario Actual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restaurantes-en-1km-alrededor">Restaurantes en 1km alrededor</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://towardsdatascience.com/analyzing-houses-for-rent-in-mumbai-using-qgis-and-postgis-functions-7383e4223d0d">Aveek Das</a>, <a href="https://towardsdatascience.com/using-mongodb-with-python-bcb26bf25d5d">Halil Yildirim</a>, <a href="https://ramya-n.medium.com/mongodb-nosql-and-python-25b4956a591">Ramya N</a>, <a href="https://docs.mongodb.com/manual/tutorial/geospatial-tutorial/">JMongoDB Manual,</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="bases-de-datos-geoespaciales">
+<h1>Bases de datos geoespaciales<a class="headerlink" href="#bases-de-datos-geoespaciales" title="Permalink to this heading">#</a></h1>
+<p>Cuando hablamos de bases de datos (DB), hay una base de datos común que viene a la mente: SQL. Esta es una base de datos relacional. Básicamente, utilizan tablas para describir la relación entre los datos.</p>
+<p>Por otro lado, están las bases de datos NoSQL (Non Structured Query Language), que no utilizan tablas para describir la relación, sino que pueden utilizar documentos, pares clave-valor, etc. Además, a diferencia de SQL, tienen un esquema dinámico, mientras que SQL tiene un esquema bien definido.</p>
+<img src="https://miro.medium.com/max/700/1*98K4cB09UMCRzJ1z0zjfKA.png" width="800">
+<img src="https://miro.medium.com/max/700/1*-Lhv-pYR57piGWuZb6Bz3w.png" width="800"><p>El conjunto de datos <strong>Mumbai House Price</strong> de Kaggle contiene detalles de varios apartamentos ubicados en la ciudad de Mumbai.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the house price data</span>
+<span class="n">df_house_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/aveek22/cs621-spatial-db/master/dataset/house_price_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_house_price</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>id_string</th>
+      <th>city</th>
+      <th>locality</th>
+      <th>project</th>
+      <th>dev_name</th>
+      <th>furnishing</th>
+      <th>area</th>
+      <th>bathroom_num</th>
+      <th>bedroom_num</th>
+      <th>...</th>
+      <th>longitude</th>
+      <th>post_date</th>
+      <th>poster_name</th>
+      <th>price</th>
+      <th>title</th>
+      <th>trans</th>
+      <th>type</th>
+      <th>url</th>
+      <th>user_type</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45349857</td>
+      <td>domcache_srp_45349857</td>
+      <td>Mumbai</td>
+      <td>Malad West</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Unfurnished</td>
+      <td>350.0</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>72.825882</td>
+      <td>11/01/20</td>
+      <td>Saurabh Patil</td>
+      <td>9000</td>
+      <td>1 BHK Apartment for Rent in Malad West</td>
+      <td>Rent</td>
+      <td>Apartment</td>
+      <td>/propertyDetails/1-BHK-350-Sq-ft-Multistorey-A...</td>
+      <td>Agent</td>
+      <td>2 Bath,Unfurnished,East facing The project has...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>45960973</td>
+      <td>domcache_srp_45960973</td>
+      <td>Mumbai</td>
+      <td>Vasai</td>
+      <td>Veena Dynasty</td>
+      <td>Veena Group</td>
+      <td>Semi-Furnished</td>
+      <td>652.0</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>72.833592</td>
+      <td>11/01/20</td>
+      <td>Gorakh  Chavan</td>
+      <td>8060</td>
+      <td>1 BHK Apartment for Rent in Veena Dynasty, Vasai</td>
+      <td>Rent</td>
+      <td>Apartment</td>
+      <td>/propertyDetails/1-BHK-652-Sq-ft-Multistorey-A...</td>
+      <td>Agent</td>
+      <td>2 Bath,Semi-Furnished,East facing A 1BHK apart...</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_house_price</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(34348, 23)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for NULL values within the dataset</span>
+<span class="n">df_house_price</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id                  0
+id_string           0
+city                0
+locality          208
+project         14169
+dev_name        16999
+furnishing         10
+area              776
+bathroom_num       14
+bedroom_num         0
+floor_count      2860
+floor_num        2781
+latitude            0
+longitude           0
+post_date           0
+poster_name         1
+price               0
+title              10
+trans              30
+type                0
+url                10
+user_type           0
+desc               10
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To keep things simple, we will start by removing the fields that have NULL values</span>
+<span class="c1"># Prepare a list of columns to be dropped</span>
+<span class="n">list_columns_dropped</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id_string&#39;</span><span class="p">,</span><span class="s1">&#39;project&#39;</span><span class="p">,</span><span class="s1">&#39;dev_name&#39;</span><span class="p">,</span><span class="s1">&#39;furnishing&#39;</span><span class="p">,</span><span class="s1">&#39;area&#39;</span><span class="p">,</span><span class="s1">&#39;post_date&#39;</span><span class="p">,</span><span class="s1">&#39;bathroom_num&#39;</span><span class="p">,</span><span class="s1">&#39;floor_count&#39;</span><span class="p">,</span><span class="s1">&#39;floor_num&#39;</span><span class="p">,</span><span class="s1">&#39;poster_name&#39;</span><span class="p">,</span><span class="s1">&#39;trans&#39;</span><span class="p">,</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+<span class="n">df_house_price</span> <span class="o">=</span> <span class="n">df_house_price</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">list_columns_dropped</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_house_price</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>city</th>
+      <th>locality</th>
+      <th>bedroom_num</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>price</th>
+      <th>title</th>
+      <th>type</th>
+      <th>user_type</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45349857</td>
+      <td>Mumbai</td>
+      <td>Malad West</td>
+      <td>1</td>
+      <td>19.201336</td>
+      <td>72.825882</td>
+      <td>9000</td>
+      <td>1 BHK Apartment for Rent in Malad West</td>
+      <td>Apartment</td>
+      <td>Agent</td>
+      <td>2 Bath,Unfurnished,East facing The project has...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>45960973</td>
+      <td>Mumbai</td>
+      <td>Vasai</td>
+      <td>1</td>
+      <td>19.410704</td>
+      <td>72.833592</td>
+      <td>8060</td>
+      <td>1 BHK Apartment for Rent in Veena Dynasty, Vasai</td>
+      <td>Apartment</td>
+      <td>Agent</td>
+      <td>2 Bath,Semi-Furnished,East facing A 1BHK apart...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the pandas dataframe to a geopandas dataframe</span>
+<span class="c1"># This will make a geometry column based on the latitude and longitude</span>
+<span class="n">gdf_house_price</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df_house_price</span><span class="p">,</span> <span class="n">geometry</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df_house_price</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span> <span class="n">df_house_price</span><span class="o">.</span><span class="n">latitude</span><span class="p">),</span>  <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="n">gdf_house_price</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>city</th>
+      <th>locality</th>
+      <th>bedroom_num</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>price</th>
+      <th>title</th>
+      <th>type</th>
+      <th>user_type</th>
+      <th>desc</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45349857</td>
+      <td>Mumbai</td>
+      <td>Malad West</td>
+      <td>1</td>
+      <td>19.201336</td>
+      <td>72.825882</td>
+      <td>9000</td>
+      <td>1 BHK Apartment for Rent in Malad West</td>
+      <td>Apartment</td>
+      <td>Agent</td>
+      <td>2 Bath,Unfurnished,East facing The project has...</td>
+      <td>POINT (72.82588 19.20134)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>45960973</td>
+      <td>Mumbai</td>
+      <td>Vasai</td>
+      <td>1</td>
+      <td>19.410704</td>
+      <td>72.833592</td>
+      <td>8060</td>
+      <td>1 BHK Apartment for Rent in Veena Dynasty, Vasai</td>
+      <td>Apartment</td>
+      <td>Agent</td>
+      <td>2 Bath,Semi-Furnished,East facing A 1BHK apart...</td>
+      <td>POINT (72.83359 19.41070)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_house_price</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;gdf_house_price.shp&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;init&#39;</span> <span class="p">:</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Local\Temp\ipykernel_2536\2874051873.py:1: UserWarning: Column names longer than 10 characters will be truncated when saved to ESRI Shapefile.
+  gdf_house_price.to_file(&quot;gdf_house_price.shp&quot;, crs={&#39;init&#39; :&#39;epsg:4326&#39;})
+C:\Users\edier\miniconda3\Lib\site-packages\pyproj\crs\crs.py:141: FutureWarning: &#39;+init=&lt;authority&gt;:&lt;code&gt;&#39; syntax is deprecated. &#39;&lt;authority&gt;:&lt;code&gt;&#39; is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  in_crs_string = _prepare_from_proj_string(in_crs_string)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">gdf_house_price</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;gdf_house_price.shp&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;init&#39;</span> <span class="p">:</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">})</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:1263,</span> in <span class="ni">GeoDataFrame.to_file</span><span class="nt">(self, filename, driver, schema, index, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1172</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Write the ``GeoDataFrame`` to a file.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1173</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1174</span><span class="sd"> By default, an ESRI shapefile is written, but any OGR data source</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1259</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1260</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1261</span> <span class="kn">from</span> <span class="nn">geopandas.io.file</span> <span class="kn">import</span> <span class="n">_to_file</span>
+<span class="ne">-&gt; </span><span class="mi">1263</span> <span class="n">_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:572,</span> in <span class="ni">_to_file</span><span class="nt">(df, filename, driver, schema, index, mode, crs, engine, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;mode&#39; should be one of &#39;w&#39; or &#39;a&#39;, got &#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&#39; instead&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span> <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;fiona&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>     <span class="n">_to_file_fiona</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> <span class="k">elif</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;pyogrio&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="n">_to_file_pyogrio</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:601,</span> in <span class="ni">_to_file_fiona</span><span class="nt">(df, filename, driver, schema, crs, mode, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span>     <span class="n">crs_wkt</span> <span class="o">=</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_wkt</span><span class="p">(</span><span class="s2">&quot;WKT1_GDAL&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">598</span> <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>     <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span> <span class="n">crs_wkt</span><span class="o">=</span><span class="n">crs_wkt</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span> <span class="p">)</span> <span class="k">as</span> <span class="n">colxn</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">601</span>     <span class="n">colxn</span><span class="o">.</span><span class="n">writerecords</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iterfeatures</span><span class="p">())</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\fiona\collection.py:558,</span> in <span class="ni">Collection.writerecords</span><span class="nt">(self, records)</span>
+<span class="g g-Whitespace">    </span><span class="mi">556</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;collection not open for writing&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">558</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">writerecs</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span> <span class="bp">self</span><span class="o">.</span><span class="n">_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bounds</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File fiona\ogrext.pyx:1392,</span> in <span class="ni">fiona.ogrext.WritingSession.writerecs</span><span class="nt">()</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:950,</span> in <span class="ni">GeoDataFrame.iterfeatures</span><span class="nt">(self, na, show_bbox, drop_id)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Feature&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">properties_items</span>
+<span class="ne">--&gt; </span><span class="mi">950</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span> <span class="k">if</span> <span class="n">geom</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">952</span> <span class="k">if</span> <span class="n">show_bbox</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">953</span>     <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">bounds</span> <span class="k">if</span> <span class="n">geom</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\geo.py:136,</span> in <span class="ni">mapping</span><span class="nt">(ob)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="k">def</span> <span class="nf">mapping</span><span class="p">(</span><span class="n">ob</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span><span class="sd">     Returns a GeoJSON-like mapping from a Geometry or any</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span><span class="sd">     object which implements __geo_interface__</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span><span class="sd">     {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: (0.0, 0.0)}</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">136</span>     <span class="k">return</span> <span class="n">ob</span><span class="o">.</span><span class="n">__geo_interface__</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\point.py:105,</span> in <span class="ni">Point.__geo_interface__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="nd">@property</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="k">def</span> <span class="nf">__geo_interface__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">105</span>     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span> <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\base.py:206,</span> in <span class="ni">BaseGeometry.coords</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span> <span class="nd">@property</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Access to geometry&#39;s coordinates (CoordinateSequence)&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">206</span>     <span class="n">coords_array</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">get_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_z</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">has_z</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">return</span> <span class="n">CoordinateSequence</span><span class="p">(</span><span class="n">coords_array</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\base.py:607,</span> in <span class="ni">BaseGeometry.has_z</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span> <span class="nd">@property</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="k">def</span> <span class="nf">has_z</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">605</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;True if the geometry&#39;s coordinate sequence(s) have z values (are</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span><span class="sd">     3-dimensional)&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">607</span>     <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">shapely</span><span class="o">.</span><span class="n">has_z</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\decorators.py:77,</span> in <span class="ni">multithreading_enabled.&lt;locals&gt;.wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">array_args</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>         <span class="n">arr</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">writeable</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">---&gt; </span><span class="mi">77</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="k">for</span> <span class="n">arr</span><span class="p">,</span> <span class="n">old_flag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">array_args</span><span class="p">,</span> <span class="n">old_flags</span><span class="p">):</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\predicates.py:69,</span> in <span class="ni">has_z</span><span class="nt">(geometry, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="nd">@multithreading_enabled</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="k">def</span> <span class="nf">has_z</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Returns True if a geometry has a Z coordinate.</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span><span class="sd">     Note that this function returns False if the (first) Z coordinate equals NaN or</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span><span class="sd">     False</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">69</span>     <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">has_z</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<section id="postgis">
+<h2>PostGIS<a class="headerlink" href="#postgis" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://postgis.net/">PostGIS</a> es una extensión espacial para la base de datos relacional de objetos PostgreSQL. Agrega soporte para objetos geográficos, lo que permite ejecutar consultas de ubicación en SQL.</p>
+<p>Al instalar <a class="reference external" href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">PostgreSQL</a> no es necesario cambiar ninguna de las configuraciones predeterminadas. Si olvidas tu contraseña, no tendrás acceso a tu servidor de PostgreSQL.</p>
+<p><a class="reference external" href="https://www.pgadmin.org/">pgAdmin</a> es una plataforma de código abierto muy popular, completamente dedicada a PostgreSQL, que cuenta con herramientas de administración con interfaz gráfica para gestionar tus bases de datos relacionales. Algunas características incluyen una herramienta de consulta para sentencias SQL y la importación/exportación de archivos CSV.</p>
+<center><img src="https://miro.medium.com/max/700/1*ntE29xgOXvt1F6tjQ6jnqg.png" width="1000"></center><p>En el lado izquierdo, puedes crear una base de datos haciendo clic derecho en <strong>Create</strong> –&gt; <strong>Database…</strong></p>
+<p>Para crear una tabla dentro de la base de datos, solo necesitas hacer clic derecho en <strong>Schemas</strong> –&gt; <strong>Tables</strong> –&gt; <strong>Create</strong> y luego en <strong>Table</strong>. También es posible crear una tabla desde SQL, simplemente debes hacer clic derecho en la base de datos y seleccionar <strong>Query Tool</strong>. Se abrirá una pestaña llamada editor de consultas a la derecha. Puedes escribir sentencias SQL y hacer clic en el botón de ejecución (play) para ejecutarlas. Los resultados se mostrarán debajo del editor en la pestaña <strong>Data Output</strong>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">prueba2</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="n">geometry</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Ahora que has creado una tabla, visualízala bajo el objeto <strong>Tables</strong>. Haz clic derecho y selecciona <strong>Refresh</strong> si no se ha actualizado.</p>
+<center><img src="https://miro.medium.com/max/700/1*VyATqg7Y-xGmt2gccDQvig.png" width="1000"></center><p>Using the Query Tool, it is needed to create the extension Postgis in the new database with the following statement:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="n">postgis</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Ahora que tenemos todo el conjunto de datos en formato .shp, podemos importarlo fácilmente a PostGIS y visualizarlo. Para importar archivos .shp en PostGIS, necesitamos abrir PostGIS Bundle 3. Después de establecer la conexión con la base de datos, solo necesitamos <em>Agregar archivo</em> y <em>importar</em>.</p>
+<p>Para seleccionar columnas:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">gdf_house_price</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Para poder ver el filtro se usa <em>Geometry Viewer</em></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">gdf_house_price</span><span class="w">          </span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;Apartment&#39;</span><span class="w">  </span>
+</pre></div>
+</div>
+</section>
+<section id="postgis-y-qgis">
+<h2>PostGIS y QGIS<a class="headerlink" href="#postgis-y-qgis" title="Permalink to this heading">#</a></h2>
+<p>Primero, importemos OpenStreetMap en QGIS como capa de fondo.</p>
+<p>Web → QuickMapServices → OSM → OSM Standard.</p>
+<center><img src="https://miro.medium.com/max/700/0*F-uCcg_sfehMEtDq" width="1000"></center>
+<section id="para-importar-en-qgis-desde-postgis">
+<h3>Para importar en QGIS desde PostGIS:<a class="headerlink" href="#para-importar-en-qgis-desde-postgis" title="Permalink to this heading">#</a></h3>
+<p>Para importar capas desde PostGIS en QGIS, primero se debe establecer una conexión. Esta conexión se puede establecer a través del navegador en el ícono de PostGIS haciendo clic derecho o desde <strong>Layer</strong> → <strong>Add Layer</strong> → <strong>Add PostGIS Layers</strong>. Necesitas proporcionar un nombre para tu conexión y el nombre de la base de datos a la que deseas conectarte. Si todo está correcto, QGIS leerá todas las tablas espaciales en la carpeta Public y podrás abrirlas en QGIS.</p>
+<center><img src="https://miro.medium.com/max/700/0*4N8LOxXVN5nIluZk" width="1000"></center>
+<p>Todos los puntos de datos de la tabla de PostgreSQL ahora se cargarán en la capa de QGIS y los puntos se representarán en el mapa.</p>
+<center><img src="https://miro.medium.com/max/700/0*KY2yFX_IGdsyYbhv" width="1000"></center>
+<p>Como puedes ver en el gráfico anterior, hay más de 30,000 apartamentos que se han mostrado en el mapa. Sin embargo, sería interesante ver cómo varía el rango de precios de estos apartamentos con respecto a la localidad. Básicamente, estamos tratando de responder si la localidad tiene un impacto en los precios de las viviendas.</p>
+<p>Para esto, hemos dividido los precios de las viviendas en 3 categorías como se indica a continuación:</p>
+<ul class="simple">
+<li><p>Menos de 20K</p></li>
+<li><p>De 20K a 40K</p></li>
+<li><p>Más de 40K</p></li>
+</ul>
+<p>Voy a agregar una columna en la tabla de PostgreSQL y actualizarla con la información relevante sobre las categorías.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">mumbai_house_price_raw</span>
+<span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">house_price_category</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">mumbai_house_price_raw</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">house_price_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20000</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Below 20K&#39;</span>
+<span class="w">								</span><span class="k">WHEN</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">20000</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">40000</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;20K - 40K&#39;</span>
+<span class="w">								</span><span class="k">WHEN</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">40000</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Above 50K&#39;</span>
+<span class="k">END</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now, we need to refresh the layer that we have already fetched in QGIS. This will bring the new column ‘house_price_category’ that we have just created. Once the new column is in the layer, the next step is to display the points on the map based on this category.</p>
+<p>Right-click Layer → Properties → Symbology → Categorize → Value = house_price_category → Color Ramp = Create Manual Color Ramp for 3 categories → Classify.</p>
+<center><img src="https://miro.medium.com/max/700/0*XX35OZPLpbTLDA5n" width="1000"></center>
+<p>This will categorize all the points on the map into three bins and it will look like below.</p>
+<center><img src="https://miro.medium.com/max/700/0*4JLWBVEmCKdln9Eg" width="1000"></center>
+<p>From the above analysis, now we have an idea about what our budget should be while searching for a home in the city of Mumbai. While few of the houses are below 40K (green and blue), most of the houses are priced above 40K (red). To verify the above observation, I did a quick check using SQL to find the number of apartments in each of the categories.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">house_price_category</span><span class="p">,</span>
+<span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">number_houses</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mumbai_house_price_raw</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">house_price_category</span><span class="p">;</span>
+</pre></div>
+</div>
+<center><img src="https://miro.medium.com/max/690/0*a_BknTCV4dMWD8cI" width="600"></center>
+<p>As it can be verified, there are almost around 20K+ apartments in the range above 50K. So, if we keep the budget high, the chances of leasing a better apartment is more.</p>
+<p>Now we are going to create a query in PostgreSQL that will filter the names of the buildings within 5km radius of the airport (Lon: 72.874374, Lat: 19.096713), and create and store this in a view. Fetch the view created in the previous step into QGIS and plot the apartments.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">vw_mumbai_houses_airport_5km</span>
+<span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mumbai_house_price_raw</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">ST_DISTANCE</span><span class="p">(</span>
+<span class="w">	</span><span class="n">ST_TRANSFORM</span><span class="p">(</span><span class="n">ST_GEOMFROMTEXT</span><span class="p">(</span><span class="s1">&#39;POINT(72.874374 19.096713)&#39;</span><span class="p">,</span><span class="mi">4326</span><span class="p">),</span><span class="w"> </span><span class="mi">7755</span><span class="p">),</span>
+<span class="w">	</span><span class="n">ST_TRANSFORM</span><span class="p">((</span><span class="n">geometry</span><span class="p">),</span><span class="mi">7755</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El siguiente es el gráfico de todos los apartamentos dentro de un rango de 5 km del aeropuerto.</p>
+<center><img src="https://miro.medium.com/max/700/0*9m2JNi5kPxm3Rmsl" width="1000"></center><p>En QGIS, es posible usar SQL para generar consultas y crear vistas. QGIS –&gt; Database –&gt; DB Manager.</p>
+</section>
+</section>
+<section id="mongodb">
+<h2>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.mongodb.com/">MongoDB</a> es una base de datos NoSQL orientada a documentos utilizada para el almacenamiento de grandes volúmenes de datos, lo que significa que almacena datos en formato BSON. BSON es JSON Binario (Binary JSON - JavaScript Object Notation). Así que los documentos son el formato binario de objetos JSON. En lugar de usar tablas y filas como en las bases de datos relacionales tradicionales, MongoDB utiliza colecciones y documentos. Los documentos consisten en pares clave-valor, que son la unidad básica de datos en MongoDB. Las colecciones contienen conjuntos de documentos y funcionan como el equivalente de las tablas en una base de datos relacional.</p>
+<p>Cada base de datos contiene colecciones que, a su vez, contienen documentos. Cada documento puede ser diferente, con un número variable de campos. El tamaño y contenido de cada documento puede ser diferente entre sí.</p>
+<p>El campo <em>_id</em> es obligatorio en cada documento de MongoDB. El campo _id representa un valor único en el documento de MongoDB. El campo _id es como la clave primaria del documento. Si creas un nuevo documento sin un campo _id, MongoDB creará automáticamente el campo. Por ejemplo, si observamos el ejemplo de la tabla de clientes anterior, MongoDB añadirá un identificador único de 24 dígitos a cada documento en la colección.</p>
+<p><em>Documento</em>: MongoDB es una base de datos de documentos, lo que significa que cada registro en una colección es un documento.</p>
+<p><em>Colección</em>: es un conjunto de documentos de MongoDB. Una colección es el equivalente de una tabla que se crea en otros sistemas de bases de datos relacionales (RDMS), como Oracle o MS SQL. Una colección existe dentro de una sola base de datos. Como se mencionó en la introducción, las colecciones no imponen ningún tipo de estructura.</p>
+<p><em>Base de datos</em>: es un contenedor de colecciones, similar a los RDMS donde es un contenedor para tablas. Cada base de datos obtiene su propio conjunto de archivos en el sistema de archivos. Un servidor de MongoDB puede almacenar múltiples bases de datos.</p>
+<p>Existen tres formas de comunicarse con MongoDB:</p>
+<ul class="simple">
+<li><p>Mongo Shell</p></li>
+<li><p>Python</p></li>
+<li><p>MongoDB Compass</p></li>
+</ul>
+<p>Conectemos a MongoDB usando Python.</p>
+<p><a class="reference external" href="https://docs.mongodb.com/manual/tutorial/geospatial-tutorial/">Tutorial</a></p>
+<section id="mongodb-con-python">
+<h3>MongoDB con Python<a class="headerlink" href="#mongodb-con-python" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymongo
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymongo
+  Downloading pymongo-3.12.0-cp39-cp39-win_amd64.whl (397 kB)
+Installing collected packages: pymongo
+Successfully installed pymongo-3.12.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymongo</span>
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="local-connection">
+<h3>Local connection<a class="headerlink" href="#local-connection" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:27017/&#39;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">Geospatial</span>
+<span class="n">prueba</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">prueba</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si ya tenemos la base de datos, pero está almacenada localmente, aquí te mostramos cómo acceder a ella en Python. Necesitaríamos importar <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> y <code class="docutils literal notranslate"><span class="pre">MongoClient</span></code>, luego acceder a nuestra base de datos y, finalmente, a la colección que queremos. Aquí, nuestra colección actual, <em>restaurants</em>, ahora se guarda como la variable llamada <em>rest</em>, y en este punto podemos iterar sobre ella como deseemos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mondongos&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;Unal&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.results.InsertOneResult at 0x1efc3a34140&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">prueba</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;61367f9e8dd03350c29d7785&#39;), &#39;name&#39;: &#39;Mondongos&#39;, &#39;location&#39;: &#39;Unal&#39;}
+{&#39;_id&#39;: ObjectId(&#39;613680848dd03350c29d7788&#39;), &#39;name&#39;: &#39;Mondongos&#39;, &#39;location&#39;: &#39;Unal&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="external-server-connection">
+<h3>External server connection<a class="headerlink" href="#external-server-connection" title="Permalink to this heading">#</a></h3>
+<p>Después de configurar tu cuenta en MongoDB, haz clic en el botón <em>connect</em> en el panel de control, luego selecciona <em>connect your application</em> y elige <em>Python driver</em>. Verás tu cadena de conexión allí, cópiala.</p>
+<p>No olvides reemplazar los marcadores <em>admin</em> y <em>password</em> con tu nombre de usuario y contraseña que creaste al configurar un usuario. Ten en cuenta que este usuario no es el que usaste al registrarte, es el usuario que creaste después de crear un clúster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uri</span><span class="o">=</span> <span class="s2">&quot;mongodb://edier:M********8@cluster0-shard-00-00.rqn4t.gcp.mongodb.net:27017,cluster0-shard-00-01.rqn4t.gcp.mongodb.net:27017,cluster0-shard-00-02.rqn4t.gcp.mongodb.net:27017/Geospatial?ssl=true&amp;replicaSet=atlas-hup4mf-shard-0&amp;authSource=admin&amp;retryWrites=true&amp;w=majority&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">Geospatial</span>
+<span class="n">prueba</span><span class="o">=</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;prueba&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">list_database_names</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Geospatial&#39;, &#39;Landslides&#39;, &#39;PAE&#39;, &#39;prueba&#39;, &#39;admin&#39;, &#39;local&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">list_collection_names</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>insert_one(): insert_one() inserts a single document into a collection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mondongos&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;la 80&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.results.InsertOneResult at 0x7fbb8de12280&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba</span><span class="o">.</span><span class="n">find_one</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6084724e48673efb49afbe72&#39;),
+ &#39;name&#39;: &#39;Mondongos&#39;,
+ &#39;location&#39;: &#39;la 80&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>insert_many(): insert_many() inserts multiple documents into a collection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span>
+   <span class="p">[</span>
+     <span class="p">{</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jeorge&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">},</span>
+     <span class="p">{</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">},</span>
+     <span class="p">{</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="mi">250</span><span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.results.InsertManyResult at 0x7fbaa9a85300&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>find(): find() function will return with all the documents in that collection. By default it returns a cursor object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prueba</span><span class="o">.</span><span class="n">find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7fba9956b490&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">prueba</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6084724e48673efb49afbe72&#39;), &#39;name&#39;: &#39;Mondongos&#39;, &#39;location&#39;: &#39;la 80&#39;}
+{&#39;_id&#39;: ObjectId(&#39;6084727048673efb49afbe73&#39;), &#39;name&#39;: &#39;Jeorge&#39;, &#39;location&#39;: 70}
+{&#39;_id&#39;: ObjectId(&#39;6084727048673efb49afbe74&#39;), &#39;name&#39;: &#39;Steve&#39;, &#39;location&#39;: 100}
+{&#39;_id&#39;: ObjectId(&#39;6084727048673efb49afbe75&#39;), &#39;name&#39;: &#39;David&#39;, &#39;location&#39;: 250}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;David&#39;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prueba</span><span class="o">.</span><span class="n">find_one</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6084727048673efb49afbe75&#39;), &#39;name&#39;: &#39;David&#39;, &#39;location&#39;: 250}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_document</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;$set&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Juan&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="s1">&#39;250&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">update_post</span> <span class="o">=</span> <span class="n">prueba</span><span class="o">.</span><span class="n">update_one</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">upsert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">update_post</span><span class="o">.</span><span class="n">matched_count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">updated_document</span> <span class="o">=</span> <span class="n">prueba</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Juan&#39;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">updated_document</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6084727048673efb49afbe75&#39;), &#39;name&#39;: &#39;Juan&#39;, &#39;location&#39;: &#39;250&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">del_document</span> <span class="o">=</span> <span class="n">prueba</span><span class="o">.</span><span class="n">delete_one</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Juan&#39;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">del_document</span><span class="o">.</span><span class="n">deleted_count</span><span class="p">)</span>  <span class="c1"># output: 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">prueba</span><span class="o">.</span><span class="n">find</span><span class="p">())</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>name</th>
+      <th>location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6084724e48673efb49afbe72</td>
+      <td>Mondongos</td>
+      <td>la 80</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6084727048673efb49afbe73</td>
+      <td>Jeorge</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/mongodb/docs-assets/geospatial/restaurants.json&#39;</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>location</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>{'$oid': '55cba2476c522cafdb053add'}</td>
+      <td>{'coordinates': [-73.856077, 40.848447], 'type...</td>
+      <td>Morris Park Bake Shop</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>{'$oid': '55cba2476c522cafdb053ade'}</td>
+      <td>{'coordinates': [-73.961704, 40.662942], 'type...</td>
+      <td>Wendy'S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;location&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">location</span><span class="p">}</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">dic</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurants</span><span class="o">=</span><span class="n">client</span><span class="p">[</span><span class="s1">&#39;Geospatial&#39;</span><span class="p">][</span><span class="s1">&#39;restaurants&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurants</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.results.InsertManyResult at 0x7fbaa09b09c0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurants</span><span class="o">.</span><span class="n">count_documents</span><span class="p">({})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25359
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurants</span><span class="o">.</span><span class="n">create_index</span><span class="p">([(</span><span class="s2">&quot;location&quot;</span><span class="p">,</span><span class="n">pymongo</span><span class="o">.</span><span class="n">GEOSPHERE</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;location_2dsphere&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurants</span><span class="o">.</span><span class="n">find_one</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af5b5b&#39;),
+ &#39;name&#39;: &#39;Morris Park Bake Shop&#39;,
+ &#39;location&#39;: {&#39;coordinates&#39;: [-73.856077, 40.848447], &#39;type&#39;: &#39;Point&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/mongodb/docs-assets/geospatial/neighborhoods.json&#39;</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>geometry</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>{'$oid': '55cb9c666c522cafdb053a1a'}</td>
+      <td>{'coordinates': [[[-73.94193078816193, 40.7007...</td>
+      <td>Bedford</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>{'$oid': '55cb9c666c522cafdb053a1b'}</td>
+      <td>{'coordinates': [[[-73.94732672160579, 40.6291...</td>
+      <td>Midwood</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;location&#39;</span><span class="p">:</span><span class="n">data</span><span class="o">.</span><span class="n">geometry</span><span class="p">}</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">dic</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new collection instance from Geospatial</span>
+<span class="n">neighborhoods</span><span class="o">=</span><span class="n">client</span><span class="p">[</span><span class="s1">&#39;Geospatial&#39;</span><span class="p">][</span><span class="s1">&#39;neighborhoods&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhoods</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.results.InsertManyResult at 0x7fbab15c5100&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhoods</span><span class="o">.</span><span class="n">count_documents</span><span class="p">({})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>195
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="encontrar-el-vecindario-actual">
+<h3>Encontrar el Vecindario Actual<a class="headerlink" href="#encontrar-el-vecindario-actual" title="Permalink to this heading">#</a></h3>
+<p>Supongamos que el usuario se encuentra en la longitud -73.93414657 y latitud 40.82302903. Para encontrar el vecindario actual, debes especificar un punto utilizando el campo especial <em>$geometry</em> en formato GeoJSON:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bson.son</span> <span class="kn">import</span> <span class="n">SON</span>
+<span class="n">query1</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$geoIntersects&quot;</span><span class="p">:</span> <span class="n">SON</span><span class="p">([(</span><span class="s2">&quot;$geometry&quot;</span><span class="p">,</span> <span class="n">SON</span><span class="p">([(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;Point&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;coordinates&quot;</span><span class="p">,</span> <span class="p">[</span> <span class="o">-</span><span class="mf">73.93414657</span><span class="p">,</span> <span class="mf">40.82302903</span> <span class="p">]</span> <span class="p">)]))])}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">barrio</span><span class="o">=</span><span class="n">neighborhoods</span><span class="o">.</span><span class="n">find_one</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">barrio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608474f648673efb49afbe76&#39;), &#39;name&#39;: &#39;Bedford&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [[[-73.94193078816193, 40.70072523469547], [-73.9443878859649, 40.70042452378256], [-73.94424286147482, 40.69969927964773], [-73.94409591260093, 40.69897295461309], [-73.94394947271304, 40.69822127983908], [-73.94391750192877, 40.69805620211356], [-73.94380383211836, 40.697469265449826], [-73.94378455587042, 40.6973697290538], [-73.94374306706803, 40.69715549995503], [-73.9437245356891, 40.697059812179496], [-73.94368427322361, 40.696851909818065], [-73.9436842703752, 40.69685189440415], [-73.94363806934868, 40.69661331854307], [-73.94362121369004, 40.696526279661654], [-73.9435563415296, 40.69619128295102], [-73.94354024149403, 40.6961081421151], [-73.94352527471477, 40.69603085523812], [-73.94338802084431, 40.69528899051899], [-73.943242490861, 40.694557485733355], [-73.94312826743185, 40.693967038330925], [-73.94311427813774, 40.693894720557466], [-73.94310040895432, 40.69382302905847], [-73.94295136131598, 40.69309078423585], [-73.94280765181726, 40.692357794128945], [-73.94266181801652, 40.69162434435983], [-73.94251587928605, 40.69089200097073], [-73.94236932748694, 40.690159944665304], [-73.94222203471806, 40.68942797886745], [-73.94207684924385, 40.68869720298344], [-73.9419324508184, 40.687962958755094], [-73.94178527584324, 40.687228372121126], [-73.94163933150469, 40.68649727009258], [-73.94149491757346, 40.68576452882908], [-73.94134827184915, 40.685031202512505], [-73.94120399291621, 40.68429983923358], [-73.94105783787931, 40.68356687284592], [-73.94091334273119, 40.682833617234294], [-73.94076893329961, 40.68210083903887], [-73.94062005382186, 40.68137013010259], [-73.94047635005941, 40.680635695422964], [-73.94032793962053, 40.67988997506463], [-73.94120864299748, 40.67993835375214], [-73.94326176928655, 40.68005060712657], [-73.94397347805013, 40.680088128426995], [-73.94627470970092, 40.68021332692951], [-73.94674915979888, 40.680239661363046], [-73.9477302355664, 40.680291846282316], [-73.9495568871113, 40.68039040292329], [-73.95115828512961, 40.68047861480679], [-73.95155682676496, 40.680498847575564], [-73.95337017508861, 40.68064050844431], [-73.95351616791015, 40.68138260047889], [-73.95366256227194, 40.68211490361348], [-73.95380893530668, 40.68284800827331], [-73.95395453033524, 40.68358077882069], [-73.95410042574005, 40.684313107633436], [-73.95424647696164, 40.68504624826183], [-73.95439296867414, 40.685779720013606], [-73.95453798607406, 40.68651117540455], [-73.95468418850508, 40.68724485443714], [-73.95684165193596, 40.68699607883792], [-73.95956770121337, 40.68668255592727], [-73.95971374756459, 40.6874156340909], [-73.95985939425704, 40.688147451217226], [-73.96000519802635, 40.688881033718204], [-73.96009714565346, 40.689345210097464], [-73.96012172912181, 40.68946930706387], [-73.96017256138677, 40.68972986156118], [-73.96018691858275, 40.689803455988546], [-73.96022304539724, 40.689988627383755], [-73.96023740336433, 40.69006222280781], [-73.96029281668112, 40.690346249915414], [-73.96013760800457, 40.69036438035883], [-73.96008336800442, 40.6903707157072], [-73.95957591847137, 40.69042998753855], [-73.95942791320554, 40.69044727471387], [-73.95934862389824, 40.6904564609108], [-73.95928133730644, 40.69046425696955], [-73.95899330491858, 40.69049762936284], [-73.95886713625437, 40.69051224801476], [-73.95857844775936, 40.690545694857576], [-73.9581804874994, 40.69059073040573], [-73.95808563435828, 40.69060146372528], [-73.95727249112613, 40.69069347835403], [-73.95635602958276, 40.69079978191732], [-73.95541057949602, 40.690908291885876], [-73.95582662769675, 40.69299238288233], [-73.95614239268207, 40.69457901857237], [-73.9570870194244, 40.694470440162995], [-73.95799732979468, 40.694365838684114], [-73.95931047927598, 40.69421508783189], [-73.96015854658333, 40.69411730915604], [-73.96062056531659, 40.6963201401926], [-73.96092543804184, 40.69773650701631], [-73.96105100700007, 40.698326078819065], [-73.96019688857467, 40.698462727438596], [-73.95885874627406, 40.6986773264162], [-73.95795938220984, 40.69882000321581], [-73.95701993123406, 40.698973914349565], [-73.957167301054, 40.69970786791901], [-73.95722517405626, 40.69999935002626], [-73.95745736372834, 40.70082260318457], [-73.95572361014881, 40.70194576955721], [-73.9538119690652, 40.70318097979544], [-73.95318085172319, 40.70261690547745], [-73.95255052777945, 40.7020516665144], [-73.951920189279, 40.70148754916077], [-73.95128819434734, 40.70092236548591], [-73.95027424109588, 40.70157924195056], [-73.9493787354337, 40.70215888982628], [-73.94753858146478, 40.703350650664795], [-73.94705205297524, 40.70366394934019], [-73.94625107780892, 40.70320874745355], [-73.9458549904679, 40.70298720677488], [-73.94544988192177, 40.702760635974364], [-73.94463910154856, 40.70231369467456], [-73.94431460096804, 40.70213334535181], [-73.94400504048726, 40.70196179219718], [-73.9438247374114, 40.701862007878276], [-73.94322686012315, 40.701520709145726], [-73.94306406845838, 40.7014244350918], [-73.94220058705264, 40.700890667467746], [-73.94193078816193, 40.70072523469547]]], &#39;type&#39;: &#39;Polygon&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="restaurantes-en-1km-alrededor">
+<h3>Restaurantes en 1km alrededor<a class="headerlink" href="#restaurantes-en-1km-alrededor" title="Permalink to this heading">#</a></h3>
+<p>También puedes usar <em>nearSphere</em> y especificar un término <em>maxDistance</em> en metros. Esto devolverá todos los restaurantes dentro de un radio de 1 km del usuario, ordenados de más cercano a más lejano:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;$near&#39;</span><span class="p">:</span> <span class="n">SON</span><span class="p">([(</span><span class="s1">&#39;$geometry&#39;</span><span class="p">,</span> <span class="n">SON</span><span class="p">([(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;Point&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;coordinates&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">73.93414657</span><span class="p">,</span> <span class="mf">40.82302903</span> <span class="p">])])),</span> <span class="p">(</span><span class="s1">&#39;$maxDistance&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)])}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">restaurants</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">query3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afad01&#39;), &#39;name&#39;: &#39;Gotham Stadium Tennis Center Cafe&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9316894, 40.8231974], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa6c9&#39;), &#39;name&#39;: &quot;Tia Melli&#39;S Latin Kitchen&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9378967, 40.823448], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49aface1&#39;), &#39;name&#39;: &quot;Chuck E. Cheese&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9303724, 40.8234978], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7128&#39;), &#39;name&#39;: &quot;Domino&#39;S Pizza&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93795159999999, 40.823376], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af695e&#39;), &#39;name&#39;: &#39;Red Star Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9381738, 40.8224212], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8be8&#39;), &#39;name&#39;: &quot;Applebee&#39;S Neighborhood Grill &amp; Bar&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93011659999999, 40.8219403], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9931&#39;), &#39;name&#39;: &#39;Marisco Centro Seafood Restaurant  &amp; Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93011659999999, 40.8219403], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afae7a&#39;), &#39;name&#39;: &#39;108 Fast Food Corp&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9370572, 40.8206095], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af954b&#39;), &#39;name&#39;: &#39;Kentucky Fried Chicken&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9365102, 40.8202205], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9dd0&#39;), &#39;name&#39;: &#39;United Fried Chicken&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9385009, 40.8222455], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6f01&#39;), &#39;name&#39;: &#39;Dunkin Donuts&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9373291, 40.8206458], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af81dd&#39;), &#39;name&#39;: &quot;King&#39;S Pizza&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9373291, 40.8206458], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af67e8&#39;), &#39;name&#39;: &quot;Papa John&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9365637, 40.8201488], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afba8f&#39;), &#39;name&#39;: &quot;Jimbo&#39;S Hamburgers&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9365637, 40.8201488], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa125&#39;), &#39;name&#39;: &#39;Home Garden Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.938599, 40.82211110000001], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa1ca&#39;), &#39;name&#39;: &quot;Sweet Mama&#39;S Soul Food&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9367511, 40.8198978], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8c14&#39;), &#39;name&#39;: &#39;Dunkin Donuts (Inside Gulf Gas Station On North Side Of Maj. Deegan Exwy- After Exit 13 - 233 St.)&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9308109, 40.82594580000001], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af907b&#39;), &#39;name&#39;: &#39;Reggae Sun Delights Natural Juice Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.939159, 40.8216897], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8b8a&#39;), &#39;name&#39;: &#39;Ho Lee Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.939145, 40.8213757], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb695&#39;), &#39;name&#39;: &#39;Ivory D O S  Inc&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9396354, 40.8220958], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa857&#39;), &#39;name&#39;: &#39;Cea-Lo Cafe&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9394446, 40.8215751], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af86fa&#39;), &#39;name&#39;: &#39;Little Ochie Jamaican Cuisine&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93951050000001, 40.821488], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afaf9e&#39;), &#39;name&#39;: &#39;Harlem Juice Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93757889999999, 40.8265405], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb7b8&#39;), &#39;name&#39;: &quot;Pinky&#39;S Jamaican And American Restaurant&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.939987, 40.822336], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa79f&#39;), &#39;name&#39;: &#39;Biters Llc&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.938811, 40.82583899999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8bed&#39;), &#39;name&#39;: &#39;Subway&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93032130000002, 40.8193837], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af67e5&#39;), &#39;name&#39;: &quot;Grini&#39;S Grill &amp; Restaurant&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9376491, 40.8191987], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af601c&#39;), &#39;name&#39;: &quot;Touch Of Dee&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9373939, 40.8190144], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6fa7&#39;), &#39;name&#39;: &#39;Lenox Fast Food&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9373939, 40.8190144], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afbe48&#39;), &#39;name&#39;: &#39;&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92961799999999, 40.81970099999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa43b&#39;), &#39;name&#39;: &#39;New Jing Hui Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94011490000001, 40.8247261], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa936&#39;), &#39;name&#39;: &#39;Mountain Bird&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9405598, 40.8225635], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afad65&#39;), &#39;name&#39;: &quot;Grini&#39;S Bakery&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9376221, 40.8186934], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af74e0&#39;), &#39;name&#39;: &#39;Yong Sheng Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9394274, 40.8262905], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af939c&#39;), &#39;name&#39;: &#39;Makkah Pizza Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.937699, 40.8185813], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb38e&#39;), &#39;name&#39;: &#39;Subway Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94058179999999, 40.8251808], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8796&#39;), &#39;name&#39;: &#39;La Nomade Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.940585, 40.825221], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af917c&#39;), &#39;name&#39;: &#39;Brothers Seafood&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9274327, 40.82120159999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8ed2&#39;), &#39;name&#39;: &quot;Hot Pot Under De&#39; Tree&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9392579, 40.826971], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8466&#39;), &#39;name&#39;: &#39;Country Pan Fried Chicken&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93922800000001, 40.8270259], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6171&#39;), &#39;name&#39;: &#39;Popeyes Chicken &amp; Biscuits&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9414927, 40.8228713], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7734&#39;), &#39;name&#39;: &quot;Dunkin&#39;  Donuts&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9414927, 40.8228713], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9f01&#39;), &#39;name&#39;: &#39;88 Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9379543, 40.8182292], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afbbd5&#39;), &#39;name&#39;: &#39;House Of Seafood Express&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9379721, 40.8182047], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af91e8&#39;), &#39;name&#39;: &quot;Jumbo&#39;S Hamburgers&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9416849, 40.822537], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af71fc&#39;), &#39;name&#39;: &#39;Glacken Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92856720000002, 40.8190635], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afac81&#39;), &#39;name&#39;: &#39;City One Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94182719999999, 40.8226224], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7e2c&#39;), &#39;name&#39;: &#39;Sunlight Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9284026, 40.8190186], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7089&#39;), &#39;name&#39;: &#39;Peoples Choice Kitchen&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94195599999999, 40.823392], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af789f&#39;), &#39;name&#39;: &#39;Starbucks Coffee&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94201369999999, 40.8231374], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8a6a&#39;), &#39;name&#39;: &quot;Margie&#39;S Red Rose Diner&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9420166, 40.8221478], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8d80&#39;), &#39;name&#39;: &#39;Fu On Kitchen&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94047139999999, 40.8192368], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6858&#39;), &#39;name&#39;: &#39;Polanco Restaurant Bbq&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9405196, 40.8191934], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7b2f&#39;), &#39;name&#39;: &#39;The News Room Jazz Club&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9280411, 40.8189109], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afbe2b&#39;), &#39;name&#39;: &#39;&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92778, 40.819083], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af62c5&#39;), &#39;name&#39;: &#39;Glen Roy Bar And Grill&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92789290000002, 40.8189679], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af5fe5&#39;), &#39;name&#39;: &quot;Mcdonald&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9270544, 40.8197704], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af70f0&#39;), &#39;name&#39;: &#39;Stadium Pizza Bar Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92637870000001, 40.8255594], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af767a&#39;), &#39;name&#39;: &quot;Giovanni&#39;S Restaurant&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9271442, 40.81938170000001], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af709a&#39;), &#39;name&#39;: &quot;Jimbo&#39;S Hamburger Place&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93805429999999, 40.8287532], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb3b4&#39;), &#39;name&#39;: &quot;Big Papa&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9275868, 40.8188987], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af83a1&#39;), &#39;name&#39;: &#39;Haagan Daz&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9272196, 40.8192564], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7f6d&#39;), &#39;name&#39;: &#39;Popeyes Chicken &amp; Biscuits&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.927454, 40.818949], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7f6c&#39;), &#39;name&#39;: &#39;Burger King&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.927454, 40.818949], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afb082&#39;), &#39;name&#39;: &quot;King&#39;S Chef Chinese Restaurant&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.938581, 40.8173752], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9a63&#39;), &#39;name&#39;: &#39;Planet Wings&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9274579, 40.8188226], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af886a&#39;), &#39;name&#39;: &#39;Mamas Fried Chicken&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93757959999999, 40.8291233], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7468&#39;), &#39;name&#39;: &#39;Happy Wok&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92582759999999, 40.8255104], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9da9&#39;), &#39;name&#39;: &#39;Great Wall&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92636689999999, 40.8196623], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af64bc&#39;), &#39;name&#39;: &quot;Sam&#39;S Restaurant&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92631920000001, 40.8196491], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afba04&#39;), &#39;name&#39;: &#39;Don Rico Pollo Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9384185, 40.8169908], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af98cc&#39;), &#39;name&#39;: &#39;Capitol International&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.926361, 40.819499], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8587&#39;), &#39;name&#39;: &quot;Dunkin&#39; Donuts&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9251285, 40.8220602], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af895f&#39;), &#39;name&#39;: &#39;Jacob Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94310630000001, 40.8217797], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8802&#39;), &#39;name&#39;: &quot;Stan&#39;S Sports Bar&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9262845, 40.82669569999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afaeae&#39;), &#39;name&#39;: &#39;Subway#50497 (Cardinal Hayes High School)&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92537449999999, 40.8207116], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb2a2&#39;), &#39;name&#39;: &#39;Hostos Community College&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9272977, 40.81822409999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9cad&#39;), &#39;name&#39;: &#39;B &amp; B Restaurant Ii&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9388057, 40.8167739], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8f34&#39;), &#39;name&#39;: &#39;Yankee Bar &amp; Grill&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9259928, 40.82713630000001], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6449&#39;), &#39;name&#39;: &quot;Billy&#39;S Sport Bar Restaurant &amp; Lounge&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92594439999999, 40.8272129], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa794&#39;), &#39;name&#39;: &#39;Subway&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94410130000001, 40.8237544], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af94f0&#39;), &#39;name&#39;: &#39;United Fried Chicken&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93923579999999, 40.8164916], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afab67&#39;), &#39;name&#39;: &#39;Dunkin Donuts&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9259245, 40.827435], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9cbd&#39;), &#39;name&#39;: &quot;Victorio&#39;S Pizza Plus&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94420389999999, 40.8237974], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb3ec&#39;), &#39;name&#39;: &#39;Ponty Bistro&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94126949999999, 40.8175925], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8aae&#39;), &#39;name&#39;: &#39;Subway&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9392905, 40.8164177], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7f6f&#39;), &#39;name&#39;: &quot;Mama Tina&#39;S Pizza&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9438724, 40.8207066], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af65d4&#39;), &#39;name&#39;: &#39;Make My Cake&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9420895, 40.8181467], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9d0e&#39;), &#39;name&#39;: &#39;Branson Got Juice&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94387689999999, 40.8255961], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af706c&#39;), &#39;name&#39;: &#39;Texas Star Snack Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94387689999999, 40.8255961], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9752&#39;), &#39;name&#39;: &#39;Subway&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9276146, 40.8169727], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9ae5&#39;), &#39;name&#39;: &quot;Mama K&#39;S Soup Or Salad&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9435414, 40.8263004], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afbd33&#39;), &#39;name&#39;: &#39;New Golden Empire Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94360379999999, 40.82619649999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afbc1e&#39;), &#39;name&#39;: &#39;Tsion Cafe &amp; Bakery&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94351460000001, 40.82635579999999], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8083&#39;), &#39;name&#39;: &#39;Nyy Steak&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9259201, 40.8278293], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8082&#39;), &#39;name&#39;: &#39;Hard Rock Cafe&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9259201, 40.8278293], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afabf4&#39;), &#39;name&#39;: &#39;Bullpen Deli Twin Donuts&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92536059999999, 40.8273453], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9c08&#39;), &#39;name&#39;: &#39;Flavas International Grill&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9250339, 40.8269856], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afaa1f&#39;), &#39;name&#39;: &#39;Honeycomb Playhouse&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9442299, 40.8252683], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa03f&#39;), &#39;name&#39;: &#39;Dunkin Donuts&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9446206, 40.8237467], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6447&#39;), &#39;name&#39;: &#39;Famous Fish Market&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9446811, 40.8237287], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb3d5&#39;), &#39;name&#39;: &#39;Manhatanville Coffee&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94446900000001, 40.8212633], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb827&#39;), &#39;name&#39;: &#39;Hyacinth Haven Harlem&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9422781, 40.8178187], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6ef1&#39;), &#39;name&#39;: &#39;Ihop&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9419869, 40.8175016], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af606a&#39;), &#39;name&#39;: &quot;Mcdonald&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9419869, 40.8175016], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af811c&#39;), &#39;name&#39;: &#39;Stand 321&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8116&#39;), &#39;name&#39;: &#39;Legends 100&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa3a4&#39;), &#39;name&#39;: &#39;Gate 2 Picnic Area&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8115&#39;), &#39;name&#39;: &#39;Dugout Lounge Inseat Pantry 3B&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af811f&#39;), &#39;name&#39;: &#39;Stand 110 B&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af811d&#39;), &#39;name&#39;: &#39;Stand 331&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8130&#39;), &#39;name&#39;: &quot;Sheppard&#39;S Place  Press Kitchen&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8114&#39;), &#39;name&#39;: &#39;Ketal One Lounge Inseat Pantry Ib&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af811e&#39;), &#39;name&#39;: &#39;Stand 110 A&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8119&#39;), &#39;name&#39;: &#39;Stand 312&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8113&#39;), &#39;name&#39;: &#39;Stand 224&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8110&#39;), &#39;name&#39;: &#39;Stand 216B Delta Suite&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8112&#39;), &#39;name&#39;: &#39;Stand 217&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8111&#39;), &#39;name&#39;: &#39;Yankees Clubhouse Kitchen&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af812a&#39;), &#39;name&#39;: &#39;Stand 205&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af810f&#39;), &#39;name&#39;: &#39;Visitors Clubhouse Kitchen&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8126&#39;), &#39;name&#39;: &#39;Stand 107&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8118&#39;), &#39;name&#39;: &#39;Stand 310&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8125&#39;), &#39;name&#39;: &#39;Stand 334 Beer Room&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af811a&#39;), &#39;name&#39;: &#39;Stand 320 - Premio&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8123&#39;), &#39;name&#39;: &#39;Stand 324&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af812f&#39;), &#39;name&#39;: &#39;Audi Yankee Club&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8122&#39;), &#39;name&#39;: &#39;Stand 305&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8129&#39;), &#39;name&#39;: &#39;Stand 132&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8121&#39;), &#39;name&#39;: &#39;Stand 218A Delta Suite&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8128&#39;), &#39;name&#39;: &#39;Stand 125 Food Court&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afb0f6&#39;), &#39;name&#39;: &#39;New York Yankees Mvp Club&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8132&#39;), &#39;name&#39;: &#39;Suite Pantry Suite 4&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8131&#39;), &#39;name&#39;: &#39;Suite Pantry Suite 30&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af812e&#39;), &#39;name&#39;: &#39;Stand 115&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8127&#39;), &#39;name&#39;: &#39;Stand 112&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af812b&#39;), &#39;name&#39;: &#39;Stand 213&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af817a&#39;), &#39;name&#39;: &#39;Bleacher Food Court&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8120&#39;), &#39;name&#39;: &#39;Stand 127 Food Court&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8134&#39;), &#39;name&#39;: &#39;Stand 232&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8124&#39;), &#39;name&#39;: &#39;Stand 318&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8117&#39;), &#39;name&#39;: &#39;Mohegan Sun Sports Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8133&#39;), &#39;name&#39;: &#39;Legends 000&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af811b&#39;), &#39;name&#39;: &#39;Ny Yankees Concessions (Jim Beam)&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9265691, 40.8288189], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6f2a&#39;), &#39;name&#39;: &#39;New Millenium Pizzeria&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9448376, 40.8240638], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af5bc7&#39;), &#39;name&#39;: &#39;Yankee Tavern&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92506, 40.8275556], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb67f&#39;), &#39;name&#39;: &#39;Mei Ya Kitchen&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92493759999999, 40.8274727], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af919f&#39;), &#39;name&#39;: &quot;Eat Healthy &amp; Bomber&#39;S Stadium Pizza&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9246301, 40.8270987], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa240&#39;), &#39;name&#39;: &#39;Us Fried Chicken&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9249324, 40.8274822], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af87ca&#39;), &#39;name&#39;: &quot;New Lam&#39;S Garden&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92319560000001, 40.8234113], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7fb6&#39;), &#39;name&#39;: &#39;Queen Sheeba Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94477479999999, 40.8208534], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af75ba&#39;), &#39;name&#39;: &#39;Court Deli Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9244796, 40.8270316], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6d8f&#39;), &#39;name&#39;: &quot;Londel&#39;S Supper Club&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9440848, 40.8194187], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af5f4d&#39;), &#39;name&#39;: &quot;Mcdonald&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9252904, 40.828054], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9f14&#39;), &#39;name&#39;: &quot;D&#39;Milton Restaurant&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9404685, 40.8299073], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb16f&#39;), &#39;name&#39;: &#39;Agave Mexican &amp; American Grill&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94514459999999, 40.8240196], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afbe20&#39;), &#39;name&#39;: &#39;&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94514459999999, 40.8240196], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af81af&#39;), &#39;name&#39;: &#39;New Golden Dragon Chinese Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94514459999999, 40.8240196], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afb2ad&#39;), &#39;name&#39;: &#39;Island Spice And Southern Cuisine&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9421715, 40.8172179], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa790&#39;), &#39;name&#39;: &quot;Checker&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9452088, 40.823885], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2e48673efb49afba18&#39;), &#39;name&#39;: &quot;Miss Maude&#39;S&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9397855, 40.8157361], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49afa93c&#39;), &#39;name&#39;: &#39;Los Bravos&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9401206, 40.83016850000001], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6138&#39;), &#39;name&#39;: &#39;Crown Diner&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.924914, 40.827846], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af6eb2&#39;), &#39;name&#39;: &#39;The Dugout&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.92516189999999, 40.8284252], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af9304&#39;), &#39;name&#39;: &#39;Bronx Lala Pizza&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9244313, 40.8276846], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7190&#39;), &#39;name&#39;: &quot;Jimbo&#39;S Burger Palace&quot;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.93994789999999, 40.8155067], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af8ad8&#39;), &#39;name&#39;: &#39;Subway&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.924339, 40.8276619], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af5ecb&#39;), &#39;name&#39;: &#39;El Molino Rojo Restaurant&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9243061, 40.8276297], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7425&#39;), &#39;name&#39;: &#39;Vega Alta Sports Bar&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9244643, 40.8279347], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af921d&#39;), &#39;name&#39;: &#39;Pizza Stop&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.94002669999999, 40.8153973], &#39;type&#39;: &#39;Point&#39;}}
+{&#39;_id&#39;: ObjectId(&#39;60846f2d48673efb49af7aeb&#39;), &#39;name&#39;: &#39;Jo Jo Pizza&#39;, &#39;location&#39;: {&#39;coordinates&#39;: [-73.9244744, 40.8180032], &#39;type&#39;: &#39;Point&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="17_LGCP.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelo GLM de Poisson no-homogéneo</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis">PostGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis-y-qgis">PostGIS y QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-importar-en-qgis-desde-postgis">Para importar en QGIS desde PostGIS:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mongodb">MongoDB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mongodb-con-python">MongoDB con Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-connection">Local connection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-server-connection">External server connection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encontrar-el-vecindario-actual">Encontrar el Vecindario Actual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restaurantes-en-1km-alrededor">Restaurantes en 1km alrededor</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Edier V. Aristizábal G.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

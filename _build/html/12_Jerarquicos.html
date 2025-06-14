@@ -1,0 +1,1403 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modelos de Regresión para Heterogeneidad Espacial &#8212; Análisis Geoespacial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '12_Jerarquicos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regresión Ponderada Geográficamente (GWR)" href="13_MGWR.html" />
+    <link rel="prev" title="Modelos de regresión para dependencia espacial tipo CAR" href="11_CAR.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ClusterEspacial.html">Cluster espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_SpatialRegression.html">Regresión Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_LGCP.html">Modelo GLM de Poisson no-homogéneo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_DB.html">Bases de datos geoespaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/edieraristizabal/Libro_AnalisisGeoespacial/issues/new?title=Issue%20on%20page%20%2F12_Jerarquicos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/12_Jerarquicos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelos de Regresión para Heterogeneidad Espacial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regimenes-espaciales">Regímenes Espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-variable-efectos-fijos-espaciales">Intercepto variable (Efectos fijos espaciales)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-y-coeficientes-variables">Intercepto y coeficientes variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-heterogeneidad-espacial">
+<h1>Modelos de Regresión para Heterogeneidad Espacial<a class="headerlink" href="#modelos-de-regresion-para-heterogeneidad-espacial" title="Permalink to this heading">#</a></h1>
+<p>La heterogeneidad espacial es una característica fundamental de los datos geoespaciales y suponen importantes desafíos para los modelos estadísticos convencionales (\cite{anselin1988spatial, cressie2015statistics, lesage2009introduction}). La heterogeneidad espacial se refiere a la variabilidad de las condiciones del terreno a lo largo del espacio (\cite{anselin1990spatial}). Por ejemplo, las propiedades geomorfológicas de una ladera pueden diferir sustancialmente de las de otra dentro de una misma cuenca, afectando la susceptibilidad de cada zona a los movimientos en masa.  Ignorar esta heterogeneidad del espacio puede llevar a una subestimación o sobrestimación de la susceptibilidad en ciertas zonas del área de estudio.</p>
+<p>Para abordar estas limitaciones, se han desarrollado modelos que permiten la variación espacial de los coeficientes de las variables predictoras, permitiendo capturar la heterogeneidad inherente al terreno (\cite{rey2023geographic}). Entre estos enfoques se encuentran los modelos multiniveles (\cite{wong1985hierarchical}) (también conocidos como jerárquicos, y en algunos casos modelos mixtos o regímenes espaciales) y los modelos de regresión espacial ponderada (GWR, por sus siglas en inglés) (\cite{brunsdon1996geographically}). Los modelos multiniveles permiten modelar la variabilidad espacial mediante la introducción de estructuras jerárquicas, asignando un coeficiente e intercepto para cada nivel o región incorporada en el modelo. Lo cual resulta particularmente útil cuando los datos presentan una organización natural en grupos o niveles (por ejemplo, cuencas y subcuencas). En contraste, los modelos GWR son menos complejos computacionalmente, ya que no requieren definir niveles jerárquicos. Los modelos GWR permiten que los coeficientes de las variables predictoras varíen para cada observación, proporcionando una caracterización más detallada de la influencia de las variables en función de su localización geográfica. Ambos enfoques presentan ventajas significativas frente a los modelos tradicionales, al capturar la variabilidad espacial, mejorando la precisión en la evaluación de la susceptibilidad a movimientos en masa.</p>
+<section id="regimenes-espaciales">
+<h2>Regímenes Espaciales<a class="headerlink" href="#regimenes-espaciales" title="Permalink to this heading">#</a></h2>
+<p>En el siguiente ejemplo queremos conocer la relación que hay entre el número de carros y los niveles de contaminación en una ciudad. En el análisis inicial se desconoce en el análisis las comunas de la ciudad, en este caso Belén, Centro y el Poblado. Los resultados indican que a mayor número de carros menores valores de contaminación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="c1"># Data generation</span>
+<span class="n">group_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Group&quot;</span><span class="p">:</span> <span class="s2">&quot;Belen&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Carros&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  
+<span class="p">})</span>
+<span class="n">group_a</span><span class="p">[</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">group_a</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
+
+<span class="n">group_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Group&quot;</span><span class="p">:</span> <span class="s2">&quot;Centro&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Carros&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  
+<span class="p">})</span>
+<span class="n">group_b</span><span class="p">[</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">group_b</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
+
+<span class="n">group_c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Group&quot;</span><span class="p">:</span> <span class="s2">&quot;Poblado&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Carros&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> 
+<span class="p">})</span>
+<span class="n">group_c</span><span class="p">[</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">group_c</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
+
+<span class="c1"># Combine data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">group_a</span><span class="p">,</span> <span class="n">group_b</span><span class="p">,</span> <span class="n">group_c</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create scatter plot using Seaborn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Carros&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Fit a single trendline for all data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Add constant for intercept</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Plot the trendline</span>
+<span class="n">trend_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">trend_y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">trend_x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trend_x</span><span class="p">,</span> <span class="n">trend_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Trendline (OLS)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Customize plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Contaminacion Score vs. Carros (Combined Data)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Carros&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Legend&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/746431a1f2805b5854cd0389662b0a54639fed6ad6b4ad0402a00d370430339e.png" src="_images/746431a1f2805b5854cd0389662b0a54639fed6ad6b4ad0402a00d370430339e.png" />
+</div>
+</div>
+<p>Pero si incorporamos en el análisis la variable comuna, lo que significa que cada comuna tiene sus condiciones particulares, y realizamos una regresión para cada grupo de datos, los resultados del análisis cambian completamente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create scatter plot using Seaborn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Carros&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Group&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fit and plot separate trendlines for each group</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+    <span class="n">group_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">group</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">[</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">]</span>
+    <span class="c1"># Fit linear model</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Add constant for intercept</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="c1"># Plot the trendline</span>
+    <span class="n">trend_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">group_data</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">group_data</span><span class="p">[</span><span class="s2">&quot;Carros&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">trend_y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">trend_x</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trend_x</span><span class="p">,</span> <span class="n">trend_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2"> Trendline&quot;</span><span class="p">)</span>
+
+<span class="c1"># Customize plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Contaminacion Score vs. Carros (Seaborn + Matplotlib)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Carros&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Contaminacion&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Group&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/809e169dae6797b160087d5d76a8fb2e07c3bcbf13a4095dcca50a82cc88c5e2.png" src="_images/809e169dae6797b160087d5d76a8fb2e07c3bcbf13a4095dcca50a82cc88c5e2.png" />
+</div>
+</div>
+<p>Cómo podemos entonces realizar uan regresión donde tome todos los datos y los elementos que comparten en común, pero que al mismo tiempo considere los cambios espaciales que hay por regiones.</p>
+<section id="intercepto-variable-efectos-fijos-espaciales">
+<h3>Intercepto variable (Efectos fijos espaciales)<a class="headerlink" href="#intercepto-variable-efectos-fijos-espaciales" title="Permalink to this heading">#</a></h3>
+<p>Mientras asumimos que nuestra variable de proximidad podría representar un premium difícil de medir que las personas pagan cuando están cerca de una zona recreativa. Sin embargo, no todos los vecindarios son iguales; algunos vecindarios pueden ser más lucrativos que otros, independientemente de su proximidad a Balboa Park. Cuando este es el caso, necesitamos alguna forma de tener en cuenta el hecho de que cada vecindario puede experimentar estos tipos de efectos <em>gestalt</em>, únicos. Una forma de hacerlo es capturando la <em>heterogeneidad espacial</em>. En su forma más básica, la <em>heterogeneidad espacial</em> significa que partes del modelo pueden cambiar en diferentes lugares. Por ejemplo, los cambios en la intercepción, <span class="math notranslate nohighlight">\(\alpha\)</span>, pueden reflejar el hecho de que diferentes áreas tienen exposiciones basales diferentes a un proceso dado. Los cambios en los términos de pendiente, <span class="math notranslate nohighlight">\(\beta\)</span>, pueden indicar algún tipo de factor mediador geográfico, como cuando una política gubernamental no se aplica de manera consistente en todas las jurisdicciones. Finalmente, los cambios en la varianza de los residuos, comúnmente denotada como <span class="math notranslate nohighlight">\(\sigma^2\)</span>, pueden introducir heterocedasticidad espacial.</p>
+<p>Para ilustrar los efectos fijos espaciales, consideremos el ejemplo del precio de las casas de la sección anterior para introducir una ilustración más general de “espacio como proxy”. Dado que solo estamos incluyendo dos variables explicativas en el modelo, es probable que estemos omitiendo algunos factores importantes que juegan un papel en la determinación del precio al que se vende una casa. Algunos de ellos, sin embargo, es probable que varíen sistemáticamente en el espacio (por ejemplo, diferentes características del vecindario). Si ese es el caso, podemos controlar esos factores no observados utilizando variables dummy tradicionales pero basando su creación en una regla espacial. Por ejemplo, incluyamos una variable binaria para cada vecindario, indicando si una casa dada se encuentra dentro de dicho área (<code class="docutils literal notranslate"><span class="pre">1</span></code>) o no (<code class="docutils literal notranslate"><span class="pre">0</span></code>). Matemáticamente, ahora estamos ajustando la siguiente ecuación:</p>
+<div class="math notranslate nohighlight">
+\[
+\log{P_i} = \alpha_r + \sum_k \mathbf{X}_{ik}\beta_k  + \epsilon_i
+\]</div>
+<p>donde la principal diferencia es que ahora estamos permitiendo que el término constante, <span class="math notranslate nohighlight">\(\alpha\)</span>, varíe por vecindario <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\alpha_r\)</span>.</p>
+<p>Programáticamente, mostraremos dos formas diferentes de estimar esto: uno, usando <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>; y dos, con <code class="docutils literal notranslate"><span class="pre">PySAL</span></code>. Primero, usaremos <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. Este paquete proporciona una API similar a la de fórmulas, que nos permite expresar la <em>ecuación</em> que deseamos estimar directamente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">from</span> <span class="nn">pysal.model</span> <span class="kn">import</span> <span class="n">spreg</span>
+<span class="kn">from</span> <span class="nn">pysal.lib</span> <span class="kn">import</span> <span class="n">weights</span>
+<span class="kn">from</span> <span class="nn">pysal.explore</span> <span class="kn">import</span> <span class="n">esda</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sbn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\spaghetti\network.py:40: FutureWarning: The next major release of pysal/spaghetti (2.0.0) will drop support for all ``libpysal.cg`` geometries. This change is a first step in refactoring ``spaghetti`` that is expected to result in dramatically reduced runtimes for network instantiation and operations. Users currently requiring network and point pattern input as ``libpysal.cg`` geometries should prepare for this simply by converting to ``shapely`` geometries.
+  warnings.warn(dep_msg, FutureWarning, stacklevel=1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;https://geographicdata.science/book/_downloads/dcd429d1761a2d0efdbc4532e141ba14/regression_db.geojson&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 6110 entries, 0 to 6109
+Data columns (total 20 columns):
+ #   Column              Non-Null Count  Dtype   
+---  ------              --------------  -----   
+ 0   accommodates        6110 non-null   int64   
+ 1   bathrooms           6110 non-null   float64 
+ 2   bedrooms            6110 non-null   float64 
+ 3   beds                6110 non-null   float64 
+ 4   neighborhood        6110 non-null   object  
+ 5   pool                6110 non-null   int64   
+ 6   d2balboa            6110 non-null   float64 
+ 7   coastal             6110 non-null   int64   
+ 8   price               6110 non-null   float64 
+ 9   log_price           6110 non-null   float64 
+ 10  id                  6110 non-null   int64   
+ 11  pg_Apartment        6110 non-null   int64   
+ 12  pg_Condominium      6110 non-null   int64   
+ 13  pg_House            6110 non-null   int64   
+ 14  pg_Other            6110 non-null   int64   
+ 15  pg_Townhouse        6110 non-null   int64   
+ 16  rt_Entire_home/apt  6110 non-null   int64   
+ 17  rt_Private_room     6110 non-null   int64   
+ 18  rt_Shared_room      6110 non-null   int64   
+ 19  geometry            6110 non-null   geometry
+dtypes: float64(6), geometry(1), int64(12), object(1)
+memory usage: 954.8+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/4b1dce0d20495e3f57d4f0909e3ec99690baa4ee675f447b99f02f41307aff03.png" src="_images/4b1dce0d20495e3f57d4f0909e3ec99690baa4ee675f447b99f02f41307aff03.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>accommodates</th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>beds</th>
+      <th>neighborhood</th>
+      <th>pool</th>
+      <th>d2balboa</th>
+      <th>coastal</th>
+      <th>price</th>
+      <th>log_price</th>
+      <th>id</th>
+      <th>pg_Apartment</th>
+      <th>pg_Condominium</th>
+      <th>pg_House</th>
+      <th>pg_Other</th>
+      <th>pg_Townhouse</th>
+      <th>rt_Entire_home/apt</th>
+      <th>rt_Private_room</th>
+      <th>rt_Shared_room</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>North Hills</td>
+      <td>0</td>
+      <td>2.972077</td>
+      <td>0</td>
+      <td>425.0</td>
+      <td>6.052089</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (-117.12971 32.75399)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>Mission Bay</td>
+      <td>0</td>
+      <td>11.501385</td>
+      <td>1</td>
+      <td>205.0</td>
+      <td>5.323010</td>
+      <td>5570</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>POINT (-117.25253 32.78421)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Estas son las variables explicativas que utilizaremos a lo largo de este ejemplo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;accommodates&#39;</span><span class="p">,</span> <span class="s1">&#39;bathrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;bedrooms&#39;</span><span class="p">,</span> <span class="s1">&#39;beds&#39;</span><span class="p">,</span> <span class="s1">&#39;rt_Private_room&#39;</span><span class="p">,</span> <span class="s1">&#39;rt_Shared_room&#39;</span><span class="p">,</span> <span class="s1">&#39;pg_Condominium&#39;</span><span class="p">,</span> <span class="s1">&#39;pg_House&#39;</span><span class="p">,</span> <span class="s1">&#39;pg_Other&#39;</span><span class="p">,</span> <span class="s1">&#39;pg_Townhouse&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El operador <em>tilde</em> en esta declaración suele leerse como “el precio logarítmico es una función de …”, para tener en cuenta el hecho de que se pueden ajustar muchas especificaciones de modelo diferentes según esa relación funcional entre <code class="docutils literal notranslate"><span class="pre">log_price</span></code> y nuestra lista de covariables. Es importante destacar que el término <code class="docutils literal notranslate"><span class="pre">-1</span></code> al final significa que estamos ajustando este modelo sin un término de intercepción. Esto es necesario, ya que incluir un término de intercepción junto con medias únicas para cada vecindario haría que el sistema subyacente de ecuaciones estuviera subespecificado.</p>
+<p>Usando esta expresión, podemos estimar los efectos únicos de cada vecindario, ajustando el modelo en <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;log_price ~ accommodates + bathrooms + bedrooms + beds + rt_Private_room + rt_Shared_room + pg_Condominium + pg_House + pg_Other + pg_Townhouse + neighborhood - 1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m3</span><span class="o">.</span><span class="n">summary2</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           Results: Ordinary least squares
+======================================================================================
+Model:                      OLS                    Adj. R-squared:           0.709    
+Dependent Variable:         log_price              AIC:                      7229.6640
+Date:                       2025-06-14 15:03       BIC:                      7599.1365
+No. Observations:           6110                   Log-Likelihood:           -3559.8  
+Df Model:                   54                     F-statistic:              276.9    
+Df Residuals:               6055                   Prob (F-statistic):       0.00     
+R-squared:                  0.712                  Scale:                    0.18946  
+--------------------------------------------------------------------------------------
+                                       Coef.  Std.Err.    t     P&gt;|t|   [0.025  0.975]
+--------------------------------------------------------------------------------------
+neighborhood[Balboa Park]              4.2808   0.0333 128.5836 0.0000  4.2155  4.3460
+neighborhood[Bay Ho]                   4.1983   0.0769  54.6089 0.0000  4.0475  4.3490
+neighborhood[Bay Park]                 4.3292   0.0510  84.9084 0.0000  4.2293  4.4292
+neighborhood[Carmel Valley]            4.3893   0.0566  77.6126 0.0000  4.2784  4.5001
+neighborhood[City Heights West]        4.0535   0.0584  69.4358 0.0000  3.9391  4.1680
+neighborhood[Clairemont Mesa]          4.0953   0.0477  85.8559 0.0000  4.0018  4.1888
+neighborhood[College Area]             4.0337   0.0583  69.2386 0.0000  3.9195  4.1479
+neighborhood[Core]                     4.7262   0.0526  89.7775 0.0000  4.6230  4.8294
+neighborhood[Cortez Hill]              4.6081   0.0515  89.4322 0.0000  4.5071  4.7091
+neighborhood[Del Mar Heights]          4.4969   0.0543  82.7599 0.0000  4.3904  4.6034
+neighborhood[East Village]             4.5455   0.0294 154.7473 0.0000  4.4879  4.6031
+neighborhood[Gaslamp Quarter]          4.7758   0.0473 100.9589 0.0000  4.6831  4.8685
+neighborhood[Grant Hill]               4.3067   0.0524  82.2442 0.0000  4.2041  4.4094
+neighborhood[Grantville]               4.0533   0.0714  56.7719 0.0000  3.9133  4.1933
+neighborhood[Kensington]               4.3027   0.0772  55.7511 0.0000  4.1514  4.4540
+neighborhood[La Jolla]                 4.6821   0.0258 181.4137 0.0000  4.6315  4.7327
+neighborhood[La Jolla Village]         4.3303   0.0772  56.0653 0.0000  4.1789  4.4817
+neighborhood[Linda Vista]              4.1911   0.0569  73.6380 0.0000  4.0796  4.3027
+neighborhood[Little Italy]             4.6667   0.0468  99.6364 0.0000  4.5749  4.7586
+neighborhood[Loma Portal]              4.3019   0.0332 129.4346 0.0000  4.2368  4.3671
+neighborhood[Marina]                   4.5583   0.0480  94.9761 0.0000  4.4642  4.6524
+neighborhood[Midtown]                  4.3667   0.0284 153.7902 0.0000  4.3110  4.4223
+neighborhood[Midtown District]         4.5849   0.0651  70.4436 0.0000  4.4573  4.7125
+neighborhood[Mira Mesa]                3.9896   0.0561  71.1135 0.0000  3.8796  4.0995
+neighborhood[Mission Bay]              4.5155   0.0224 201.3850 0.0000  4.4715  4.5594
+neighborhood[Mission Valley]           4.2760   0.0742  57.6031 0.0000  4.1304  4.4215
+neighborhood[Moreno Mission]           4.4009   0.0567  77.5773 0.0000  4.2897  4.5122
+neighborhood[Normal Heights]           4.0974   0.0490  83.5821 0.0000  4.0013  4.1935
+neighborhood[North Clairemont]         3.9844   0.0691  57.6209 0.0000  3.8489  4.1200
+neighborhood[North Hills]              4.2534   0.0255 166.9470 0.0000  4.2035  4.3034
+neighborhood[Northwest]                4.1738   0.0697  59.8572 0.0000  4.0371  4.3104
+neighborhood[Ocean Beach]              4.4372   0.0301 147.4709 0.0000  4.3782  4.4961
+neighborhood[Old Town]                 4.4202   0.0419 105.5098 0.0000  4.3380  4.5023
+neighborhood[Otay Ranch]               4.1859   0.0816  51.2999 0.0000  4.0260  4.3459
+neighborhood[Pacific Beach]            4.4388   0.0224 198.0136 0.0000  4.3949  4.4828
+neighborhood[Park West]                4.4409   0.0448  99.1988 0.0000  4.3531  4.5287
+neighborhood[Rancho Bernadino]         4.1809   0.0720  58.0598 0.0000  4.0397  4.3221
+neighborhood[Rancho Penasquitos]       4.1624   0.0618  67.3789 0.0000  4.0413  4.2835
+neighborhood[Roseville]                4.3870   0.0586  74.8346 0.0000  4.2721  4.5019
+neighborhood[San Carlos]               4.3350   0.0830  52.2035 0.0000  4.1722  4.4978
+neighborhood[Scripps Ranch]            4.0824   0.0762  53.5440 0.0000  3.9329  4.2318
+neighborhood[Serra Mesa]               4.3130   0.0599  71.9725 0.0000  4.1955  4.4304
+neighborhood[South Park]               4.2253   0.0536  78.7676 0.0000  4.1202  4.3305
+neighborhood[University City]          4.1937   0.0370 113.4516 0.0000  4.1213  4.2662
+neighborhood[West University Heights]  4.2977   0.0431  99.6359 0.0000  4.2131  4.3822
+accommodates                           0.0728   0.0048  15.0672 0.0000  0.0633  0.0822
+bathrooms                              0.1702   0.0105  16.2171 0.0000  0.1496  0.1908
+bedrooms                               0.1686   0.0106  15.8731 0.0000  0.1478  0.1894
+beds                                  -0.0416   0.0065  -6.3508 0.0000 -0.0544 -0.0287
+rt_Private_room                       -0.4873   0.0154 -31.6225 0.0000 -0.5175 -0.4570
+rt_Shared_room                        -1.2396   0.0368 -33.6657 0.0000 -1.3118 -1.1674
+pg_Condominium                         0.1329   0.0210   6.3333 0.0000  0.0918  0.1741
+pg_House                               0.0400   0.0144   2.7868 0.0053  0.0119  0.0681
+pg_Other                               0.0610   0.0224   2.7290 0.0064  0.0172  0.1048
+pg_Townhouse                          -0.0075   0.0324  -0.2323 0.8163 -0.0710  0.0560
+--------------------------------------------------------------------------------------
+Omnibus:                   1215.551             Durbin-Watson:                1.835   
+Prob(Omnibus):             0.000                Jarque-Bera (JB):             4115.510
+Skew:                      0.989                Prob(JB):                     0.000   
+Kurtosis:                  6.500                Condition No.:                132     
+======================================================================================
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly
+specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>El enfoque anterior muestra cómo los Efectos Fijos Espaciales (FE) son un caso particular de una regresión lineal con una variable categórica. La pertenencia al vecindario se modela utilizando variables ficticias binarias. Gracias a la gramática de fórmulas utilizada en <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, podemos expresar el modelo de manera abstracta, y Python lo analiza, creando apropiadamente variables binarias según sea necesario.</p>
+<p>El segundo enfoque aprovecha la funcionalidad de Regímenes de <code class="docutils literal notranslate"><span class="pre">PySAL</span></code>, que permite al usuario especificar qué variables se estiman por separado para cada “régimen”. Sin embargo, en este caso, en lugar de describir el modelo en una fórmula, necesitamos pasar cada elemento del modelo como argumentos separados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PySAL implementation</span>
+<span class="n">m4</span> <span class="o">=</span> <span class="n">spreg</span><span class="o">.</span><span class="n">OLS_Regimes</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s1">&#39;log_price&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">db</span><span class="p">[</span><span class="n">variable_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                       <span class="n">db</span><span class="p">[</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                       <span class="n">constant_regi</span><span class="o">=</span><span class="s1">&#39;many&#39;</span><span class="p">,</span> <span class="n">cols2regi</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">variable_names</span><span class="p">),</span>
+                       <span class="n">regime_err_sep</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">name_y</span><span class="o">=</span><span class="s1">&#39;log_price&#39;</span><span class="p">,</span> <span class="n">name_x</span><span class="o">=</span><span class="n">variable_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m4</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES - REGIMES
+---------------------------------------------------
+Data set            :     unknown
+Weights matrix      :        None
+Dependent Variable  :   log_price                Number of Observations:        6110
+Mean dependent var  :      4.9958                Number of Variables   :          55
+S.D. dependent var  :      0.8072                Degrees of Freedom    :        6055
+R-squared           :      0.7118
+Adjusted R-squared  :      0.7092
+Sum squared residual:     1147.17                F-statistic           :    276.9408
+Sigma-square        :       0.189                Prob(F-statistic)     :           0
+S.E. of regression  :       0.435                Log likelihood        :   -3559.832
+Sigma-square ML     :       0.188                Akaike info criterion :    7229.664
+S.E of regression ML:      0.4333                Schwarz criterion     :    7599.137
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     t-Statistic     Probability
+------------------------------------------------------------------------------------
+Balboa Park_CONSTANT         4.28077         0.03329       128.58356         0.00000
+     Bay Ho_CONSTANT         4.19825         0.07688        54.60895         0.00000
+   Bay Park_CONSTANT         4.32922         0.05099        84.90837         0.00000
+Carmel Valley_CONSTANT         4.38926         0.05655        77.61256         0.00000
+City Heights West_CONSTANT         4.05352         0.05838        69.43577         0.00000
+Clairemont Mesa_CONSTANT         4.09526         0.04770        85.85587         0.00000
+College Area_CONSTANT         4.03370         0.05826        69.23864         0.00000
+       Core_CONSTANT         4.72619         0.05264        89.77752         0.00000
+Cortez Hill_CONSTANT         4.60809         0.05153        89.43222         0.00000
+Del Mar Heights_CONSTANT         4.49691         0.05434        82.75991         0.00000
+East Village_CONSTANT         4.54547         0.02937       154.74732         0.00000
+Gaslamp Quarter_CONSTANT         4.77580         0.04730       100.95890         0.00000
+ Grant Hill_CONSTANT         4.30674         0.05237        82.24417         0.00000
+ Grantville_CONSTANT         4.05330         0.07140        56.77190         0.00000
+ Kensington_CONSTANT         4.30267         0.07718        55.75107         0.00000
+   La Jolla_CONSTANT         4.68208         0.02581       181.41370         0.00000
+La Jolla Village_CONSTANT         4.33031         0.07724        56.06529         0.00000
+Linda Vista_CONSTANT         4.19115         0.05692        73.63804         0.00000
+Little Italy_CONSTANT         4.66674         0.04684        99.63639         0.00000
+Loma Portal_CONSTANT         4.30191         0.03324       129.43462         0.00000
+     Marina_CONSTANT         4.55830         0.04799        94.97614         0.00000
+    Midtown_CONSTANT         4.36666         0.02839       153.79023         0.00000
+Midtown District_CONSTANT         4.58494         0.06509        70.44363         0.00000
+  Mira Mesa_CONSTANT         3.98956         0.05610        71.11354         0.00000
+Mission Bay_CONSTANT         4.51548         0.02242       201.38497         0.00000
+Mission Valley_CONSTANT         4.27596         0.07423        57.60306         0.00000
+Moreno Mission_CONSTANT         4.40094         0.05673        77.57731         0.00000
+Normal Heights_CONSTANT         4.09740         0.04902        83.58206         0.00000
+North Clairemont_CONSTANT         3.98444         0.06915        57.62089         0.00000
+North Hills_CONSTANT         4.25343         0.02548       166.94700         0.00000
+  Northwest_CONSTANT         4.17375         0.06973        59.85725         0.00000
+Ocean Beach_CONSTANT         4.43716         0.03009       147.47094         0.00000
+   Old Town_CONSTANT         4.42016         0.04189       105.50980         0.00000
+ Otay Ranch_CONSTANT         4.18594         0.08160        51.29992         0.00000
+Pacific Beach_CONSTANT         4.43883         0.02242       198.01360         0.00000
+  Park West_CONSTANT         4.44091         0.04477        99.19882         0.00000
+Rancho Bernadino_CONSTANT         4.18091         0.07201        58.05981         0.00000
+Rancho Penasquitos_CONSTANT         4.16243         0.06178        67.37890         0.00000
+  Roseville_CONSTANT         4.38699         0.05862        74.83461         0.00000
+ San Carlos_CONSTANT         4.33499         0.08304        52.20349         0.00000
+Scripps Ranch_CONSTANT         4.08238         0.07624        53.54397         0.00000
+ Serra Mesa_CONSTANT         4.31297         0.05993        71.97253         0.00000
+ South Park_CONSTANT         4.22531         0.05364        78.76758         0.00000
+University City_CONSTANT         4.19372         0.03696       113.45160         0.00000
+West University Heights_CONSTANT         4.29767         0.04313        99.63589         0.00000
+_Global_accommodates         0.07278         0.00483        15.06719         0.00000
+   _Global_bathrooms         0.17021         0.01050        16.21714         0.00000
+    _Global_bedrooms         0.16857         0.01062        15.87313         0.00000
+        _Global_beds        -0.04158         0.00655        -6.35076         0.00000
+_Global_rt_Private_room        -0.48725         0.01541       -31.62250         0.00000
+_Global_rt_Shared_room        -1.23959         0.03682       -33.66570         0.00000
+_Global_pg_Condominium         0.13293         0.02099         6.33332         0.00000
+    _Global_pg_House         0.04000         0.01435         2.78679         0.00534
+    _Global_pg_Other         0.06101         0.02236         2.72901         0.00637
+_Global_pg_Townhouse        -0.00753         0.03239        -0.23234         0.81628
+------------------------------------------------------------------------------------
+Regimes variable: unknown
+
+REGIMES DIAGNOSTICS - CHOW TEST
+                 VARIABLE        DF        VALUE           PROB
+                 CONSTANT        44         913.016           0.0000
+              Global test        44         913.016           0.0000
+
+REGRESSION DIAGNOSTICS
+MULTICOLLINEARITY CONDITION NUMBER           12.143
+
+TEST ON NORMALITY OF ERRORS
+TEST                             DF        VALUE           PROB
+Jarque-Bera                       2        4115.510           0.0000
+
+DIAGNOSTICS FOR HETEROSKEDASTICITY
+RANDOM COEFFICIENTS
+TEST                             DF        VALUE           PROB
+Breusch-Pagan test               54         854.587           0.0000
+Koenker-Bassett test             54         310.744           0.0000
+================================ END OF REPORT =====================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hablando económicamente, lo que implican los Efectos Fijos de Vecindario que hemos introducido es que, en lugar de comparar todos los precios de las casas en San Diego como iguales, solo derivamos variación dentro de cada código postal. Recuerda que la interpretación de <span class="math notranslate nohighlight">\(\beta_k\)</span> es el efecto de la variable <span class="math notranslate nohighlight">\(k\)</span>, <em>dado que todas las demás variables explicativas incluidas permanecen constantes</em>. Al incluir una sola variable para cada área, estamos forzando efectivamente al modelo a comparar como iguales solo los precios de las casas que comparten el mismo valor para cada variable; o, en otras palabras, solo las casas ubicadas dentro de la misma área. La introducción de los Efectos Fijos permite un mayor grado de aislamiento de los efectos de las variables que introducimos en el modelo porque podemos controlar los efectos no observados que se alinean espacialmente con la distribución de los Efectos Fijos introducidos (por código postal, en nuestro caso).</p>
+<p>Para hacer un mapa de los Efectos Fijos de Vecindario, necesitamos procesar ligeramente los resultados de nuestro modelo.</p>
+<p>Primero, extraemos solo los efectos pertinentes a los vecindarios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhood_effects</span> <span class="o">=</span> <span class="n">m3</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;neighborhood&#39;</span><span class="p">)</span>
+<span class="n">neighborhood_effects</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>neighborhood[Balboa Park]          4.280766
+neighborhood[Bay Ho]               4.198251
+neighborhood[Bay Park]             4.329223
+neighborhood[Carmel Valley]        4.389261
+neighborhood[City Heights West]    4.053518
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Después, necesitamos extraer solo el nombre del vecindario del índice de esta Serie. Una forma sencilla de hacerlo es eliminar todos los caracteres que están antes y después de nuestros nombres de vecindario:</p>
+<p>Ahora, podemos volver a unirlos con las formas de los vecindarios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stripped</span> <span class="o">=</span> <span class="n">neighborhood_effects</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;neighborhood[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
+<span class="n">neighborhood_effects</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">stripped</span>
+<span class="n">neighborhood_effects</span> <span class="o">=</span> <span class="n">neighborhood_effects</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">)</span>
+<span class="n">neighborhood_effects</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fixed_effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Balboa Park</th>
+      <td>4.280766</td>
+    </tr>
+    <tr>
+      <th>Bay Ho</th>
+      <td>4.198251</td>
+    </tr>
+    <tr>
+      <th>Bay Park</th>
+      <td>4.329223</td>
+    </tr>
+    <tr>
+      <th>Carmel Valley</th>
+      <td>4.389261</td>
+    </tr>
+    <tr>
+      <th>City Heights West</th>
+      <td>4.053518</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://data.insideairbnb.com/united-states/&#39;</span>\
+      <span class="s1">&#39;ca/san-diego/2016-07-07/visualisations/&#39;</span>\
+      <span class="s1">&#39;neighbourhoods.geojson&#39;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;neighbourhoods.geojson&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+    <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;output.geojson&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">neighborhoods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighborhood_effects</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhood&#39;</span><span class="p">,</span> 
+                    <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">])</span>\
+                  <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;San Diego Neighborhood Fixed Effects&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">~\AppData\Local\Temp\ipykernel_20372\62176321.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighborhood_effects</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhood&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                     <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                   <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">])</span>\
+
+<span class="nn">~\miniconda3\Lib\site-packages\geopandas\geodataframe.py</span> in <span class="ni">?</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>         <span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pandas</span><span class="o">.</span><span class="n">pydata</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="n">reference</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">pandas</span>\
+<span class="g g-Whitespace">   </span><span class="mi">1566</span> <span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">merge</span><span class="o">.</span><span class="n">html</span>
+<span class="g g-Whitespace">   </span><span class="mi">1567</span>         <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="o">.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1568</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1569</span><span class="s2">         result = DataFrame.merge(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1570</span><span class="s2">         geo_col = self._geometry_column_name</span>
+<span class="g g-Whitespace">   </span><span class="mi">1571</span><span class="s2">         if isinstance(result, DataFrame) and geo_col in result:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1572</span><span class="s2">             result.__class__ = GeoDataFrame</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\frame.py</span> in <span class="ni">?</span><span class="nt">(self, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">   </span><span class="mi">9839</span><span class="s2">         validate: str | None = None,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9840</span><span class="s2">     ) -&gt; DataFrame:</span>
+<span class="g g-Whitespace">   </span><span class="mi">9841</span><span class="s2">         from pandas.core.reshape.merge import merge</span>
+<span class="g g-Whitespace">   </span><span class="mi">9842</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">9843</span><span class="s2">         return merge(</span>
+<span class="g g-Whitespace">   </span><span class="mi">9844</span><span class="s2">             self,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9845</span><span class="s2">             right,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9846</span><span class="s2">             how=how,</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="s2">     copy: bool | None = None,</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="s2">     indicator: str | bool = False,</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span><span class="s2">     validate: str | None = None,</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span><span class="s2"> ) -&gt; DataFrame:</span>
+<span class="ne">--&gt; </span><span class="mi">148</span><span class="s2">     op = _MergeOperation(</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">         left,</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span><span class="s2">         right,</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">         how=how,</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(self, left, right, how, on, left_on, right_on, axis, left_index, right_index, sort, suffixes, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span><span class="s2">         (</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span><span class="s2">             self.left_join_keys,</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span><span class="s2">             self.right_join_keys,</span>
+<span class="g g-Whitespace">    </span><span class="mi">736</span><span class="s2">             self.join_names,</span>
+<span class="ne">--&gt; </span><span class="mi">737</span><span class="s2">         ) = self._get_merge_keys()</span>
+<span class="g g-Whitespace">    </span><span class="mi">738</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span><span class="s2">         # validate the merge keys dtypes. We may need to coerce</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span><span class="s2">         # to avoid incompatible dtypes</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="s2">                 else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1234</span><span class="s2">                     # Then we&#39;re either Hashable or a wrong-length arraylike,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="s2">                     #  the latter of which will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="s2">                     k = cast(Hashable, k)</span>
+<span class="ne">-&gt; </span><span class="mi">1237</span><span class="s2">                     left_keys.append(left._get_label_or_level_values(k))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span><span class="s2">                     join_names.append(k)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1239</span><span class="s2">             if isinstance(self.right.index, MultiIndex):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span><span class="s2">                 right_keys = [</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\generic.py</span> in <span class="ni">?</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1774</span><span class="s2">             values = self.xs(key, axis=other_axes[0])._values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1775</span><span class="s2">         elif self._is_level_reference(key, axis=axis):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1776</span><span class="s2">             values = self.axes[axis].get_level_values(key)._values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1777</span><span class="s2">         else:</span>
+<span class="ne">-&gt; </span><span class="mi">1778</span><span class="s2">             raise KeyError(key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1779</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1780</span><span class="s2">         # Check for duplicates</span>
+<span class="g g-Whitespace">   </span><span class="mi">1781</span><span class="s2">         if values.ndim &gt; 1:</span>
+
+<span class="ne">KeyError</span>: &#39;neighbourhood&#39;
+</pre></div>
+</div>
+<img alt="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" src="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" />
+</div>
+</div>
+</section>
+<section id="intercepto-y-coeficientes-variables">
+<h3>Intercepto y coeficientes variables<a class="headerlink" href="#intercepto-y-coeficientes-variables" title="Permalink to this heading">#</a></h3>
+<p>En el núcleo de la estimación de efectos fijos espaciales está la idea de que, en lugar de asumir que la variable dependiente se comporta uniformemente en el espacio, existen efectos sistemáticos que siguen un patrón geográfico y afectan su comportamiento. En otras palabras, <strong>los efectos fijos espaciales introducen econometricamente la noción de heterogeneidad espacial</strong>. Lo hacen en la forma más simple posible: al permitir que el término constante varíe geográficamente. Los demás elementos de la regresión permanecen sin cambios y, por lo tanto, se aplican uniformemente en todo el espacio. <strong>La idea de los regímenes espaciales (RE) es generalizar el enfoque de los efectos fijos espaciales para permitir que no solo el término constante varíe, sino también cualquier otra variable explicativa</strong>. Esto implica que la ecuación que estaremos estimando es:</p>
+<div class="math notranslate nohighlight">
+\[
+\log{P_i} = \alpha_r + \sum_k \mathbf{X}_{ki}\beta_{k-r} + \epsilon_i
+\]</div>
+<p>donde no solo permitimos que el término constante varíe por región (<span class="math notranslate nohighlight">\(\alpha_r\)</span>), sino también cada otro parámetro (<span class="math notranslate nohighlight">\(\beta_{k-r}\)</span>).</p>
+<p>Para ilustrar este enfoque, usaremos el “diferenciador espacial” de si una casa está en un vecindario costero o no (<code class="docutils literal notranslate"><span class="pre">coastal_neig</span></code>) para definir los regímenes. La razón detrás de esta elección es que alquilar una casa cerca del océano podría ser un factor lo suficientemente fuerte como para que las personas estén dispuestas a pagar a diferentes <em>tasas</em> por cada una de las características de la casa.</p>
+<p>Para implementar esto en Python, usamos la clase <code class="docutils literal notranslate"><span class="pre">OLS_Regimes</span></code> en <code class="docutils literal notranslate"><span class="pre">PySAL</span></code>, que hace la mayor parte del trabajo pesado por nosotros:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m4</span> <span class="o">=</span> <span class="n">spreg</span><span class="o">.</span><span class="n">OLS_Regimes</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s1">&#39;log_price&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">db</span><span class="p">[</span><span class="n">variable_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                          <span class="n">db</span><span class="p">[</span><span class="s1">&#39;coastal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                          <span class="n">constant_regi</span><span class="o">=</span><span class="s1">&#39;many&#39;</span><span class="p">,</span>
+                          <span class="n">regime_err_sep</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">name_y</span><span class="o">=</span><span class="s1">&#39;log_price&#39;</span><span class="p">,</span> <span class="n">name_x</span><span class="o">=</span><span class="n">variable_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m4</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES - REGIMES
+---------------------------------------------------
+Data set            :     unknown
+Weights matrix      :        None
+Dependent Variable  :   log_price                Number of Observations:        6110
+Mean dependent var  :      4.9958                Number of Variables   :          22
+S.D. dependent var  :      0.8072                Degrees of Freedom    :        6088
+R-squared           :      0.6853
+Adjusted R-squared  :      0.6843
+Sum squared residual:     1252.49                F-statistic           :    631.4283
+Sigma-square        :       0.206                Prob(F-statistic)     :           0
+S.E. of regression  :       0.454                Log likelihood        :   -3828.169
+Sigma-square ML     :       0.205                Akaike info criterion :    7700.339
+S.E of regression ML:      0.4528                Schwarz criterion     :    7848.128
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     t-Statistic     Probability
+------------------------------------------------------------------------------------
+          0_CONSTANT         4.40724         0.02152       204.83927         0.00000
+      0_accommodates         0.09019         0.00647        13.93113         0.00000
+         0_bathrooms         0.14338         0.01427        10.04879         0.00000
+          0_bedrooms         0.11296         0.01383         8.16956         0.00000
+              0_beds        -0.02627         0.00884        -2.97261         0.00296
+   0_rt_Private_room        -0.52933         0.01892       -27.98057         0.00000
+    0_rt_Shared_room        -1.22446         0.04260       -28.74528         0.00000
+    0_pg_Condominium         0.10531         0.02813         3.74345         0.00018
+          0_pg_House        -0.04545         0.01796        -2.53086         0.01140
+          0_pg_Other         0.06075         0.02764         2.19827         0.02797
+      0_pg_Townhouse        -0.01040         0.04567        -0.22765         0.81993
+          1_CONSTANT         4.47990         0.02509       178.52600         0.00000
+      1_accommodates         0.04846         0.00788         6.14974         0.00000
+         1_bathrooms         0.24748         0.01657        14.93881         0.00000
+          1_bedrooms         0.18974         0.01792        10.58647         0.00000
+              1_beds        -0.05061         0.01074        -4.71079         0.00000
+   1_rt_Private_room        -0.55863         0.02831       -19.73097         0.00000
+    1_rt_Shared_room        -1.05285         0.08417       -12.50800         0.00000
+    1_pg_Condominium         0.20445         0.03394         6.02318         0.00000
+          1_pg_House         0.07535         0.02338         3.22322         0.00127
+          1_pg_Other         0.29548         0.03865         7.64604         0.00000
+      1_pg_Townhouse        -0.07351         0.04937        -1.48900         0.13654
+------------------------------------------------------------------------------------
+Regimes variable: unknown
+
+REGIMES DIAGNOSTICS - CHOW TEST
+                 VARIABLE        DF        VALUE           PROB
+                 CONSTANT         1           4.832           0.0279
+             accommodates         1          16.736           0.0000
+                bathrooms         1          22.671           0.0000
+                 bedrooms         1          11.504           0.0007
+                     beds         1           3.060           0.0802
+          rt_Private_room         1           0.740           0.3896
+           rt_Shared_room         1           3.309           0.0689
+           pg_Condominium         1           5.057           0.0245
+                 pg_House         1          16.793           0.0000
+                 pg_Other         1          24.410           0.0000
+             pg_Townhouse         1           0.881           0.3480
+              Global test        11         328.869           0.0000
+
+REGRESSION DIAGNOSTICS
+MULTICOLLINEARITY CONDITION NUMBER           14.033
+
+TEST ON NORMALITY OF ERRORS
+TEST                             DF        VALUE           PROB
+Jarque-Bera                       2        3977.425           0.0000
+
+DIAGNOSTICS FOR HETEROSKEDASTICITY
+RANDOM COEFFICIENTS
+TEST                             DF        VALUE           PROB
+Breusch-Pagan test               21         443.593           0.0000
+Koenker-Bassett test             21         164.276           0.0000
+================================ END OF REPORT =====================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modelos-jerarquicos-con-r">
+<h2>Modelos jerarquicos con R<a class="headerlink" href="#modelos-jerarquicos-con-r" title="Permalink to this heading">#</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#importar librerias</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w"> </span><span class="c1">#para importar datos geoespaciales</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lme4</span><span class="p">)</span><span class="w"> </span><span class="c1"># para el modelo</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">pscl</span><span class="p">)</span><span class="w"> </span><span class="c1"># para calcular los R2</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MuMIn</span><span class="p">)</span><span class="w"> </span><span class="c1">#para calcular los R2 en el modelo multinivel </span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># Plotting library</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggspatial</span><span class="p">)</span><span class="w"> </span><span class="c1"># For adding north arrow and scale to maps</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">broom.mixed</span><span class="p">)</span><span class="w"> </span><span class="c1"># para transformar tabla</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span><span class="w"> </span><span class="c1">#para crear tabla en LaTEX</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sjPlot</span><span class="p">)</span><span class="w"> </span><span class="c1">#para graficar los effectos</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span><span class="w"> </span><span class="c1">#para LaTEX table</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># for data manipulation</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="w"> </span><span class="c1">#to export the table</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span><span class="w"> </span><span class="c1"># for the ROC curve</span>
+
+<span class="c1">#Cargar datos</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;https://github.com/edieraristizabal/ModeloMultinivel/blob/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create Y_bin as 1 if lands_rec is 1 or greater, otherwise 0</span>
+<span class="n">data</span><span class="o">$</span><span class="n">Y_bin</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Convert &#39;cuenca&#39; to a factor (categorical variable)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">cuenca</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">kmeans</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">kmeans</span><span class="p">)</span>
+
+<span class="c1"># Ensure predictor variables are standardized</span>
+<span class="n">data</span><span class="o">$</span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">elev_mean</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">rel_mean</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">area_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">area</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">rainfallAnnual_mean</span><span class="p">)</span>
+
+<span class="c1">#########################################</span>
+
+<span class="c1"># Fit the logistic regression model without random effects</span>
+<span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Y_bin</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;logit&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Calculate pseudo-R^2 values</span>
+<span class="n">pseudo_r2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pR2</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span>
+
+<span class="c1"># Fitted values for model m3</span>
+<span class="n">data</span><span class="o">$</span><span class="n">m1fitted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fitted</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span><span class="w"> </span>
+
+<span class="c1"># Extract model coefficients as a tidy data frame</span>
+<span class="n">model_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tidy</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> </span><span class="n">std.error</span><span class="p">,</span><span class="w"> </span><span class="n">statistic</span><span class="p">,</span><span class="w"> </span><span class="n">p.value</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">rename</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">term</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Estimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Std_Error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std.error</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Z_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statistic</span><span class="p">,</span>
+<span class="w">    </span><span class="n">P_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p.value</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1">##############################################</span>
+
+<span class="c1"># Fit the multilevel logistic regression model with random slopes for each predictor</span>
+<span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glmer</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Y_bin</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">cuenca</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;logit&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">glmerControl</span><span class="p">(</span><span class="n">optimizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bobyqa&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optCtrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">maxfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2e5</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1"># Print the summary of the model to see the results</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
+
+<span class="c1"># Fitted values for model m3</span>
+<span class="n">data</span><span class="o">$</span><span class="n">m2fitted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fitted</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span><span class="w"> </span>
+
+<span class="c1"># Extract random effects from the model</span>
+<span class="n">ranef_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ranef</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span><span class="o">$</span><span class="n">cuenca</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "ml"
+        },
+        kernelOptions: {
+            name: "ml",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ml'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="11_CAR.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelos de regresión para dependencia espacial tipo CAR</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_MGWR.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Regresión Ponderada Geográficamente (GWR)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regimenes-espaciales">Regímenes Espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-variable-efectos-fijos-espaciales">Intercepto variable (Efectos fijos espaciales)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-y-coeficientes-variables">Intercepto y coeficientes variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Edier V. Aristizábal G.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
