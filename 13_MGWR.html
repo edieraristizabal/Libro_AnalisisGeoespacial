@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Kriging con Python" href="14_Kriging.html" />
-    <link rel="prev" title="Modelos de Regresión para Heterogeneidad Espacial" href="12_Jerarquicos.html" />
+    <link rel="prev" title="Modelos con dependencia y hetereogeneidad espacial" href="12_CARJerarquicos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
@@ -182,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
@@ -382,6 +384,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ponderada-geograficamente-multiescala-mgwr">Regresión Ponderada Geográficamente Multiescala (MGWR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em></a></li>
 </ul>
             </nav>
         </div>
@@ -395,16 +398,16 @@ document.write(`
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="regresion-ponderada-geograficamente-gwr">
 <h1>Regresión Ponderada Geográficamente (GWR)<a class="headerlink" href="#regresion-ponderada-geograficamente-gwr" title="Permalink to this heading">#</a></h1>
-<p>Los Modelos de Regresión Espacial Ponderados (GWR, por sus siglas en inglés) constituyen una herramienta estadística avanzada desarrollada para analizar la heterogeneidad espacial de relaciones entre una variable respuesta y un conjunto de variables predictoras en un contexto geográfico (\cite{brunsdon1996geographically, fotheringham2000quantitative, fotheringham2009geographically}). A diferencia de los modelos de regresión tradicional, que asumen que la relación entre las variables es constante en todo el espacio de estudio, los modelos GWR permiten que los coeficientes varíen de manera local. Esto se logra ajustando un modelo de regresión independiente en cada ubicación geográfica, utilizando datos cercanos para ponderar las estimaciones (\cite{brunsdon1996geographically}). Esta metodología es particularmente valiosa para el análisis de susceptibilidad a movimientos en masa, ya que permite representar cómo las diferentes condiciones del terreno afectan la susceptibilidad de manera no uniforme a lo largo de un área.</p>
-<p>La formulación matemática de un modelo de regresión espacial ponderada es de la siguiente forma (\cite{brunsdon1996geographically}):</p>
+<p>Los Modelos de Regresión Espacial Ponderados (GWR, por sus siglas en inglés) constituyen una herramienta estadística avanzada desarrollada para analizar la heterogeneidad espacial de relaciones entre una variable respuesta y un conjunto de variables predictoras en un contexto geográfico (Brunsdon 1996, Fotheringham 2000, Fotheringham 2009). A diferencia de los modelos de regresión tradicional, que asumen que la relación entre las variables es constante en todo el espacio de estudio, los modelos GWR permiten que los coeficientes varíen de manera local. Esto se logra ajustando un modelo de regresión independiente en cada ubicación geográfica, utilizando datos cercanos para ponderar las estimaciones (Brunsdon 1996). Esta metodología es particularmente valiosa para el análisis de susceptibilidad a movimientos en masa, ya que permite representar cómo las diferentes condiciones del terreno afectan la susceptibilidad de manera no uniforme a lo largo de un área.</p>
+<p>La formulación matemática de un modelo de regresión espacial ponderada es de la siguiente forma (Brunsdon 1996):</p>
 <div class="math notranslate nohighlight">
 \[y_i = \beta_0(u_i, v_i) + \sum_{k=1}^p \beta_k(u_i, v_i) x_{ik} + \epsilon_i\]</div>
 <p>donde: ( y_i ) es el valor de la variable respuesta en la ubicación ( i ), ( (u_i, v_i) ) las coordenadas geográficas de la ubicación ( i ), ( \beta_0(u_i, v_i) ) el término independiente local en la ubicación ( i ), ( \beta_k(u_i, v_i) ) el coeficiente local asociado con la variable predictora ( x_{ik} ) en la ubicación ( i ). ( x_{ik} ) es el valor de la variable predictora ( k ) para la ubicación ( i ), y ( \epsilon_i ) el término de error en la ubicación ( i ).</p>
-<p>Los modelos GWR son útiles en situaciones donde la influencia de las variables predictoras cambia espacialmente (\cite{fotheringham2009geographically}), es decir. En estudios de movimientos en masa, estas relaciones pueden depender de la topografía local, las características del suelo, la vegetación, o incluso de los patrones de precipitación que varían en el espacio. Por ejemplo, la influencia de la pendiente o la cobertura vegetal sobre la susceptibilidad a movimientos en masa puede ser distinta en regiones con diferentes características geológicas o climáticas. La aplicación de GWR permite capturar esta variabilidad y proporciona un análisis más detallado y específico para cada localidad del área de estudio.</p>
-<p>El aspecto clave de la GWR es que los coeficientes  varían dependiendo de la ubicación geográfica , lo cual se logra a través del uso de un kernel de ponderación que da más peso a las observaciones cercanas y menos peso a las observaciones lejanas (\cite{fotheringham2000quantitative}). En la práctica, este kernel suele ser una función gaussiana o una función adaptativa, que ajusta el peso según la distancia desde el punto central.</p>
+<p>Los modelos GWR son útiles en situaciones donde la influencia de las variables predictoras cambia espacialmente (Fotheringham 2009), es decir. En estudios de movimientos en masa, estas relaciones pueden depender de la topografía local, las características del suelo, la vegetación, o incluso de los patrones de precipitación que varían en el espacio. Por ejemplo, la influencia de la pendiente o la cobertura vegetal sobre la susceptibilidad a movimientos en masa puede ser distinta en regiones con diferentes características geológicas o climáticas. La aplicación de GWR permite capturar esta variabilidad y proporciona un análisis más detallado y específico para cada localidad del área de estudio.</p>
+<p>El aspecto clave de la GWR es que los coeficientes  varían dependiendo de la ubicación geográfica , lo cual se logra a través del uso de un kernel de ponderación que da más peso a las observaciones cercanas y menos peso a las observaciones lejanas (Fotheringham 2000). En la práctica, este kernel suele ser una función gaussiana o una función adaptativa, que ajusta el peso según la distancia desde el punto central.</p>
 <p>Una de las principales ventajas de los modelos GWR es la facilidad con la que los resultados de GWR pueden ser interpretados y visualizados en un contexto espacial, facilitando la identificación de patrones locales de susceptibilidad y ayudando a la toma de decisiones. Los mapas de coeficientes permiten identificar áreas donde ciertas variables tienen una mayor o menor influencia, aportando información útil para el manejo territorial y la planificación.</p>
-<p>Sin embargo, los modelos GWR también presentan limitaciones importantes. Una de ellas es la multicolinealidad local, ya que, debido a la naturaleza local de las regresiones, es posible que en algunas áreas las variables predictoras estén altamente correlacionadas, lo que dificulta la interpretación de los coeficientes (\cite{fotheringham2000quantitative, brunsdon1996geographically}). Además, los modelos GWR suelen ser computacionalmente más exigentes que los modelos de regresión globales o clásicos, especialmente cuando se trabaja con grandes volúmenes de datos espaciales.</p>
-<p>Otra limitación a destacar es la selección del ancho de banda (BW) del kernel de ponderación (\cite{guo2008comparison}). El BW determina cuántas observaciones se consideran en el cálculo de los coeficientes locales, y su elección tiene un impacto en los resultados del modelo. Un BW demasiado amplio puede resultar en un modelo más similar a una regresión global, mientras que un BW muy estrecho puede llevar a resultados sobre-ajustados y poco generalizables. La selección adecuada del BW suele requerir un proceso iterativo y cuidadoso.</p>
+<p>Sin embargo, los modelos GWR también presentan limitaciones importantes. Una de ellas es la multicolinealidad local, ya que, debido a la naturaleza local de las regresiones, es posible que en algunas áreas las variables predictoras estén altamente correlacionadas, lo que dificulta la interpretación de los coeficientes (Fotheringham 2000, Brunsdon 1996). Además, los modelos GWR suelen ser computacionalmente más exigentes que los modelos de regresión globales o clásicos, especialmente cuando se trabaja con grandes volúmenes de datos espaciales.</p>
+<p>Otra limitación a destacar es la selección del ancho de banda (BW) del kernel de ponderación (Guo 2008). El BW determina cuántas observaciones se consideran en el cálculo de los coeficientes locales, y su elección tiene un impacto en los resultados del modelo. Un BW demasiado amplio puede resultar en un modelo más similar a una regresión global, mientras que un BW muy estrecho puede llevar a resultados sobre-ajustados y poco generalizables. La selección adecuada del BW suele requerir un proceso iterativo y cuidadoso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libpysal</span> <span class="k">as</span> <span class="nn">ps</span>
@@ -801,20 +804,18 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 
 <span class="n">mgwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">mgwr_bw</span> <span class="o">=</span> <span class="n">mgwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">multi_bw_min</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mgwr_bw</span><span class="p">)</span>
 <span class="n">mgwr_results</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">mgwr_selector</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "7f309c9ef6ca4e7e88f03ee4a4d8fe76"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8446bf7289d84361bb9345ef9c80a8b3"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Calibrate MGWR model</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mgwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">mgwr_bw</span> <span class="o">=</span> <span class="n">mgwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">multi_bw_min</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">mgwr_bw</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">mgwr_results</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">mgwr_selector</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">mgwr_results</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">mgwr_selector</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 
 <span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:318,</span> in <span class="ni">Sel_BW.search</span><span class="nt">(self, search_method, criterion, bw_min, bw_max, interval, tol, max_iter, init_multi, tol_multi, rss_score, max_iter_multi, multi_bw_min, multi_bw_max, bws_same_times, verbose, pool)</span>
 <span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_score</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span>
@@ -1294,6 +1295,148 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </div>
 </section>
+<section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">
+<h2>Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">mgwr.gwr</span> <span class="kn">import</span> <span class="n">GWR</span><span class="p">,</span> <span class="n">MGWR</span>
+<span class="kn">from</span> <span class="nn">mgwr.sel_bw</span> <span class="kn">import</span> <span class="n">Sel_BW</span>
+<span class="kn">from</span> <span class="nn">matplotlib_scalebar.scalebar</span> <span class="kn">import</span> <span class="n">ScaleBar</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">geo_northarrow</span> <span class="kn">import</span> <span class="n">add_north_arrow</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="n">np</span><span class="o">.</span><span class="n">float</span> <span class="o">=</span> <span class="nb">float</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the dataset</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate landslide frequency as landslides per unit area</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;y_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;lands_rec&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">g_y</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;y_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#definir coordenadas como puntos</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span>
+<span class="n">g_coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select optimal bandwidth for GWR model using coordinates, response, and predictors</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;elev_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;rel_mean&#39;</span><span class="p">,</span><span class="s2">&quot;rainfallAnnual_mean&quot;</span><span class="p">]</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">g_X_num</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="n">variables</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En siguiente código permite implementar el modelo GWR utilizando una función kernel gaussiana y un distancia fija de 10km.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit GWR model using the current bandwidth</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X_num</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si se desea mantener la distancia variable y fijar el número de vecinos a 5, se utiliza el siguiente código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit GWR model using a fixed number of neighbors (adaptive bandwidth)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X_num</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cuandos e desea utilizar el MGWR, se utiliza la función sel_BW que optimiza los valores del <em>bandwith</em>. Cuando <em>fixed=False</em>, el resultado de <a class="reference external" href="http://selector.bw">selector.bw</a> será el número óptimo de vecinos. Cuando fixed=True, el resultado de <a class="reference external" href="http://selector.bw">selector.bw</a> será la distancia óptima. Es importante ser consistente con el valor del parámetro fixed tanto al instanciar Sel_BW como al crear el modelo MGWR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X_num</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;bisquare&#39;</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">selector</span> <span class="o">=</span> <span class="n">gwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the MGWR model using the selected bandwidths</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X_num</span><span class="p">,</span> <span class="n">gwr_selector</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;bisquare&#39;</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract and plot the local coefficients for each covariate</span>
+<span class="n">local_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span>
+
+<span class="c1"># Create a single plot with three columns for each covariate (elevation, relief, and rainfall)</span>
+<span class="n">param_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;elev_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;rel_mean&#39;</span><span class="p">,</span> <span class="s1">&#39;rainfallAnnual_mean&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Transform geometries to WGS84 (EPSG:4326) before plotting</span>
+<span class="n">data_clean</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_names</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">data_clean</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;coef_</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_params</span><span class="p">[:,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#tengo +1 para qeu no considere el primer coeficiente que pertenece al intercepto</span>
+    <span class="n">data_clean</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;coef_</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">add_north_arrow</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">.75</span><span class="p">,</span> <span class="n">xlim_pos</span><span class="o">=</span><span class="mf">.1025</span><span class="p">,</span> <span class="n">ylim_pos</span><span class="o">=</span><span class="mf">.965</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#000&#39;</span><span class="p">,</span> <span class="n">text_scaler</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">text_yT</span><span class="o">=-</span><span class="mf">1.25</span><span class="p">)</span>
+    <span class="n">scalebar</span> <span class="o">=</span> <span class="n">ScaleBar</span><span class="p">(</span><span class="mf">111319.49079327357</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">scale_loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">length_fraction</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">font_properties</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">scalebar</span><span class="p">)</span>
+    
+<span class="c1"># Save the entire figure with all three subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming model is the fitted MGWR model object</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">data_clean</span><span class="p">[</span><span class="s2">&quot;fitted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predy</span>  <span class="c1"># The predicted values (fitted values) from the MGWR model</span>
+<span class="n">data_clean</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;fitted&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">add_north_arrow</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">.75</span><span class="p">,</span> <span class="n">xlim_pos</span><span class="o">=</span><span class="mf">.1025</span><span class="p">,</span> <span class="n">ylim_pos</span><span class="o">=</span><span class="mf">.965</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#000&#39;</span><span class="p">,</span> <span class="n">text_scaler</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">text_yT</span><span class="o">=-</span><span class="mf">1.25</span><span class="p">)</span>
+<span class="n">scalebar</span> <span class="o">=</span> <span class="n">ScaleBar</span><span class="p">(</span><span class="mf">111319.49079327357</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">scale_loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">length_fraction</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">font_properties</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">scalebar</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1305,16 +1448,16 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "ml"
+            mode: "python"
         },
         kernelOptions: {
-            name: "ml",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ml'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1327,12 +1470,12 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="12_Jerarquicos.html"
+       href="12_CARJerarquicos.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Modelos de Regresión para Heterogeneidad Espacial</p>
+        <p class="prev-next-title">Modelos con dependencia y hetereogeneidad espacial</p>
       </div>
     </a>
     <a class="right-next"
@@ -1360,6 +1503,7 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ponderada-geograficamente-multiescala-mgwr">Regresión Ponderada Geográficamente Multiescala (MGWR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em></a></li>
 </ul>
   </nav></div>
 

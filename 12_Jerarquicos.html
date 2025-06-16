@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '12_Jerarquicos';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Regresión Ponderada Geográficamente (GWR)" href="13_MGWR.html" />
+    <link rel="next" title="Modelos con dependencia y hetereogeneidad espacial" href="12_CARJerarquicos.html" />
     <link rel="prev" title="Modelos de regresión para dependencia espacial tipo CAR" href="11_CAR.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
@@ -182,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
@@ -386,7 +388,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-y-coeficientes-variables">Intercepto y coeficientes variables</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -400,8 +406,8 @@ document.write(`
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-heterogeneidad-espacial">
 <h1>Modelos de Regresión para Heterogeneidad Espacial<a class="headerlink" href="#modelos-de-regresion-para-heterogeneidad-espacial" title="Permalink to this heading">#</a></h1>
-<p>La heterogeneidad espacial es una característica fundamental de los datos geoespaciales y suponen importantes desafíos para los modelos estadísticos convencionales (\cite{anselin1988spatial, cressie2015statistics, lesage2009introduction}). La heterogeneidad espacial se refiere a la variabilidad de las condiciones del terreno a lo largo del espacio (\cite{anselin1990spatial}). Por ejemplo, las propiedades geomorfológicas de una ladera pueden diferir sustancialmente de las de otra dentro de una misma cuenca, afectando la susceptibilidad de cada zona a los movimientos en masa.  Ignorar esta heterogeneidad del espacio puede llevar a una subestimación o sobrestimación de la susceptibilidad en ciertas zonas del área de estudio.</p>
-<p>Para abordar estas limitaciones, se han desarrollado modelos que permiten la variación espacial de los coeficientes de las variables predictoras, permitiendo capturar la heterogeneidad inherente al terreno (\cite{rey2023geographic}). Entre estos enfoques se encuentran los modelos multiniveles (\cite{wong1985hierarchical}) (también conocidos como jerárquicos, y en algunos casos modelos mixtos o regímenes espaciales) y los modelos de regresión espacial ponderada (GWR, por sus siglas en inglés) (\cite{brunsdon1996geographically}). Los modelos multiniveles permiten modelar la variabilidad espacial mediante la introducción de estructuras jerárquicas, asignando un coeficiente e intercepto para cada nivel o región incorporada en el modelo. Lo cual resulta particularmente útil cuando los datos presentan una organización natural en grupos o niveles (por ejemplo, cuencas y subcuencas). En contraste, los modelos GWR son menos complejos computacionalmente, ya que no requieren definir niveles jerárquicos. Los modelos GWR permiten que los coeficientes de las variables predictoras varíen para cada observación, proporcionando una caracterización más detallada de la influencia de las variables en función de su localización geográfica. Ambos enfoques presentan ventajas significativas frente a los modelos tradicionales, al capturar la variabilidad espacial, mejorando la precisión en la evaluación de la susceptibilidad a movimientos en masa.</p>
+<p>La heterogeneidad espacial es una característica fundamental de los datos geoespaciales y suponen importantes desafíos para los modelos estadísticos convencionales (Anselin 1988, Cressie 2015, Lesage 2009). La heterogeneidad espacial se refiere a la variabilidad de las condiciones del terreno a lo largo del espacio (Anselin 1990). Por ejemplo, las propiedades geomorfológicas de una ladera pueden diferir sustancialmente de las de otra dentro de una misma cuenca, afectando la susceptibilidad de cada zona a los movimientos en masa.  Ignorar esta heterogeneidad del espacio puede llevar a una subestimación o sobrestimación de la susceptibilidad en ciertas zonas del área de estudio.</p>
+<p>Para abordar estas limitaciones, se han desarrollado modelos que permiten la variación espacial de los coeficientes de las variables predictoras, permitiendo capturar la heterogeneidad inherente al terreno (Rey et al. 2023). Entre estos enfoques se encuentran los modelos multiniveles (Wong 1985) (también conocidos como jerárquicos, y en algunos casos modelos mixtos o regímenes espaciales) y los modelos de regresión espacial ponderada (GWR, por sus siglas en inglés) (Brunsdon 1996). Los modelos multiniveles permiten modelar la variabilidad espacial mediante la introducción de estructuras jerárquicas, asignando un coeficiente e intercepto para cada nivel o región incorporada en el modelo. Lo cual resulta particularmente útil cuando los datos presentan una organización natural en grupos o niveles (por ejemplo, cuencas y subcuencas). En contraste, los modelos GWR son menos complejos computacionalmente, ya que no requieren definir niveles jerárquicos. Los modelos GWR permiten que los coeficientes de las variables predictoras varíen para cada observación, proporcionando una caracterización más detallada de la influencia de las variables en función de su localización geográfica. Ambos enfoques presentan ventajas significativas frente a los modelos tradicionales, al capturar la variabilidad espacial, mejorando la precisión en la evaluación de la susceptibilidad a movimientos en masa.</p>
 <section id="regimenes-espaciales">
 <h2>Regímenes Espaciales<a class="headerlink" href="#regimenes-espaciales" title="Permalink to this heading">#</a></h2>
 <p>En el siguiente ejemplo queremos conocer la relación que hay entre el número de carros y los niveles de contaminación en una ciudad. En el análisis inicial se desconoce en el análisis las comunas de la ciudad, en este caso Belén, Centro y el Poblado. Los resultados indican que a mayor número de carros menores valores de contaminación.</p>
@@ -461,7 +467,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6825fe617bdb140fc3a94f1158daab82899282786cc6ad9c20d0cd3f071e2c66.png" src="_images/6825fe617bdb140fc3a94f1158daab82899282786cc6ad9c20d0cd3f071e2c66.png" />
+<img alt="_images/8dbc0e06dded696d65ca99c62d5c1770009bad6a7df6765680cf152baa8b6ec1.png" src="_images/8dbc0e06dded696d65ca99c62d5c1770009bad6a7df6765680cf152baa8b6ec1.png" />
 </div>
 </div>
 <p>Pero si incorporamos en el análisis la variable comuna, lo que significa que cada comuna tiene sus condiciones particulares, y realizamos una regresión para cada grupo de datos, los resultados del análisis cambian completamente.</p>
@@ -496,7 +502,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a7228ae67ce57c663e8e1e654cb18c554d5368489b3eeca00c1eea6bf169ead5.png" src="_images/a7228ae67ce57c663e8e1e654cb18c554d5368489b3eeca00c1eea6bf169ead5.png" />
+<img alt="_images/e56de25624935a733791b6ea405172dfa9414ec3a06efacb76317e46a0f3462d.png" src="_images/e56de25624935a733791b6ea405172dfa9414ec3a06efacb76317e46a0f3462d.png" />
 </div>
 </div>
 <p>Cómo podemos entonces realizar uan regresión donde tome todos los datos y los elementos que comparten en común, pero que al mismo tiempo considere los cambios espaciales que hay por regiones.</p>
@@ -706,7 +712,7 @@ memory usage: 954.8+ KB
 ======================================================================================
 Model:                      OLS                    Adj. R-squared:           0.709    
 Dependent Variable:         log_price              AIC:                      7229.6640
-Date:                       2025-06-14 17:55       BIC:                      7599.1365
+Date:                       2025-06-16 14:41       BIC:                      7599.1365
 No. Observations:           6110                   Log-Likelihood:           -3559.8  
 Df Model:                   54                     F-statistic:              276.9    
 Df Residuals:               6055                   Prob (F-statistic):       0.00     
@@ -989,189 +995,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">gaierror</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connection.py:174,</span> in <span class="ni">HTTPConnection._new_conn</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">174</span>     <span class="n">conn</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dns_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_kw</span>
-<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="k">except</span> <span class="n">SocketTimeout</span><span class="p">:</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\util\connection.py:72,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address, socket_options)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>     <span class="k">return</span> <span class="n">six</span><span class="o">.</span><span class="n">raise_from</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>         <span class="n">LocationParseError</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39;, label empty or too long&quot;</span> <span class="o">%</span> <span class="n">host</span><span class="p">),</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">72</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="n">af</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sa</span> <span class="o">=</span> <span class="n">res</span>
-
-<span class="nn">File ~\miniconda3\Lib\socket.py:962,</span> in <span class="ni">getaddrinfo</span><span class="nt">(host, port, family, type, proto, flags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">961</span> <span class="n">addrlist</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">--&gt; </span><span class="mi">962</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">_socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">flags</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">963</span>     <span class="n">af</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sa</span> <span class="o">=</span> <span class="n">res</span>
-
-<span class="ne">gaierror</span>: [Errno 11001] getaddrinfo failed
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">NewConnectionError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connectionpool.py:714,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">713</span> <span class="c1"># Make the request on the httplib connection object.</span>
-<span class="ne">--&gt; </span><span class="mi">714</span> <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">conn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">716</span>     <span class="n">method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">717</span>     <span class="n">url</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">720</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="c1"># If we&#39;re going to release the connection in ``finally:``, then</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="c1"># the response doesn&#39;t need to know about the connection. Otherwise</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span> <span class="c1"># it will also try to release it and we&#39;ll have a double-release</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span> <span class="c1"># mess.</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connectionpool.py:415,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">415</span>         <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">httplib_request_kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="c1"># We are swallowing BrokenPipeError (errno.EPIPE) since the server is</span>
-<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="c1"># legitimately able to close the connection after sending a valid response.</span>
-<span class="g g-Whitespace">    </span><span class="mi">419</span> <span class="c1"># With this behaviour, the received response is still readable.</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connection.py:244,</span> in <span class="ni">HTTPConnection.request</span><span class="nt">(self, method, url, body, headers)</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>     <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_get_default_user_agent</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">244</span> <span class="nb">super</span><span class="p">(</span><span class="n">HTTPConnection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\http\client.py:1286,</span> in <span class="ni">HTTPConnection.request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1285</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1286</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\http\client.py:1332,</span> in <span class="ni">HTTPConnection._send_request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1331</span>     <span class="n">body</span> <span class="o">=</span> <span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1332</span> <span class="bp">self</span><span class="o">.</span><span class="n">endheaders</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\http\client.py:1281,</span> in <span class="ni">HTTPConnection.endheaders</span><span class="nt">(self, message_body, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1280</span>     <span class="k">raise</span> <span class="n">CannotSendHeader</span><span class="p">()</span>
-<span class="ne">-&gt; </span><span class="mi">1281</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_output</span><span class="p">(</span><span class="n">message_body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\http\client.py:1041,</span> in <span class="ni">HTTPConnection._send_output</span><span class="nt">(self, message_body, encode_chunked)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">[:]</span>
-<span class="ne">-&gt; </span><span class="mi">1041</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1043</span> <span class="k">if</span> <span class="n">message_body</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1044</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1045</span>     <span class="c1"># create a consistent interface to message_body</span>
-
-<span class="nn">File ~\miniconda3\Lib\http\client.py:979,</span> in <span class="ni">HTTPConnection.send</span><span class="nt">(self, data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_open</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">979</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connection.py:205,</span> in <span class="ni">HTTPConnection.connect</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">205</span>     <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_conn</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connection.py:186,</span> in <span class="ni">HTTPConnection._new_conn</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="k">except</span> <span class="n">SocketError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">186</span>     <span class="k">raise</span> <span class="n">NewConnectionError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span>         <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Failed to establish a new connection: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span> <span class="k">return</span> <span class="n">conn</span>
-
-<span class="ne">NewConnectionError</span>: &lt;urllib3.connection.HTTPConnection object at 0x00000216D3D92910&gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">MaxRetryError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">File ~\miniconda3\Lib\site-packages\requests\adapters.py:667,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">670</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">681</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\connectionpool.py:798,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">e</span> <span class="o">=</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Connection aborted.&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">798</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span> <span class="n">retries</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\urllib3\util\retry.py:592,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">if</span> <span class="n">new_retry</span><span class="o">.</span><span class="n">is_exhausted</span><span class="p">():</span>
-<span class="ne">--&gt; </span><span class="mi">592</span>     <span class="k">raise</span> <span class="n">MaxRetryError</span><span class="p">(</span><span class="n">_pool</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span> <span class="ow">or</span> <span class="n">ResponseError</span><span class="p">(</span><span class="n">cause</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">594</span> <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Incremented Retry for (url=&#39;</span><span class="si">%s</span><span class="s2">&#39;): </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">new_retry</span><span class="p">)</span>
-
-<span class="ne">MaxRetryError</span>: HTTPConnectionPool(host=&#39;data.insideairbnb.com&#39;, port=80): Max retries exceeded with url: /united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection object at 0x00000216D3D92910&gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed&#39;))
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">ConnectionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">requests</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://data.insideairbnb.com/united-states/&#39;</span>\
-<span class="g g-Whitespace">      </span><span class="mi">3</span>       <span class="s1">&#39;ca/san-diego/2016-07-07/visualisations/&#39;</span>\
-<span class="g g-Whitespace">      </span><span class="mi">4</span>       <span class="s1">&#39;neighbourhoods.geojson&#39;</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;neighbourhoods.geojson&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\requests\api.py:73,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request.</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span><span class="sd">     :rtype: requests.Response</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">73</span>     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\requests\api.py:59,</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="c1"># avoid leaving sockets open which can trigger a ResourceWarning in some</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># cases, and look like a memory leak in others.</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\requests\sessions.py:589,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">586</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">589</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">return</span> <span class="n">resp</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\requests\sessions.py:703,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Send the request</span>
-<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\requests\adapters.py:700,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">696</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">_SSLError</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">697</span>         <span class="c1"># This branch is for urllib3 v1.22 and later.</span>
-<span class="g g-Whitespace">    </span><span class="mi">698</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">700</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="k">except</span> <span class="n">ClosedPoolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-
-<span class="ne">ConnectionError</span>: HTTPConnectionPool(host=&#39;data.insideairbnb.com&#39;, port=80): Max retries exceeded with url: /united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection object at 0x00000216D3D92910&gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed&#39;))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1197,7 +1020,81 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/37ff7e0f78a28a5cbd4481283fac3845ee55f7dec5016293d7668e4e127baa30.png" src="_images/37ff7e0f78a28a5cbd4481283fac3845ee55f7dec5016293d7668e4e127baa30.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">~\AppData\Local\Temp\ipykernel_6968\62176321.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighborhood_effects</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhood&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                     <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                   <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">])</span>\
+
+<span class="nn">~\miniconda3\Lib\site-packages\geopandas\geodataframe.py</span> in <span class="ni">?</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>         <span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pandas</span><span class="o">.</span><span class="n">pydata</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="n">reference</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">pandas</span>\
+<span class="g g-Whitespace">   </span><span class="mi">1566</span> <span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">merge</span><span class="o">.</span><span class="n">html</span>
+<span class="g g-Whitespace">   </span><span class="mi">1567</span>         <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="o">.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1568</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1569</span><span class="s2">         result = DataFrame.merge(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1570</span><span class="s2">         geo_col = self._geometry_column_name</span>
+<span class="g g-Whitespace">   </span><span class="mi">1571</span><span class="s2">         if isinstance(result, DataFrame) and geo_col in result:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1572</span><span class="s2">             result.__class__ = GeoDataFrame</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\frame.py</span> in <span class="ni">?</span><span class="nt">(self, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">   </span><span class="mi">9839</span><span class="s2">         validate: str | None = None,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9840</span><span class="s2">     ) -&gt; DataFrame:</span>
+<span class="g g-Whitespace">   </span><span class="mi">9841</span><span class="s2">         from pandas.core.reshape.merge import merge</span>
+<span class="g g-Whitespace">   </span><span class="mi">9842</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">9843</span><span class="s2">         return merge(</span>
+<span class="g g-Whitespace">   </span><span class="mi">9844</span><span class="s2">             self,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9845</span><span class="s2">             right,</span>
+<span class="g g-Whitespace">   </span><span class="mi">9846</span><span class="s2">             how=how,</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="s2">     copy: bool | None = None,</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="s2">     indicator: str | bool = False,</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span><span class="s2">     validate: str | None = None,</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span><span class="s2"> ) -&gt; DataFrame:</span>
+<span class="ne">--&gt; </span><span class="mi">148</span><span class="s2">     op = _MergeOperation(</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">         left,</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span><span class="s2">         right,</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">         how=how,</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(self, left, right, how, on, left_on, right_on, axis, left_index, right_index, sort, suffixes, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span><span class="s2">         (</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span><span class="s2">             self.left_join_keys,</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span><span class="s2">             self.right_join_keys,</span>
+<span class="g g-Whitespace">    </span><span class="mi">736</span><span class="s2">             self.join_names,</span>
+<span class="ne">--&gt; </span><span class="mi">737</span><span class="s2">         ) = self._get_merge_keys()</span>
+<span class="g g-Whitespace">    </span><span class="mi">738</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span><span class="s2">         # validate the merge keys dtypes. We may need to coerce</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span><span class="s2">         # to avoid incompatible dtypes</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="s2">                 else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1234</span><span class="s2">                     # Then we&#39;re either Hashable or a wrong-length arraylike,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="s2">                     #  the latter of which will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="s2">                     k = cast(Hashable, k)</span>
+<span class="ne">-&gt; </span><span class="mi">1237</span><span class="s2">                     left_keys.append(left._get_label_or_level_values(k))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span><span class="s2">                     join_names.append(k)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1239</span><span class="s2">             if isinstance(self.right.index, MultiIndex):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span><span class="s2">                 right_keys = [</span>
+
+<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\generic.py</span> in <span class="ni">?</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1774</span><span class="s2">             values = self.xs(key, axis=other_axes[0])._values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1775</span><span class="s2">         elif self._is_level_reference(key, axis=axis):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1776</span><span class="s2">             values = self.axes[axis].get_level_values(key)._values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1777</span><span class="s2">         else:</span>
+<span class="ne">-&gt; </span><span class="mi">1778</span><span class="s2">             raise KeyError(key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1779</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1780</span><span class="s2">         # Check for duplicates</span>
+<span class="g g-Whitespace">   </span><span class="mi">1781</span><span class="s2">         if values.ndim &gt; 1:</span>
+
+<span class="ne">KeyError</span>: &#39;neighbourhood&#39;
+</pre></div>
+</div>
+<img alt="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" src="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" />
 </div>
 </div>
 </section>
@@ -1305,6 +1202,10 @@ Koenker-Bassett test             21         164.276           0.0000
 </section>
 <section id="modelos-jerarquicos-con-r">
 <h2>Modelos jerarquicos con R<a class="headerlink" href="#modelos-jerarquicos-con-r" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">lme4</span></code> es la librería más utilizada en R para ajustar modelos lineales mixtos (LMMs) y modelos lineales generalizados mixtos (GLMMs). Estos modelos son fundamentales para analizar datos con estructuras jerárquicas o anidadas. <code class="docutils literal notranslate"><span class="pre">lmer()</span></code> se utiliza para ajustar modelos lineales mixtos, donde la variable de respuesta es continua y se asume que sigue una distribución normal, mientras <code class="docutils literal notranslate"><span class="pre">glmer()</span></code> se utiliza para ajustar modelos lineales generalizados mixtos, donde la variable de respuesta puede seguir otras distribuciones (como binomial, Poisson, gamma, etc.). La principal fortaleza de <code class="docutils literal notranslate"><span class="pre">lme4</span></code> radica en su capacidad para modelar efectos aleatorios. Estos efectos permiten capturar la variabilidad asociada a los diferentes niveles de agrupación en los datos jerárquicos (por ejemplo, la variabilidad entre individuos, entre grupos, entre localizaciones, etc.).</p>
+<p>Los efectos fijos (variables predictoras cuyos efectos se asumen constantes en toda la población) se incluyen de manera similar a los modelos lineales estándar (ej., variable_dependiente ~ predictor1 + predictor2). Los efectos aleatorios se añaden utilizando términos como (1 | variable_de_grupo) para un intercepto aleatorio (la media de la variable dependiente varía aleatoriamente entre los grupos definidos por variable_de_grupo), o (predictor | variable_de_grupo) para un efecto aleatorio de pendiente (el efecto del predictor varía aleatoriamente entre los grupos).</p>
+<section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r">
+<h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r" title="Permalink to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#importar librerias</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w"> </span><span class="c1">#para importar datos geoespaciales</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">lme4</span><span class="p">)</span><span class="w"> </span><span class="c1"># para el modelo</span>
@@ -1312,17 +1213,13 @@ Koenker-Bassett test             21         164.276           0.0000
 <span class="nf">library</span><span class="p">(</span><span class="n">MuMIn</span><span class="p">)</span><span class="w"> </span><span class="c1">#para calcular los R2 en el modelo multinivel </span>
 <span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># Plotting library</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">ggspatial</span><span class="p">)</span><span class="w"> </span><span class="c1"># For adding north arrow and scale to maps</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">broom.mixed</span><span class="p">)</span><span class="w"> </span><span class="c1"># para transformar tabla</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span><span class="w"> </span><span class="c1">#para crear tabla en LaTEX</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">sjPlot</span><span class="p">)</span><span class="w"> </span><span class="c1">#para graficar los effectos</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span><span class="w"> </span><span class="c1">#para LaTEX table</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># for data manipulation</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="w"> </span><span class="c1">#to export the table</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span><span class="w"> </span><span class="c1"># for the ROC curve</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span>
 
 <span class="c1">#Cargar datos</span>
-<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;https://github.com/edieraristizabal/ModeloMultinivel/blob/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create Y_bin as 1 if lands_rec is 1 or greater, otherwise 0</span>
 <span class="n">data</span><span class="o">$</span><span class="n">Y_bin</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
@@ -1336,10 +1233,10 @@ Koenker-Bassett test             21         164.276           0.0000
 <span class="n">data</span><span class="o">$</span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">rel_mean</span><span class="p">)</span>
 <span class="n">data</span><span class="o">$</span><span class="n">area_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">area</span><span class="p">)</span>
 <span class="n">data</span><span class="o">$</span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">rainfallAnnual_mean</span><span class="p">)</span>
-
-<span class="c1">#########################################</span>
-
-<span class="c1"># Fit the logistic regression model without random effects</span>
+</pre></div>
+</div>
+<p>A continuación se presenta el ajuste a un modelo de regresión logística estándar, evalúa su ajuste a través de pseudo-R cuadrados, obtiene las probabilidades predichas para cada observación y extrae un resumen limpio de los coeficientes del modelo en un data frame.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the logistic regression model without random effects</span>
 <span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span>
 <span class="w">  </span><span class="n">Y_bin</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="p">,</span>
 <span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span>
@@ -1362,10 +1259,30 @@ Koenker-Bassett test             21         164.276           0.0000
 <span class="w">    </span><span class="n">Z_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statistic</span><span class="p">,</span>
 <span class="w">    </span><span class="n">P_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p.value</span>
 <span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Un modelo de intercepto variable se define como:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m3_intercept_aleatorio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glmer</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Y_bin</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">cuenca</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;logit&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">glmerControl</span><span class="p">(</span><span class="n">optimizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bobyqa&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optCtrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">maxfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2e5</span><span class="p">))</span>
+<span class="p">)</span>
 
-<span class="c1">##############################################</span>
+<span class="c1"># Print the summary of the model</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">m3_intercept_aleatorio</span><span class="p">)</span>
 
-<span class="c1"># Fit the multilevel logistic regression model with random slopes for each predictor</span>
+<span class="c1"># Fitted values</span>
+<span class="n">data</span><span class="o">$</span><span class="n">m3fitted_intercept</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fitted</span><span class="p">(</span><span class="n">m3_intercept_aleatorio</span><span class="p">)</span>
+
+<span class="c1"># Extract random intercepts</span>
+<span class="n">ranef_intercept</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ranef</span><span class="p">(</span><span class="n">m3_intercept_aleatorio</span><span class="p">)</span><span class="o">$</span><span class="n">cuenca</span>
+<span class="n">``</span>`<span class="n">r</span>
+</pre></div>
+</div>
+<p>El modelo m2 es un modelo multinivel o modelo jerárquico que reconoce la estructura anidada de los datos, donde las observaciones individuales (subcuencas) están agrupadas dentro de unidades más grandes (cuencas). Los coeficientes de los efectos fijos (elev_mean_std, rel_mean_std, area_std, rainfallAnnual_mean_std) representan el efecto promedio de cada uno de estos predictores sobre la probabilidad de un movimiento en masa a través de todas las cuencas. Por ejemplo, el coeficiente de elev_mean_std te diría cómo cambia, en promedio, la probabilidad de un movimiento en masa por cada unidad de aumento en la elevación media estandarizada, manteniendo las otras variables constantes. Por otro lado, los efectos aleatorios permiten que la relación entre los predictores y la probabilidad de un movimiento en masa varíe entre las diferentes cuencas. El intercepto aleatorio para cada cuenca indica que algunas cuencas pueden tener una probabilidad base de movimientos en masa inherentemente mayor o menor que el promedio general, incluso después de tener en cuenta las variables predictoras. Esto podría deberse a factores específicos de cada cuenca que no se han medido directamente. Las pendientes aleatorias indican que el impacto de cada predictor (elevación, relieve, área, precipitación) sobre la probabilidad de un movimiento en masa puede ser diferente en cada cuenca. Por ejemplo, la elevación podría ser un factor más importante en algunas cuencas que en otras, o la relación entre la precipitación y los movimientos en masa podría variar. Esto podría reflejar diferencias en la geología, el tipo de suelo, la vegetación u otras características específicas de cada cuenca.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the multilevel logistic regression model with random slopes and constant for each predictor</span>
 <span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glmer</span><span class="p">(</span>
 <span class="w">  </span><span class="n">Y_bin</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
 <span class="w">    </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rel_mean_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area_std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rainfallAnnual_mean_std</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">cuenca</span><span class="p">),</span>
@@ -1384,6 +1301,44 @@ Koenker-Bassett test             21         164.276           0.0000
 <span class="n">ranef_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ranef</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span><span class="o">$</span><span class="n">cuenca</span>
 </pre></div>
 </div>
+</section>
+<section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">
+<h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla" title="Permalink to this heading">#</a></h3>
+<p>en la librearía INLA podemos incorporar los efectos aleatorios de la siguiente forma. <code class="docutils literal notranslate"><span class="pre">m2_cuenca$summary.random$cuenca</span></code> extrae y muestra un resumen específico de los efectos aleatorios para cada nivel de la variable cuenca. Esto brinda información sobre la media, la desviación estándar y los intervalos de credibilidad de la desviación del intercepto para cada cuenca.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#basic random intercept (cuenca)</span>
+<span class="n">m2_cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">           </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">),</span>
+<span class="w">           </span><span class="n">offset</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">           </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m2_cuenca</span><span class="p">)</span>
+<span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.random</span><span class="o">$</span><span class="n">cuenca</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">m2_cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.fitted</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">res_pearson_m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">aoi</span><span class="o">$</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">m2_cuenca</span><span class="o">$</span><span class="n">summary.fitted.values</span><span class="o">$</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">aoi</span><span class="o">$</span><span class="n">res_pearson_m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res_pearson_m2</span>
+<span class="n">moran_m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res_pearson_m2</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.listw</span><span class="p">,</span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para el intercepto y pendientes aleatorias se utiliza:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m4_intercept_pendientes_aleatorias</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span>
+<span class="w">  </span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Intercepto aleatorio</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca.RainfallDaysmean</span><span class="p">,</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Pendiente aleatoria para RainfallDaysmean</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca.elev_mean</span><span class="p">,</span><span class="w"> </span><span class="n">elev_mean</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Pendiente aleatoria para elev_mean</span>
+<span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca.slope_mean</span><span class="p">,</span><span class="w"> </span><span class="n">slope_mean</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuenca</span><span class="p">)</span><span class="w"> </span><span class="c1"># Pendiente aleatoria para slope_mean,</span>
+<span class="w">  </span><span class="p">,</span>
+<span class="w">  </span><span class="n">offset</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">area</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">aoi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poisson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">control.predictor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">  </span><span class="n">control.compute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">waic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">m4_intercept_pendientes_aleatorias</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1427,11 +1382,11 @@ Koenker-Bassett test             21         164.276           0.0000
       </div>
     </a>
     <a class="right-next"
-       href="13_MGWR.html"
+       href="12_CARJerarquicos.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Regresión Ponderada Geográficamente (GWR)</p>
+        <p class="prev-next-title">Modelos con dependencia y hetereogeneidad espacial</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1455,7 +1410,11 @@ Koenker-Bassett test             21         164.276           0.0000
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-y-coeficientes-variables">Intercepto y coeficientes variables</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

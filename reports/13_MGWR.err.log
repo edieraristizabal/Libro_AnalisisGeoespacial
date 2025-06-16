@@ -41,7 +41,6 @@ Here is a preview of the cell contents:
 
 mgwr_selector = Sel_BW(g_coords, g_y, g_X, multi=True)
 mgwr_bw = mgwr_selector.search(multi_bw_min=[2])
-print(mgwr_bw)
 mgwr_results = MGWR(g_coords, g_y, g_X, mgwr_selector).fit()
 -------------------
 
