@@ -650,63 +650,28 @@ memory usage: 954.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Lanza una excepción para errores HTTP</span>
+
+    <span class="c1"># Lee el contenido descargado como un archivo en memoria</span>
+    <span class="k">with</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar el archivo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al leer el archivo GPKG: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">neighborhoods</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:265,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span> <span class="n">from_bytes</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span> <span class="k">if</span> <span class="n">_is_url</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="c1"># if it is a url that supports random access -&gt; pass through to</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span>     <span class="c1"># pyogrio/fiona as is (to support downloading only part of the file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>     <span class="c1"># otherwise still download manually because pyogrio/fiona don&#39;t support</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span>     <span class="c1"># all types of urls (https://github.com/geopandas/geopandas/issues/2908)</span>
-<span class="ne">--&gt; </span><span class="mi">265</span>     <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Accept-Ranges&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span>             <span class="n">filename</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-<span class="nn">File ~\miniconda3\Lib\urllib\request.py:216,</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
-<span class="ne">--&gt; </span><span class="mi">216</span> <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\urllib\request.py:525,</span> in <span class="ni">OpenerDirector.open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">meth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">processor</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">525</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">meth</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~\miniconda3\Lib\urllib\request.py:634,</span> in <span class="ni">HTTPErrorProcessor.http_response</span><span class="nt">(self, request, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="c1"># According to RFC 2616, &quot;2xx&quot; code indicates that the client&#39;s</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="c1"># request was successfully received, understood, and accepted.</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">634</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">return</span> <span class="n">response</span>
-
-<span class="nn">File ~\miniconda3\Lib\urllib\request.py:563,</span> in <span class="ni">OpenerDirector.error</span><span class="nt">(self, proto, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="k">if</span> <span class="n">http_err</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;http_error_default&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">orig_args</span>
-<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\urllib\request.py:496,</span> in <span class="ni">OpenerDirector._call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span>     <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">496</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~\miniconda3\Lib\urllib\request.py:643,</span> in <span class="ni">HTTPDefaultErrorHandler.http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="k">def</span> <span class="nf">http_error_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">643</span>     <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">full_url</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">hdrs</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
-
-<span class="ne">HTTPError</span>: HTTP Error 403: Forbidden
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error al descargar el archivo: 403 Client Error: Forbidden for url: http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson
 </pre></div>
 </div>
 </div>
@@ -714,6 +679,13 @@ memory usage: 954.8+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">KNN</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
+ There are 11 disconnected components.
+  warnings.warn(message)
 </pre></div>
 </div>
 </div>
@@ -750,46 +722,46 @@ Weights matrix      :        None
 Dependent Variable  :     l_price                Number of Observations:        6110
 Mean dependent var  :      4.9958                Number of Variables   :          15
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6095
-R-squared           :      0.6800
-Adjusted R-squared  :      0.6792
-Sum squared residual:     1273.93                F-statistic           :    924.9423
-Sigma-square        :       0.209                Prob(F-statistic)     :           0
-S.E. of regression  :       0.457                Log likelihood        :   -3880.030
-Sigma-square ML     :       0.208                Akaike info criterion :    7790.061
-S.E of regression ML:      0.4566                Schwarz criterion     :    7890.826
+R-squared           :      0.6737
+Adjusted R-squared  :      0.6730
+Sum squared residual:      1298.8                F-statistic           :    898.9020
+Sigma-square        :       0.213                Prob(F-statistic)     :           0
+S.E. of regression  :       0.462                Log likelihood        :   -3939.079
+Sigma-square ML     :       0.213                Akaike info criterion :    7908.159
+S.E of regression ML:      0.4611                Schwarz criterion     :    8008.924
 
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     t-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT         4.32058         0.02350       183.87270         0.00000
-        accommodates         0.08100         0.00500        16.18439         0.00000
-           bathrooms         0.18934         0.01081        17.52240         0.00000
-            bedrooms         0.16360         0.01098        14.90471         0.00000
-                beds        -0.04515         0.00682        -6.61594         0.00000
-     rt_Private_room        -0.52938         0.01573       -33.65244         0.00000
-      rt_Shared_room        -1.28926         0.03814       -33.79951         0.00000
-      pg_Condominium         0.10635         0.02218         4.79520         0.00000
-            pg_House         0.03278         0.01570         2.08855         0.03679
-            pg_Other         0.08619         0.02398         3.59446         0.00033
-        pg_Townhouse        -0.02771         0.03385        -0.81870         0.41299
-    w_pg_Condominium         0.59284         0.06896         8.59667         0.00000
-          w_pg_House        -0.07745         0.03188        -2.42908         0.01517
-          w_pg_Other         0.48510         0.05515         8.79671         0.00000
-      w_pg_Townhouse        -0.27245         0.12234        -2.22701         0.02598
+            CONSTANT         4.37635         0.01922       227.67007         0.00000
+        accommodates         0.08201         0.00505        16.24794         0.00000
+           bathrooms         0.19212         0.01089        17.63730         0.00000
+            bedrooms         0.15880         0.01107        14.34277         0.00000
+                beds        -0.04274         0.00689        -6.20479         0.00000
+     rt_Private_room        -0.53882         0.01585       -33.98821         0.00000
+      rt_Shared_room        -1.26951         0.03848       -32.99023         0.00000
+      pg_Condominium         0.11856         0.02237         5.30007         0.00000
+            pg_House         0.02427         0.01576         1.53981         0.12366
+            pg_Other         0.11168         0.02399         4.65529         0.00000
+        pg_Townhouse        -0.03704         0.03431        -1.07947         0.28042
+    w_pg_Condominium         0.04277         0.00845         5.06014         0.00000
+          w_pg_House        -0.01737         0.00470        -3.69448         0.00022
+          w_pg_Other         0.04148         0.00799         5.19367         0.00000
+      w_pg_Townhouse        -0.01695         0.01378        -1.22959         0.21890
 ------------------------------------------------------------------------------------
 
 REGRESSION DIAGNOSTICS
-MULTICOLLINEARITY CONDITION NUMBER           14.277
+MULTICOLLINEARITY CONDITION NUMBER           13.313
 
 TEST ON NORMALITY OF ERRORS
 TEST                             DF        VALUE           PROB
-Jarque-Bera                       2        2458.006           0.0000
+Jarque-Bera                       2        2611.126           0.0000
 
 DIAGNOSTICS FOR HETEROSKEDASTICITY
 RANDOM COEFFICIENTS
 TEST                             DF        VALUE           PROB
-Breusch-Pagan test               14         393.052           0.0000
-Koenker-Bassett test             14         169.585           0.0000
+Breusch-Pagan test               14         377.622           0.0000
+Koenker-Bassett test             14         159.667           0.0000
 ================================ END OF REPORT =====================================
 </pre></div>
 </div>
@@ -809,13 +781,13 @@ Se pueden derivar interpretaciones similares para todos los demás variables con
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.43610121],
-       [5.38596868],
-       [4.25377454],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.43377776],
+       [5.29098786],
+       [4.27499095],
        ...,
-       [4.29145318],
-       [4.89174746],
-       [4.85867698]])
+       [4.22399821],
+       [4.9131927 ],
+       [4.8599834 ]])
 </pre></div>
 </div>
 </div>
@@ -829,26 +801,26 @@ Se pueden derivar interpretaciones similares para todos los demás variables con
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                     2
-bathrooms                                                 1.000000
-bedrooms                                                  1.000000
-beds                                                      1.000000
-neighborhood                                           North Hills
-pool                                                             0
-d2balboa                                                  2.493893
-coastal                                                          0
-price                                                    99.000000
-log_price                                                 4.595120
-id                                                            9553
-pg_Apartment                                                     1
-pg_Condominium                                                   0
-pg_House                                                         0
-pg_Other                                                         0
-pg_Townhouse                                                     0
-rt_Entire_home/apt                                               0
-rt_Private_room                                                  1
-rt_Shared_room                                                   0
-geometry              POINT (-117.1412083878189 32.75326632438691)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                      2
+bathrooms                                                       1.0
+bedrooms                                                        1.0
+beds                                                            1.0
+neighborhood                                            North Hills
+pool                                                              0
+d2balboa                                                   2.493893
+coastal                                                           0
+price                                                          99.0
+log_price                                                   4.59512
+id                                                             9553
+pg_Apartment                                                      1
+pg_Condominium                                                    0
+pg_House                                                          0
+pg_Other                                                          0
+pg_Townhouse                                                      0
+rt_Entire_home/apt                                                0
+rt_Private_room                                                   1
+rt_Shared_room                                                    0
+geometry              POINT (-117.1412083878189 32.753266324386914)
 Name: 2, dtype: object
 </pre></div>
 </div>
@@ -871,27 +843,26 @@ Name: 2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                     2
-bathrooms                                                        1
-bedrooms                                                         1
-beds                                                             1
-neighborhood                                           North Hills
-pool                                                             0
-d2balboa                                                   2.49389
-coastal                                                          0
-price                                                           99
-log_price                                                  4.59512
-id                                                            9553
-pg_Apartment                                                     0
-pg_Condominium                                                   1
-pg_House                                                         0
-pg_Other                                                         0
-pg_Townhouse                                                     0
-rt_Entire_home/apt                                               0
-rt_Private_room                                                  1
-rt_Shared_room                                                   0
-geometry              POINT (-117.1412083878189 32.75326632438691)
-residual                                                  0.287341
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                      2
+bathrooms                                                       1.0
+bedrooms                                                        1.0
+beds                                                            1.0
+neighborhood                                            North Hills
+pool                                                              0
+d2balboa                                                   2.493893
+coastal                                                           0
+price                                                          99.0
+log_price                                                   4.59512
+id                                                             9553
+pg_Apartment                                                      0
+pg_Condominium                                                    1
+pg_House                                                          0
+pg_Other                                                          0
+pg_Townhouse                                                      0
+rt_Entire_home/apt                                                0
+rt_Private_room                                                   1
+rt_Shared_room                                                    0
+geometry              POINT (-117.1412083878189 32.753266324386914)
 Name: 2, dtype: object
 </pre></div>
 </div>
@@ -931,26 +902,7 @@ Name: 2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[772,
- 2212,
- 139,
- 4653,
- 2786,
- 1218,
- 138,
- 808,
- 1480,
- 4241,
- 1631,
- 3617,
- 2612,
- 1162,
- 135,
- 23,
- 5528,
- 3591,
- 407,
- 6088]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[772, 2212, 139, 4653, 2786]
 </pre></div>
 </div>
 </div>
@@ -987,87 +939,27 @@ Name: 2, dtype: object
   <tbody>
     <tr>
       <th>2</th>
-      <td>0.106349</td>
+      <td>0.118557</td>
     </tr>
     <tr>
       <th>772</th>
-      <td>0.029642</td>
+      <td>0.042769</td>
     </tr>
     <tr>
       <th>2212</th>
-      <td>0.029642</td>
+      <td>0.042769</td>
     </tr>
     <tr>
       <th>139</th>
-      <td>0.029642</td>
+      <td>0.042769</td>
     </tr>
     <tr>
       <th>4653</th>
-      <td>0.029642</td>
+      <td>0.042769</td>
     </tr>
     <tr>
       <th>2786</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>1218</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>138</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>808</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>1480</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>4241</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>1631</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>3617</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>2612</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>1162</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>135</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>5528</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>3591</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>407</th>
-      <td>0.029642</td>
-    </tr>
-    <tr>
-      <th>6088</th>
-      <td>0.029642</td>
+      <td>0.000000</td>
     </tr>
   </tbody>
 </table>
@@ -1108,103 +1000,28 @@ Name: 2, dtype: object
   <tbody>
     <tr>
       <th>772</th>
-      <td>0.10</td>
-      <td>0.05</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2212</th>
-      <td>0.10</td>
-      <td>0.05</td>
+      <td>2.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>139</th>
-      <td>0.10</td>
-      <td>0.05</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4653</th>
-      <td>0.10</td>
-      <td>0.05</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2786</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>1218</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>138</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>808</th>
-      <td>0.05</td>
-      <td>0.00</td>
-    </tr>
-    <tr>
-      <th>1480</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>4241</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>1631</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>3617</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>2612</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>1162</th>
-      <td>0.05</td>
-      <td>0.00</td>
-    </tr>
-    <tr>
-      <th>135</th>
-      <td>0.05</td>
-      <td>0.00</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>0.10</td>
-      <td>0.05</td>
-    </tr>
-    <tr>
-      <th>5528</th>
-      <td>0.05</td>
-      <td>0.00</td>
-    </tr>
-    <tr>
-      <th>3591</th>
-      <td>0.05</td>
-      <td>0.00</td>
-    </tr>
-    <tr>
-      <th>407</th>
-      <td>0.05</td>
-      <td>0.00</td>
-    </tr>
-    <tr>
-      <th>6088</th>
-      <td>0.10</td>
-      <td>0.05</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1235,33 +1052,34 @@ Aunque parece similar, esta especificación viola las suposiciones sobre el tér
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
-----------
-SUMMARY OF OUTPUT: SPATIALLY WEIGHTED LEAST SQUARES (HET)
----------------------------------------------------------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: GM SPATIALLY WEIGHTED LEAST SQUARES (HET)
+------------------------------------------------------------
 Data set            :     unknown
 Weights matrix      :     unknown
 Dependent Variable  :   log_price                Number of Observations:        6110
 Mean dependent var  :      4.9958                Number of Variables   :          11
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6099
-Pseudo R-squared    :      0.6655
+Pseudo R-squared    :      0.6671
 N. of iterations    :           1                Step1c computed       :          No
 
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     z-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT       4.4262033       0.0217088     203.8898738       0.0000000
-        accommodates       0.0695536       0.0063268      10.9934495       0.0000000
-           bathrooms       0.1614101       0.0151312      10.6673765       0.0000000
-            bedrooms       0.1739251       0.0146697      11.8560847       0.0000000
-                beds      -0.0377710       0.0088293      -4.2779023       0.0000189
-     rt_Private_room      -0.4947947       0.0163843     -30.1993140       0.0000000
-      rt_Shared_room      -1.1613985       0.0515304     -22.5381175       0.0000000
-      pg_Condominium       0.1003761       0.0213148       4.7092198       0.0000025
-            pg_House       0.0308334       0.0147100       2.0960849       0.0360747
-            pg_Other       0.0861768       0.0254942       3.3802547       0.0007242
-        pg_Townhouse      -0.0074515       0.0292873      -0.2544285       0.7991646
-              lambda       0.6448728       0.0186626      34.5543739       0.0000000
+            CONSTANT         4.41630         0.01875       235.58709         0.00000
+        accommodates         0.07295         0.00638        11.42818         0.00000
+           bathrooms         0.16699         0.01564        10.67974         0.00000
+            bedrooms         0.16806         0.01499        11.21403         0.00000
+                beds        -0.03830         0.00917        -4.17471         0.00003
+     rt_Private_room        -0.51221         0.01650       -31.03640         0.00000
+      rt_Shared_room        -1.15837         0.05107       -22.67995         0.00000
+      pg_Condominium         0.11266         0.02206         5.10613         0.00000
+            pg_House         0.02082         0.01465         1.42127         0.15524
+            pg_Other         0.11050         0.02621         4.21671         0.00002
+        pg_Townhouse        -0.02213         0.02967        -0.74592         0.45571
+              lambda         0.07257         0.00308        23.54258         0.00000
 ------------------------------------------------------------------------------------
 ================================ END OF REPORT =====================================
 </pre></div>
@@ -1289,8 +1107,9 @@ Al igual que en el caso del error espacial, se han propuesto varias técnicas pa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
-----------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
+------------------
+
 SUMMARY OF OUTPUT: SPATIAL TWO STAGE LEAST SQUARES
 --------------------------------------------------
 Data set            :     unknown
@@ -1298,24 +1117,24 @@ Weights matrix      :     unknown
 Dependent Variable  :   log_price                Number of Observations:        6110
 Mean dependent var  :      4.9958                Number of Variables   :          12
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6098
-Pseudo R-squared    :      0.7057
-Spatial Pseudo R-squared:  0.6883
+Pseudo R-squared    :      0.6980
+Spatial Pseudo R-squared:  0.6822
 
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     z-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT       2.7440254       0.0727290      37.7294400       0.0000000
-        accommodates       0.0697596       0.0048157      14.4859187       0.0000000
-           bathrooms       0.1626725       0.0104007      15.6405467       0.0000000
-            bedrooms       0.1604137       0.0104823      15.3033012       0.0000000
-                beds      -0.0365065       0.0065336      -5.5874750       0.0000000
-     rt_Private_room      -0.4981415       0.0151396     -32.9031780       0.0000000
-      rt_Shared_room      -1.1157392       0.0365563     -30.5210777       0.0000000
-      pg_Condominium       0.1072995       0.0209048       5.1327614       0.0000003
-            pg_House      -0.0004017       0.0136828      -0.0293598       0.9765777
-            pg_Other       0.1207503       0.0214771       5.6222929       0.0000000
-        pg_Townhouse      -0.0185543       0.0322730      -0.5749190       0.5653461
-         W_log_price       0.3416482       0.0147787      23.1175620       0.0000000
+            CONSTANT         3.27871         0.06543        50.11307         0.00000
+        accommodates         0.07217         0.00488        14.77314         0.00000
+           bathrooms         0.17149         0.01052        16.29351         0.00000
+            bedrooms         0.15804         0.01062        14.88214         0.00000
+                beds        -0.03801         0.00662        -5.74185         0.00000
+     rt_Private_room        -0.51466         0.01530       -33.62744         0.00000
+      rt_Shared_room        -1.13584         0.03711       -30.60517         0.00000
+      pg_Condominium         0.12134         0.02116         5.73486         0.00000
+            pg_House        -0.00371         0.01386        -0.26740         0.78916
+            pg_Other         0.13342         0.02175         6.13555         0.00000
+        pg_Townhouse        -0.02965         0.03269        -0.90698         0.36442
+         W_log_price         0.04640         0.00266        17.44867         0.00000
 ------------------------------------------------------------------------------------
 Instrumented: W_log_price
 Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
@@ -1376,6 +1195,66 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 
 <span class="c1"># Imprimir el resumen del modelo OLS con SLX</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ols_model_slx</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">spreg</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Cargar datos</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Calcular la densidad de movimientos en masa y aplicar la transformación log + 1</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;density_lands_rec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;lands_rec&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">])</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:281,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">path_or_bytes</span> <span class="o">=</span> <span class="n">filename</span>
+<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="k">return</span> <span class="n">_read_file_fiona</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">from_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown engine &#39;</span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:379,</span> in <span class="ni">_read_file_fiona</span><span class="nt">(path_or_bytes, from_bytes, bbox, mask, rows, where, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="p">[</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">f_filt</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">379</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="n">f_filt</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">datetime_fields</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">as_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:635,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">features_lst</span> <span class="o">=</span> <span class="n">features</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">635</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features_lst</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span>     <span class="c1"># load geometry</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
+
+<span class="nn">File fiona\ogrext.pyx:1739,</span> in <span class="ni">fiona.ogrext.Iterator.__next__</span><span class="nt">()</span>
+
+<span class="nn">File fiona\ogrext.pyx:389,</span> in <span class="ni">fiona.ogrext.FeatureBuilder.build</span><span class="nt">()</span>
+
+<span class="nn">File fiona\_geometry.pyx:188,</span> in <span class="ni">fiona._geometry.GeomBuilder.build_from_feature</span><span class="nt">()</span>
+
+<span class="nn">File ~\miniconda3\Lib\enum.py:192,</span> in <span class="ni">property.__get__</span><span class="nt">(self, instance, ownerclass)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">class</span> <span class="nc">property</span><span class="p">(</span><span class="n">DynamicClassAttribute</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="sd">     This is a descriptor, used to define attributes that act differently</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd">     when accessed through an enum member and through an enum class.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd">     a corresponding enum member.</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">192</span>     <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">ownerclass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>         <span class="k">if</span> <span class="n">instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>             <span class="k">try</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

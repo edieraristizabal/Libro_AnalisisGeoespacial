@@ -809,7 +809,7 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8446bf7289d84361bb9345ef9c80a8b3"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b632429e5cbe4841bf847d0aa1a75520"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Calibrate MGWR model</span>
@@ -1299,17 +1299,12 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <h2>Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">mgwr.gwr</span> <span class="kn">import</span> <span class="n">GWR</span><span class="p">,</span> <span class="n">MGWR</span>
 <span class="kn">from</span> <span class="nn">mgwr.sel_bw</span> <span class="kn">import</span> <span class="n">Sel_BW</span>
 <span class="kn">from</span> <span class="nn">matplotlib_scalebar.scalebar</span> <span class="kn">import</span> <span class="n">ScaleBar</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">geo_northarrow</span> <span class="kn">import</span> <span class="n">add_north_arrow</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
 <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
 <span class="n">np</span><span class="o">.</span><span class="n">float</span> <span class="o">=</span> <span class="nb">float</span> 
@@ -1320,8 +1315,56 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the dataset</span>
-<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
-<span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Lanza una excepción para errores HTTP</span>
+
+    <span class="c1"># Lee el contenido descargado como un archivo en memoria</span>
+    <span class="k">with</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar el archivo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al leer el archivo GPKG: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 526 entries, 0 to 525
+Data columns (total 20 columns):
+ #   Column               Non-Null Count  Dtype   
+---  ------               --------------  -----   
+ 0   id                   526 non-null    int64   
+ 1   Nombre               526 non-null    object  
+ 2   ID_CUENCA            526 non-null    float64 
+ 3   cuenca               526 non-null    object  
+ 4   area                 526 non-null    int64   
+ 5   elev_mean            526 non-null    float64 
+ 6   elev_median          526 non-null    float64 
+ 7   rel_mean             526 non-null    float64 
+ 8   rel_median           526 non-null    float64 
+ 9   rainfallAnnual_mean  526 non-null    float64 
+ 10  Densidad             526 non-null    float64 
+ 11  hypso_inte           526 non-null    float64 
+ 12  slope_mean           526 non-null    float64 
+ 13  kmeans               526 non-null    object  
+ 14  RainfallDaysmean     526 non-null    float64 
+ 15  RainfallDaysmedian   526 non-null    float64 
+ 16  landcovermedian      526 non-null    object  
+ 17  geomedian            526 non-null    object  
+ 18  lands_rec            526 non-null    float64 
+ 19  geometry             526 non-null    geometry
+dtypes: float64(12), geometry(1), int64(2), object(5)
+memory usage: 82.3+ KB
 </pre></div>
 </div>
 </div>
@@ -1364,6 +1407,61 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===========================================================================
+Model type                                                         Gaussian
+Number of observations:                                                 526
+Number of covariates:                                                     4
+
+Global Regression Results
+---------------------------------------------------------------------------
+Residual sum of squares:                                            807.013
+Log-likelihood:                                                    -858.936
+AIC:                                                               1725.872
+AICc:                                                              1727.987
+BIC:                                                              -2463.474
+R2:                                                                   0.375
+Adj. R2:                                                              0.371
+
+Variable                              Est.         SE  t(Est/SE)    p-value
+------------------------------- ---------- ---------- ---------- ----------
+X0                                   1.840      0.054     33.933      0.000
+X1                                   0.537      0.079      6.805      0.000
+X2                                   0.524      0.065      8.087      0.000
+X3                                  -0.047      0.069     -0.685      0.493
+
+Geographically Weighted Regression (GWR) Results
+---------------------------------------------------------------------------
+Spatial kernel:                                          Fixed gaussian
+Bandwidth used:                                                   10000.000
+
+Diagnostic information
+---------------------------------------------------------------------------
+Residual sum of squares:                                            266.147
+Effective number of parameters (trace(S)):                          193.624
+Degree of freedom (n - trace(S)):                                   332.376
+Sigma estimate:                                                       0.895
+Log-likelihood:                                                    -567.193
+AIC:                                                               1523.632
+AICc:                                                              1754.114
+BIC:                                                               2353.760
+R2:                                                                   0.794
+Adjusted R2:                                                          0.673
+Adj. alpha (95%):                                                     0.001
+Adj. critical t value (95%):                                          3.300
+
+Summary Statistics For GWR Parameter Estimates
+---------------------------------------------------------------------------
+Variable                   Mean        STD        Min     Median        Max
+-------------------- ---------- ---------- ---------- ---------- ----------
+X0                        1.942      2.036     -5.932      1.779     11.747
+X1                        0.692      1.703    -10.754      0.594      7.119
+X2                        0.247      1.173     -3.645      0.178      5.588
+X3                        0.006      1.722     -7.209     -0.007      6.278
+===========================================================================
+</pre></div>
+</div>
+</div>
 </div>
 <p>Si se desea mantener la distancia variable y fijar el número de vecinos a 5, se utiliza el siguiente código.</p>
 <div class="cell docutils container">
@@ -1371,6 +1469,61 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit GWR model using a fixed number of neighbors (adaptive bandwidth)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">GWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X_num</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===========================================================================
+Model type                                                         Gaussian
+Number of observations:                                                 526
+Number of covariates:                                                     4
+
+Global Regression Results
+---------------------------------------------------------------------------
+Residual sum of squares:                                            807.013
+Log-likelihood:                                                    -858.936
+AIC:                                                               1725.872
+AICc:                                                              1727.987
+BIC:                                                              -2463.474
+R2:                                                                   0.375
+Adj. R2:                                                              0.371
+
+Variable                              Est.         SE  t(Est/SE)    p-value
+------------------------------- ---------- ---------- ---------- ----------
+X0                                   1.840      0.054     33.933      0.000
+X1                                   0.537      0.079      6.805      0.000
+X2                                   0.524      0.065      8.087      0.000
+X3                                  -0.047      0.069     -0.685      0.493
+
+Geographically Weighted Regression (GWR) Results
+---------------------------------------------------------------------------
+Spatial kernel:                                           Adaptive gaussian
+Bandwidth used:                                                       5.000
+
+Diagnostic information
+---------------------------------------------------------------------------
+Residual sum of squares:                                            350.553
+Effective number of parameters (trace(S)):                          142.706
+Degree of freedom (n - trace(S)):                                   383.294
+Sigma estimate:                                                       0.956
+Log-likelihood:                                                    -639.639
+AIC:                                                               1566.691
+AICc:                                                              1675.768
+BIC:                                                               2179.642
+R2:                                                                   0.728
+Adjusted R2:                                                          0.627
+Adj. alpha (95%):                                                     0.001
+Adj. critical t value (95%):                                          3.211
+
+Summary Statistics For GWR Parameter Estimates
+---------------------------------------------------------------------------
+Variable                   Mean        STD        Min     Median        Max
+-------------------- ---------- ---------- ---------- ---------- ----------
+X0                        1.874      1.479     -4.424      1.786      8.366
+X1                        0.679      1.227     -4.900      0.563      8.550
+X2                        0.284      0.945     -3.885      0.279      3.713
+X3                        0.033      1.256     -4.048     -0.017      4.867
+===========================================================================
 </pre></div>
 </div>
 </div>
@@ -1384,12 +1537,80 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ed2e249181ea472b96d4090c7f892b76", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 58110.35  26662.34 689388.04 689386.48]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the MGWR model using the selected bandwidths</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X_num</span><span class="p">,</span> <span class="n">gwr_selector</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;bisquare&#39;</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4ffba511e4054d8ab82925b1dfd64601", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===========================================================================
+Model type                                                         Gaussian
+Number of observations:                                                 526
+Number of covariates:                                                     4
+
+Global Regression Results
+---------------------------------------------------------------------------
+Residual sum of squares:                                            807.013
+Log-likelihood:                                                    -858.936
+AIC:                                                               1725.872
+AICc:                                                              1727.987
+BIC:                                                              -2463.474
+R2:                                                                   0.375
+Adj. R2:                                                              0.371
+
+Variable                              Est.         SE  t(Est/SE)    p-value
+------------------------------- ---------- ---------- ---------- ----------
+X0                                   1.840      0.054     33.933      0.000
+X1                                   0.537      0.079      6.805      0.000
+X2                                   0.524      0.065      8.087      0.000
+X3                                  -0.047      0.069     -0.685      0.493
+
+Multi-Scale Geographically Weighted Regression (MGWR) Results
+---------------------------------------------------------------------------
+Spatial kernel:                                          Fixed bisquare
+Criterion for optimal bandwidth:                                       AICc
+Score of Change (SOC) type:                                     Smoothing f
+Termination criterion for MGWR:                                       1e-05
+
+MGWR bandwidths
+---------------------------------------------------------------------------
+Variable             Bandwidth      ENP_j   Adj t-val(95%)   Adj alpha(95%)
+X0                   58110.350     10.358            2.830            0.005
+X1                   26662.340     69.034            3.400            0.001
+X2                  689388.040      1.014            1.970            0.049
+X3                  689386.480      1.008            1.968            0.050
+
+Diagnostic information
+---------------------------------------------------------------------------
+Residual sum of squares:                                            428.452
+Effective number of parameters (trace(S)):                           81.415
+Degree of freedom (n - trace(S)):                                   444.585
+Sigma estimate:                                                       0.982
+Log-likelihood:                                                    -692.414
+AIC:                                                               1549.658
+AICc:                                                              1580.723
+BIC:                                                               1901.181
+R2                                                                    0.668
+Adjusted R2                                                           0.607
+
+Summary Statistics For MGWR Parameter Estimates
+---------------------------------------------------------------------------
+Variable                   Mean        STD        Min     Median        Max
+-------------------- ---------- ---------- ---------- ---------- ----------
+X0                        2.049      0.554      1.086      1.954      3.378
+X1                        0.653      0.757     -1.767      0.634      3.082
+X2                        0.214      0.002      0.210      0.214      0.217
+X3                       -0.218      0.002     -0.221     -0.218     -0.213
+===========================================================================
 </pre></div>
 </div>
 </div>
@@ -1410,7 +1631,6 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
     <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">data_clean</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;coef_</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_params</span><span class="p">[:,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#tengo +1 para qeu no considere el primer coeficiente que pertenece al intercepto</span>
     <span class="n">data_clean</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;coef_</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">add_north_arrow</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">.75</span><span class="p">,</span> <span class="n">xlim_pos</span><span class="o">=</span><span class="mf">.1025</span><span class="p">,</span> <span class="n">ylim_pos</span><span class="o">=</span><span class="mf">.965</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#000&#39;</span><span class="p">,</span> <span class="n">text_scaler</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">text_yT</span><span class="o">=-</span><span class="mf">1.25</span><span class="p">)</span>
     <span class="n">scalebar</span> <span class="o">=</span> <span class="n">ScaleBar</span><span class="p">(</span><span class="mf">111319.49079327357</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">scale_loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">length_fraction</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">font_properties</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">scalebar</span><span class="p">)</span>
     
@@ -1420,6 +1640,9 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/e9d1c332fb8d6e3abb52beefcee4cc8d91f5953b173e225619504f96071040bf.png" src="_images/e9d1c332fb8d6e3abb52beefcee4cc8d91f5953b173e225619504f96071040bf.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1427,13 +1650,15 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">data_clean</span><span class="p">[</span><span class="s2">&quot;fitted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predy</span>  <span class="c1"># The predicted values (fitted values) from the MGWR model</span>
 <span class="n">data_clean</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;fitted&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">add_north_arrow</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">.75</span><span class="p">,</span> <span class="n">xlim_pos</span><span class="o">=</span><span class="mf">.1025</span><span class="p">,</span> <span class="n">ylim_pos</span><span class="o">=</span><span class="mf">.965</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#000&#39;</span><span class="p">,</span> <span class="n">text_scaler</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">text_yT</span><span class="o">=-</span><span class="mf">1.25</span><span class="p">)</span>
 <span class="n">scalebar</span> <span class="o">=</span> <span class="n">ScaleBar</span><span class="p">(</span><span class="mf">111319.49079327357</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">scale_loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">length_fraction</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">font_properties</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">scalebar</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/480e62d5963bfa4d1a8c2d3a259ffd65862c10154fdcfbd890b168ddfdb19295.png" src="_images/480e62d5963bfa4d1a8c2d3a259ffd65862c10154fdcfbd890b168ddfdb19295.png" />
 </div>
 </div>
 </section>
@@ -1448,16 +1673,16 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "ml"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ml",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ml'</script>
 
                 </article>
               

@@ -467,7 +467,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8dbc0e06dded696d65ca99c62d5c1770009bad6a7df6765680cf152baa8b6ec1.png" src="_images/8dbc0e06dded696d65ca99c62d5c1770009bad6a7df6765680cf152baa8b6ec1.png" />
+<img alt="_images/0700fb5829e136727b776238965d3c46060cfe935abaa831245457f8be61d882.png" src="_images/0700fb5829e136727b776238965d3c46060cfe935abaa831245457f8be61d882.png" />
 </div>
 </div>
 <p>Pero si incorporamos en el análisis la variable comuna, lo que significa que cada comuna tiene sus condiciones particulares, y realizamos una regresión para cada grupo de datos, los resultados del análisis cambian completamente.</p>
@@ -502,7 +502,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e56de25624935a733791b6ea405172dfa9414ec3a06efacb76317e46a0f3462d.png" src="_images/e56de25624935a733791b6ea405172dfa9414ec3a06efacb76317e46a0f3462d.png" />
+<img alt="_images/d899cebb0ed3f59211fea167a29292a08b723eb9ee164c8508c66144b7c09ed0.png" src="_images/d899cebb0ed3f59211fea167a29292a08b723eb9ee164c8508c66144b7c09ed0.png" />
 </div>
 </div>
 <p>Cómo podemos entonces realizar uan regresión donde tome todos los datos y los elementos que comparten en común, pero que al mismo tiempo considere los cambios espaciales que hay por regiones.</p>
@@ -712,7 +712,7 @@ memory usage: 954.8+ KB
 ======================================================================================
 Model:                      OLS                    Adj. R-squared:           0.709    
 Dependent Variable:         log_price              AIC:                      7229.6640
-Date:                       2025-06-16 14:41       BIC:                      7599.1365
+Date:                       2025-06-17 18:51       BIC:                      7599.1365
 No. Observations:           6110                   Log-Likelihood:           -3559.8  
 Df Model:                   54                     F-statistic:              276.9    
 Df Residuals:               6055                   Prob (F-statistic):       0.00     
@@ -1009,7 +1009,7 @@ dtype: float64
                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">neighborhoods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighborhood_effects</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
-                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhood&#39;</span><span class="p">,</span> 
+                    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhoods&#39;</span><span class="p">,</span> 
                     <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
                   <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">])</span>\
                   <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">,</span>
@@ -1022,12 +1022,12 @@ dtype: float64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Local\Temp\ipykernel_6968\62176321.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">~\AppData\Local\Temp\ipykernel_24888\3990184523.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
 <span class="g g-Whitespace">      </span><span class="mi">2</span>                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighborhood_effects</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhood&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhoods&#39;</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span>                     <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
 <span class="g g-Whitespace">      </span><span class="mi">7</span>                   <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">])</span>\
 
@@ -1091,7 +1091,7 @@ dtype: float64
 <span class="g g-Whitespace">   </span><span class="mi">1780</span><span class="s2">         # Check for duplicates</span>
 <span class="g g-Whitespace">   </span><span class="mi">1781</span><span class="s2">         if values.ndim &gt; 1:</span>
 
-<span class="ne">KeyError</span>: &#39;neighbourhood&#39;
+<span class="ne">KeyError</span>: &#39;neighbourhoods&#39;
 </pre></div>
 </div>
 <img alt="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" src="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" />
@@ -1304,7 +1304,7 @@ Koenker-Bassett test             21         164.276           0.0000
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">
 <h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla" title="Permalink to this heading">#</a></h3>
-<p>en la librearía INLA podemos incorporar los efectos aleatorios de la siguiente forma. <code class="docutils literal notranslate"><span class="pre">m2_cuenca$summary.random$cuenca</span></code> extrae y muestra un resumen específico de los efectos aleatorios para cada nivel de la variable cuenca. Esto brinda información sobre la media, la desviación estándar y los intervalos de credibilidad de la desviación del intercepto para cada cuenca.</p>
+<p>WEn la librearía INLA podemos incorporar los efectos aleatorios de la siguiente forma, donde <code class="docutils literal notranslate"><span class="pre">m2_cuenca$summary.random$cuenca</span></code> extrae y muestra un resumen específico de los efectos aleatorios para cada nivel de la variable cuenca. Esto brinda información sobre la media, la desviación estándar y los intervalos de credibilidad de la desviación del intercepto para cada cuenca.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#basic random intercept (cuenca)</span>
 <span class="n">m2_cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
 <span class="w">           </span><span class="nf">f</span><span class="p">(</span><span class="n">cuenca</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">),</span>

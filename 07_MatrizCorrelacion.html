@@ -471,59 +471,31 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 <span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">datetime_fields</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">as_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:640,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span>     <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ne">--&gt; </span><span class="mi">640</span>     <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">641</span> <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="c1"># load properties</span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:635,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">features_lst</span> <span class="o">=</span> <span class="n">features</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">635</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features_lst</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span>     <span class="c1"># load geometry</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\geo.py:108,</span> in <span class="ni">shape</span><span class="nt">(context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="k">return</span> <span class="n">MultiLineString</span><span class="p">(</span><span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="k">elif</span> <span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;multipolygon&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">108</span>     <span class="k">return</span> <span class="n">MultiPolygon</span><span class="p">([[</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">]])</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="k">elif</span> <span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;geometrycollection&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">geoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">ob</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;geometries&quot;</span><span class="p">,</span> <span class="p">[])]</span>
+<span class="nn">File fiona\ogrext.pyx:1739,</span> in <span class="ni">fiona.ogrext.Iterator.__next__</span><span class="nt">()</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\multipolygon.py:81,</span> in <span class="ni">MultiPolygon.__new__</span><span class="nt">(self, polygons)</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="n">shell</span> <span class="o">=</span> <span class="n">ob</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="n">holes</span> <span class="o">=</span> <span class="n">ob</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">81</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="p">,</span> <span class="n">holes</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span>
+<span class="nn">File fiona\ogrext.pyx:389,</span> in <span class="ni">fiona.ogrext.FeatureBuilder.build</span><span class="nt">()</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:230,</span> in <span class="ni">Polygon.__new__</span><span class="nt">(self, shell, holes)</span>
-<span class="g g-Whitespace">    </span><span class="mi">228</span>     <span class="k">return</span> <span class="n">shell</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="n">shell</span> <span class="o">=</span> <span class="n">LinearRing</span><span class="p">(</span><span class="n">shell</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="k">if</span> <span class="n">holes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">holes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>         <span class="c1"># shapely constructor cannot handle holes=[]</span>
+<span class="nn">File fiona\_geometry.pyx:188,</span> in <span class="ni">fiona._geometry.GeomBuilder.build_from_feature</span><span class="nt">()</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:104,</span> in <span class="ni">LinearRing.__new__</span><span class="nt">(self, coordinates)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="c1"># empty geometry</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="c1"># TODO better constructor + should shapely.linearrings handle this?</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="k">return</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_wkt</span><span class="p">(</span><span class="s2">&quot;LINEARRING EMPTY&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">104</span> <span class="n">geom</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">linearrings</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">LinearRing</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid values passed to LinearRing constructor&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\decorators.py:77,</span> in <span class="ni">multithreading_enabled.&lt;locals&gt;.wrapped</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">array_args</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span>         <span class="n">arr</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">writeable</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="ne">---&gt; </span><span class="mi">77</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="k">for</span> <span class="n">arr</span><span class="p">,</span> <span class="n">old_flag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">array_args</span><span class="p">,</span> <span class="n">old_flags</span><span class="p">):</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\creation.py:173,</span> in <span class="ni">linearrings</span><span class="nt">(coords, y, z, indices, out, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">_xyz_to_coords</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">if</span> <span class="n">indices</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">173</span>     <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">linearrings</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">return</span> <span class="n">simple_geometries_1d</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">GeometryType</span><span class="o">.</span><span class="n">LINEARRING</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+<span class="nn">File ~\miniconda3\Lib\enum.py:192,</span> in <span class="ni">property.__get__</span><span class="nt">(self, instance, ownerclass)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">class</span> <span class="nc">property</span><span class="p">(</span><span class="n">DynamicClassAttribute</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="sd">     This is a descriptor, used to define attributes that act differently</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd">     when accessed through an enum member and through an enum class.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd">     a corresponding enum member.</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">192</span>     <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">ownerclass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>         <span class="k">if</span> <span class="n">instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>             <span class="k">try</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2092,7 +2064,11 @@ c:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: Use
 </section>
 <section id="ejemplo-con-datos-de-cuencas-en-r">
 <h3>Ejemplo con datos de cuencas en R<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-en-r" title="Permalink to this heading">#</a></h3>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate centroids of each polygon for neighbor identification</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;https://github.com/edieraristizabal/ModeloMultinivel/blob/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+
+<span class="n">aoi.geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_geometry</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+
+<span class="c1"># Calculate centroids of each polygon for neighbor identification</span>
 <span class="n">aoi.coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_centroid</span><span class="p">(</span><span class="n">aoi.geom</span><span class="p">)</span>
 
 <span class="c1"># Create spatial neighbors using k-nearest neighbors (k = 5)</span>
