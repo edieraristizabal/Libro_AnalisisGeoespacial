@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
@@ -182,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
@@ -389,7 +391,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-moran">Gráfico de Moran</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-local">Autocorrelación espacial local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-local">Autocorrelación espacial local</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-en-python">Ejemplo con datos de cuencas en Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-en-r">Ejemplo con datos de cuencas en R</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -423,19 +429,27 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 <p>Para este ejemplo, mostraremos cómo construir una matriz de contigüidad <strong>Queen</strong>, que considera dos observaciones como vecinas si comparten al menos un punto de su límite. En otras palabras, para que un par de autoridades locales en el conjunto de datos sean consideradas vecinas bajo este <span class="math notranslate nohighlight">\(W\)</span>, necesitarán compartir frontera o, en otras palabras, “tocarse” en cierto grado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="n">br</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://darribas.org/gds19/content/labs/data/brexit.gpkg&#39;</span><span class="p">)</span>
-<span class="n">br</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">br</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://darribas.org/gds19/content/labs/data/brexit.gpkg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LAD14CD&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">br</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">br</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://darribas.org/gds19/content/labs/data/brexit.gpkg&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">br</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">br</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://darribas.org/gds19/content/labs/data/brexit.gpkg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LAD14CD&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">br</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 
 <span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:281,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="k">else</span><span class="p">:</span>
@@ -488,79 +502,30 @@ w_{N1} &amp; \dots &amp; \dots &amp; 0
 <span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">holes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">234</span>         <span class="c1"># shapely constructor cannot handle holes=[]</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:93,</span> in <span class="ni">LinearRing.__new__</span><span class="nt">(self, coordinates)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>         <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">93</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_coords</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">coordinates</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="c1"># conversion of coords to 2D array failed, this might be due</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="c1"># to inconsistent coordinate dimensionality</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inconsistent coordinate dimensionality&quot;</span><span class="p">)</span>
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:104,</span> in <span class="ni">LinearRing.__new__</span><span class="nt">(self, coordinates)</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="c1"># empty geometry</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="c1"># TODO better constructor + should shapely.linearrings handle this?</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="k">return</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_wkt</span><span class="p">(</span><span class="s2">&quot;LINEARRING EMPTY&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">104</span> <span class="n">geom</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">linearrings</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">LinearRing</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid values passed to LinearRing constructor&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:93,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>         <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">93</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_coords</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">coordinates</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="c1"># conversion of coords to 2D array failed, this might be due</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="c1"># to inconsistent coordinate dimensionality</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inconsistent coordinate dimensionality&quot;</span><span class="p">)</span>
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\decorators.py:77,</span> in <span class="ni">multithreading_enabled.&lt;locals&gt;.wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">array_args</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>         <span class="n">arr</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">writeable</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">---&gt; </span><span class="mi">77</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="k">for</span> <span class="n">arr</span><span class="p">,</span> <span class="n">old_flag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">array_args</span><span class="p">,</span> <span class="n">old_flags</span><span class="p">):</span>
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:91,</span> in <span class="ni">LinearRing.__new__.&lt;locals&gt;._coords</span><span class="nt">(o)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:91,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
+<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\creation.py:173,</span> in <span class="ni">linearrings</span><span class="nt">(coords, y, z, indices, out, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">_xyz_to_coords</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">if</span> <span class="n">indices</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">173</span>     <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">linearrings</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">return</span> <span class="n">simple_geometries_1d</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">GeometryType</span><span class="o">.</span><span class="n">LINEARRING</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">br</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;http://darribas.org/gds19/content/labs/data/brexit.gpkg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LAD14CD&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">br</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
-Index: 380 entries, E06000001 to W06000024
-Data columns (total 25 columns):
- #   Column      Non-Null Count  Dtype   
----  ------      --------------  -----   
- 0   OBJECTID    380 non-null    int64   
- 1   LAD14CD     380 non-null    object  
- 2   LAD14NM     380 non-null    object  
- 3   LAD14NMW    22 non-null     object  
- 4   id          380 non-null    int64   
- 5   Region_Cod  380 non-null    object  
- 6   Region      380 non-null    object  
- 7   Area        380 non-null    object  
- 8   Electorate  380 non-null    int64   
- 9   ExpectedBa  380 non-null    int64   
- 10  VerifiedBa  380 non-null    int64   
- 11  Pct_Turnou  380 non-null    float64 
- 12  Votes_Cast  380 non-null    int64   
- 13  Valid_Vote  380 non-null    int64   
- 14  Remain      380 non-null    int64   
- 15  Leave       380 non-null    int64   
- 16  Rejected_B  380 non-null    int64   
- 17  No_officia  380 non-null    int64   
- 18  Voting_for  380 non-null    int64   
- 19  Writing_or  380 non-null    int64   
- 20  Unmarked_o  380 non-null    int64   
- 21  Pct_Remain  380 non-null    float64 
- 22  Pct_Leave   380 non-null    float64 
- 23  Pct_Reject  380 non-null    float64 
- 24  geometry    380 non-null    geometry
-dtypes: float64(4), geometry(1), int64(14), object(6)
-memory usage: 85.3+ KB
 </pre></div>
 </div>
 </div>
@@ -1794,6 +1759,371 @@ Name: quadrant, dtype: int32
 <img alt="_images/9650c31e3e249183aafb581b98be316c3cf7786133191c3e3ed86e7d2618d297.png" src="_images/9650c31e3e249183aafb581b98be316c3cf7786133191c3e3ed86e7d2618d297.png" />
 </div>
 </div>
+<section id="ejemplo-con-datos-de-cuencas-en-python">
+<h3>Ejemplo con datos de cuencas en Python<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-en-python" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Lanza una excepción para errores HTTP</span>
+
+    <span class="c1"># Lee el contenido descargado como un archivo en memoria</span>
+    <span class="k">with</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar el archivo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al leer el archivo GPKG: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 526 entries, 0 to 525
+Data columns (total 20 columns):
+ #   Column               Non-Null Count  Dtype   
+---  ------               --------------  -----   
+ 0   id                   526 non-null    int64   
+ 1   Nombre               526 non-null    object  
+ 2   ID_CUENCA            526 non-null    float64 
+ 3   cuenca               526 non-null    object  
+ 4   area                 526 non-null    int64   
+ 5   elev_mean            526 non-null    float64 
+ 6   elev_median          526 non-null    float64 
+ 7   rel_mean             526 non-null    float64 
+ 8   rel_median           526 non-null    float64 
+ 9   rainfallAnnual_mean  526 non-null    float64 
+ 10  Densidad             526 non-null    float64 
+ 11  hypso_inte           526 non-null    float64 
+ 12  slope_mean           526 non-null    float64 
+ 13  kmeans               526 non-null    object  
+ 14  RainfallDaysmean     526 non-null    float64 
+ 15  RainfallDaysmedian   526 non-null    float64 
+ 16  landcovermedian      526 non-null    object  
+ 17  geomedian            526 non-null    object  
+ 18  lands_rec            526 non-null    float64 
+ 19  geometry             526 non-null    geometry
+dtypes: float64(12), geometry(1), int64(2), object(5)
+memory usage: 82.3+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">DistanceBand</span>
+
+<span class="c1"># Create a DistanceBand weights matrix</span>
+<span class="n">w_dist20km</span> <span class="o">=</span> <span class="n">DistanceBand</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\edier\miniconda3\Lib\site-packages\scipy\sparse\_data.py:119: RuntimeWarning: divide by zero encountered in reciprocal
+  return self._with_data(data ** n)
+c:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
+ There are 2 disconnected components.
+  warnings.warn(message)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">esda</span>
+<span class="kn">from</span> <span class="nn">splot.esda</span> <span class="kn">import</span> <span class="n">plot_moran</span>
+
+<span class="n">mi</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">Moran</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;slope_mean&#39;</span><span class="p">],</span> <span class="n">w_dist20km</span><span class="p">)</span>
+<span class="n">plot_moran</span><span class="p">(</span><span class="n">mi</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/830a3b2ca4a71ece0ffa62e183d7ae4d232e448b5d80cd7f1af16ee3c16d08c1.png" src="_images/830a3b2ca4a71ece0ffa62e183d7ae4d232e448b5d80cd7f1af16ee3c16d08c1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">splot.esda</span> <span class="kn">import</span> <span class="n">lisa_cluster</span>
+
+<span class="n">lisa</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">Moran_Local</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;slope_mean&quot;</span><span class="p">],</span> <span class="n">w_dist20km</span><span class="p">)</span>
+<span class="n">lisa_cluster</span><span class="p">(</span><span class="n">lisa</span><span class="p">,</span> <span class="n">gdf</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a2a14fc3bbb4f7eb5f80fe9f6ee4eaeb550ec480846bfadf22b17bbdcd05252b.png" src="_images/a2a14fc3bbb4f7eb5f80fe9f6ee4eaeb550ec480846bfadf22b17bbdcd05252b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;Is&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">lisa</span><span class="o">.</span><span class="n">Is</span>
+
+<span class="c1"># Subplot 1 #</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;Is&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;quantiles&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="c1"># Subplot 2 #</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">q_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Q1&#39;</span><span class="p">,</span> <span class="s1">&#39;Q2&#39;</span><span class="p">,</span> <span class="s1">&#39;Q3&#39;</span><span class="p">,</span> <span class="s1">&#39;Q4&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">q_labels</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="p">]</span>
+<span class="n">hmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">])</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;cl&#39;</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">hmap</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="c1"># Subplot 3 #</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">hmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="s1">&#39;black&#39;</span><span class="p">])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;non-sig.&#39;</span><span class="p">,</span> <span class="s1">&#39;significant&#39;</span><span class="p">]</span> 
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sig</span><span class="p">]</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;cl&#39;</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">hmap</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+                            
+<span class="c1"># Subplot 4 #</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">hotspot</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">*</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">coldspot</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">*</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">doughnut</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">*</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">diamond</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">*</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">spots</span> <span class="o">=</span> <span class="n">hotspot</span> <span class="o">+</span> <span class="n">coldspot</span> <span class="o">+</span> <span class="n">doughnut</span> <span class="o">+</span> <span class="n">diamond</span>
+<span class="n">spot_labels</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;0 ns&#39;</span><span class="p">,</span> <span class="s1">&#39;1 hot spot&#39;</span><span class="p">,</span> <span class="s1">&#39;2 doughnut&#39;</span><span class="p">,</span> <span class="s1">&#39;3 cold spot&#39;</span><span class="p">,</span> <span class="s1">&#39;4 diamond&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">spot_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">spots</span><span class="p">]</span>
+<span class="n">hmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span> <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">])</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;cl&#39;</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">hmap</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2371cd540386dcc9f49e4ecf92e6d953712185e570cc07a5ab82f3d403667991.png" src="_images/2371cd540386dcc9f49e4ecf92e6d953712185e570cc07a5ab82f3d403667991.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib_scalebar.scalebar</span> <span class="kn">import</span> <span class="n">ScaleBar</span>
+<span class="kn">from</span> <span class="nn">splot.esda</span> <span class="kn">import</span> <span class="n">moran_scatterplot</span>
+
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">q_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Q1&#39;</span><span class="p">,</span> <span class="s1">&#39;Q2&#39;</span><span class="p">,</span> <span class="s1">&#39;Q3&#39;</span><span class="p">,</span> <span class="s1">&#39;Q4&#39;</span><span class="p">]</span>
+<span class="n">labels1</span> <span class="o">=</span> <span class="p">[</span><span class="n">q_labels</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lisa</span><span class="o">.</span><span class="n">q</span><span class="p">]</span>
+<span class="n">hmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;#FAD7A0&#39;</span><span class="p">])</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">labels1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;cl&#39;</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">hmap</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">sig</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">hmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="s1">&#39;black&#39;</span><span class="p">])</span>
+<span class="n">labels2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;non-sig.&#39;</span><span class="p">,</span> <span class="s1">&#39;significant&#39;</span><span class="p">]</span> 
+<span class="n">labels2</span> <span class="o">=</span> <span class="p">[</span><span class="n">labels2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sig</span><span class="p">]</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">labels2</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;cl&#39;</span><span class="p">,</span> <span class="n">categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">hmap</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.20</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="n">moran_scatterplot</span><span class="p">(</span><span class="n">lisa</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;MI=</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Normalized Slope&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/63b7f7b0f8514fd720d4b5d19ad24a1d32959d825c4c504b18f14ca4ff9b6ae5.png" src="_images/63b7f7b0f8514fd720d4b5d19ad24a1d32959d825c4c504b18f14ca4ff9b6ae5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">splot.esda</span> <span class="kn">import</span> <span class="n">plot_local_autocorrelation</span>
+
+<span class="n">plot_local_autocorrelation</span><span class="p">(</span><span class="n">lisa</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="s1">&#39;hypso_inte&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/26b0250c08eaeea37582b2fb4b129a42a73156c66495d352973d72b66c1caaef.png" src="_images/26b0250c08eaeea37582b2fb4b129a42a73156c66495d352973d72b66c1caaef.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">distance</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">]</span>
+<span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;slope_mean&#39;</span>  <span class="c1"># Specify the variable you want to use</span>
+
+<span class="c1"># Create a single figure with subplots for different distances</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">distance</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Ajustado figsize y sharex/sharey para consistencia</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">distance</span><span class="p">):</span>
+    <span class="c1"># Create a DistanceBand weights matrix for the specified distance</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">w_dist</span> <span class="o">=</span> <span class="n">DistanceBand</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Binary=True es común para Moran I</span>
+        
+        <span class="c1"># Identify islands (disconnected components)</span>
+        <span class="n">islands</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">w_dist</span><span class="o">.</span><span class="n">neighbors</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Filter out islands from the GeoDataFrame</span>
+        <span class="k">if</span> <span class="n">islands</span><span class="p">:</span>
+            <span class="n">cat_filtered</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">islands</span><span class="p">)</span>
+            <span class="n">w_dist_filtered</span> <span class="o">=</span> <span class="n">DistanceBand</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">cat_filtered</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cat_filtered</span> <span class="o">=</span> <span class="n">gdf</span>
+            <span class="n">w_dist_filtered</span> <span class="o">=</span> <span class="n">w_dist</span>
+        
+        <span class="c1"># Normalizar la matriz de pesos por fila (standard row-standardization)</span>
+        <span class="n">w_dist_filtered</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;R&#39;</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al crear matriz de pesos para </span><span class="si">{</span><span class="n">dx</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2">km: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Saltando este panel.&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distance: </span><span class="si">{</span><span class="n">dx</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s1">km (No data/neighbors)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+        <span class="k">continue</span> <span class="c1"># Skip to the next iteration</span>
+
+    <span class="c1"># Asegurarse de que el número de observaciones sea suficiente</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cat_filtered</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No hay suficientes observaciones para </span><span class="si">{</span><span class="n">dx</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2">km después de filtrar islas. Saltando este panel.&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distance: </span><span class="si">{</span><span class="n">dx</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s1">km (Too few obs)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+        <span class="k">continue</span>
+
+    <span class="c1"># --- CÁLCULOS PARA LA GRÁFICA DE DISPERSIÓN DE MORAN Y LA LÍNEA ---</span>
+    <span class="c1"># 1. Estandarizar la variable (Z-scores)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">cat_filtered</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">-</span> <span class="n">cat_filtered</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">cat_filtered</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    
+    <span class="c1"># 2. Calcular el rezago espacial (WZ)</span>
+    <span class="n">w_z</span> <span class="o">=</span> <span class="n">w_dist_filtered</span><span class="o">.</span><span class="n">sparse</span> <span class="o">@</span> <span class="n">z</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># 3. Calcular el Índice de Moran Global (MI)</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z</span> <span class="o">*</span> <span class="n">w_z</span><span class="p">)</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">mi_global</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+
+    <span class="c1"># 4. Calcular LISA para obtener los p-valores y determinar la significancia</span>
+    <span class="n">lisa</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">Moran_Local</span><span class="p">(</span><span class="n">cat_filtered</span><span class="p">[</span><span class="n">variable</span><span class="p">],</span> <span class="n">w_dist_filtered</span><span class="p">)</span>
+    
+    <span class="c1"># 5. Colorear los puntos basándose en LISA (cuadrante Y significancia p&lt;=0.05)</span>
+    <span class="c1"># Extraído de la lógica interna de splot.esda.moran_scatterplot</span>
+    <span class="n">p_threshold</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Umbral de significancia</span>
+    
+    <span class="c1"># Asignar colores según los cuadrantes y la significancia</span>
+    <span class="n">point_colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;gray&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span> 
+    
+    <span class="c1"># Cuadrante HH (Alto-Alto) - Rojo</span>
+    <span class="n">hh_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w_z</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;=</span> <span class="n">p_threshold</span><span class="p">)</span>
+    <span class="n">point_colors</span><span class="p">[</span><span class="n">hh_idx</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+
+    <span class="c1"># Cuadrante LL (Bajo-Bajo) - Azul Oscuro</span>
+    <span class="n">ll_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w_z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;=</span> <span class="n">p_threshold</span><span class="p">)</span>
+    <span class="n">point_colors</span><span class="p">[</span><span class="n">ll_idx</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;darkblue&#39;</span>
+
+    <span class="c1"># Cuadrante HL (Alto-Bajo) - Naranja</span>
+    <span class="n">hl_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w_z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;=</span> <span class="n">p_threshold</span><span class="p">)</span>
+    <span class="n">point_colors</span><span class="p">[</span><span class="n">hl_idx</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;darkorange&#39;</span>
+
+    <span class="c1"># Cuadrante LH (Bajo-Alto) - Azul Claro</span>
+    <span class="n">lh_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">w_z</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">p_sim</span> <span class="o">&lt;=</span> <span class="n">p_threshold</span><span class="p">)</span>
+    <span class="n">point_colors</span><span class="p">[</span><span class="n">lh_idx</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;lightskyblue&#39;</span>
+
+    <span class="c1"># Los puntos no significativos (grises) ya están asignados por defecto si no cumplen las condiciones anteriores.</span>
+
+    <span class="c1"># --- 6. Graficar los puntos (manualmente) ---</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">w_z</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">point_colors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    
+    <span class="c1"># --- 7. Dibujar la línea de regresión MANUALMENTE (la única línea negra) ---</span>
+    <span class="n">x_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span> 
+    <span class="n">y_line</span> <span class="o">=</span> <span class="n">mi_global</span> <span class="o">*</span> <span class="n">x_line</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_line</span><span class="p">,</span> <span class="n">y_line</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># --- El resto de tu código para etiquetas y formato ---</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;MI=</span><span class="si">{</span><span class="n">mi_global</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Pendiente normalizada&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Autoregresión espacial&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distance: </span><span class="si">{</span><span class="n">dx</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s1">km&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Set consistent limits and aspect for the scatterplot</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span> <span class="c1"># CRUCIAL para una visualización correcta de la pendiente</span>
+
+    <span class="c1"># Añadimos líneas de referencia</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># Ajustar el layout y guardar la figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">])</span> <span class="c1"># Ajusta el layout para que el título principal no se solape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/65386f10d0dae1d35fdbf2f39525b122e46f66e3ad53c1494d2263a066c07187.png" src="_images/65386f10d0dae1d35fdbf2f39525b122e46f66e3ad53c1494d2263a066c07187.png" />
+</div>
+</div>
+</section>
+<section id="ejemplo-con-datos-de-cuencas-en-r">
+<h3>Ejemplo con datos de cuencas en R<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-en-r" title="Permalink to this heading">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate centroids of each polygon for neighbor identification</span>
+<span class="n">aoi.coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_centroid</span><span class="p">(</span><span class="n">aoi.geom</span><span class="p">)</span>
+
+<span class="c1"># Create spatial neighbors using k-nearest neighbors (k = 5)</span>
+<span class="n">nb_k5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">knn2nb</span><span class="p">(</span><span class="nf">knearneigh</span><span class="p">(</span><span class="n">aoi.coords</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">))</span>
+
+<span class="c1"># Convert neighbors list to spatial weights</span>
+<span class="n">nb_k5_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nb2listw</span><span class="p">(</span><span class="n">nb_k5</span><span class="p">)</span>
+
+<span class="c1"># Plot the geometry of the areas and their neighbor relationships and save the plot</span>
+<span class="n">neighbor_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aoi.geom</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">nb_k5</span><span class="p">),</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">aoi.coords</span><span class="p">)[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span>
+<span class="w">      </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">aoi.coords</span><span class="p">)[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span>
+<span class="w">      </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">aoi.coords</span><span class="p">)[</span><span class="n">nb_k5</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="w"> </span><span class="m">1</span><span class="p">],</span>
+<span class="w">      </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">aoi.coords</span><span class="p">)[</span><span class="n">nb_k5</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">})),</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xend</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yend</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">aoi.coords</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_rect</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotation_north_arrow</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tl&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">which_north</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotation_scale</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;br&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ticks&quot;</span><span class="p">)</span>
+
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AOI_Geometry_Neighbor_Connections.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neighbor_plot</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;in&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">)</span>
+</pre></div>
+</div>
+<center><img src="https://i.pinimg.com/736x/1d/13/dd/1d13ddb4fcc9797489f4b1efd325d508.jpg" width="600"></center></section>
 </section>
 </section>
 
@@ -1806,16 +2136,16 @@ Name: quadrant, dtype: int32
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "carto"
+            mode: "ml"
         },
         kernelOptions: {
-            name: "carto",
+            name: "ml",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'carto'</script>
+    <script>kernelName = 'ml'</script>
 
                 </article>
               
@@ -1868,7 +2198,11 @@ Name: quadrant, dtype: int32
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-moran">Gráfico de Moran</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-local">Autocorrelación espacial local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-local">Autocorrelación espacial local</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-en-python">Ejemplo con datos de cuencas en Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-en-r">Ejemplo con datos de cuencas en R</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

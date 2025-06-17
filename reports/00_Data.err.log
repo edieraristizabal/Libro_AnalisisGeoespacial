@@ -37,8 +37,7 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['from PIL import Image', 'import requests', 'from io import BytesIO', '', 'image_url = "https://github.com/edieraristizabal/ModeloMultinivel/blob/main/FIGURAS/localizacion.png?raw=true"']
-...
-['', 'except requests.exceptions.RequestException as e:', '    print(f"Error al descargar la imagen: {e}")', 'except Exception as e:', '    print(f"Error al procesar la imagen: {e}")']
+gdf = gpd.read_file("https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg")
+gdf.info()
 -------------------
 

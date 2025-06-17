@@ -38,7 +38,7 @@ The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
 import geopandas as gpd
-br = gpd.read_file('http://darribas.org/gds19/content/labs/data/brexit.gpkg')
-br.head(2)
+br = gpd.read_file('http://darribas.org/gds19/content/labs/data/brexit.gpkg').set_index('LAD14CD', drop=False)
+br.info()
 -------------------
 

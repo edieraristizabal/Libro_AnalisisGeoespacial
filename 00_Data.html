@@ -394,95 +394,7 @@ document.write(`
 <p>Los parámetros del terreno se calcularon utilizando el modelo digital de elevación (DEM) del radar de apertura sintética en banda L del satélite de observación terrestre Aaanzada (ALOS-PALSAR), con una resolución de píxel de 12.5 m (Logan 2014).</p>
 <p>Las métricas de precipitación se derivaron utilizando los datos de CHIRPS (<em>Climate Hazard Group InfraRed Precipitation with Station Data</em>) (Funk 2015), versión 2.0, para datos de precipitación con una resolución de 5 km desde 1981 hasta 2023. Para este cálculo se utilizó la plataforma Google Earth Engine (GEE) con lenguaje Javascript.</p>
 <p>Se generó un mapa de cobertura del suelo utilizando datos del programa Copernicus Sentinel-2, con una resolución de 10 m. Utilizando GEE, seleccionamos imágenes desde 2018 hasta 2023 con menos del 10% de cobertura de nubes, eliminando efectos de sombra. El mapa se creó calculando el índice de vegetación de diferencia normalizada (NDVI) (Kriegler 1969), el índice de diferencia normalizada de construcciones (NDBI) (Zha et al. 2003), el índice de diferencia normalizada de agua modificado (MNDWI) (Xu 2006) y el índice de suelo desnudo (BSI) (Li 2014). La clasificación de cobertura del suelo se realizó con un algoritmo de bosque aleatorio (<em>random forest</em>) del paquete Classifier de GEE (Breiman 2001).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-
-<span class="n">image_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/blob/main/FIGURAS/localizacion.png?raw=true&quot;</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Lanza una excepción para errores HTTP</span>
-
-    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
-    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Esto abrirá la imagen en una ventana separada</span>
-
-    <span class="c1"># Si quieres mostrar la imagen directamente en el output de tu notebook (solo funciona en algunos entornos como Jupyter Notebook), puedes usar:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Puedes cambiar los valores 10 y 8 para ajustar el ancho y la altura</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Oculta los ejes</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-
-<span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar la imagen: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al procesar la imagen: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">12</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Lanza una excepción para errores HTTP</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Esto abrirá la imagen en una ventana separada</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># Si quieres mostrar la imagen directamente en el output de tu notebook (solo funciona en algunos entornos como Jupyter Notebook), puedes usar:</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Puedes cambiar los valores 10 y 8 para ajustar el ancho y la altura</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\PIL\Image.py:2467,</span> in <span class="ni">Image.show</span><span class="nt">(self, title)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2447</span> <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2448</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2449</span><span class="sd">     Displays this image. This method is mainly intended for debugging purposes.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2450</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2464</span><span class="sd">     :param title: Optional title to use for the image window, where possible.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2465</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">2467</span>     <span class="n">_show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\PIL\Image.py:3506,</span> in <span class="ni">_show</span><span class="nt">(image, **options)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3503</span> <span class="k">def</span> <span class="nf">_show</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3504</span>     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ImageShow</span>
-<span class="ne">-&gt; </span><span class="mi">3506</span>     <span class="n">ImageShow</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\PIL\ImageShow.py:60,</span> in <span class="ni">show</span><span class="nt">(image, title, **options)</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span><span class="w"> </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span><span class="sd"> Display a given image.</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="sd"> :returns: ``True`` if a suitable viewer was found, ``False`` otherwise.</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="k">for</span> <span class="n">viewer</span> <span class="ow">in</span> <span class="n">_viewers</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">60</span>     <span class="k">if</span> <span class="n">viewer</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>         <span class="k">return</span> <span class="kc">True</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">return</span> <span class="kc">False</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\PIL\ImageShow.py:84,</span> in <span class="ni">Viewer.show</span><span class="nt">(self, image, **options)</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span>     <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="n">base</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span>         <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">84</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\PIL\ImageShow.py:110,</span> in <span class="ni">Viewer.show_image</span><span class="nt">(self, image, **options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="k">def</span> <span class="nf">show_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Display the given image.&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">110</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\PIL\ImageShow.py:116,</span> in <span class="ni">Viewer.show_file</span><span class="nt">(self, path, **options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="k">def</span> <span class="nf">show_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span><span class="sd">     Display given file.</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">116</span>     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_command</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">))</span>  <span class="c1"># nosec</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="k">return</span> <span class="mi">1</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
-</div>
-<p>Los datos pueden ser obtenidos del repsoitorio de Github <a class="github reference external" href="https://github.com/edieraristizabal/ModeloMultinivel/tree/main">edieraristizabal/ModeloMultinivel</a></p>
+<center><img src="https://i.pinimg.com/736x/2e/0e/3a/2e0e3af953227d328e79677b4aa4b2cf.jpg" width="600"></center><p>Los datos pueden ser obtenidos del repositorio de Github <a class="github reference external" href="https://github.com/edieraristizabal/ModeloMultinivel/tree/main">edieraristizabal/ModeloMultinivel</a></p>
 <p>A continuación se presenta la forma de descargar los datos y su visualización.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -505,12 +417,68 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:281,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">path_or_bytes</span> <span class="o">=</span> <span class="n">filename</span>
+<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="k">return</span> <span class="n">_read_file_fiona</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">from_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown engine &#39;</span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:379,</span> in <span class="ni">_read_file_fiona</span><span class="nt">(path_or_bytes, from_bytes, bbox, mask, rows, where, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="p">[</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">f_filt</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">379</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="n">f_filt</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">datetime_fields</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">as_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:635,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">features_lst</span> <span class="o">=</span> <span class="n">features</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">635</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features_lst</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span>     <span class="c1"># load geometry</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
+
+<span class="nn">File fiona\ogrext.pyx:1739,</span> in <span class="ni">fiona.ogrext.Iterator.__next__</span><span class="nt">()</span>
+
+<span class="nn">File fiona\ogrext.pyx:389,</span> in <span class="ni">fiona.ogrext.FeatureBuilder.build</span><span class="nt">()</span>
+
+<span class="nn">File fiona\_geometry.pyx:188,</span> in <span class="ni">fiona._geometry.GeomBuilder.build_from_feature</span><span class="nt">()</span>
+
+<span class="nn">File ~\miniconda3\Lib\enum.py:192,</span> in <span class="ni">property.__get__</span><span class="nt">(self, instance, ownerclass)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">class</span> <span class="nc">property</span><span class="p">(</span><span class="n">DynamicClassAttribute</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="sd">     This is a descriptor, used to define attributes that act differently</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd">     when accessed through an enum member and through an enum class.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd">     a corresponding enum member.</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">192</span>     <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">ownerclass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>         <span class="k">if</span> <span class="n">instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>             <span class="k">try</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 <p>Tambien es posible, primero descargando el archivo y luego leerlo en <em>Python</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span>
@@ -745,7 +713,7 @@ memory usage: 82.3+ KB
 </div>
 <p>A continuación se presenta la distribución de la variable <span class="math notranslate nohighlight">\(Y\)</span>, en términos de frecuencia y densidad, asi como su transformación logarítmica.</p>
 <center><img src="https://i.pinimg.com/736x/72/c4/9c/72c49c6699dfa17b0abc0723366ed4ec.jpg" width="800"></center><p>Estas subcuencas pueden ser agregadas por cuencas hidrográficas de la siguiente manera:</p>
-<center><img src="https://i.pinimg.com/736x/69/08/dd/6908dddbdd14c9e12b6226d745671538.jpg" width="800"></center></section>
+<center><img src="https://i.pinimg.com/736x/69/08/dd/6908dddbdd14c9e12b6226d745671538.jpg" width="600"></center></section>
 
     <script type="text/x-thebe-config">
     {
