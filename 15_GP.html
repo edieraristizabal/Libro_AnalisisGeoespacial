@@ -388,20 +388,20 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-co-covarianza-kernel-en-procesos-gaussianos-gp">Función de Co covarianza (Kernel) en Procesos Gaussianos (GP)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-gp-con-1-variable-y-sin-ruido">Ejemplo GP con 1 variable y sin ruido</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-gp-con-1-variable-y-con-datos-con-ruido">Ejemplo GP con 1 variable y con datos con ruido</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-posterior-con-diferentes-kernel">Prior &amp; Posterior con diferentes Kernel</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf-linear">RBF &amp; Linear</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-las-funciones-de-la-matriz-de-covarianza">Creando las funciones de la matriz de covarianza</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-gp-implementacion">Full GP implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages-</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias">Librerías</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejemplo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noise-free-target">Example with noise-free target¶</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noisy-targets">Example with noisy targets¶</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-piero-paialunga">Ejemplo de Piero Paialunga</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-dos-covariables">Ejemplo con dos covariables</a></li>
 </ul>
 </li>
@@ -493,14 +493,13 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">linalg</span>
-<span class="c1">## check version</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">sklearn</span>
-<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">kernels</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Vamos a crear un vector gaussiano con un número de <span class="math notranslate nohighlight">\(m\)</span> puntos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>         <span class="c1"># n number of independent 1-D gaussian </span>
@@ -518,9 +517,10 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dd1b6548b1fcb5f68d99d9ab8f95381481ebe713ab155da107f43e2c01462dec.png" src="_images/dd1b6548b1fcb5f68d99d9ab8f95381481ebe713ab155da107f43e2c01462dec.png" />
+<img alt="_images/812dde6bb55f52606f10739b128b44838d892da3b2b7bc83dba076f28d59f546.png" src="_images/812dde6bb55f52606f10739b128b44838d892da3b2b7bc83dba076f28d59f546.png" />
 </div>
 </div>
+<p>Vamos a crear ahora dos vectores gaussianos, cada uno con <span class="math notranslate nohighlight">\(m\)</span> puntos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># en este caso n funciones Gaussianas</span>
@@ -538,11 +538,12 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c44c63d1cf7dcb7cad6b764d7c1fa72a7d697ff67333a9f1a56d3ae91184a9e0.png" src="_images/c44c63d1cf7dcb7cad6b764d7c1fa72a7d697ff67333a9f1a56d3ae91184a9e0.png" />
+<img alt="_images/c3142e388bc6906611e45d6cdae5038ceeb131f6213cefeb6527eb661b338f43.png" src="_images/c3142e388bc6906611e45d6cdae5038ceeb131f6213cefeb6527eb661b338f43.png" />
 </div>
 </div>
 <p>A continuación, podemos graficar múltiples Gaussianas independientes. Por ejemplo, colocar el vector <span class="math notranslate nohighlight">\(X_1\)</span> en <span class="math notranslate nohighlight">\(X = 0\)</span> y otro vector <span class="math notranslate nohighlight">\(X_2\)</span> en <span class="math notranslate nohighlight">\(X = 1\)</span>. Ten en cuenta que tanto el vector <span class="math notranslate nohighlight">\(X_1\)</span> como el vector <span class="math notranslate nohighlight">\(X_2\)</span> son Gaussianos.</p>
-<img src="https://github.com/jwangjie/Gaussian-Process-be-comfortable-using-it/blob/master/img/2gaussian.png?raw=1" width="500"/> <div class="cell docutils container">
+<img src="https://github.com/jwangjie/Gaussian-Process-be-comfortable-using-it/blob/master/img/2gaussian.png?raw=1" width="500"/> <p>Creemos dos nuevos vectores gaussianos con <span class="math notranslate nohighlight">\(m\)</span> número de puntos, y crear funciones lineales que conecten estos puntos.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>          
 <span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
@@ -558,7 +559,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2ce43fc2ad2c2d1b857d46290f97458a3cfd819e1304300c8fbfee7c576c719b.png" src="_images/2ce43fc2ad2c2d1b857d46290f97458a3cfd819e1304300c8fbfee7c576c719b.png" />
+<img alt="_images/eafd25bdbdc8789a421d19a6bb7ee7b489a5daa9305ddb44a2083b0842354b27.png" src="_images/eafd25bdbdc8789a421d19a6bb7ee7b489a5daa9305ddb44a2083b0842354b27.png" />
 </div>
 </div>
 <p>Estas líneas se parecen a <strong>funciones</strong> para cada par de puntos. Por otro lado, la gráfica también parece como si estuviéramos muestreando la región <span class="math notranslate nohighlight">\([0, 1]\)</span> con 10 funciones lineales, aunque solo haya dos puntos en cada línea. Desde la perspectiva del muestreo, el dominio <span class="math notranslate nohighlight">\([0, 1]\)</span> es nuestra región de interés, es decir, la región específica en la que realizamos nuestra regresión. Este muestreo se vuelve aún más claro si generamos más variables Gaussianas independientes y conectamos los puntos en orden mediante líneas.</p>
@@ -579,7 +580,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/84e36ca70530422e93a6832c3edc77d6321b184ba2613efb85905bd441795039.png" src="_images/84e36ca70530422e93a6832c3edc77d6321b184ba2613efb85905bd441795039.png" />
+<img alt="_images/dfda11eef4d9281330f24c743926a322f0bc8900615afb0d7fd7af2756ea5b14.png" src="_images/dfda11eef4d9281330f24c743926a322f0bc8900615afb0d7fd7af2756ea5b14.png" />
 </div>
 </div>
 <p>¿Qué estamos intentando hacer al conectar puntos Gaussianos independientes generados aleatoriamente? Aunque estas líneas parecen funciones, son demasiado ruidosas. Si <span class="math notranslate nohighlight">\(X\)</span> es nuestro espacio de entrada, estas funciones no tienen sentido para la tarea de regresión. No podemos hacer ninguna predicción utilizando estas funciones. Las funciones deberían ser más suaves, lo que significa que los puntos de entrada que están cerca entre sí deberían tener valores similares en la función.</p>
@@ -618,7 +619,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9d08b79b4227856ba18ded644d351fdfc4f1068da8f490294974b1977f3329f2.png" src="_images/9d08b79b4227856ba18ded644d351fdfc4f1068da8f490294974b1977f3329f2.png" />
+<img alt="_images/ba2aad0353ba77930dcae07ca74d45ccb0bc2745aca5e7d82c1427a81b9be34d.png" src="_images/ba2aad0353ba77930dcae07ca74d45ccb0bc2745aca5e7d82c1427a81b9be34d.png" />
 </div>
 </div>
 <p>Queremos suavizar las funciones de muestreo definiendo las funciones de covarianza. Considerando el hecho de que cuando dos vectores son similares, el valor de salida de su producto punto es alto. Esto se puede ver claramente en la ecuación del producto punto <span class="math notranslate nohighlight">\(A\,B = AB\,cos\theta\)</span>, donde <span class="math notranslate nohighlight">\(\theta\)</span> es el ángulo entre dos vectores. Si un algoritmo se define únicamente en términos de productos internos en el espacio de entrada, entonces se puede elevar al espacio de características reemplazando las ocurrencias de esos productos internos por <span class="math notranslate nohighlight">\(k(x,\ x^\prime)\)</span>; llamamos a <span class="math notranslate nohighlight">\(k(\bullet,\bullet)\)</span> una función núcleo.</p>
@@ -696,7 +697,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6ce869549b655c249dea1b0ae42728fb489f355bd37ea2a1a590e5dc389b7e21.png" src="_images/6ce869549b655c249dea1b0ae42728fb489f355bd37ea2a1a590e5dc389b7e21.png" />
+<img alt="_images/7a753ae26f7de918d958096c2cfa627d5527ea1187b58617b669071b0f29e129.png" src="_images/7a753ae26f7de918d958096c2cfa627d5527ea1187b58617b669071b0f29e129.png" />
 </div>
 </div>
 <p>Obtuvimos exactamente el mismo gráfico como se esperaba. Ahora, kernelicemos nuestras funciones utilizando la RBF como nuestra covarianza.</p>
@@ -731,7 +732,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2653361e6a0dd524e387787ac8060c0998e5047a101873926eaffa3ff03c9b45.png" src="_images/2653361e6a0dd524e387787ac8060c0998e5047a101873926eaffa3ff03c9b45.png" />
+<img alt="_images/e38e7f28ace538dbccd153fb4a152d0b1a2f2ad57a1db531cb2d0dc801dd7768.png" src="_images/e38e7f28ace538dbccd153fb4a152d0b1a2f2ad57a1db531cb2d0dc801dd7768.png" />
 </div>
 </div>
 <p>Obtenemos líneas mucho más suaves que se asemejan más a funciones. Cuando la dimensión de la Gaussiana aumenta, ya no es necesario conectar puntos. Cuando la dimensión se vuelve infinita, hay un punto que representa cualquier entrada posible. Vamos a graficar <code class="docutils literal notranslate"><span class="pre">m=200</span></code> muestras de una Gaussiana de <code class="docutils literal notranslate"><span class="pre">n=200$-D$</span></code> para tener una idea de cómo se ven las funciones con infinitos parámetros.</p>
@@ -754,7 +755,9 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b81b7772e30761f210ccc1351c336086acfdef60da5245d6903deb60974bbc12.png" src="_images/b81b7772e30761f210ccc1351c336086acfdef60da5245d6903deb60974bbc12.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function _draw_all_if_interactive at 0x000001F77F5BD9E0&gt; (for post_execute):
+</pre></div>
+</div>
 </div>
 </div>
 <p>Para generar muestras aleatorias normales correlacionadas, se pueden generar primero muestras no correlacionadas y luego multiplicarlas por una matriz <em>L</em> tal que <span class="math notranslate nohighlight">\(L L^T = K\)</span>, donde <em>K</em> es la matriz de covarianza deseada. La matriz <em>L</em> se puede obtener, por ejemplo, utilizando la descomposición de Cholesky de <em>K</em>.</p>
@@ -775,7 +778,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15639fe63fc1ba6fa20833dbbdcd475ca208e283d0eebf29c5f98026c8557091.png" src="_images/15639fe63fc1ba6fa20833dbbdcd475ca208e283d0eebf29c5f98026c8557091.png" />
+<img alt="_images/57e9e02c860c523c8bb777232eccc9d4d695e912719cda5123d48f3ad09daa53.png" src="_images/57e9e02c860c523c8bb777232eccc9d4d695e912719cda5123d48f3ad09daa53.png" />
 </div>
 </div>
 <p>Primero, volvamos a nuestra tarea de regresión. Hay una función <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> que intentamos modelar dado un conjunto de puntos de datos <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> (datos de entrenamiento/observados existentes) provenientes de la función desconocida <span class="math notranslate nohighlight">\(\mathbf{f}\)</span>. Los métodos tradicionales de regresión no lineal en aprendizaje automático típicamente dan una única función que consideran como la mejor para ajustar estas observaciones. Pero, como se mostró al principio, puede haber más de una función que ajuste las observaciones igualmente bien.</p>
@@ -813,6 +816,11 @@ $<span class="math notranslate nohighlight">\(\mathbf{f}_* \, \vert \, \mathbf{f
 $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta}{=} \mathbb{E} [\mathbf{\bar{f}_*} \, \vert \, \mathbf{X}, \mathbf{y}, \mathbf{X}_*] = \mathbf{K}_*^T [\mathbf{K} + \sigma_y^2\mathbf{I}]^{-1} \mathbf{y} \)</span>$</p>
 <div class="math notranslate nohighlight">
 \[cov(\mathbf{f}_*) = \mathbf{K}_{**} - \mathbf{K}_*^T [\mathbf{K} + \sigma_y^2\mathbf{I}]^{-1} \mathbf{K}_* \]</div>
+</section>
+</section>
+<section id="ejemplo-gp-con-1-variable-y-sin-ruido">
+<h2>Ejemplo GP con 1 variable y sin ruido<a class="headerlink" href="#ejemplo-gp-con-1-variable-y-sin-ruido" title="Permalink to this heading">#</a></h2>
+<p>Primeros definimos una función que nos estima el valor medio y la covarianza en un GP ingresando como datos una covariable <span class="math notranslate nohighlight">\(X1\)</span> con sus correspondientes <span class="math notranslate nohighlight">\(y1\)</span>, y datos nuevos para predecir de la covariable denominado <span class="math notranslate nohighlight">\(X2\)</span>, y una función kernel definida por el ususario.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gaussian process posterior</span>
@@ -838,6 +846,7 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 </div>
+<p>Con esta función construida, vamos a generar unos datos sintéticos a partir de una función verdadera, en este caso <em>Sen(x)</em>, la cual siempre se desconoce, en este caso la estamos creando para poder generar los datos observados para el ejemplo. En la vida real, esta función se desconoce y lo que tenemos son solo los datos observados.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the posterior mean and covariance</span>
@@ -853,72 +862,79 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 <span class="c1"># Sample observations (X1, y1) on the function</span>
 <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">y1</span> <span class="o">=</span> <span class="n">f_sin</span><span class="p">(</span><span class="n">X1</span><span class="p">)</span>
+
 <span class="c1"># Predict points at uniform spacing to capture function</span>
 <span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c1"># Compute posterior mean and covariance</span>
-<span class="n">μ2</span><span class="p">,</span> <span class="n">Σ2</span> <span class="o">=</span> <span class="n">GP</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">exponentiated_quadratic</span><span class="p">)</span>
-<span class="c1"># Compute the standard deviation at the test points to be plotted</span>
-<span class="n">σ2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Σ2</span><span class="p">))</span>
-
-<span class="c1"># Draw some samples of the posterior</span>
-<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">μ2</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">Σ2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ny</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Ya generamos entonces <em>X1</em>, <em>y1</em> y los valores a predecir <em>X2</em>. Con estos datos podemos entonces implementar la función que creamos al inicio y que permite implementar GP. Como kernel utilizaremos la función que creamos anteriormente denominada <em>exponentiated_quadratic</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute posterior mean and covariance</span>
+<span class="n">μ2</span><span class="p">,</span> <span class="n">Σ2</span> <span class="o">=</span> <span class="n">GP</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">exponentiated_quadratic</span><span class="p">)</span>
+
+<span class="c1"># Compute the standard deviation at the test points to be plotted</span>
+<span class="n">σ2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Σ2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, vamos a graficar la función real <em>Sen(x)</em> con el valor medio que se obtuvo con el GP un intervalor de dos desviaciones estandar, que se obtiene de los resultados del GP, y graficaremos los puntos observados <span class="math notranslate nohighlight">\(x1\)</span> y <span class="math notranslate nohighlight">\(y1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the postior distribution and some samples</span>
-<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
-    <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
 <span class="c1"># Plot the distribution of the function (mean, covariance)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">f_sin</span><span class="p">(</span><span class="n">X2</span><span class="p">),</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$sin(x)$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">μ2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">μ2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
-                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$2 \sigma_{2|1}$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">μ2</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\mu_{2|1}$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$(x_1, y_1)$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of posterior and prior data.&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">f_sin</span><span class="p">(</span><span class="n">X2</span><span class="p">),</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$sin(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">μ2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">μ2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$2 \sigma_{2|1}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">μ2</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\mu_{2|1}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$(x_1, y_1)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of posterior and prior data.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ea4eea13c56cfda6c20b8dcdda322f5dcaacf2d50e8b4af7312a20188036bd14.png" src="_images/ea4eea13c56cfda6c20b8dcdda322f5dcaacf2d50e8b4af7312a20188036bd14.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw some samples of the posterior</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">μ2</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">Σ2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ny</span><span class="p">)</span>
+
+<span class="c1"># Plot the postior distribution and some samples</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
 <span class="c1"># Plot some samples from this function</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;5 different function realizations from posterior&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;5 different function realizations from posterior&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10cb9ec425c161631a9a6758a4f36a15e2537c501fb710030cf9209445c78660.png" src="_images/10cb9ec425c161631a9a6758a4f36a15e2537c501fb710030cf9209445c78660.png" />
+<img alt="_images/f6dcf63aa9e294e238e41933fb43e76bbb5cce787da8967439af281799c16cfb.png" src="_images/f6dcf63aa9e294e238e41933fb43e76bbb5cce787da8967439af281799c16cfb.png" />
 </div>
 </div>
+</section>
+<section id="ejemplo-gp-con-1-variable-y-con-datos-con-ruido">
+<h2>Ejemplo GP con 1 variable y con datos con ruido<a class="headerlink" href="#ejemplo-gp-con-1-variable-y-con-datos-con-ruido" title="Permalink to this heading">#</a></h2>
+<p>De forma similar vamos a generar un ejemplo con datos sintéticos, pero en este caso incluiremos ruido propio de los datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gaussian process posterior with noisy obeservations</span>
-<span class="k">def</span> <span class="nf">GP_noise</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">kernel_func</span><span class="p">,</span> <span class="n">σ_noise</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate the posterior mean and covariance matrix for y2</span>
-<span class="sd">    based on the corresponding input X2, the noisy observations </span>
-<span class="sd">    (y1, X1), and the prior kernel function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Kernel of the noisy observations</span>
-    <span class="n">Σ11</span> <span class="o">=</span> <span class="n">kernel_func</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X1</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">σ_noise</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n1</span><span class="p">))</span>
-    <span class="c1"># Kernel of observations vs to-predict</span>
-    <span class="n">Σ12</span> <span class="o">=</span> <span class="n">kernel_func</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">)</span>
-    <span class="c1"># Solve</span>
-    <span class="n">solved</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Σ11</span><span class="p">,</span> <span class="n">Σ12</span><span class="p">,</span> <span class="n">assume_a</span><span class="o">=</span><span class="s1">&#39;pos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-    <span class="c1"># Compute posterior mean</span>
-    <span class="n">μ2</span> <span class="o">=</span> <span class="n">solved</span> <span class="o">@</span> <span class="n">y1</span>
-    <span class="c1"># Compute the posterior covariance</span>
-    <span class="n">Σ22</span> <span class="o">=</span> <span class="n">kernel_func</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">X2</span><span class="p">)</span>
-    <span class="n">Σ2</span> <span class="o">=</span> <span class="n">Σ22</span> <span class="o">-</span> <span class="p">(</span><span class="n">solved</span> <span class="o">@</span> <span class="n">Σ12</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">μ2</span><span class="p">,</span> <span class="n">Σ2</span>  <span class="c1"># mean, covariance# Gaussian process posterior with noisy obeservations</span>
 <span class="k">def</span> <span class="nf">GP_noise</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">kernel_func</span><span class="p">,</span> <span class="n">σ_noise</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the posterior mean and covariance matrix for y2</span>
@@ -943,19 +959,20 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the posterior mean and covariance</span>
-
-<span class="n">σ_noise</span> <span class="o">=</span> <span class="mf">1.</span>  <span class="c1"># The standard deviation of the noise</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">σ_noise</span> <span class="o">=</span> <span class="mf">1.</span>  <span class="c1"># The standard deviation of the noise</span>
 <span class="c1"># Add noise kernel to the samples we sampled previously</span>
 <span class="n">y1</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">+</span> <span class="p">((</span><span class="n">σ_noise</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n1</span><span class="p">))</span>
-
-<span class="c1"># Compute posterior mean and covariance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the posterior mean and covariance</span>
 <span class="n">μ2</span><span class="p">,</span> <span class="n">Σ2</span> <span class="o">=</span> <span class="n">GP_noise</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">exponentiated_quadratic</span><span class="p">,</span> <span class="n">σ_noise</span><span class="p">)</span>
+
 <span class="c1"># Compute the standard deviation at the test points to be plotted</span>
 <span class="n">σ2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Σ2</span><span class="p">))</span>
-
-<span class="c1"># Draw some samples of the posterior</span>
-<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">μ2</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">Σ2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ny</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -963,36 +980,48 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the postior distribution and some samples</span>
-<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
-    <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
 <span class="c1"># Plot the distribution of the function (mean, covariance)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">f_sin</span><span class="p">(</span><span class="n">X2</span><span class="p">),</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$sin(x)$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">μ2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">μ2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">f_sin</span><span class="p">(</span><span class="n">X2</span><span class="p">),</span> <span class="s1">&#39;b--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$sin(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">μ2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">μ2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">σ2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$2\sigma_{2|1}$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">μ2</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\mu_{2|1}$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$(x_1, y_1)$&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of posterior and prior data&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="c1"># Plot some samples from this function</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;5 different function realizations from posterior&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">μ2</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\mu_{2|1}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$(x_1, y_1)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of posterior and prior data&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/45adf90ec8ec99ef48b9ea7378092dbd74cdf69a22c62c218d00a9db9c11285c.png" src="_images/45adf90ec8ec99ef48b9ea7378092dbd74cdf69a22c62c218d00a9db9c11285c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw some samples of the posterior</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">μ2</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">Σ2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">ny</span><span class="p">)</span>
+
+<span class="c1">#Plot some samples from this function</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;5 different function realizations from posterior&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eb8029bc48dfee90660b5b60aec446d9b9346e82af3a7872d5525548bed1d7ef.png" src="_images/eb8029bc48dfee90660b5b60aec446d9b9346e82af3a7872d5525548bed1d7ef.png" />
+<img alt="_images/ece14a11d16dc5d2430d5b2a1e5306164234102893fef0fcda93d3251685d62a.png" src="_images/ece14a11d16dc5d2430d5b2a1e5306164234102893fef0fcda93d3251685d62a.png" />
 </div>
 </div>
-</section>
 </section>
 <section id="prior-posterior-con-diferentes-kernel">
 <h2>Prior &amp; Posterior con diferentes Kernel<a class="headerlink" href="#prior-posterior-con-diferentes-kernel" title="Permalink to this heading">#</a></h2>
@@ -1099,6 +1128,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 <section id="rbf-linear">
 <h3>RBF &amp; Linear<a class="headerlink" href="#rbf-linear" title="Permalink to this heading">#</a></h3>
+<p>Los GP estan determinados por la función de <em>kernel</em> utilizada y sus hiperparámetros. A continuación vamos a ver dos funciones que crean dos tipos de kernel comunmente utilizadas <em>RBF y Lineal</em>, y vamos a variar sus hiperparámetros para observar y comparar los cambios en la matriz de covarianza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cov_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">theta</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -1160,12 +1190,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/12c60c5582c5a76207eb8ebf3de7fd55408e5d915281fea98c7fa2d74861daf0.png" src="_images/12c60c5582c5a76207eb8ebf3de7fd55408e5d915281fea98c7fa2d74861daf0.png" />
+<img alt="_images/364bf8267fb492f344b2ab068d628d16b3c42cd5153a8d22fbac8ed5eb7bac78.png" src="_images/364bf8267fb492f344b2ab068d628d16b3c42cd5153a8d22fbac8ed5eb7bac78.png" />
 </div>
 </div>
-</section>
-<section id="creando-las-funciones-de-la-matriz-de-covarianza">
-<h3>Creando las funciones de la matriz de covarianza<a class="headerlink" href="#creando-las-funciones-de-la-matriz-de-covarianza" title="Permalink to this heading">#</a></h3>
+<p>Ahora vamos a generar funciones, en este ejemplo 5, a partir de la matriz de covarianza con RBF y diferentes hiperparámetros.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
@@ -1192,9 +1220,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23516805c789e9529a071481323f2b2c69cac01d42bbb059df3e18cfaf5d0e1b.png" src="_images/23516805c789e9529a071481323f2b2c69cac01d42bbb059df3e18cfaf5d0e1b.png" />
+<img alt="_images/5483b04009ae870a41d99610caea1ed5d44fb8bcaae140751a5a1c558b60a3d2.png" src="_images/5483b04009ae870a41d99610caea1ed5d44fb8bcaae140751a5a1c558b60a3d2.png" />
 </div>
 </div>
+<p>A continuación se presentan funciones de kernel de la librearía <em>sklearn</em> de 1 dimension (Q).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="o">=</span><span class="mi">1</span>
@@ -1247,7 +1276,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0df00bd8de3984ed71f082980b8b8d06aa1d19ae2edcf41d472ee22e23e77f58.png" src="_images/0df00bd8de3984ed71f082980b8b8d06aa1d19ae2edcf41d472ee22e23e77f58.png" />
+<img alt="_images/3a37f29b4685c3eeca4eff89a9fa075f2bef8a5af41eabe49773ebc2093ede56.png" src="_images/3a37f29b4685c3eeca4eff89a9fa075f2bef8a5af41eabe49773ebc2093ede56.png" />
 </div>
 </div>
 </section>
@@ -1331,7 +1360,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/83970c8520fe6550a1f242a7d152f7e444037b6d39a8ea9b60b46eee9c325152.png" src="_images/83970c8520fe6550a1f242a7d152f7e444037b6d39a8ea9b60b46eee9c325152.png" />
+<img alt="_images/22f1099845632f4e4eb846123d704c506b0c321d74ee7b243b1e6d8eb057f2d8.png" src="_images/22f1099845632f4e4eb846123d704c506b0c321d74ee7b243b1e6d8eb057f2d8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1353,7 +1382,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/e24621f316f976e1794358b14772b8788b4e9d5b1901ea9219e2366c7acaf8f3.png" src="_images/e24621f316f976e1794358b14772b8788b4e9d5b1901ea9219e2366c7acaf8f3.png" />
+<img alt="_images/6cae99b949a9f2fcbae5f0d7dac5c9d61f2ed44a8a1982f2a715e1f24937e706.png" src="_images/6cae99b949a9f2fcbae5f0d7dac5c9d61f2ed44a8a1982f2a715e1f24937e706.png" />
 </div>
 </div>
 <p>Hemos graficado <code class="docutils literal notranslate"><span class="pre">m=40</span></code> muestras del posterior del Proceso Gaussiano junto con la función media para la predicción y los puntos de datos observados (conjunto de datos de entrenamiento). Es evidente que todas las funciones del posterior se colapsan en todos los puntos de observación.</p>
@@ -1407,6 +1436,9 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ErrorbarContainer object of 3 artists&gt;
+</pre></div>
+</div>
 <img alt="_images/42a237e54d859b63888f5e586c2c74022ea04b3b06517c6d64477cc4d9f6119a.png" src="_images/42a237e54d859b63888f5e586c2c74022ea04b3b06517c6d64477cc4d9f6119a.png" />
 </div>
 </div>
@@ -1420,7 +1452,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.10750924071569191]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.5421135320004418]
 </pre></div>
 </div>
 </div>
@@ -1439,7 +1471,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e869a5c59356e736f62255c8b30496525f1aceba81d50cdad38df851a800920b.png" src="_images/e869a5c59356e736f62255c8b30496525f1aceba81d50cdad38df851a800920b.png" />
+<img alt="_images/2ca08177dcbd95647d8db68a0a3536699a1afc57920193a9c0a56680bfadc094.png" src="_images/2ca08177dcbd95647d8db68a0a3536699a1afc57920193a9c0a56680bfadc094.png" />
 </div>
 </div>
 <p>Utilicemos mas puntos para ver como restringimso nuestra funcion</p>
@@ -1452,7 +1484,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.323628478113189
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9219180278076656
 </pre></div>
 </div>
 </div>
@@ -1471,10 +1503,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1c0ea491ed0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x242d643e3d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/1cf194bd1a18a1d108dd884c6fb4f12e9f01dc77ffdd2530339a2dc6e4b869ed.png" src="_images/1cf194bd1a18a1d108dd884c6fb4f12e9f01dc77ffdd2530339a2dc6e4b869ed.png" />
+<img alt="_images/6f702ea36d36c33be05dd3e6b646292f988849f89e9aebc4b936013478f3c72d.png" src="_images/6f702ea36d36c33be05dd3e6b646292f988849f89e9aebc4b936013478f3c72d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1487,7 +1519,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1.19906075  0.69750837 -0.54276477 -1.17722836 -0.81854941]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.39458039  0.28748377 -1.3083094  -1.00404412  0.35556042]
 </pre></div>
 </div>
 </div>
@@ -1505,7 +1537,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ba33446b97a6e2837cf3fb18a4e1c858f397ed42015dce17aa5a06b4d35e76a4.png" src="_images/ba33446b97a6e2837cf3fb18a4e1c858f397ed42015dce17aa5a06b4d35e76a4.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x242d656d7d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/18af644870714d166c5b0ebdc8cbade70b53e4012f11589530e7fbbfe7ec9011.png" src="_images/18af644870714d166c5b0ebdc8cbade70b53e4012f11589530e7fbbfe7ec9011.png" />
 </div>
 </div>
 </section>
@@ -1645,7 +1680,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5217b6d082748293aa5638a1846dacc1ab7e2411d7c88933352f9eb41d572bbc.png" src="_images/5217b6d082748293aa5638a1846dacc1ab7e2411d7c88933352f9eb41d572bbc.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x242f2c57bd0&gt;
+</pre></div>
+</div>
+<img alt="_images/fe071458e6f0d4ba763e1ca3298b37ad4014a62dfe9e7425313b259fb419ded8.png" src="_images/fe071458e6f0d4ba763e1ca3298b37ad4014a62dfe9e7425313b259fb419ded8.png" />
 </div>
 </div>
 <p>Ahora definiremos dos modelos de Proceso Gaussiano (GP), uno con una función de covarianza lineal y otro con una función de covarianza RBF. Los utilizaremos para predecir los datos de entrenamiento y de prueba.</p>
@@ -1683,7 +1721,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07e13d4f8768640e7fe52bd8b9ab7562ffb8daa7ad0f434bea4ee3ad73783b84.png" src="_images/07e13d4f8768640e7fe52bd8b9ab7562ffb8daa7ad0f434bea4ee3ad73783b84.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;RBF, test&#39;)
+</pre></div>
+</div>
+<img alt="_images/2159243acb1264ce9b5945bdd14cbc73c95cc9ce44a40bc200f68f4eda589dc7.png" src="_images/2159243acb1264ce9b5945bdd14cbc73c95cc9ce44a40bc200f68f4eda589dc7.png" />
 </div>
 </div>
 <p>Recuerda que el valor verdadero que genera los datos es 0.85, pero esperaríamos encontrarlo como el mejor solo si tuviéramos datos infinitos. De lo contrario, también se espera encontrar un valor cercano.</p>
@@ -1713,7 +1754,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/44b423c5884325b936262043c9991da69e6a711694d47ff2bc9c7985028d100c.png" src="_images/44b423c5884325b936262043c9991da69e6a711694d47ff2bc9c7985028d100c.png" />
+<img alt="_images/f7fd85a60941ebbc15a94f187cd9b57a287662da26cf78b8e9e0e6e464c4a83c.png" src="_images/f7fd85a60941ebbc15a94f187cd9b57a287662da26cf78b8e9e0e6e464c4a83c.png" />
 </div>
 </div>
 <p>Vemos que las longitudes de escala muy cortas generan funciones más “onduladas”, que son capaces de interpolar perfectamente entre los puntos de entrenamiento. Sin embargo, un modelo sobreajustado de este tipo tiende a estar más “sorprendido” por cualquier cosa que no sea exactamente los mismos datos de entrenamiento… por lo tanto, tiene un mal desempeño en el conjunto de prueba.</p>
@@ -1782,12 +1823,12 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best lengthscale according to likelihood 0.866868686868687
-Best lengthscale according to training error: 0.4132323232323233
-Best lengthscale according to test error    : 0.5140404040404041
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best lengthscale according to likelihood 1.2701010101010102
+Best lengthscale according to training error: 0.614848484848485
+Best lengthscale according to test error    : 0.8164646464646466
 </pre></div>
 </div>
-<img alt="_images/d494a46ab8a754cab985b99b6d30158b7cf49b0e40b03da68969edde9b713f11.png" src="_images/d494a46ab8a754cab985b99b6d30158b7cf49b0e40b03da68969edde9b713f11.png" />
+<img alt="_images/c7c1d1530bebbf52e6ce16b2c7266db45fd364e64de3b91791f976583f08d401.png" src="_images/c7c1d1530bebbf52e6ce16b2c7266db45fd364e64de3b91791f976583f08d401.png" />
 </div>
 </div>
 <p>El hecho de que la mejor longitud de escala (según la verosimilitud) no sea necesariamente la que nos da el menor error de entrenamiento es una buena propiedad, es decir, el modelo evita el sobreajuste.</p>
@@ -1821,7 +1862,7 @@ Best lengthscale according to test error    : 0.5140404040404041
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : 26.97084290910867
+Objective : 26.657279240475685
 Number of Parameters : 3
 Number of Optimization Parameters : 3
 Updates : True
@@ -1832,23 +1873,18 @@ Parameters:
   <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |    1.0  |      +ve      |        
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x1c0e9f10f90&gt;],
- &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x1c0ec049ed0&gt;]],
- &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x1c0e9f7b8d0&gt;]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x242ee6d4a10&gt;],
+ &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x242ee721410&gt;]],
+ &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x242edccd390&gt;]}
 </pre></div>
 </div>
-<img alt="_images/36b9855ded21d597d971ecae958c73a3aeb35aa48888f6be07b2c0aacd387a56.png" src="_images/36b9855ded21d597d971ecae958c73a3aeb35aa48888f6be07b2c0aacd387a56.png" />
+<img alt="_images/96829931ed7e200e0988afa2ea17d77db808f0339b5ef8dae20847d4eb51d5f4.png" src="_images/96829931ed7e200e0988afa2ea17d77db808f0339b5ef8dae20847d4eb51d5f4.png" />
 </div>
 </div>
 <p>Optimiza utilizando el método del gradiente. Observa cómo la longitud de escala optimizada está cerca de la que encontramos antes mediante búsqueda en rejilla y aún más cerca de la verdadera.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "7600777c7f2b4e338e4b5ce59954affd"}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;paramz.optimization.optimization.opt_lbfgsb at 0x1c0ee87f650&gt;
 </pre></div>
 </div>
 </div>
@@ -1862,23 +1898,23 @@ Parameters:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : -29.84370988835947
+Objective : -39.139528859042656
 Number of Parameters : 3
 Number of Optimization Parameters : 3
 Updates : True
 Parameters:
-  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                   value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance           </span>  |      1.1640226554564987  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |      0.7555455499083444  |      +ve      |        
-  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  1.3752712052912316e-05  |      +ve      |        
+  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                  value  |  constraints  |  priors
+  <span class=" -Color -Color-Bold">rbf.variance           </span>  |     0.8908914782258418  |      +ve      |        
+  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |     0.8413414090957965  |      +ve      |        
+  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  4.779814386919044e-06  |      +ve      |        
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x1c0ea3670d0&gt;],
- &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x1c0ea367ad0&gt;]],
- &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x1c0ea367210&gt;]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x242ee793b10&gt;],
+ &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x242edcc3290&gt;]],
+ &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x242ee72dc10&gt;]}
 </pre></div>
 </div>
-<img alt="_images/a141dc825c4d50c843843be5216ca8701353124b243520991c39c5f4a39ee5b9.png" src="_images/a141dc825c4d50c843843be5216ca8701353124b243520991c39c5f4a39ee5b9.png" />
+<img alt="_images/5ab2e606eea8ea07da16ea050baf5e0305b55f400371dc35d84c6e045badb2e5.png" src="_images/5ab2e606eea8ea07da16ea050baf5e0305b55f400371dc35d84c6e045badb2e5.png" />
 </div>
 </div>
 <p>Predecir nuevos datos</p>
@@ -1890,12 +1926,12 @@ Parameters:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/71c72aeea075ea1179ab1a08a8c7320bbbd59f239d66c2ce97126fb80d35c978.png" src="_images/71c72aeea075ea1179ab1a08a8c7320bbbd59f239d66c2ce97126fb80d35c978.png" />
+<img alt="_images/b942b313ec10852666868d635c30dd5c0f300b5ce30b791de935b23caa6c15a3.png" src="_images/b942b313ec10852666868d635c30dd5c0f300b5ce30b791de935b23caa6c15a3.png" />
 </div>
 </div>
 </section>
-<section id="packages">
-<h2>Packages-<a class="headerlink" href="#packages" title="Permalink to this heading">#</a></h2>
+<section id="librerias">
+<h2>Librerías<a class="headerlink" href="#librerias" title="Permalink to this heading">#</a></h2>
 <p>Hay varios paquetes o marcos disponibles para realizar Regresión de Procesos Gaussianos (GPR).</p>
 <p>Uno ligero es <a class="reference external" href="https://scikit-learn.org/stable/modules/gaussian_process.html">sklearn.gaussian_process</a>, cuya implementación simple, como el ejemplo anterior, se puede realizar rápidamente. Solo sirve para obtener una comprensión básica de la implementación de GP después del ejemplo de implementación simple anterior. Es demasiado vago para comprender el propósito teórico de GP.</p>
 <p>La GPR es computacionalmente costosa en espacios de alta dimensión (con más de unas pocas docenas de características) debido al hecho de que utiliza todas las muestras/características para hacer las predicciones. Cuantas más observaciones, más cálculos se necesitan para las predicciones. Se prefiere un paquete que incluya implementaciones de algoritmos de última generación para una implementación eficiente de tareas complejas de GPR.</p>
@@ -1923,6 +1959,7 @@ Parameters:
 <span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">n_restarts_optimizer</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># Split the data into training and testing sets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
 	<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
@@ -1949,19 +1986,7 @@ Parameters:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">51</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">n_restarts_optimizer</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># Split the data into training and testing sets</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> 	<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># Fit the Gaussian Process model to the training data</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">gp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;train_test_split&#39; is not defined
-</pre></div>
-</div>
+<img alt="_images/26faf6f8140d93259967678f74f66926e13ca33b8a5a7ea2bcce46797e77da0d.png" src="_images/26faf6f8140d93259967678f74f66926e13ca33b8a5a7ea2bcce46797e77da0d.png" />
 </div>
 </div>
 </section>
@@ -2094,426 +2119,6 @@ Parameters:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/3339572d8759ba7f013be8f13da9617955db98b171a034e5ec9f77bff608296c.png" src="_images/3339572d8759ba7f013be8f13da9617955db98b171a034e5ec9f77bff608296c.png" />
-</div>
-</div>
-</section>
-<section id="ejemplo-de-piero-paialunga">
-<h3>Ejemplo de <a class="reference external" href="https://towardsdatascience.com/using-gaussian-process-regression-as-a-generative-model-using-python-66278a154eb5">Piero Paialunga</a><a class="headerlink" href="#ejemplo-de-piero-paialunga" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sans-serif&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Ubuntu&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.monospace&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Ubuntu Mono&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.labelweight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bold&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;jet&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.interpolation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.grid&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">True</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;lines.linewidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;lines.markersize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;xkcd:pale orange&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:sea blue&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:pale red&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:sage green&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:terra cotta&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:dull purple&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:teal&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd: goldenrod&#39;</span><span class="p">,</span> <span class="s1">&#39;xkcd:cadet blue&#39;</span><span class="p">,</span>
-<span class="s1">&#39;xkcd:scarlet&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">generate_train_data</span><span class="p">(</span><span class="n">temp_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">point_number</span> <span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">noise_value</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
-    <span class="n">n_t</span> <span class="o">=</span> <span class="n">temp_number</span>
-    <span class="n">points_per_t</span> <span class="o">=</span> <span class="n">point_number</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">points_per_t</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="n">n_t</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_t</span><span class="p">):</span>
-        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">noise_value</span><span class="p">,</span><span class="n">points_per_t</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">+</span><span class="n">noise</span>
-        <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-    <span class="n">data_df</span><span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">n_t</span><span class="p">:</span><span class="s1">&#39;x&#39;</span><span class="p">})</span>
-    <span class="n">no_x_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">no_x_df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">values</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Data&#39;</span><span class="p">:</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;Dataframe&#39;</span><span class="p">:</span><span class="n">no_x_df</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_test_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">noise_value</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">data_input</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span>
-    <span class="n">T</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">data_input</span>
-    <span class="n">points_per_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">points_per_t</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">T_test</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">t_i</span><span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">t_new_i</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">T_test</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">t_i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">t_new_i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
-    <span class="n">T_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">num_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
-    <span class="n">T_test</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">T_test</span><span class="p">,</span><span class="n">num_test</span><span class="p">)</span>
-    <span class="n">Y_test</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T_test</span><span class="p">:</span>
-        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">noise_value</span><span class="p">,</span><span class="n">points_per_t</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">Y_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">+</span><span class="n">noise</span><span class="p">)</span>
-    <span class="n">Y_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span>
-    <span class="n">Y_test</span> <span class="o">=</span> <span class="n">Y_test</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">T_test</span><span class="p">,</span><span class="n">Y_test</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prova</span> <span class="o">=</span> <span class="n">generate_train_data</span><span class="p">(</span><span class="n">point_number</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)[</span><span class="s1">&#39;Data&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">xtest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">prova</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">prova</span><span class="p">))</span>
-<span class="n">ytest</span> <span class="o">=</span> <span class="n">generate_train_data</span><span class="p">()[</span><span class="s1">&#39;Data&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ground Truth&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$y$&#39;)
-</pre></div>
-</div>
-<img alt="_images/1be98f2536c4da6e00f5bc2bec67b799299bf3a4d75c00461cd2380b8a18e855.png" src="_images/1be98f2536c4da6e00f5bc2bec67b799299bf3a4d75c00461cd2380b8a18e855.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">RBF</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">WhiteKernel</span><span class="p">(</span><span class="n">noise_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">xtestinput</span> <span class="o">=</span> <span class="n">xtest</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtestinput</span><span class="p">,</span> <span class="n">ytest</span><span class="p">)</span>
-<span class="n">meantest</span><span class="p">,</span><span class="n">vartest</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xtestinput</span><span class="p">,</span><span class="n">return_std</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ground Truth&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">meantest</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">vartest</span><span class="p">,</span><span class="n">meantest</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">vartest</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Boundaries&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">meantest</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Average Value&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\sklearn\gaussian_process\kernels.py:419: ConvergenceWarning: The optimal value found for dimension 0 of parameter k1__k2__length_scale is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x22c475d8bd0&gt;
-</pre></div>
-</div>
-<img alt="_images/c51744d94e7bf9f8da384cd8d8f8849a4d00290480e3938ab35e59926646570e.png" src="_images/c51744d94e7bf9f8da384cd8d8f8849a4d00290480e3938ab35e59926646570e.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_gpr</span><span class="p">(</span><span class="n">data_input</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">ask_for_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="n">mean_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">var_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">gpr_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">data_input</span><span class="p">[</span><span class="s1">&#39;Dataframe&#39;</span><span class="p">]</span>
-    <span class="n">data_matrix</span> <span class="o">=</span> <span class="n">data_input</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]</span>
-    <span class="n">n_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">data_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="kc">None</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
-        <span class="n">kernel</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">RBF</span><span class="p">()</span> <span class="o">+</span> <span class="n">WhiteKernel</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">kernel</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">RBF</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="n">l</span><span class="p">)</span> <span class="o">+</span> <span class="n">WhiteKernel</span><span class="p">(</span><span class="n">noise_level</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
-    <span class="n">l_print_first</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span><span class="o">*</span><span class="mf">0.1</span>
-    <span class="n">l_print</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">l_print_first</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span><span class="o">+</span><span class="n">l_print_first</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">l_print</span> <span class="o">=</span> <span class="n">l_print</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">perc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-        <span class="n">prova_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">prova_x</span> <span class="o">=</span> <span class="n">prova_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_t</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">gpr</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">prova_x</span><span class="p">)</span>
-        <span class="n">gpr_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gpr</span><span class="p">)</span>
-        <span class="n">mean</span><span class="p">,</span><span class="n">var</span> <span class="o">=</span> <span class="n">gpr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">mean_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
-        <span class="n">var_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">l_print</span><span class="p">:</span>
-            <span class="n">ind</span> <span class="o">=</span> <span class="n">l_print</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-            <span class="n">perc_value</span> <span class="o">=</span> <span class="n">perc</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.0f%%</span><span class="s2"> of points have been processed!&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">perc_value</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;100</span><span class="si">% o</span><span class="s1">f the data has been processed!&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ask_for_result</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Models&#39;</span><span class="p">:</span> <span class="n">gpr_list</span><span class="p">,</span> <span class="s1">&#39;Mean Values&#39;</span><span class="p">:</span><span class="n">mean_list</span><span class="p">,</span><span class="s1">&#39;Var Values&#39;</span><span class="p">:</span><span class="n">var_list</span><span class="p">}</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Models&#39;</span><span class="p">:</span><span class="n">gpr_list</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gpr_predict</span><span class="p">(</span><span class="n">fitted_model</span><span class="p">,</span><span class="n">test_data</span><span class="p">):</span>
-    <span class="n">gpr_list</span> <span class="o">=</span> <span class="n">fitted_model</span><span class="p">[</span><span class="s1">&#39;Models&#39;</span><span class="p">]</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">points_per_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">points_per_t</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">mean_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">var_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
-        <span class="n">gpr_model</span> <span class="o">=</span> <span class="n">gpr_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">mean</span><span class="p">,</span><span class="n">var</span> <span class="o">=</span> <span class="n">gpr_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">mean_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
-        <span class="n">var_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
-    <span class="n">mean_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mean_list</span><span class="p">)</span>
-    <span class="n">var_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">var_list</span><span class="p">)</span>
-    <span class="n">mean_list</span> <span class="o">=</span> <span class="n">mean_list</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">var_list</span> <span class="o">=</span> <span class="n">var_list</span><span class="o">.</span><span class="n">T</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Mean&#39;</span><span class="p">:</span><span class="n">mean_list</span><span class="p">,</span><span class="s1">&#39;Variance&#39;</span><span class="p">:</span><span class="n">var_list</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_performance</span><span class="p">(</span><span class="n">pred_test</span><span class="p">,</span><span class="n">test_set</span><span class="p">):</span>
-    <span class="n">mean_pred</span> <span class="o">=</span> <span class="n">pred_test</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span>
-    <span class="n">test_value</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">t_value</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">mse_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_value</span><span class="p">)):</span>
-        <span class="n">a_i</span> <span class="o">=</span> <span class="n">test_value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">b_i</span> <span class="o">=</span> <span class="n">mean_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">mse_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">a_i</span><span class="p">,</span><span class="n">b_i</span><span class="p">))</span>
-    <span class="n">var_pred</span> <span class="o">=</span> <span class="n">pred_test</span><span class="p">[</span><span class="s1">&#39;Variance&#39;</span><span class="p">]</span>
-   
-    <span class="n">in_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">out_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_value</span><span class="p">)):</span>
-        <span class="n">in_list_i</span><span class="o">=</span><span class="mi">0</span>
-        <span class="n">out_list_i</span><span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mean_pred</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
-            <span class="n">mean_i_j</span> <span class="o">=</span> <span class="n">mean_pred</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-            <span class="n">var_i_j</span> <span class="o">=</span> <span class="n">var_pred</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-            <span class="n">upper_limit</span> <span class="o">=</span> <span class="n">mean_i_j</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">var_i_j</span>
-            <span class="n">lower_limit</span> <span class="o">=</span> <span class="n">mean_i_j</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">var_i_j</span>
-
-            <span class="n">ref_value</span> <span class="o">=</span> <span class="n">test_value</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">ref_value</span><span class="o">&lt;</span><span class="n">upper_limit</span> <span class="ow">and</span> <span class="n">ref_value</span><span class="o">&gt;</span><span class="n">lower_limit</span><span class="p">:</span>
-                <span class="n">in_list_i</span> <span class="o">=</span> <span class="n">in_list_i</span><span class="o">+</span><span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">out_list_i</span> <span class="o">=</span> <span class="n">out_list_i</span><span class="o">+</span><span class="mi">1</span>
-        <span class="n">in_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">in_list_i</span><span class="p">)</span>
-        <span class="n">out_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out_list_i</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;T&#39;</span><span class="p">:</span><span class="n">t_value</span><span class="p">,</span><span class="s1">&#39;mselist&#39;</span><span class="p">:</span><span class="n">mse_list</span><span class="p">,</span><span class="s1">&#39;inpoints&#39;</span><span class="p">:</span><span class="n">in_list</span><span class="p">,</span><span class="s1">&#39;outpoints&#39;</span><span class="p">:</span><span class="n">out_list</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complete_experiment</span><span class="p">(</span><span class="n">temp_value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_value</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">l_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">n_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">generate_train_data</span><span class="p">(</span><span class="n">temp_value</span><span class="p">,</span><span class="n">num_value</span><span class="p">)</span>
-    <span class="n">fitted_gpr</span> <span class="o">=</span> <span class="n">fit_gpr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="n">l_value</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">n_value</span><span class="p">)</span>
-    <span class="n">test</span> <span class="o">=</span> <span class="n">generate_test_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">gpr_predict</span><span class="p">(</span><span class="n">fitted_gpr</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">test</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">evaluate_performance</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span><span class="n">test</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">p</span><span class="p">,</span><span class="n">prediction</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">complete_experiment</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\sklearn\gaussian_process\kernels.py:419: ConvergenceWarning: The optimal value found for dimension 0 of parameter k1__k2__length_scale is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10% of points have been processed!
-20% of points have been processed!
-30% of points have been processed!
-40% of points have been processed!
-50% of points have been processed!
-60% of points have been processed!
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\sklearn\gaussian_process\kernels.py:429: ConvergenceWarning: The optimal value found for dimension 0 of parameter k1__k1__constant_value is close to the specified upper bound 100000.0. Increasing the bound and calling fit again may find a better value.
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70% of points have been processed!
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\sklearn\gaussian_process\kernels.py:429: ConvergenceWarning: The optimal value found for dimension 0 of parameter k1__k1__constant_value is close to the specified upper bound 100000.0. Increasing the bound and calling fit again may find a better value.
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80% of points have been processed!
-90% of points have been processed!
-100% of the data has been processed!
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\sklearn\gaussian_process\kernels.py:419: ConvergenceWarning: The optimal value found for dimension 0 of parameter k1__k2__length_scale is close to the specified lower bound 1e-05. Decreasing the bound and calling fit again may find a better value.
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">InvalidParameterError</span><span class="g g-Whitespace">                     </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">complete_experiment</span><span class="p">()</span>
-
-<span class="nn">Cell In[21], line 6,</span> in <span class="ni">complete_experiment</span><span class="nt">(temp_value, num_value, l_value, n_value)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">test</span> <span class="o">=</span> <span class="n">generate_test_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">prediction</span> <span class="o">=</span> <span class="n">gpr_predict</span><span class="p">(</span><span class="n">fitted_gpr</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">test</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">p</span> <span class="o">=</span> <span class="n">evaluate_performance</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span><span class="n">test</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">return</span> <span class="n">p</span><span class="p">,</span><span class="n">prediction</span>
-
-<span class="nn">Cell In[20], line 9,</span> in <span class="ni">evaluate_performance</span><span class="nt">(pred_test, test_set)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">a_i</span> <span class="o">=</span> <span class="n">test_value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">b_i</span> <span class="o">=</span> <span class="n">mean_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">mse_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">a_i</span><span class="p">,</span><span class="n">b_i</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">var_pred</span> <span class="o">=</span> <span class="n">pred_test</span><span class="p">[</span><span class="s1">&#39;Variance&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">in_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\sklearn\utils\_param_validation.py:201,</span> in <span class="ni">validate_params.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span> <span class="n">to_ignore</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;self&quot;</span><span class="p">,</span> <span class="s2">&quot;cls&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_ignore</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">201</span> <span class="n">validate_parameter_constraints</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="n">parameter_constraints</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">caller_name</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>     <span class="p">):</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\sklearn\utils\_param_validation.py:95,</span> in <span class="ni">validate_parameter_constraints</span><span class="nt">(parameter_constraints, params, caller_name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="n">constraints_str</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">constraints</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span><span class="si">}</span><span class="s2"> or&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>         <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">constraints</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">95</span> <span class="k">raise</span> <span class="n">InvalidParameterError</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">param_name</span><span class="si">!r}</span><span class="s2"> parameter of </span><span class="si">{</span><span class="n">caller_name</span><span class="si">}</span><span class="s2"> must be&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">constraints_str</span><span class="si">}</span><span class="s2">. Got </span><span class="si">{</span><span class="n">param_val</span><span class="si">!r}</span><span class="s2"> instead.&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="p">)</span>
-
-<span class="ne">InvalidParameterError</span>: The &#39;y_pred&#39; parameter of mean_squared_error must be an array-like. Got 0.0 instead.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_experiment</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">test_data</span><span class="p">,</span><span class="n">temp_value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_value</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">l_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">n_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">fitted_gpr</span> <span class="o">=</span> <span class="n">fit_gpr</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="n">l_value</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">n_value</span><span class="p">)</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">gpr_predict</span><span class="p">(</span><span class="n">fitted_gpr</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">evaluate_performance</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span><span class="n">test_data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">p</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grid_search</span><span class="p">(</span><span class="n">l_list</span><span class="p">,</span><span class="n">n_list</span><span class="p">,</span><span class="n">temp_value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_value</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">train_data</span> <span class="o">=</span> <span class="n">generate_train_data</span><span class="p">(</span><span class="n">temp_value</span><span class="p">,</span><span class="n">num_value</span><span class="p">)</span>
-    <span class="n">test_data</span> <span class="o">=</span> <span class="n">generate_test_data</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
-    <span class="n">p_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">l_n</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">l_list</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">n_list</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Experiment starting for l=</span><span class="si">%.3f</span><span class="s1"> and n=</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
-            <span class="n">p_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">one_experiment</span><span class="p">(</span><span class="n">train_data</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">,</span><span class="n">l_value</span><span class="o">=</span><span class="n">l</span><span class="p">,</span><span class="n">n_value</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
-            <span class="n">l_n</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">l</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Performance&#39;</span><span class="p">:</span><span class="n">p_list</span><span class="p">,</span><span class="s1">&#39;LN grid&#39;</span><span class="p">:</span><span class="n">l_n</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search_result</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.001</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_list_mean</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">in_list_mean</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">perf_list</span> <span class="o">=</span> <span class="n">grid_search_result</span><span class="p">[</span><span class="s1">&#39;Performance&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">perf_list</span><span class="p">)):</span>
-    <span class="n">mse_list_mean</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perf_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;mselist&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
-    <span class="n">in_list_mean</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perf_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;inpoints&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
-<span class="n">grid_ln</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_search_result</span><span class="p">[</span><span class="s1">&#39;LN grid&#39;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">])</span>
-<span class="n">grid_ln</span><span class="p">[</span><span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mse_list_mean</span>
-<span class="n">grid_ln</span> <span class="o">=</span> <span class="n">grid_ln</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;MSE&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average Mean Squared Error plot&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">grid_ln</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_ln</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_search_result</span><span class="p">[</span><span class="s1">&#39;LN grid&#39;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">])</span>
-<span class="n">grid_ln</span><span class="p">[</span><span class="s1">&#39;inpoints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">in_list_mean</span>
-<span class="n">grid_ln</span> <span class="o">=</span> <span class="n">grid_ln</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;inpoints&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boundary included points&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">grid_ln</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_opt</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">n_opt</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">perf</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">complete_experiment</span><span class="p">(</span><span class="n">l_value</span><span class="o">=</span><span class="n">l_opt</span><span class="p">,</span><span class="n">n_value</span><span class="o">=</span><span class="n">n_opt</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Optimal Prediction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="mi">1</span><span class="p">),</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Variance&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Variance&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Boundary&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span><span class="mi">1</span><span class="p">),</span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perf</span><span class="p">[</span><span class="s1">&#39;mselist&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perf</span><span class="p">[</span><span class="s1">&#39;inpoints&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -3114,20 +2719,20 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-co-covarianza-kernel-en-procesos-gaussianos-gp">Función de Co covarianza (Kernel) en Procesos Gaussianos (GP)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-gp-con-1-variable-y-sin-ruido">Ejemplo GP con 1 variable y sin ruido</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-gp-con-1-variable-y-con-datos-con-ruido">Ejemplo GP con 1 variable y con datos con ruido</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prior-posterior-con-diferentes-kernel">Prior &amp; Posterior con diferentes Kernel</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf-linear">RBF &amp; Linear</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creando-las-funciones-de-la-matriz-de-covarianza">Creando las funciones de la matriz de covarianza</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-gp-implementacion">Full GP implementación</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages-</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias">Librerías</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejemplo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noise-free-target">Example with noise-free target¶</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noisy-targets">Example with noisy targets¶</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-piero-paialunga">Ejemplo de Piero Paialunga</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-dos-covariables">Ejemplo con dos covariables</a></li>
 </ul>
 </li>
