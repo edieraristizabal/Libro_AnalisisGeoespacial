@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
@@ -182,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
@@ -384,8 +386,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-distance-weighted-idw">Inverse Distance Weighted (IDW)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-delaunay">Poligonos de Delaunay</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-voronoy">Poligonos de Voronoy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangulacion-de-delaunay">Triangulación de Delaunay</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-de-thiessen-poligonos-de-voronoy">Interpolación de Thiessen (Poligonos de Voronoy)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriging">Kriging</a><ul class="nav section-nav flex-column">
@@ -394,6 +396,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros">Parámetros</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-gstat">Scikit-Gstat</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pykrige">Pykrige</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-kriging-universal">Ejemplo Kriging universal</a></li>
 </ul>
 </li>
 </ul>
@@ -709,8 +712,9 @@ document.write(`
 <h3>Inverse Distance Weighted (IDW)<a class="headerlink" href="#inverse-distance-weighted-idw" title="Permalink to this heading">#</a></h3>
 <p>La técnica IDW calcula un valor promedio para las ubicaciones no muestreadas utilizando valores de ubicaciones cercanas ponderadas. Los pesos son proporcionales a la proximidad de los puntos muestreados a la ubicación no muestreada y pueden ser especificados por el coeficiente de potencia IDW.</p>
 <p><span class="math notranslate nohighlight">\(\hat{Z_j} = \frac{\sum_i{Z_i/d^n_{ij}}}{\sum_i{1/d^n_{ij}}}\)</span></p>
-<p>Entonces, un valor grande de <span class="math notranslate nohighlight">\(n\)</span> hace que los puntos cercanos ejerzan una influencia mucho mayor en la ubicación no muestreada que un punto más alejado, lo que resulta en un resultado interpolado que se asemeja a una interpolación de Thiessen. Por otro lado, un valor muy pequeño de <span class="math notranslate nohighlight">\(n\)</span> dará a todos los puntos dentro del radio de búsqueda un peso igual, de modo que todas las ubicaciones no muestreadas representarán nada más que los valores medios de todos los puntos muestreados dentro del radio de búsqueda.</p>
-<center><img src="http://www.geography.hunter.cuny.edu/~jochen/GTECH361/lectures/lecture10/3Dconcepts/Inverse%20Distance%20Weighted_files/image001.gif" width="700"></center><div class="cell docutils container">
+<p>Donde <span class="math notranslate nohighlight">\(Z_j\)</span> es la variable de interes a interpolar a partir de los valores de sus vecinos <span class="math notranslate nohighlight">\(Z_i\)</span>, <span class="math notranslate nohighlight">\(d_{ij}\)</span> es la distancia entre el punto <span class="math notranslate nohighlight">\(j\)</span> y cada posición del vecino <span class="math notranslate nohighlight">\(i\)</span> , y <span class="math notranslate nohighlight">\(n\)</span> es un exponente. Cuando <span class="math notranslate nohighlight">\(n=0\)</span> todos los puntos vecinos pesas igual. Cuando <span class="math notranslate nohighlight">\(n\)</span> es grande hace que los puntos cercanos ejerzan una influencia mucho mayor en la ubicación no muestreada que un punto más alejado, lo que resulta en un resultado interpolado que se asemeja a una interpolación de Thiessen.</p>
+<p>A continuación se presenta un ejemplo del Vecino mas cercano (Knn) con IDW usando los 5 vecinos mas cercanos. La función <em>weights</em> que implementa el IDW tiene por defecto un valor de <span class="math notranslate nohighlight">\(n=1\)</span></p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">two_bed_home_locations</span><span class="p">,</span> <span class="n">two_bed_homes</span><span class="o">.</span><span class="n">price</span><span class="p">)</span>
@@ -741,9 +745,27 @@ document.write(`
 <img alt="_images/723b0ac97ce175e9e46fbfd3f063ae5947f63556be2957f01d9029382a71b345.png" src="_images/723b0ac97ce175e9e46fbfd3f063ae5947f63556be2957f01d9029382a71b345.png" />
 </div>
 </div>
+<p>Para implementar en esta librería la función <em>weights</em> con IDW utilizando un valor de <span class="math notranslate nohighlight">\(n\)</span> diferente, se debe crear una función de la siguiente manera la interpolación IDW con <span class="math notranslate nohighlight">\(𝑘=5\)</span> vecinos y exponente <span class="math notranslate nohighlight">\(𝑝=2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="k">def</span> <span class="nf">idw_weights</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="c1"># evita división por cero si hay distancias nulas</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-12</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">distances</span><span class="o">**</span><span class="n">p</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">idw_weights</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="poligonos-de-delaunay">
-<h3>Poligonos de Delaunay<a class="headerlink" href="#poligonos-de-delaunay" title="Permalink to this heading">#</a></h3>
+<section id="triangulacion-de-delaunay">
+<h3>Triangulación de Delaunay<a class="headerlink" href="#triangulacion-de-delaunay" title="Permalink to this heading">#</a></h3>
+<p>Conecta los puntos que comparten un borde en sus celdas de Voronoi para formar una malla de triángulos que cumple la propiedad del círculo vacío (ningún punto interno al circuncírculo de un triángulo). Para cualquier triángulo hay un círculo único que pasa exactamente por sus tres vértices; se llama circuncírculo y su centro es el punto donde se cortan las mediatrices de los lados. En una triangulación de Delaunay, ningún otro punto de la nube de datos (fuera de esos tres vértices) está dentro de ese circuncírculo.</p>
+<p>Voronoi y Delaunay son duales, donde cada arista Voronoi es perpendicular y pasa por el punto medio de la arista Delaunay que conecta los dos sitios vecinos. Cada vértice Voronoi es el centro del circuncírculo de un triángulo Delaunay; a la inversa, cada triángulo Delaunay está formado por los sitios cuyas celdas convergen en ese vértice.</p>
+<p>La dualidad Voronoi ↔ Delaunay permite pasar fácilmente de un modelo basado en áreas de influencia (Thiessen/Voronoi) a uno basado en conectividad y mallas (Delaunay), ambos fundamentales en interpolación y análisis espacial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Delaunay</span>
@@ -765,8 +787,9 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="poligonos-de-voronoy">
-<h3>Poligonos de Voronoy<a class="headerlink" href="#poligonos-de-voronoy" title="Permalink to this heading">#</a></h3>
+<section id="interpolacion-de-thiessen-poligonos-de-voronoy">
+<h3>Interpolación de Thiessen (Poligonos de Voronoy)<a class="headerlink" href="#interpolacion-de-thiessen-poligonos-de-voronoy" title="Permalink to this heading">#</a></h3>
+<p>Asigna al punto desconocido el valor de la muestra en cuyo polígono de Voronoi cae. Produce un mapa escalonado (función 0-orden). Los poligonos de Voronoy dividen el plano en celdas: cada punto del espacio pertenece al sitio muestreado más cercano. No depende de valores, solo de posiciones. Los poligonso de Voronoy son la base geométrica tanto de la <em>interpolación de Thiessen</em> (valor constante por celda) como de la versión <em>límite</em> del IDW cuando el exponente <span class="math notranslate nohighlight">\(𝑝\)</span> tiende a infinito.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Voronoi</span><span class="p">,</span> <span class="n">voronoi_plot_2d</span>
@@ -920,7 +943,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x25234e50290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x27cf429cc50&gt;
 </pre></div>
 </div>
 <img alt="_images/30946f02bb65769e960152f214dc89b306cfc468d218a5589923b5e05f88dd15.png" src="_images/30946f02bb65769e960152f214dc89b306cfc468d218a5589923b5e05f88dd15.png" />
@@ -1162,6 +1185,203 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 </div>
 </div>
 </section>
+<section id="ejemplo-kriging-universal">
+<h3>Ejemplo Kriging universal<a class="headerlink" href="#ejemplo-kriging-universal" title="Permalink to this heading">#</a></h3>
+<p>El Kriging Universal se utiliza cuando se sospecha que existe una tendencia espacial en los datos, es decir, que la media de la variable no es constante en todo el dominio de estudio. En contraste con el Kriging Ordinario, que asume una media constante, el Kriging Universal permite modelar esta tendencia espacial y obtener mejores predicciones en presencia de variaciones en la media. En kriging universal (o regression-kriging/kriging con deriva externa) la predicción en un punto nuevo <span class="math notranslate nohighlight">\(𝑠_0\)</span> se descompone en dos piezas:</p>
+<p>donde <span class="math notranslate nohighlight">\(𝑒(𝑠_𝑖)=𝑍(𝑠_𝑖)−𝑚(𝑠_𝑖)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># 1. Toy data: coordinates (x,y), covariate (elevation) and target variable (temperature)</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;x&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="s2">&quot;y&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+    <span class="s2">&quot;elev&quot;</span><span class="p">:[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">105</span><span class="p">],</span>
+    <span class="s2">&quot;temp&quot;</span><span class="p">:[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="mf">13.0</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># target location</span>
+<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">elev0</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">115</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target point P = (</span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">y0</span><span class="si">}</span><span class="s2">), elevation = </span><span class="si">{</span><span class="n">elev0</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># 2. Trend (drift): linear regression temp ~ elev</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;elev&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="n">beta0</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">beta1</span><span class="o">*</span><span class="n">e</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trend model  m(s) = β0 + β1*elev</span><span class="se">\n</span><span class="s2">β0 = </span><span class="si">{</span><span class="n">beta0</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, β1 = </span><span class="si">{</span><span class="n">beta1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span><span class="o">*</span><span class="n">e</span>            <span class="c1"># trend at sample points</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">z</span> <span class="o">-</span> <span class="n">m</span>                    <span class="c1"># residuals</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Trend at sample points  m_i:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Residuals e_i = z_i - m_i:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># trend at target</span>
+<span class="n">m0</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span><span class="o">*</span><span class="n">elev0</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trend at target m0 = </span><span class="si">{</span><span class="n">m0</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># 3. Empirical semivariogram of residuals</span>
+<span class="c1">#    γ_ij = 0.5*(e_i - e_j)^2</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">pairs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">gamma_ij</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dist_ij</span>  <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">coords</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">dist_ij</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">gamma_ij</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+<span class="n">df_emp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;pair&quot;</span><span class="p">:</span><span class="n">pairs</span><span class="p">,</span> <span class="s2">&quot;dist&quot;</span><span class="p">:</span><span class="n">dist_ij</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span><span class="n">gamma_ij</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Empirical semi‑variogram (residuals):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_emp</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># 4. Fit a very simple variogram model: linear γ(h)=a*h</span>
+<span class="c1">#    a = average(γ/h) over all pairs</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gamma_ij</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dist_ij</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear model  γ(h) = a·h  with  a = </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gamma_linear</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">h</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># 5. Build Universal Kriging system</span>
+<span class="c1">#    [ Γ   F ][λ] = [γ0]</span>
+<span class="c1">#    [ Fᵀ  0 ][μ]   [f0]</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Γ matrix</span>
+<span class="n">Gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">coords</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">Gamma</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_linear</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># γ(h)</span>
+        
+<span class="c1"># F matrix (intercept + covariate)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">e</span><span class="p">))</span>
+
+<span class="c1"># right‑hand side</span>
+<span class="n">gamma0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gamma_linear</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span><span class="n">y0</span><span class="p">]</span><span class="o">-</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
+<span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">elev0</span><span class="p">])</span>
+
+<span class="c1"># assemble system</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">Gamma</span><span class="p">,</span> <span class="n">F</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">gamma0</span><span class="p">,</span> <span class="n">f0</span><span class="p">])</span>
+
+<span class="c1"># solve</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">solution</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>      <span class="c1"># kriging weights</span>
+<span class="n">mu</span>  <span class="o">=</span> <span class="n">solution</span><span class="p">[</span><span class="n">n</span><span class="p">:]</span>      <span class="c1"># Lagrange multipliers</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kriging system solution&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;λ (weights):&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;μ (multipliers):&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># 6. Prediction and variance</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">Zhat</span> <span class="o">=</span> <span class="n">m0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>         <span class="c1"># universal kriging estimator</span>
+<span class="n">sigma2_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">gamma0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">f0</span><span class="p">)</span>  <span class="c1"># kriging variance</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted temperature at P: Ẑ = </span><span class="si">{</span><span class="n">Zhat</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> °C&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kriging variance at P    : σ²_k = </span><span class="si">{</span><span class="n">sigma2_k</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observations
+     x    y  elev  temp
+A  0.0  0.0   100  10.0
+B  1.0  0.0   110  12.0
+C  0.0  1.0   105  13.0 
+
+Target point P = (0.5,0.5), elevation = 115 m
+
+Trend model  m(s) = β0 + β1*elev
+β0 = -9.3333, β1 = 0.2000
+
+Trend at sample points  m_i: [10.6667 12.6667 11.6667]
+Residuals e_i = z_i - m_i: [-0.6667 -0.6667  1.3333] 
+
+Trend at target m0 = 13.6667
+
+Empirical semi‑variogram (residuals):
+pair     dist  gamma
+ A-B 1.000000    0.0
+ A-C 1.000000    2.0
+ B-C 1.414214    2.0 
+
+Linear model  γ(h) = a·h  with  a = 1.1381
+
+Kriging system solution
+λ (weights): [-0.7929  1.2071  0.5858]
+μ (multipliers): [-21.2357   0.2   ] 
+
+Predicted temperature at P: Ẑ = 14.17 °C
+Kriging variance at P    : σ²_k = 2.569
+</pre></div>
+</div>
+</div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>¿Qué hicimos?</p></th>
+<th class="head"><p>Resultado clave</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1. Datos</strong></p></td>
+<td><p>3 puntos con <span class="math notranslate nohighlight">\(x,y\)</span>, elevación y temperatura</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2. Tendencia (drift)</strong></p></td>
+<td><p>Ajustamos <span class="math notranslate nohighlight">\(m(\mathbf{s})=\beta_0+\beta_1\,\text{elev}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\hat\beta_0=-9.33,\;\hat\beta_1=0.20\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>3. Residuos</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(e_i = Z_i - \hat m_i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\([-0.67,\,-0.67,\,1.33]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>4. Semivariograma empírico</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\hat\gamma_{ij}=0.5\,(e_i-e_j)^2\)</span></p></td>
+<td><p>ver tabla “Empirical semi-variogram”</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>5. Modelo de variograma</strong></p></td>
+<td><p>Ajuste lineal <span class="math notranslate nohighlight">\(\gamma(h)=a\,h\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a\approx1.14\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>6. Sistema de kriging universal</strong></p></td>
+<td><p>construimos la matriz <span class="math notranslate nohighlight">\([\Gamma\;F;F^\top\;0]\)</span> y la resolvemos</p></td>
+<td><p>pesos <span class="math notranslate nohighlight">\(\lambda=[-0.79,\,1.21,\,0.59]\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>7. Predicción</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\hat Z(P)=\hat m_0+\sum \lambda_i e_i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\hat Z=14.17^{\circ}\text{C}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>8. Varianza</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_k^2=\lambda^\top\gamma_0+\mu^\top f_0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_k^2=2.57\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 </section>
 
@@ -1231,8 +1451,8 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-distance-weighted-idw">Inverse Distance Weighted (IDW)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-delaunay">Poligonos de Delaunay</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos-de-voronoy">Poligonos de Voronoy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triangulacion-de-delaunay">Triangulación de Delaunay</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-de-thiessen-poligonos-de-voronoy">Interpolación de Thiessen (Poligonos de Voronoy)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriging">Kriging</a><ul class="nav section-nav flex-column">
@@ -1241,6 +1461,7 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros">Parámetros</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-gstat">Scikit-Gstat</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pykrige">Pykrige</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-kriging-universal">Ejemplo Kriging universal</a></li>
 </ul>
 </li>
 </ul>

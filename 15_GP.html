@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
@@ -182,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Procesos Gaussianos con Python</a></li>
@@ -400,6 +402,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noise-free-target">Example with noise-free target¶</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noisy-targets">Example with noisy targets¶</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-piero-paialunga">Ejemplo de Piero Paialunga</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-dos-covariables">Ejemplo con dos covariables</a></li>
 </ul>
 </li>
 </ul>
@@ -515,7 +518,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25f2a547b9656eceba29154fd73455100d298c50a843913fd3b8c0090ef0e021.png" src="_images/25f2a547b9656eceba29154fd73455100d298c50a843913fd3b8c0090ef0e021.png" />
+<img alt="_images/dd1b6548b1fcb5f68d99d9ab8f95381481ebe713ab155da107f43e2c01462dec.png" src="_images/dd1b6548b1fcb5f68d99d9ab8f95381481ebe713ab155da107f43e2c01462dec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -535,7 +538,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c03babad4f9edeb73646c9eacd967b8c3d4bfe9d69e7a1d1399c200decd62e77.png" src="_images/c03babad4f9edeb73646c9eacd967b8c3d4bfe9d69e7a1d1399c200decd62e77.png" />
+<img alt="_images/c44c63d1cf7dcb7cad6b764d7c1fa72a7d697ff67333a9f1a56d3ae91184a9e0.png" src="_images/c44c63d1cf7dcb7cad6b764d7c1fa72a7d697ff67333a9f1a56d3ae91184a9e0.png" />
 </div>
 </div>
 <p>A continuación, podemos graficar múltiples Gaussianas independientes. Por ejemplo, colocar el vector <span class="math notranslate nohighlight">\(X_1\)</span> en <span class="math notranslate nohighlight">\(X = 0\)</span> y otro vector <span class="math notranslate nohighlight">\(X_2\)</span> en <span class="math notranslate nohighlight">\(X = 1\)</span>. Ten en cuenta que tanto el vector <span class="math notranslate nohighlight">\(X_1\)</span> como el vector <span class="math notranslate nohighlight">\(X_2\)</span> son Gaussianos.</p>
@@ -555,7 +558,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0ee1b06da6c6a77d5b23c78d570313b28e74328e3f1ef8203c7527e392352738.png" src="_images/0ee1b06da6c6a77d5b23c78d570313b28e74328e3f1ef8203c7527e392352738.png" />
+<img alt="_images/2ce43fc2ad2c2d1b857d46290f97458a3cfd819e1304300c8fbfee7c576c719b.png" src="_images/2ce43fc2ad2c2d1b857d46290f97458a3cfd819e1304300c8fbfee7c576c719b.png" />
 </div>
 </div>
 <p>Estas líneas se parecen a <strong>funciones</strong> para cada par de puntos. Por otro lado, la gráfica también parece como si estuviéramos muestreando la región <span class="math notranslate nohighlight">\([0, 1]\)</span> con 10 funciones lineales, aunque solo haya dos puntos en cada línea. Desde la perspectiva del muestreo, el dominio <span class="math notranslate nohighlight">\([0, 1]\)</span> es nuestra región de interés, es decir, la región específica en la que realizamos nuestra regresión. Este muestreo se vuelve aún más claro si generamos más variables Gaussianas independientes y conectamos los puntos en orden mediante líneas.</p>
@@ -576,7 +579,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a4f8d9ac41a5871c09b8cc5cbffb3cfb5934d30504ad76270b88279b1fd5e918.png" src="_images/a4f8d9ac41a5871c09b8cc5cbffb3cfb5934d30504ad76270b88279b1fd5e918.png" />
+<img alt="_images/84e36ca70530422e93a6832c3edc77d6321b184ba2613efb85905bd441795039.png" src="_images/84e36ca70530422e93a6832c3edc77d6321b184ba2613efb85905bd441795039.png" />
 </div>
 </div>
 <p>¿Qué estamos intentando hacer al conectar puntos Gaussianos independientes generados aleatoriamente? Aunque estas líneas parecen funciones, son demasiado ruidosas. Si <span class="math notranslate nohighlight">\(X\)</span> es nuestro espacio de entrada, estas funciones no tienen sentido para la tarea de regresión. No podemos hacer ninguna predicción utilizando estas funciones. Las funciones deberían ser más suaves, lo que significa que los puntos de entrada que están cerca entre sí deberían tener valores similares en la función.</p>
@@ -615,7 +618,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9a78b9a08cb2fd8ba2de5e38f4b4257dba54e31150486a1a4c8c7786ad6c267d.png" src="_images/9a78b9a08cb2fd8ba2de5e38f4b4257dba54e31150486a1a4c8c7786ad6c267d.png" />
+<img alt="_images/9d08b79b4227856ba18ded644d351fdfc4f1068da8f490294974b1977f3329f2.png" src="_images/9d08b79b4227856ba18ded644d351fdfc4f1068da8f490294974b1977f3329f2.png" />
 </div>
 </div>
 <p>Queremos suavizar las funciones de muestreo definiendo las funciones de covarianza. Considerando el hecho de que cuando dos vectores son similares, el valor de salida de su producto punto es alto. Esto se puede ver claramente en la ecuación del producto punto <span class="math notranslate nohighlight">\(A\,B = AB\,cos\theta\)</span>, donde <span class="math notranslate nohighlight">\(\theta\)</span> es el ángulo entre dos vectores. Si un algoritmo se define únicamente en términos de productos internos en el espacio de entrada, entonces se puede elevar al espacio de características reemplazando las ocurrencias de esos productos internos por <span class="math notranslate nohighlight">\(k(x,\ x^\prime)\)</span>; llamamos a <span class="math notranslate nohighlight">\(k(\bullet,\bullet)\)</span> una función núcleo.</p>
@@ -693,7 +696,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6cb5b8eff8ae7fc2ae1b13b3a6f442f92ea144b1be1280edfc0c3787e68945e2.png" src="_images/6cb5b8eff8ae7fc2ae1b13b3a6f442f92ea144b1be1280edfc0c3787e68945e2.png" />
+<img alt="_images/6ce869549b655c249dea1b0ae42728fb489f355bd37ea2a1a590e5dc389b7e21.png" src="_images/6ce869549b655c249dea1b0ae42728fb489f355bd37ea2a1a590e5dc389b7e21.png" />
 </div>
 </div>
 <p>Obtuvimos exactamente el mismo gráfico como se esperaba. Ahora, kernelicemos nuestras funciones utilizando la RBF como nuestra covarianza.</p>
@@ -728,7 +731,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b06b9f6773ff31fda65d5b3b026c91b0a6c3b1952fe12a27cc9aff3c93112f1c.png" src="_images/b06b9f6773ff31fda65d5b3b026c91b0a6c3b1952fe12a27cc9aff3c93112f1c.png" />
+<img alt="_images/2653361e6a0dd524e387787ac8060c0998e5047a101873926eaffa3ff03c9b45.png" src="_images/2653361e6a0dd524e387787ac8060c0998e5047a101873926eaffa3ff03c9b45.png" />
 </div>
 </div>
 <p>Obtenemos líneas mucho más suaves que se asemejan más a funciones. Cuando la dimensión de la Gaussiana aumenta, ya no es necesario conectar puntos. Cuando la dimensión se vuelve infinita, hay un punto que representa cualquier entrada posible. Vamos a graficar <code class="docutils literal notranslate"><span class="pre">m=200</span></code> muestras de una Gaussiana de <code class="docutils literal notranslate"><span class="pre">n=200$-D$</span></code> para tener una idea de cómo se ven las funciones con infinitos parámetros.</p>
@@ -751,9 +754,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function _draw_all_if_interactive at 0x00000199CC681BC0&gt; (for post_execute):
-</pre></div>
-</div>
+<img alt="_images/b81b7772e30761f210ccc1351c336086acfdef60da5245d6903deb60974bbc12.png" src="_images/b81b7772e30761f210ccc1351c336086acfdef60da5245d6903deb60974bbc12.png" />
 </div>
 </div>
 <p>Para generar muestras aleatorias normales correlacionadas, se pueden generar primero muestras no correlacionadas y luego multiplicarlas por una matriz <em>L</em> tal que <span class="math notranslate nohighlight">\(L L^T = K\)</span>, donde <em>K</em> es la matriz de covarianza deseada. La matriz <em>L</em> se puede obtener, por ejemplo, utilizando la descomposición de Cholesky de <em>K</em>.</p>
@@ -774,7 +775,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/57e9e02c860c523c8bb777232eccc9d4d695e912719cda5123d48f3ad09daa53.png" src="_images/57e9e02c860c523c8bb777232eccc9d4d695e912719cda5123d48f3ad09daa53.png" />
+<img alt="_images/15639fe63fc1ba6fa20833dbbdcd475ca208e283d0eebf29c5f98026c8557091.png" src="_images/15639fe63fc1ba6fa20833dbbdcd475ca208e283d0eebf29c5f98026c8557091.png" />
 </div>
 </div>
 <p>Primero, volvamos a nuestra tarea de regresión. Hay una función <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> que intentamos modelar dado un conjunto de puntos de datos <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> (datos de entrenamiento/observados existentes) provenientes de la función desconocida <span class="math notranslate nohighlight">\(\mathbf{f}\)</span>. Los métodos tradicionales de regresión no lineal en aprendizaje automático típicamente dan una única función que consideran como la mejor para ajustar estas observaciones. Pero, como se mostró al principio, puede haber más de una función que ajuste las observaciones igualmente bien.</p>
@@ -894,7 +895,7 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fc044eb3b8e5284a02dbe54f3a3cb88cf6271c05138ff860d737fe530afedfd8.png" src="_images/fc044eb3b8e5284a02dbe54f3a3cb88cf6271c05138ff860d737fe530afedfd8.png" />
+<img alt="_images/10cb9ec425c161631a9a6758a4f36a15e2537c501fb710030cf9209445c78660.png" src="_images/10cb9ec425c161631a9a6758a4f36a15e2537c501fb710030cf9209445c78660.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -988,7 +989,7 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/11799d04dfd37f92868afed30316c0fd3d3c5e6d2fc1938a1ae0d4002a6839ee.png" src="_images/11799d04dfd37f92868afed30316c0fd3d3c5e6d2fc1938a1ae0d4002a6839ee.png" />
+<img alt="_images/eb8029bc48dfee90660b5b60aec446d9b9346e82af3a7872d5525548bed1d7ef.png" src="_images/eb8029bc48dfee90660b5b60aec446d9b9346e82af3a7872d5525548bed1d7ef.png" />
 </div>
 </div>
 </section>
@@ -1159,7 +1160,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/364bf8267fb492f344b2ab068d628d16b3c42cd5153a8d22fbac8ed5eb7bac78.png" src="_images/364bf8267fb492f344b2ab068d628d16b3c42cd5153a8d22fbac8ed5eb7bac78.png" />
+<img alt="_images/12c60c5582c5a76207eb8ebf3de7fd55408e5d915281fea98c7fa2d74861daf0.png" src="_images/12c60c5582c5a76207eb8ebf3de7fd55408e5d915281fea98c7fa2d74861daf0.png" />
 </div>
 </div>
 </section>
@@ -1191,7 +1192,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5483b04009ae870a41d99610caea1ed5d44fb8bcaae140751a5a1c558b60a3d2.png" src="_images/5483b04009ae870a41d99610caea1ed5d44fb8bcaae140751a5a1c558b60a3d2.png" />
+<img alt="_images/23516805c789e9529a071481323f2b2c69cac01d42bbb059df3e18cfaf5d0e1b.png" src="_images/23516805c789e9529a071481323f2b2c69cac01d42bbb059df3e18cfaf5d0e1b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1246,9 +1247,6 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Cov. function form (left) and Sample cov. matrix (right)&#39;)
-</pre></div>
-</div>
 <img alt="_images/0df00bd8de3984ed71f082980b8b8d06aa1d19ae2edcf41d472ee22e23e77f58.png" src="_images/0df00bd8de3984ed71f082980b8b8d06aa1d19ae2edcf41d472ee22e23e77f58.png" />
 </div>
 </div>
@@ -1333,7 +1331,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22f1099845632f4e4eb846123d704c506b0c321d74ee7b243b1e6d8eb057f2d8.png" src="_images/22f1099845632f4e4eb846123d704c506b0c321d74ee7b243b1e6d8eb057f2d8.png" />
+<img alt="_images/83970c8520fe6550a1f242a7d152f7e444037b6d39a8ea9b60b46eee9c325152.png" src="_images/83970c8520fe6550a1f242a7d152f7e444037b6d39a8ea9b60b46eee9c325152.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1355,7 +1353,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/6cae99b949a9f2fcbae5f0d7dac5c9d61f2ed44a8a1982f2a715e1f24937e706.png" src="_images/6cae99b949a9f2fcbae5f0d7dac5c9d61f2ed44a8a1982f2a715e1f24937e706.png" />
+<img alt="_images/e24621f316f976e1794358b14772b8788b4e9d5b1901ea9219e2366c7acaf8f3.png" src="_images/e24621f316f976e1794358b14772b8788b4e9d5b1901ea9219e2366c7acaf8f3.png" />
 </div>
 </div>
 <p>Hemos graficado <code class="docutils literal notranslate"><span class="pre">m=40</span></code> muestras del posterior del Proceso Gaussiano junto con la función media para la predicción y los puntos de datos observados (conjunto de datos de entrenamiento). Es evidente que todas las funciones del posterior se colapsan en todos los puntos de observación.</p>
@@ -1409,9 +1407,6 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ErrorbarContainer object of 3 artists&gt;
-</pre></div>
-</div>
 <img alt="_images/42a237e54d859b63888f5e586c2c74022ea04b3b06517c6d64477cc4d9f6119a.png" src="_images/42a237e54d859b63888f5e586c2c74022ea04b3b06517c6d64477cc4d9f6119a.png" />
 </div>
 </div>
@@ -1425,7 +1420,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.5421135320004418]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.10750924071569191]
 </pre></div>
 </div>
 </div>
@@ -1444,7 +1439,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2ca08177dcbd95647d8db68a0a3536699a1afc57920193a9c0a56680bfadc094.png" src="_images/2ca08177dcbd95647d8db68a0a3536699a1afc57920193a9c0a56680bfadc094.png" />
+<img alt="_images/e869a5c59356e736f62255c8b30496525f1aceba81d50cdad38df851a800920b.png" src="_images/e869a5c59356e736f62255c8b30496525f1aceba81d50cdad38df851a800920b.png" />
 </div>
 </div>
 <p>Utilicemos mas puntos para ver como restringimso nuestra funcion</p>
@@ -1457,7 +1452,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9219180278076656
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.323628478113189
 </pre></div>
 </div>
 </div>
@@ -1476,10 +1471,10 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x242d643e3d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1c0ea491ed0&gt;]
 </pre></div>
 </div>
-<img alt="_images/6f702ea36d36c33be05dd3e6b646292f988849f89e9aebc4b936013478f3c72d.png" src="_images/6f702ea36d36c33be05dd3e6b646292f988849f89e9aebc4b936013478f3c72d.png" />
+<img alt="_images/1cf194bd1a18a1d108dd884c6fb4f12e9f01dc77ffdd2530339a2dc6e4b869ed.png" src="_images/1cf194bd1a18a1d108dd884c6fb4f12e9f01dc77ffdd2530339a2dc6e4b869ed.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1492,7 +1487,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.39458039  0.28748377 -1.3083094  -1.00404412  0.35556042]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1.19906075  0.69750837 -0.54276477 -1.17722836 -0.81854941]
 </pre></div>
 </div>
 </div>
@@ -1510,10 +1505,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x242d656d7d0&gt;]
-</pre></div>
-</div>
-<img alt="_images/18af644870714d166c5b0ebdc8cbade70b53e4012f11589530e7fbbfe7ec9011.png" src="_images/18af644870714d166c5b0ebdc8cbade70b53e4012f11589530e7fbbfe7ec9011.png" />
+<img alt="_images/ba33446b97a6e2837cf3fb18a4e1c858f397ed42015dce17aa5a06b4d35e76a4.png" src="_images/ba33446b97a6e2837cf3fb18a4e1c858f397ed42015dce17aa5a06b4d35e76a4.png" />
 </div>
 </div>
 </section>
@@ -1653,10 +1645,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x242f2c57bd0&gt;
-</pre></div>
-</div>
-<img alt="_images/fe071458e6f0d4ba763e1ca3298b37ad4014a62dfe9e7425313b259fb419ded8.png" src="_images/fe071458e6f0d4ba763e1ca3298b37ad4014a62dfe9e7425313b259fb419ded8.png" />
+<img alt="_images/5217b6d082748293aa5638a1846dacc1ab7e2411d7c88933352f9eb41d572bbc.png" src="_images/5217b6d082748293aa5638a1846dacc1ab7e2411d7c88933352f9eb41d572bbc.png" />
 </div>
 </div>
 <p>Ahora definiremos dos modelos de Proceso Gaussiano (GP), uno con una función de covarianza lineal y otro con una función de covarianza RBF. Los utilizaremos para predecir los datos de entrenamiento y de prueba.</p>
@@ -1694,10 +1683,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;RBF, test&#39;)
-</pre></div>
-</div>
-<img alt="_images/2159243acb1264ce9b5945bdd14cbc73c95cc9ce44a40bc200f68f4eda589dc7.png" src="_images/2159243acb1264ce9b5945bdd14cbc73c95cc9ce44a40bc200f68f4eda589dc7.png" />
+<img alt="_images/07e13d4f8768640e7fe52bd8b9ab7562ffb8daa7ad0f434bea4ee3ad73783b84.png" src="_images/07e13d4f8768640e7fe52bd8b9ab7562ffb8daa7ad0f434bea4ee3ad73783b84.png" />
 </div>
 </div>
 <p>Recuerda que el valor verdadero que genera los datos es 0.85, pero esperaríamos encontrarlo como el mejor solo si tuviéramos datos infinitos. De lo contrario, también se espera encontrar un valor cercano.</p>
@@ -1727,7 +1713,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f7fd85a60941ebbc15a94f187cd9b57a287662da26cf78b8e9e0e6e464c4a83c.png" src="_images/f7fd85a60941ebbc15a94f187cd9b57a287662da26cf78b8e9e0e6e464c4a83c.png" />
+<img alt="_images/44b423c5884325b936262043c9991da69e6a711694d47ff2bc9c7985028d100c.png" src="_images/44b423c5884325b936262043c9991da69e6a711694d47ff2bc9c7985028d100c.png" />
 </div>
 </div>
 <p>Vemos que las longitudes de escala muy cortas generan funciones más “onduladas”, que son capaces de interpolar perfectamente entre los puntos de entrenamiento. Sin embargo, un modelo sobreajustado de este tipo tiende a estar más “sorprendido” por cualquier cosa que no sea exactamente los mismos datos de entrenamiento… por lo tanto, tiene un mal desempeño en el conjunto de prueba.</p>
@@ -1796,12 +1782,12 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best lengthscale according to likelihood 1.2701010101010102
-Best lengthscale according to training error: 0.614848484848485
-Best lengthscale according to test error    : 0.8164646464646466
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best lengthscale according to likelihood 0.866868686868687
+Best lengthscale according to training error: 0.4132323232323233
+Best lengthscale according to test error    : 0.5140404040404041
 </pre></div>
 </div>
-<img alt="_images/c7c1d1530bebbf52e6ce16b2c7266db45fd364e64de3b91791f976583f08d401.png" src="_images/c7c1d1530bebbf52e6ce16b2c7266db45fd364e64de3b91791f976583f08d401.png" />
+<img alt="_images/d494a46ab8a754cab985b99b6d30158b7cf49b0e40b03da68969edde9b713f11.png" src="_images/d494a46ab8a754cab985b99b6d30158b7cf49b0e40b03da68969edde9b713f11.png" />
 </div>
 </div>
 <p>El hecho de que la mejor longitud de escala (según la verosimilitud) no sea necesariamente la que nos da el menor error de entrenamiento es una buena propiedad, es decir, el modelo evita el sobreajuste.</p>
@@ -1835,7 +1821,7 @@ Best lengthscale according to test error    : 0.8164646464646466
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : 26.657279240475685
+Objective : 26.97084290910867
 Number of Parameters : 3
 Number of Optimization Parameters : 3
 Updates : True
@@ -1846,12 +1832,12 @@ Parameters:
   <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |    1.0  |      +ve      |        
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x242ee6d4a10&gt;],
- &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x242ee721410&gt;]],
- &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x242edccd390&gt;]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x1c0e9f10f90&gt;],
+ &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x1c0ec049ed0&gt;]],
+ &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x1c0e9f7b8d0&gt;]}
 </pre></div>
 </div>
-<img alt="_images/96829931ed7e200e0988afa2ea17d77db808f0339b5ef8dae20847d4eb51d5f4.png" src="_images/96829931ed7e200e0988afa2ea17d77db808f0339b5ef8dae20847d4eb51d5f4.png" />
+<img alt="_images/36b9855ded21d597d971ecae958c73a3aeb35aa48888f6be07b2c0aacd387a56.png" src="_images/36b9855ded21d597d971ecae958c73a3aeb35aa48888f6be07b2c0aacd387a56.png" />
 </div>
 </div>
 <p>Optimiza utilizando el método del gradiente. Observa cómo la longitud de escala optimizada está cerca de la que encontramos antes mediante búsqueda en rejilla y aún más cerca de la verdadera.</p>
@@ -1862,7 +1848,7 @@ Parameters:
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "98955cca6bd5456384335def582f9320", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;paramz.optimization.optimization.opt_lbfgsb at 0x242ed8a78d0&gt;
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "7600777c7f2b4e338e4b5ce59954affd"}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;paramz.optimization.optimization.opt_lbfgsb at 0x1c0ee87f650&gt;
 </pre></div>
 </div>
 </div>
@@ -1876,23 +1862,23 @@ Parameters:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : -39.139528859042656
+Objective : -29.84370988835947
 Number of Parameters : 3
 Number of Optimization Parameters : 3
 Updates : True
 Parameters:
-  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                  value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance           </span>  |     0.8908914782258418  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |     0.8413414090957965  |      +ve      |        
-  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  4.779814386919044e-06  |      +ve      |        
+  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                   value  |  constraints  |  priors
+  <span class=" -Color -Color-Bold">rbf.variance           </span>  |      1.1640226554564987  |      +ve      |        
+  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |      0.7555455499083444  |      +ve      |        
+  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  1.3752712052912316e-05  |      +ve      |        
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x242ee793b10&gt;],
- &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x242edcc3290&gt;]],
- &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x242ee72dc10&gt;]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dataplot&#39;: [&lt;matplotlib.collections.PathCollection at 0x1c0ea3670d0&gt;],
+ &#39;gpmean&#39;: [[&lt;matplotlib.lines.Line2D at 0x1c0ea367ad0&gt;]],
+ &#39;gpconfidence&#39;: [&lt;matplotlib.collections.PolyCollection at 0x1c0ea367210&gt;]}
 </pre></div>
 </div>
-<img alt="_images/5ab2e606eea8ea07da16ea050baf5e0305b55f400371dc35d84c6e045badb2e5.png" src="_images/5ab2e606eea8ea07da16ea050baf5e0305b55f400371dc35d84c6e045badb2e5.png" />
+<img alt="_images/a141dc825c4d50c843843be5216ca8701353124b243520991c39c5f4a39ee5b9.png" src="_images/a141dc825c4d50c843843be5216ca8701353124b243520991c39c5f4a39ee5b9.png" />
 </div>
 </div>
 <p>Predecir nuevos datos</p>
@@ -1904,7 +1890,7 @@ Parameters:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b942b313ec10852666868d635c30dd5c0f300b5ce30b791de935b23caa6c15a3.png" src="_images/b942b313ec10852666868d635c30dd5c0f300b5ce30b791de935b23caa6c15a3.png" />
+<img alt="_images/71c72aeea075ea1179ab1a08a8c7320bbbd59f239d66c2ce97126fb80d35c978.png" src="_images/71c72aeea075ea1179ab1a08a8c7320bbbd59f239d66c2ce97126fb80d35c978.png" />
 </div>
 </div>
 </section>
@@ -1959,6 +1945,21 @@ Parameters:
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">51</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">n_restarts_optimizer</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># Split the data into training and testing sets</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> 	<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># Fit the Gaussian Process model to the training data</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">gp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;train_test_split&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -2516,6 +2517,532 @@ Parameters:
 </div>
 </div>
 </section>
+<section id="ejemplo-con-dos-covariables">
+<h3>Ejemplo con dos covariables<a class="headerlink" href="#ejemplo-con-dos-covariables" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="kn">import</span> <span class="p">(</span><span class="n">RBF</span><span class="p">,</span> <span class="n">WhiteKernel</span><span class="p">,</span> <span class="n">ConstantKernel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>Descripción breve</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Datos</strong></p></td>
+<td><p>Creamos 80 puntos <span class="math notranslate nohighlight">\((x_1,x_2)\)</span> aleatorios en <span class="math notranslate nohighlight">\([0,1]^2\)</span> y calculamos <span class="math notranslate nohighlight">\(y = \sin(4x_1)+\cos(4x_2)+\varepsilon\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Kernel</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConstantKernel</span></code> controla la varianza total; <code class="docutils literal notranslate"><span class="pre">RBF</span></code> introduce correlación suave con longitudes de escala <em>diferentes</em> para cada covariable; <code class="docutils literal notranslate"><span class="pre">WhiteKernel</span></code> modela el ruido de medición.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Ajuste</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GaussianProcessRegressor</span></code> aprende hiperparámetros (longitudes de escala, varianza, ruido) maximizando la log-marginal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Predicción</strong></p></td>
+<td><p>Evaluamos la media <span class="math notranslate nohighlight">\(\mu_\ast\)</span> y la desviación estándar <span class="math notranslate nohighlight">\(\sigma_\ast\)</span> en una malla 40 × 40 para visualizar la superficie posterior.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Gráfica</strong></p></td>
+<td><p>La malla azulada representa <span class="math notranslate nohighlight">\(\mu_\ast(x_1,x_2)\)</span>; los puntos indican los datos. En tres dimensiones percibes cómo el GP interpola y suaviza los valores observados.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Datos sintéticos ---------------------------------------------------------</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">80</span>                                <span class="c1"># número de observaciones</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>         <span class="c1"># dos covariables: x1, x2  ∈ [0,1]</span>
+
+<span class="k">def</span> <span class="nf">f_true</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Función &#39;real&#39; (desconocida) que queremos aprender.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">f_true</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    <span class="c1"># añadimos ruido gaussiano ε ~ N(0, 0.1²)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. Definición del kernel -----------------------------------------------------</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">RBF</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">length_scale_bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">))</span> 
+
+<span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span> <span class="n">n_restarts_optimizer</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">gp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>                    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GaussianProcessRegressor(kernel=RBF(length_scale=[0.2, 0.2]),
+                         n_restarts_optimizer=10)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GaussianProcessRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html">?<span>Documentation for GaussianProcessRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>GaussianProcessRegressor(kernel=RBF(length_scale=[0.2, 0.2]),
+                         n_restarts_optimizer=10)</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5. Malla de predicción -------------------------------------------------------</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">Xg1</span><span class="p">,</span> <span class="n">Xg2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">Xg1</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">Xg2</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+
+<span class="n">y_mean</span><span class="p">,</span> <span class="n">y_std</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y_mean</span> <span class="o">=</span> <span class="n">y_mean</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Xg1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">y_std</span>  <span class="o">=</span> <span class="n">y_std</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Xg1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 6. Visualización -------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>  <span class="c1"># noqa: F401 (import necesario)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="c1"># Superficie de la media posterior</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">Xg1</span><span class="p">,</span> <span class="n">Xg2</span><span class="p">,</span> <span class="n">y_mean</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># Puntos observados</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Proceso Gaussiano con dos covariables&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ff867718b6e902ee251f6f7bdad6fb68ac2406cc9e204ccccd4e608791aa9a62.png" src="_images/ff867718b6e902ee251f6f7bdad6fb68ac2406cc9e204ccccd4e608791aa9a62.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -2528,16 +3055,16 @@ Parameters:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "carto"
+            mode: "python"
         },
         kernelOptions: {
-            name: "carto",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'carto'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -2601,6 +3128,7 @@ Parameters:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noise-free-target">Example with noise-free target¶</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-noisy-targets">Example with noisy targets¶</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-piero-paialunga">Ejemplo de Piero Paialunga</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-dos-covariables">Ejemplo con dos covariables</a></li>
 </ul>
 </li>
 </ul>
