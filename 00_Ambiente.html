@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '00_Ambiente';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Análisis Geoespacial" href="01_DatosEspaciales.html" />
+    <link rel="next" title="Datos" href="00_Data.html" />
     <link rel="prev" title="&lt;no title&gt;" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -167,11 +167,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ambiente computacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -180,7 +188,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -379,6 +391,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-versiones-git-y-github">Control de Versiones: Git y GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inicializacion-del-proyecto">Inicialización del Proyecto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-cambios-commits">Registro de Cambios (Commits)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#navegacion-en-el-historial-log-y-checkout">Navegación en el Historial (Log y Checkout)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-conflictos-y-sincronizacion">Gestión de Conflictos y Sincronización</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">PIP</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-virtual-y-librerias">Ambiente virtual y librerias</a></li>
@@ -411,6 +436,97 @@ document.write(`
 <p>El curso se basa principalmente en el lenguaje de programación <a class="reference external" href="https://www.python.org/">Python</a> y <a class="reference external" href="https://www.r-project.org/">R</a>. Python y R son lenguajes de programación <a class="reference external" href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n_de_alto_nivel">de alto nivel</a> ampliamente utilizados en la actualidad. Ser un lenguaje de alto nivel significa que el código puede ser “interpretado dinámicamente”, lo que significa que se ejecuta sobre la marcha sin necesidad de compilarlo. Esto contrasta con los lenguajes de programación “de bajo nivel”, que primero deben convertirse en código máquina (es decir, compilados) antes de que puedan ejecutarse. Con Python y R, no necesitas preocuparte por la compilación y puedes simplemente escribir código, evaluarlo, corregirlo, volver a evaluarlo, etc., en un ciclo rápido, lo que lo convierte en una herramienta muy productiva.</p>
 <p>Python es un lenguaje extremadamente útil para aprender en términos de SIG (Sistemas de Información Geográfica), ya que muchos (o la mayoría) de los diferentes paquetes de software SIG (como ArcGIS, QGIS, PostGIS, etc.) proporcionan una interfaz para hacer análisis usando scripts en Python. Durante este curso, nos centraremos principalmente en hacer análisis geoespaciales sin ningún software de terceros, como <a class="reference external" href="http://www.esri.com/software/arcgis">ArcGIS</a> y <a class="reference external" href="http://qgis.org">QGIS</a>.</p>
 <p>En el mundo geoespacial, Python también ha sido ampliamente adoptado, siendo el lenguaje seleccionado para scripting en ambos, <a class="reference external" href="http://www.esri.com/software/arcgis">ArcGIS</a> y <a class="reference external" href="http://qgis.org">QGIS</a>. Sin embargo desde el punto de vista netamente estadístico R tiene todavia ventajas. Existen librerías estadísticas mas sofisticadas en R que aun no han sido desarrolladas en Python.</p>
+<section id="control-de-versiones-git-y-github">
+<h2>Control de Versiones: Git y GitHub<a class="headerlink" href="#control-de-versiones-git-y-github" title="Permalink to this heading">#</a></h2>
+<p>En el marco de la investigación científica contemporánea, la gestión de scripts de análisis, modelos numéricos y flujos de trabajo geoespaciales exige un sistema que garantice la trazabilidad y reproducibilidad. El uso de sistemas de control de versiones (VCS) permite documentar la evolución de un proyecto, facilitando la auditoría de procesos y la colaboración multidisciplinar.</p>
+<ul class="simple">
+<li><p><strong>Git:</strong> Es un motor de control de versiones distribuido de código abierto <a class="reference external" href="https://git-scm.com/">Git</a>. Su función es realizar un seguimiento exhaustivo de las modificaciones en archivos de texto (como scripts de R, Python o archivos LaTeX), permitiendo revertir cambios, crear ramas de experimentación y gestionar el historial de una investigación.</p></li>
+<li><p><strong>GitHub:</strong> Es una plataforma <a class="reference external" href="https://github.com/">Github</a> de alojamiento basada en la nube que integra la funcionalidad de Git. Proporciona una interfaz para la gestión de proyectos, revisión de código y colaboración remota entre investigadores.</p></li>
+</ul>
+<hr class="docutils" />
+<section id="git">
+<h3>Git<a class="headerlink" href="#git" title="Permalink to this heading">#</a></h3>
+<p>En el flujo de trabajo de Git, el concepto de “carpeta” se gestiona mediante la inicialización de un repositorio. No se crean carpetas desde Git, sino que se transforman directorios existentes en unidades bajo seguimiento.</p>
+<section id="inicializacion-del-proyecto">
+<h4>Inicialización del Proyecto<a class="headerlink" href="#inicializacion-del-proyecto" title="Permalink to this heading">#</a></h4>
+<p>Para convertir un directorio de trabajo en un repositorio bajo control de versiones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creación del directorio de trabajo en el sistema operativo</span>
+mkdir<span class="w"> </span>analisis_riesgo_geologico
+<span class="nb">cd</span><span class="w"> </span>analisis_riesgo_geologico
+
+<span class="c1"># Inicialización del repositorio Git</span>
+git<span class="w"> </span>init
+</pre></div>
+</div>
+</section>
+<section id="registro-de-cambios-commits">
+<h4>Registro de Cambios (Commits)<a class="headerlink" href="#registro-de-cambios-commits" title="Permalink to this heading">#</a></h4>
+<p>Un commit representa un estado inmutable en el historial del proyecto. Es fundamental que cada registro posea un mensaje atómico y descriptivo del cambio realizado para asegurar la trazabilidad.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creación de un script de procesamiento espacial de ejemplo</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;import geopandas as gpd&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>procesamiento_hidrologico.py
+
+<span class="c1"># 1. Adición del archivo al área de preparación (Staging Area)</span>
+git<span class="w"> </span>add<span class="w"> </span>procesamiento_hidrologico.py
+
+<span class="c1"># 2. Consolidación del cambio en el historial local</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Implementación inicial de la carga de geometrías vectoriales&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="navegacion-en-el-historial-log-y-checkout">
+<h4>Navegación en el Historial (Log y Checkout)<a class="headerlink" href="#navegacion-en-el-historial-log-y-checkout" title="Permalink to this heading">#</a></h4>
+<p>La auditoría de los cambios y la recuperación de versiones previas son pilares de la integridad científica.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualización del historial cronológico de cambios</span>
+git<span class="w"> </span>log<span class="w"> </span>--oneline
+
+<span class="c1"># Restauración del directorio a un estado anterior mediante su identificador único (Hash)</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;hash_del_commit&gt;
+</pre></div>
+</div>
+<p>Nota: Para retornar a la línea principal de desarrollo tras una inspección, se utiliza el comando <em>git checkout main</em> (o master, según la configuración).</p>
+</section>
+</section>
+<section id="github">
+<h3>GitHub<a class="headerlink" href="#github" title="Permalink to this heading">#</a></h3>
+<p>Para trabajar con proyectos alojados en la nube, se utilizan mecanismos de descarga y vinculación remota.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clonación de un repositorio remoto existente a la máquina local</span>
+git<span class="w"> </span>clone<span class="w"> </span><span class="o">[</span>https://github.com/institucion/proyecto-landslides.git<span class="o">](</span>https://github.com/institucion/proyecto-landslides.git<span class="o">)</span>
+
+<span class="c1"># Envío de versiones locales al servidor remoto (Sincronización ascendente)</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<p>El comando <em>git pull</em> es una combinación de dos procesos: descargar los cambios del servidor (<em>fetch</em>) e integrarlos en el código local (<em>merge</em>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recuperación e integración de contribuciones externas</span>
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<section id="gestion-de-conflictos-y-sincronizacion">
+<h4>Gestión de Conflictos y Sincronización<a class="headerlink" href="#gestion-de-conflictos-y-sincronizacion" title="Permalink to this heading">#</a></h4>
+<p>La ejecución de un <em>git pull</em> es obligatoria en dos escenarios: (i) Al iniciar una jornada de trabajo, para asegurar que se opera sobre la versión más reciente del proyecto. (ii) Antes de realizar un <em>git push</em>, si el repositorio remoto contiene cambios que no existen en la base local.</p>
+<p>Un conflicto ocurre cuando el sistema detecta ediciones concurrentes e incompatibles en la misma sección de un archivo. Git detiene el proceso de integración para que el investigador determine la validez técnica de los cambios.</p>
+<ul class="simple">
+<li><p>Detección: Git notificará el conflicto en la terminal indicando los archivos afectados.</p></li>
+<li><p>Intervención: El usuario debe abrir el archivo y resolver la discrepancia manualmente entre los marcadores:</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+<span class="c1"># Algoritmo de interpolación Kriging optimizado</span>
+<span class="o">=======</span>
+<span class="c1"># Algoritmo de interpolación IDW para pruebas rápidas</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="mi">1</span><span class="n">a2b3c4d</span><span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Consolidación: Una vez resuelta la ambigüedad, se debe marcar el archivo como solucionado y registrar el nuevo estado:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>procesamiento_hidrologico.py
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Resolución de conflicto: Integración de algoritmos de interpolación&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</section>
+</section>
+</section>
 <section id="conda">
 <h2>Conda<a class="headerlink" href="#conda" title="Permalink to this heading">#</a></h2>
 <p>Las dos distribuciones más populares de Python son <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#anaconda-or-miniconda"><strong>Anaconda</strong> y <strong>Miniconda</strong></a>, que son compatibles con R. <strong>Anaconda</strong> es una distribución de Python de código abierto diseñada específicamente para la ciencia de datos, el aprendizaje automático y el procesamiento de datos a gran escala. Incluye el lenguaje Python y R, más de 1,500 paquetes de ciencia de datos, un sistema de gestión de paquetes llamado conda, IPython (un intérprete interactivo de Python) y mucho más. Si bien es una distribución muy completa, también es bastante grande y, por lo tanto, puede tardar un tiempo en descargarse y consumir mucho espacio en disco. <strong>Miniconda</strong>, por otro lado, es una versión reducida de Anaconda e incluye todos los mismos componentes excepto los 1,500 paquetes de ciencia de datos pre-instalados. En su lugar, podemos simplemente instalar estos paquetes individualmente según sea necesario utilizando <strong>Conda</strong> (el gestor de paquetes de Anaconda/Miniconda). Tal vez la mayor diferencia es que Miniconda no tiene una interfaz de usuario como Anaconda, debe ser a través de la línea de comando.</p>
@@ -684,11 +800,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="01_DatosEspaciales.html"
+       href="00_Data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Análisis Geoespacial</p>
+        <p class="prev-next-title">Datos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -707,6 +823,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-versiones-git-y-github">Control de Versiones: Git y GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inicializacion-del-proyecto">Inicialización del Proyecto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-cambios-commits">Registro de Cambios (Commits)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#navegacion-en-el-historial-log-y-checkout">Navegación en el Historial (Log y Checkout)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-de-conflictos-y-sincronizacion">Gestión de Conflictos y Sincronización</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda">Conda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">PIP</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambiente-virtual-y-librerias">Ambiente virtual y librerias</a></li>

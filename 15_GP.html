@@ -433,38 +433,6 @@ document.write(`
 <li><p><a class="reference external" href="https://www.infinitecuriosity.org/vizgp/">Interactive Gaussian Process Visualization</a></p></li>
 <li><p><a class="reference external" href="https://yugeten.github.io/posts/2019/09/GP/">Gaussian Process, not quite for dummies</a></p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span>
-<span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span><span class="s1">&#39;GPy&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
-Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
-To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of running pip directly.
-</pre></div>
-</div>
-<div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: GPy in c:\users\edier\miniconda3\lib\site-packages (1.13.2)
-</pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: numpy&lt;2.0.0,&gt;=1.7 in c:\users\edier\miniconda3\lib\site-packages (from GPy) (1.25.1)
-</pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: six in c:\users\edier\miniconda3\lib\site-packages (from GPy) (1.16.0)
-</pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: paramz&gt;=0.9.6 in c:\users\edier\miniconda3\lib\site-packages (from GPy) (0.9.6)
-</pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: cython&gt;=0.29 in c:\users\edier\miniconda3\lib\site-packages (from GPy) (3.0.11)
-</pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: scipy&lt;=1.12.0,&gt;=1.3.0 in c:\users\edier\miniconda3\lib\site-packages (from GPy) (1.11.3)
-</pre>
-</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Requirement already satisfied: decorator&gt;=4.0.10 in c:\users\edier\appdata\roaming\python\python311\site-packages (from paramz&gt;=0.9.6-&gt;GPy) (5.1.1)
-</pre>
-</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-</pre></div>
-</div>
-</div>
-</div>
 <section id="distribucion-gaussiana">
 <h2>Distribución Gaussiana<a class="headerlink" href="#distribucion-gaussiana" title="Permalink to this heading">#</a></h2>
 <p>Una variable aleatoria <span class="math notranslate nohighlight">\(X\)</span> se dice que está distribuida normalmente con media <span class="math notranslate nohighlight">\(\mu\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span> si su función de densidad de probabilidad (PDF) es:</p>
@@ -492,7 +460,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c7ad9905a3cc87900a465d81d64409ec4b3ce18eeb48f8a88d93e1a414812235.png" src="_images/c7ad9905a3cc87900a465d81d64409ec4b3ce18eeb48f8a88d93e1a414812235.png" />
+<img alt="_images/3142c09cd29532388f4c58321291a5e93cc49cad3b71e62b05c6e571e7e738d2.png" src="_images/3142c09cd29532388f4c58321291a5e93cc49cad3b71e62b05c6e571e7e738d2.png" />
 </div>
 </div>
 <p>Vamos a crear ahora dos vectores gaussianos, cada uno con <span class="math notranslate nohighlight">\(m\)</span> puntos. Por ejemplo, colocar el vector <span class="math notranslate nohighlight">\(X_1\)</span> en <span class="math notranslate nohighlight">\(X = 0\)</span> y otro vector <span class="math notranslate nohighlight">\(X_2\)</span> en <span class="math notranslate nohighlight">\(X = 1\)</span>.</p>
@@ -513,7 +481,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/168b8a36b69e56c142e1658fead0ffe6745d94b86814e8f0c5a1539f6970889b.png" src="_images/168b8a36b69e56c142e1658fead0ffe6745d94b86814e8f0c5a1539f6970889b.png" />
+<img alt="_images/6c7657a963ae261d36d526db602c5f860cdf0c6e94fb9ae32b38ad4b61e5b571.png" src="_images/6c7657a963ae261d36d526db602c5f860cdf0c6e94fb9ae32b38ad4b61e5b571.png" />
 </div>
 </div>
 <p>Ten en cuenta que tanto el vector <span class="math notranslate nohighlight">\(X_1\)</span> como el vector <span class="math notranslate nohighlight">\(X_2\)</span> son Gaussianos.</p>
@@ -534,7 +502,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a1ab0f5f7bf08d65a05cceb74df6ccc57bcd24418093a1e9a5718f6efaa85071.png" src="_images/a1ab0f5f7bf08d65a05cceb74df6ccc57bcd24418093a1e9a5718f6efaa85071.png" />
+<img alt="_images/3ccb3a11c28ffcfdc7d0fbde1470b310322f4a98d777428dfd46a77892a26f57.png" src="_images/3ccb3a11c28ffcfdc7d0fbde1470b310322f4a98d777428dfd46a77892a26f57.png" />
 </div>
 </div>
 <p>Estas líneas se parecen a <strong>funciones</strong> para cada par de puntos. Por otro lado, la gráfica también parece como si estuviéramos muestreando la región <span class="math notranslate nohighlight">\([0, 1]\)</span> con 10 funciones lineales, aunque solo haya dos puntos en cada línea. Desde la perspectiva del muestreo, el dominio <span class="math notranslate nohighlight">\([0, 1]\)</span> es nuestra región de interés, es decir, la región específica en la que realizamos nuestra regresión.</p>
@@ -556,7 +524,7 @@ To avoid this problem you can invoke Python with &#39;-m pip&#39; instead of run
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ccbcf301f012cadf85bab98e29ea9af27f6f53268b4a0e7b802a50df8ce5e99d.png" src="_images/ccbcf301f012cadf85bab98e29ea9af27f6f53268b4a0e7b802a50df8ce5e99d.png" />
+<img alt="_images/70b1b700ad89831afd51995522a430bfa38553beca322de7539b9d6f2bcd548b.png" src="_images/70b1b700ad89831afd51995522a430bfa38553beca322de7539b9d6f2bcd548b.png" />
 </div>
 </div>
 <p>¿Qué estamos intentando hacer al conectar puntos de variables Gaussianas independientes generados aleatoriamente?</p>
@@ -696,7 +664,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27fc00c6a2d5a844145ed2c68ba3d3ac96dc1f761da4fdb22d9fe6207a46d7df.png" src="_images/27fc00c6a2d5a844145ed2c68ba3d3ac96dc1f761da4fdb22d9fe6207a46d7df.png" />
+<img alt="_images/62144ea8ea253c6ac08329200b570199efe05627634f857955bfd4338445922a.png" src="_images/62144ea8ea253c6ac08329200b570199efe05627634f857955bfd4338445922a.png" />
 </div>
 </div>
 <p>Obtuvimos exactamente el mismo gráfico como se esperaba. Ahora, kernelicemos nuestras funciones utilizando la RBF como nuestra covarianza. Si usas una matriz de covarianza con ceros fuera de la diagonal (covarianza cero), obtienes funciones “ruidosas” y sin estructura, porque cada punto es independiente del resto.</p>
@@ -791,7 +759,7 @@ exp(−z), tiene una propiedad clave: Si z es pequeño (los puntos están cerca)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/af3504c4bffaf46f8cef1a6b9241814ee4269caddf612cbdb9ecd44639331596.png" src="_images/af3504c4bffaf46f8cef1a6b9241814ee4269caddf612cbdb9ecd44639331596.png" />
+<img alt="_images/c0165c0131ee31c09d19f054a1c41d5b52b6babeafe579e6bc90b1c8833f68d2.png" src="_images/c0165c0131ee31c09d19f054a1c41d5b52b6babeafe579e6bc90b1c8833f68d2.png" />
 </div>
 </div>
 <p>Obtenemos líneas mucho más suaves que se asemejan más a funciones. Cuando la dimensión de la Gaussiana aumenta, ya no es necesario conectar puntos. Cuando la dimensión se vuelve infinita, hay un punto que representa cualquier entrada posible. Vamos a graficar <code class="docutils literal notranslate"><span class="pre">m=200</span></code> muestras de una Gaussiana de <code class="docutils literal notranslate"><span class="pre">n=200-D</span></code> para tener una idea de cómo se ven las funciones con infinitos parámetros.</p>
@@ -814,7 +782,7 @@ exp(−z), tiene una propiedad clave: Si z es pequeño (los puntos están cerca)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function _draw_all_if_interactive at 0x000001E281CB19E0&gt; (for post_execute):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function _draw_all_if_interactive at 0x0000017D712C19E0&gt; (for post_execute):
 </pre></div>
 </div>
 </div>

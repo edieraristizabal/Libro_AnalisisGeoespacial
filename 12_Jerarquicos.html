@@ -169,12 +169,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -185,6 +192,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de Regresión para Heterogeneidad Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -407,7 +417,27 @@ document.write(`
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-heterogeneidad-espacial">
 <h1>Modelos de Regresión para Heterogeneidad Espacial<a class="headerlink" href="#modelos-de-regresion-para-heterogeneidad-espacial" title="Permalink to this heading">#</a></h1>
 <p>La heterogeneidad espacial es una característica fundamental de los datos geoespaciales y suponen importantes desafíos para los modelos estadísticos convencionales (Anselin 1988, Cressie 2015, Lesage 2009). La heterogeneidad espacial se refiere a la variabilidad de las condiciones del terreno a lo largo del espacio (Anselin 1990). Por ejemplo, las propiedades geomorfológicas de una ladera pueden diferir sustancialmente de las de otra dentro de una misma cuenca, afectando la susceptibilidad de cada zona a los movimientos en masa.  Ignorar esta heterogeneidad del espacio puede llevar a una subestimación o sobrestimación de la susceptibilidad en ciertas zonas del área de estudio.</p>
-<p>Para abordar estas limitaciones, se han desarrollado modelos que permiten la variación espacial de los coeficientes de las variables predictoras, permitiendo capturar la heterogeneidad inherente al terreno (Rey et al. 2023). Entre estos enfoques se encuentran los modelos multiniveles (Wong 1985) (también conocidos como jerárquicos, y en algunos casos modelos mixtos o regímenes espaciales) y los modelos de regresión espacial ponderada (GWR, por sus siglas en inglés) (Brunsdon 1996). Los modelos multiniveles permiten modelar la variabilidad espacial mediante la introducción de estructuras jerárquicas, asignando un coeficiente e intercepto para cada nivel o región incorporada en el modelo. Lo cual resulta particularmente útil cuando los datos presentan una organización natural en grupos o niveles (por ejemplo, cuencas y subcuencas). En contraste, los modelos GWR son menos complejos computacionalmente, ya que no requieren definir niveles jerárquicos. Los modelos GWR permiten que los coeficientes de las variables predictoras varíen para cada observación, proporcionando una caracterización más detallada de la influencia de las variables en función de su localización geográfica. Ambos enfoques presentan ventajas significativas frente a los modelos tradicionales, al capturar la variabilidad espacial, mejorando la precisión en la evaluación de la susceptibilidad a movimientos en masa.</p>
+<p>Para abordar estas limitaciones, se han desarrollado modelos que permiten la variación espacial de los coeficientes de las variables predictoras, permitiendo capturar la heterogeneidad inherente al terreno (Rey et al. 2023). Entre estos enfoques se encuentran los modelos multiniveles (Wong 1985) (también conocidos como jerárquicos, y en algunos casos modelos mixtos o regímenes espaciales) y los modelos de regresión espacial ponderada (GWR, por sus siglas en inglés) (Brunsdon 1996). Los modelos multiniveles permiten modelar la variabilidad espacial mediante la introducción de estructuras jerárquicas, asignando un coeficiente e intercepto para cada nivel o región incorporada en el modelo. Lo cual resulta particularmente útil cuando los datos presentan una organización natural en grupos o niveles (por ejemplo, cuencas y subcuencas). Estos nos permiten modelar explícitamente tanto los efectos a nivel poblacional (efectos fijos) como las desviaciones específicas por grupo (efectos aleatorios), capturando la variabilidad estructurada de los datos en lugar de forzar a que todas las observaciones se comporten como si fueran independientes. Los modelos de efectos mixtos son adecuados para analizar datos correlacionados o anidados, proporcionando una inferencia más precisa y una mejor representación de estructuras complejas del mundo real. En un modelo con efectos mixtos, tenemos:</p>
+<ul class="simple">
+<li><p><strong>Efectos fijos</strong>: Son los factores que afectan a todo tu área de estudio por igual. Por ejemplo, el impacto general de la intensidad de la lluvia o la pendiente en la probabilidad de un deslizamiento.</p></li>
+<li><p><strong>Efectos aleatorios</strong>: Son los ajustes que haces según la unidad de agrupación. Si tu “grupo” es la formación geológica, el efecto aleatorio capturaría si una formación específica es intrínsecamente más inestable de lo que predecirían los efectos fijos globales.</p></li>
+</ul>
+<p>En este caso los “residuales” son varios, porque existen dos fuentes de variación:(i) <strong>Variación entre grupos</strong> (efectos aleatorios <span class="math notranslate nohighlight">\(u_j\)</span>). (ii) <strong>Variación dentro del grupo</strong> (errores residuales <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span>). Por lo tanto existen:</p>
+<ul>
+<li><p><strong>Residuales condicionales</strong> (también conocidos como residuales de nivel 1): Estos tienen en cuenta tanto los efectos fijos como los aleatorios.</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_{ij} = y_{ij} - \hat{y}_{ij}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{y}_{ij} = X_{ij}\hat{\beta} + Z_{ij}\hat{u}_j\)</span>.</p>
+</li>
+<li><p><strong>Residuales marginales</strong>: Aquí ignoramos los efectos aleatorios; por lo tanto, capturan la variación que no es explicada únicamente por los efectos fijos.</p>
+<div class="math notranslate nohighlight">
+\[r_{ij} = y_{ij} - X_{ij}\hat{\beta}\]</div>
+</li>
+<li><p><strong>Efectos aleatorios (BLUPs)</strong>: Estos son los “residuales” estimados a nivel de grupo (mejores predicciones lineales insesgadas o Best Linear Unbiased Predictions).</p>
+<p><span class="math notranslate nohighlight">\(\hat{u}_j\)</span>.</p>
+</li>
+</ul>
+<p>En contraste, los modelos GWR son menos complejos computacionalmente, ya que no requieren definir niveles jerárquicos. Los modelos GWR permiten que los coeficientes de las variables predictoras varíen para cada observación, proporcionando una caracterización más detallada de la influencia de las variables en función de su localización geográfica. Ambos enfoques presentan ventajas significativas frente a los modelos tradicionales, al capturar la variabilidad espacial, mejorando la precisión en la evaluación de la susceptibilidad a movimientos en masa.</p>
 <section id="regimenes-espaciales">
 <h2>Regímenes Espaciales<a class="headerlink" href="#regimenes-espaciales" title="Permalink to this heading">#</a></h2>
 <p>En el siguiente ejemplo queremos conocer la relación que hay entre el número de carros y los niveles de contaminación en una ciudad. En el análisis inicial se desconoce en el análisis las comunas de la ciudad, en este caso Belén, Centro y el Poblado. Los resultados indican que a mayor número de carros menores valores de contaminación.</p>
@@ -467,7 +497,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0700fb5829e136727b776238965d3c46060cfe935abaa831245457f8be61d882.png" src="_images/0700fb5829e136727b776238965d3c46060cfe935abaa831245457f8be61d882.png" />
+<img alt="_images/6ebf25804bef364c61a5ca3146cc01da22ecd22534a2d5ab06c7c5abe93fe551.png" src="_images/6ebf25804bef364c61a5ca3146cc01da22ecd22534a2d5ab06c7c5abe93fe551.png" />
 </div>
 </div>
 <p>Pero si incorporamos en el análisis la variable comuna, lo que significa que cada comuna tiene sus condiciones particulares, y realizamos una regresión para cada grupo de datos, los resultados del análisis cambian completamente.</p>
@@ -502,7 +532,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d899cebb0ed3f59211fea167a29292a08b723eb9ee164c8508c66144b7c09ed0.png" src="_images/d899cebb0ed3f59211fea167a29292a08b723eb9ee164c8508c66144b7c09ed0.png" />
+<img alt="_images/a29f8549114cb7b97585d8e39d6dee72eec2bcabb15334530afa8d3bcb42986a.png" src="_images/a29f8549114cb7b97585d8e39d6dee72eec2bcabb15334530afa8d3bcb42986a.png" />
 </div>
 </div>
 <p>Cómo podemos entonces realizar uan regresión donde tome todos los datos y los elementos que comparten en común, pero que al mismo tiempo considere los cambios espaciales que hay por regiones.</p>
@@ -712,7 +742,7 @@ memory usage: 954.8+ KB
 ======================================================================================
 Model:                      OLS                    Adj. R-squared:           0.709    
 Dependent Variable:         log_price              AIC:                      7229.6640
-Date:                       2025-06-17 18:51       BIC:                      7599.1365
+Date:                       2026-02-18 15:31       BIC:                      7599.1365
 No. Observations:           6110                   Log-Likelihood:           -3559.8  
 Df Model:                   54                     F-statistic:              276.9    
 Df Residuals:               6055                   Prob (F-statistic):       0.00     
@@ -1022,7 +1052,7 @@ dtype: float64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Local\Temp\ipykernel_24888\3990184523.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">~\AppData\Local\Temp\ipykernel_43024\3990184523.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
 <span class="g g-Whitespace">      </span><span class="mi">2</span>                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
