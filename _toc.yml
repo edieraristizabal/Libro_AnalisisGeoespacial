@@ -31,5 +31,4 @@ parts:
     - file: 16_GP
     - file: 17_LGCP
     - file: 18_DB
-    - file: 100_references
 
