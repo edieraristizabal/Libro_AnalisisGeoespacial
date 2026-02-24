@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Modelos de regresión para dependencia espacial tipo SAR &#8212; Análisis Geoespacial</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '10_SAR';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -159,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -169,12 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -183,8 +202,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y heterogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -205,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -343,26 +365,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -384,6 +408,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras">Efectos de autocorrelación exógena entre las variables predictoras</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-con-el-error-espacial">Efectos de autocorrelación endógena con el error espacial</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-con-la-variable-dependiente">Efectos de autocorrelación endógena con la variable dependiente</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-python">Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>Python</em></a></li>
@@ -400,6 +425,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-r">Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>R</em></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -409,10 +441,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-dependencia-espacial-tipo-sar">
-<h1>Modelos de regresión para dependencia espacial tipo SAR<a class="headerlink" href="#modelos-de-regresion-para-dependencia-espacial-tipo-sar" title="Permalink to this heading">#</a></h1>
+<h1>Modelos de regresión para dependencia espacial tipo SAR<a class="headerlink" href="#modelos-de-regresion-para-dependencia-espacial-tipo-sar" title="Link to this heading">#</a></h1>
 <p>La heterogeneidad espacial se trata de efectos de fenómenos que están <strong>explícitamente vinculados</strong>
 a la geografía y que, por lo tanto, causan variación espacial y agrupamiento. Esto
 abarca muchos de los tipos de efectos espaciales en los que podemos estar interesados cuando ajustamos
@@ -451,7 +483,7 @@ entre sí a través de la distancia <strong>dependencia espacial</strong>.</p>
 <p>donde <span class="math notranslate nohighlight">\(n\)</span> es el número de observaciones, <span class="math notranslate nohighlight">\(y_i\)</span> es el valor estandarizado de la variable respuesta en la ubicación <span class="math notranslate nohighlight">\(i\)</span>. El Índice de Moran (MI)  varía de <span class="math notranslate nohighlight">\(-\)</span>1 a <span class="math notranslate nohighlight">\(+\)</span>1, donde cero indica ausencia de autocorrelación espacial, +1 indica una agrupación perfecta de valores similares, y -1 indica dispersión.</p>
 <p>La prueba del Multiplicador de Lagrange (LM) se utiliza para decidir sobre un modelo de regresión espacial adecuado y evaluar la autocorrelación espacial tanto en la variable respuesta como en sus residuales (Anselin 1988). La prueba LM compara modelos restringidos (mínimos cuadrados ordinarios sin términos espaciales) con modelos no restringidos (que incluyen términos espaciales). El término espacial puede ser una variable dependiente autoregresiva espacialmente o un término de error autoregresivo espacialmente. El estadístico LM se calcula como la diferencia entre los logaritmos de verosimilitud de los modelos restringido y no restringido, siguiendo una distribución <span class="math notranslate nohighlight">\(\chi^2\)</span> con un grado de libertad bajo la hipótesis nula de no dependencia espacial. Si el estadístico de la prueba excede el valor crítico, se rechaza la hipótesis nula de independencia espacial.</p>
 <section id="efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras">
-<h2>Efectos de autocorrelación exógena entre las variables predictoras<a class="headerlink" href="#efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras" title="Permalink to this heading">#</a></h2>
+<h2>Efectos de autocorrelación exógena entre las variables predictoras<a class="headerlink" href="#efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras" title="Link to this heading">#</a></h2>
 <p>Volviendo al ejemplo del precio de las casas con el que hemos estado trabajando. Hasta ahora, hemos hipotetizado que el precio de una casa alquilada en San Diego a través de AirBnb puede ser explicado utilizando información sobre sus propias características así como algunas relacionadas con su ubicación, como el vecindario o la distancia al parque principal de la ciudad. Sin embargo, también es razonable pensar que los posibles inquilinos se preocupan por el área más grande alrededor de una casa, no solo por la casa en sí, y estarían dispuestos a pagar más por una casa que esté rodeada de ciertos tipos de casas, y menos si está ubicada en medio de otros tipos. ¿Cómo podríamos probar esta idea?</p>
 <p>La forma más directa de introducir dependencia espacial en una regresión es considerando no solo una variable explicativa dada, sino también su rezago espacial. En nuestro caso de ejemplo, además de incluir un indicador para el tipo de casa, también podemos incluir el rezago espacial de cada tipo de casa. Esta adición implica que también estamos incluyendo como factor explicativo del precio de una casa dado la proporción de casas vecinas de cada tipo. Matemáticamente, esto implica estimar el siguiente modelo:</p>
 <div class="math notranslate nohighlight">
@@ -466,26 +498,32 @@ entre sí a través de la distancia <strong>dependencia espacial</strong>.</p>
 <p>Esto divide el modelo para enfocarse en dos efectos principales: <span class="math notranslate nohighlight">\(\beta\)</span> y <span class="math notranslate nohighlight">\(\gamma\)</span>. El efecto <span class="math notranslate nohighlight">\(\beta\)</span> describe el cambio en <span class="math notranslate nohighlight">\(y_i\)</span> cuando <span class="math notranslate nohighlight">\(X_{ik}\)</span> cambia en uno. Dado que usamos el precio logarítmico para una variable <span class="math notranslate nohighlight">\(y\)</span>, nuestros coeficientes <span class="math notranslate nohighlight">\(\beta\)</span> aún se interpretan como <em>elasticidades</em>, lo que significa que un cambio de unidad en la variable <span class="math notranslate nohighlight">\(x_i\)</span> resulta en un cambio porcentual <span class="math notranslate nohighlight">\(\beta\)</span> en el precio <span class="math notranslate nohighlight">\(y_i\)</span>. El subíndice para el sitio <span class="math notranslate nohighlight">\(i\)</span> es importante aquí: dado que estamos tratando con una matriz <span class="math notranslate nohighlight">\(\mathbf{W}\)</span>, es útil ser claro sobre dónde ocurre el cambio.</p>
 <p>De hecho, esto es importante para el efecto <span class="math notranslate nohighlight">\(\gamma\)</span>, que representa un efecto <em>indirecto</em> de un cambio en <span class="math notranslate nohighlight">\(X_i\)</span>. Esto se puede conceptualizar de dos maneras. Primero, se podría pensar en <span class="math notranslate nohighlight">\(\gamma\)</span> simplemente como <em>el efecto de un cambio de unidad en sus alrededores promedio.</em> Esto es útil y simple. Pero, esta interpretación ignora dónde puede ocurrir este cambio. En realidad, un cambio en una variable en el sitio <span class="math notranslate nohighlight">\(i\)</span> resultará en un <em>derrame</em> a sus alrededores: cuando <span class="math notranslate nohighlight">\(x_i\)</span> cambia, también cambia el <em>rezago espacial</em> de cualquier sitio cerca de <span class="math notranslate nohighlight">\(i\)</span>. La precisión de esto dependerá de la estructura de <span class="math notranslate nohighlight">\(\mathbf{W}\)</span>, y puede ser diferente para cada sitio. Por ejemplo, piense en un sitio “focal” muy conectado en una matriz de pesos estandarizada por filas. Este sitio focal no se verá muy afectado si un vecino cambia por una unidad, ya que cada sitio solo contribuye en pequeña medida al rezago en el sitio focal. Alternativamente, considere un sitio con solo un vecino: su rezago cambiará <em>exactamente</em> en la cantidad que cambie su único vecino. Por lo tanto, para descubrir el efecto indirecto exacto de un cambio <span class="math notranslate nohighlight">\(y\)</span> causado por el cambio en un sitio específico <span class="math notranslate nohighlight">\(x_i\)</span>, debería calcular el <em>cambio en el rezago espacial</em>, y luego usar eso como su <em>cambio</em> en <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>En Python, podemos calcular el rezago espacial de cada variable cuyo nombre comience por <code class="docutils literal notranslate"><span class="pre">pg_</span></code> primero creando una lista con todos esos nombres, y luego aplicando <code class="docutils literal notranslate"><span class="pre">lag_spatial</span></code> de `PyS.</p>
+</section>
+<section id="objetivos-de-aprendizaje">
+<h2>Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este notebook, el estudiante será capaz de:</p>
+<ul class="simple">
+<li><p>Ajustar los modelos de la familia SAR (SLX, SEM, SAR-Lag) en Python con <code class="docutils literal notranslate"><span class="pre">spreg</span></code> y en R con <code class="docutils literal notranslate"><span class="pre">spatialreg</span></code>.</p></li>
+<li><p>Interpretar el parámetro de dependencia espacial (ρ en SAR-Lag, λ en SEM).</p></li>
+<li><p>Diferenciar entre los modelos SLX, SEM, SAR-Lag, Mansky, SAC y SDM.</p></li>
+<li><p>Comparar modelos SAR mediante AIC, pseudo-R² de Nagelkerke y test de razón de verosimilitud.</p></li>
+<li><p>Aplicar los modelos SAR al caso de estudio de cuencas colombianas.</p></li>
+</ul>
+<p><strong>Requisitos previos:</strong> <code class="docutils literal notranslate"><span class="pre">09_SpatialRegression</span></code> — conceptos de regresión espacial; conocimiento básico de R y <code class="docutils literal notranslate"><span class="pre">spatialreg</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
-<span class="kn">from</span> <span class="nn">pysal.model</span> <span class="kn">import</span> <span class="n">spreg</span>
-<span class="kn">from</span> <span class="nn">pysal.lib</span> <span class="kn">import</span> <span class="n">weights</span>
-<span class="kn">from</span> <span class="nn">pysal.explore</span> <span class="kn">import</span> <span class="n">esda</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sbn</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\spaghetti\network.py:40: FutureWarning: The next major release of pysal/spaghetti (2.0.0) will drop support for all ``libpysal.cg`` geometries. This change is a first step in refactoring ``spaghetti`` that is expected to result in dramatically reduced runtimes for network instantiation and operations. Users currently requiring network and point pattern input as ``libpysal.cg`` geometries should prepare for this simply by converting to ``shapely`` geometries.
-  warnings.warn(dep_msg, FutureWarning, stacklevel=1)
+<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">spreg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.explore</span><span class="w"> </span><span class="kn">import</span> <span class="n">esda</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sbn</span>
 </pre></div>
 </div>
 </div>
@@ -650,8 +688,8 @@ memory usage: 954.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson&quot;</span>
 
@@ -670,22 +708,10 @@ memory usage: 954.8+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error al descargar el archivo: 403 Client Error: Forbidden for url: http://data.insideairbnb.com/united-states/ca/san-diego/2016-07-07/visualisations/neighbourhoods.geojson
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">KNN</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
- There are 11 disconnected components.
-  warnings.warn(message)
 </pre></div>
 </div>
 </div>
@@ -722,46 +748,46 @@ Weights matrix      :        None
 Dependent Variable  :     l_price                Number of Observations:        6110
 Mean dependent var  :      4.9958                Number of Variables   :          15
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6095
-R-squared           :      0.6737
-Adjusted R-squared  :      0.6730
-Sum squared residual:      1298.8                F-statistic           :    898.9020
-Sigma-square        :       0.213                Prob(F-statistic)     :           0
-S.E. of regression  :       0.462                Log likelihood        :   -3939.079
-Sigma-square ML     :       0.213                Akaike info criterion :    7908.159
-S.E of regression ML:      0.4611                Schwarz criterion     :    8008.924
+R-squared           :      0.6800
+Adjusted R-squared  :      0.6792
+Sum squared residual:     1273.93                F-statistic           :    924.9423
+Sigma-square        :       0.209                Prob(F-statistic)     :           0
+S.E. of regression  :       0.457                Log likelihood        :   -3880.030
+Sigma-square ML     :       0.208                Akaike info criterion :    7790.061
+S.E of regression ML:      0.4566                Schwarz criterion     :    7890.826
 
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     t-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT         4.37635         0.01922       227.67007         0.00000
-        accommodates         0.08201         0.00505        16.24794         0.00000
-           bathrooms         0.19212         0.01089        17.63730         0.00000
-            bedrooms         0.15880         0.01107        14.34277         0.00000
-                beds        -0.04274         0.00689        -6.20479         0.00000
-     rt_Private_room        -0.53882         0.01585       -33.98821         0.00000
-      rt_Shared_room        -1.26951         0.03848       -32.99023         0.00000
-      pg_Condominium         0.11856         0.02237         5.30007         0.00000
-            pg_House         0.02427         0.01576         1.53981         0.12366
-            pg_Other         0.11168         0.02399         4.65529         0.00000
-        pg_Townhouse        -0.03704         0.03431        -1.07947         0.28042
-    w_pg_Condominium         0.04277         0.00845         5.06014         0.00000
-          w_pg_House        -0.01737         0.00470        -3.69448         0.00022
-          w_pg_Other         0.04148         0.00799         5.19367         0.00000
-      w_pg_Townhouse        -0.01695         0.01378        -1.22959         0.21890
+            CONSTANT         4.32058         0.02350       183.87270         0.00000
+        accommodates         0.08100         0.00500        16.18439         0.00000
+           bathrooms         0.18934         0.01081        17.52240         0.00000
+            bedrooms         0.16360         0.01098        14.90471         0.00000
+                beds        -0.04515         0.00682        -6.61594         0.00000
+     rt_Private_room        -0.52938         0.01573       -33.65244         0.00000
+      rt_Shared_room        -1.28926         0.03814       -33.79951         0.00000
+      pg_Condominium         0.10635         0.02218         4.79520         0.00000
+            pg_House         0.03278         0.01570         2.08855         0.03679
+            pg_Other         0.08619         0.02398         3.59446         0.00033
+        pg_Townhouse        -0.02771         0.03385        -0.81870         0.41299
+    w_pg_Condominium         0.59284         0.06896         8.59667         0.00000
+          w_pg_House        -0.07745         0.03188        -2.42908         0.01517
+          w_pg_Other         0.48510         0.05515         8.79671         0.00000
+      w_pg_Townhouse        -0.27245         0.12234        -2.22701         0.02598
 ------------------------------------------------------------------------------------
 
 REGRESSION DIAGNOSTICS
-MULTICOLLINEARITY CONDITION NUMBER           13.313
+MULTICOLLINEARITY CONDITION NUMBER           14.277
 
 TEST ON NORMALITY OF ERRORS
 TEST                             DF        VALUE           PROB
-Jarque-Bera                       2        2611.126           0.0000
+Jarque-Bera                       2        2458.006           0.0000
 
 DIAGNOSTICS FOR HETEROSKEDASTICITY
 RANDOM COEFFICIENTS
 TEST                             DF        VALUE           PROB
-Breusch-Pagan test               14         377.622           0.0000
-Koenker-Bassett test             14         159.667           0.0000
+Breusch-Pagan test               14         393.052           0.0000
+Koenker-Bassett test             14         169.585           0.0000
 ================================ END OF REPORT =====================================
 </pre></div>
 </div>
@@ -781,13 +807,13 @@ Se pueden derivar interpretaciones similares para todos los demás variables con
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.43377776],
-       [5.29098786],
-       [4.27499095],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.43610121],
+       [5.38596868],
+       [4.25377454],
        ...,
-       [4.22399821],
-       [4.9131927 ],
-       [4.8599834 ]])
+       [4.29145318],
+       [4.89174746],
+       [4.85867698]])
 </pre></div>
 </div>
 </div>
@@ -801,26 +827,26 @@ Se pueden derivar interpretaciones similares para todos los demás variables con
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                      2
-bathrooms                                                       1.0
-bedrooms                                                        1.0
-beds                                                            1.0
-neighborhood                                            North Hills
-pool                                                              0
-d2balboa                                                   2.493893
-coastal                                                           0
-price                                                          99.0
-log_price                                                   4.59512
-id                                                             9553
-pg_Apartment                                                      1
-pg_Condominium                                                    0
-pg_House                                                          0
-pg_Other                                                          0
-pg_Townhouse                                                      0
-rt_Entire_home/apt                                                0
-rt_Private_room                                                   1
-rt_Shared_room                                                    0
-geometry              POINT (-117.1412083878189 32.753266324386914)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                     2
+bathrooms                                                 1.000000
+bedrooms                                                  1.000000
+beds                                                      1.000000
+neighborhood                                           North Hills
+pool                                                             0
+d2balboa                                                  2.493893
+coastal                                                          0
+price                                                    99.000000
+log_price                                                 4.595120
+id                                                            9553
+pg_Apartment                                                     1
+pg_Condominium                                                   0
+pg_House                                                         0
+pg_Other                                                         0
+pg_Townhouse                                                     0
+rt_Entire_home/apt                                               0
+rt_Private_room                                                  1
+rt_Shared_room                                                   0
+geometry              POINT (-117.1412083878189 32.75326632438691)
 Name: 2, dtype: object
 </pre></div>
 </div>
@@ -843,26 +869,27 @@ Name: 2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                      2
-bathrooms                                                       1.0
-bedrooms                                                        1.0
-beds                                                            1.0
-neighborhood                                            North Hills
-pool                                                              0
-d2balboa                                                   2.493893
-coastal                                                           0
-price                                                          99.0
-log_price                                                   4.59512
-id                                                             9553
-pg_Apartment                                                      0
-pg_Condominium                                                    1
-pg_House                                                          0
-pg_Other                                                          0
-pg_Townhouse                                                      0
-rt_Entire_home/apt                                                0
-rt_Private_room                                                   1
-rt_Shared_room                                                    0
-geometry              POINT (-117.1412083878189 32.753266324386914)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>accommodates                                                     2
+bathrooms                                                        1
+bedrooms                                                         1
+beds                                                             1
+neighborhood                                           North Hills
+pool                                                             0
+d2balboa                                                   2.49389
+coastal                                                          0
+price                                                           99
+log_price                                                  4.59512
+id                                                            9553
+pg_Apartment                                                     0
+pg_Condominium                                                   1
+pg_House                                                         0
+pg_Other                                                         0
+pg_Townhouse                                                     0
+rt_Entire_home/apt                                               0
+rt_Private_room                                                  1
+rt_Shared_room                                                   0
+geometry              POINT (-117.1412083878189 32.75326632438691)
+residual                                                  0.287341
 Name: 2, dtype: object
 </pre></div>
 </div>
@@ -902,7 +929,26 @@ Name: 2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[772, 2212, 139, 4653, 2786]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[772,
+ 2212,
+ 139,
+ 4653,
+ 2786,
+ 1218,
+ 138,
+ 808,
+ 1480,
+ 4241,
+ 1631,
+ 3617,
+ 2612,
+ 1162,
+ 135,
+ 23,
+ 5528,
+ 3591,
+ 407,
+ 6088]
 </pre></div>
 </div>
 </div>
@@ -939,27 +985,87 @@ Name: 2, dtype: object
   <tbody>
     <tr>
       <th>2</th>
-      <td>0.118557</td>
+      <td>0.106349</td>
     </tr>
     <tr>
       <th>772</th>
-      <td>0.042769</td>
+      <td>0.029642</td>
     </tr>
     <tr>
       <th>2212</th>
-      <td>0.042769</td>
+      <td>0.029642</td>
     </tr>
     <tr>
       <th>139</th>
-      <td>0.042769</td>
+      <td>0.029642</td>
     </tr>
     <tr>
       <th>4653</th>
-      <td>0.042769</td>
+      <td>0.029642</td>
     </tr>
     <tr>
       <th>2786</th>
-      <td>0.000000</td>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>1218</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>808</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>1480</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>4241</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>1631</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>3617</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>2612</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>1162</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>5528</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>3591</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>407</th>
+      <td>0.029642</td>
+    </tr>
+    <tr>
+      <th>6088</th>
+      <td>0.029642</td>
     </tr>
   </tbody>
 </table>
@@ -1000,28 +1106,103 @@ Name: 2, dtype: object
   <tbody>
     <tr>
       <th>772</th>
-      <td>1.0</td>
-      <td>0.0</td>
+      <td>0.10</td>
+      <td>0.05</td>
     </tr>
     <tr>
       <th>2212</th>
-      <td>2.0</td>
-      <td>1.0</td>
+      <td>0.10</td>
+      <td>0.05</td>
     </tr>
     <tr>
       <th>139</th>
-      <td>1.0</td>
-      <td>0.0</td>
+      <td>0.10</td>
+      <td>0.05</td>
     </tr>
     <tr>
       <th>4653</th>
-      <td>1.0</td>
-      <td>0.0</td>
+      <td>0.10</td>
+      <td>0.05</td>
     </tr>
     <tr>
       <th>2786</th>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>1218</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>808</th>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>1480</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>4241</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>1631</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>3617</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>2612</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>1162</th>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.10</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>5528</th>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>3591</th>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>407</th>
+      <td>0.05</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>6088</th>
+      <td>0.10</td>
+      <td>0.05</td>
     </tr>
   </tbody>
 </table>
@@ -1031,7 +1212,7 @@ Name: 2, dtype: object
 <p>Sin embargo, el campo de la econometría espacial es mucho más amplio y ha producido en las últimas décadas muchas técnicas para tratar los efectos espaciales y la dependencia espacial de diferentes maneras. Aunque esto puede ser una simplificación excesiva, se puede decir que la mayoría de esos esfuerzos para el caso de una sola sección transversal se centran en dos variaciones principales: el modelo de retraso espacial y el modelo de error espacial. Ambos son similares al caso que hemos visto en que se basan en la introducción de un retraso espacial, pero difieren en el componente del modelo que modifican y afectan.</p>
 </section>
 <section id="efectos-de-autocorrelacion-endogena-con-el-error-espacial">
-<h2>Efectos de autocorrelación endógena con el error espacial<a class="headerlink" href="#efectos-de-autocorrelacion-endogena-con-el-error-espacial" title="Permalink to this heading">#</a></h2>
+<h2>Efectos de autocorrelación endógena con el error espacial<a class="headerlink" href="#efectos-de-autocorrelacion-endogena-con-el-error-espacial" title="Link to this heading">#</a></h2>
 <p>El modelo de error espacial incluye un retraso espacial en el término de error de la ecuación:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1052,34 +1233,33 @@ Aunque parece similar, esta especificación viola las suposiciones sobre el tér
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
-------------------
-
-SUMMARY OF OUTPUT: GM SPATIALLY WEIGHTED LEAST SQUARES (HET)
-------------------------------------------------------------
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
+----------
+SUMMARY OF OUTPUT: SPATIALLY WEIGHTED LEAST SQUARES (HET)
+---------------------------------------------------------
 Data set            :     unknown
 Weights matrix      :     unknown
 Dependent Variable  :   log_price                Number of Observations:        6110
 Mean dependent var  :      4.9958                Number of Variables   :          11
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6099
-Pseudo R-squared    :      0.6671
+Pseudo R-squared    :      0.6655
 N. of iterations    :           1                Step1c computed       :          No
 
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     z-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT         4.41630         0.01875       235.58709         0.00000
-        accommodates         0.07295         0.00638        11.42818         0.00000
-           bathrooms         0.16699         0.01564        10.67974         0.00000
-            bedrooms         0.16806         0.01499        11.21403         0.00000
-                beds        -0.03830         0.00917        -4.17471         0.00003
-     rt_Private_room        -0.51221         0.01650       -31.03640         0.00000
-      rt_Shared_room        -1.15837         0.05107       -22.67995         0.00000
-      pg_Condominium         0.11266         0.02206         5.10613         0.00000
-            pg_House         0.02082         0.01465         1.42127         0.15524
-            pg_Other         0.11050         0.02621         4.21671         0.00002
-        pg_Townhouse        -0.02213         0.02967        -0.74592         0.45571
-              lambda         0.07257         0.00308        23.54258         0.00000
+            CONSTANT       4.4262033       0.0217088     203.8898738       0.0000000
+        accommodates       0.0695536       0.0063268      10.9934495       0.0000000
+           bathrooms       0.1614101       0.0151312      10.6673765       0.0000000
+            bedrooms       0.1739251       0.0146697      11.8560847       0.0000000
+                beds      -0.0377710       0.0088293      -4.2779023       0.0000189
+     rt_Private_room      -0.4947947       0.0163843     -30.1993140       0.0000000
+      rt_Shared_room      -1.1613985       0.0515304     -22.5381175       0.0000000
+      pg_Condominium       0.1003761       0.0213148       4.7092198       0.0000025
+            pg_House       0.0308334       0.0147100       2.0960849       0.0360747
+            pg_Other       0.0861768       0.0254942       3.3802547       0.0007242
+        pg_Townhouse      -0.0074515       0.0292873      -0.2544285       0.7991646
+              lambda       0.6448728       0.0186626      34.5543739       0.0000000
 ------------------------------------------------------------------------------------
 ================================ END OF REPORT =====================================
 </pre></div>
@@ -1088,7 +1268,7 @@ N. of iterations    :           1                Step1c computed       :        
 </div>
 </section>
 <section id="efectos-de-autocorrelacion-endogena-con-la-variable-dependiente">
-<h2>Efectos de autocorrelación endógena con la variable dependiente<a class="headerlink" href="#efectos-de-autocorrelacion-endogena-con-la-variable-dependiente" title="Permalink to this heading">#</a></h2>
+<h2>Efectos de autocorrelación endógena con la variable dependiente<a class="headerlink" href="#efectos-de-autocorrelacion-endogena-con-la-variable-dependiente" title="Link to this heading">#</a></h2>
 <p>El modelo de retraso espacial introduce un retraso espacial de la variable <em>dependiente</em>. En el ejemplo que hemos cubierto, esto se traduciría en:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1107,9 +1287,8 @@ Al igual que en el caso del error espacial, se han propuesto varias técnicas pa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION RESULTS
-------------------
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>REGRESSION
+----------
 SUMMARY OF OUTPUT: SPATIAL TWO STAGE LEAST SQUARES
 --------------------------------------------------
 Data set            :     unknown
@@ -1117,24 +1296,24 @@ Weights matrix      :     unknown
 Dependent Variable  :   log_price                Number of Observations:        6110
 Mean dependent var  :      4.9958                Number of Variables   :          12
 S.D. dependent var  :      0.8072                Degrees of Freedom    :        6098
-Pseudo R-squared    :      0.6980
-Spatial Pseudo R-squared:  0.6822
+Pseudo R-squared    :      0.7057
+Spatial Pseudo R-squared:  0.6883
 
 ------------------------------------------------------------------------------------
             Variable     Coefficient       Std.Error     z-Statistic     Probability
 ------------------------------------------------------------------------------------
-            CONSTANT         3.27871         0.06543        50.11307         0.00000
-        accommodates         0.07217         0.00488        14.77314         0.00000
-           bathrooms         0.17149         0.01052        16.29351         0.00000
-            bedrooms         0.15804         0.01062        14.88214         0.00000
-                beds        -0.03801         0.00662        -5.74185         0.00000
-     rt_Private_room        -0.51466         0.01530       -33.62744         0.00000
-      rt_Shared_room        -1.13584         0.03711       -30.60517         0.00000
-      pg_Condominium         0.12134         0.02116         5.73486         0.00000
-            pg_House        -0.00371         0.01386        -0.26740         0.78916
-            pg_Other         0.13342         0.02175         6.13555         0.00000
-        pg_Townhouse        -0.02965         0.03269        -0.90698         0.36442
-         W_log_price         0.04640         0.00266        17.44867         0.00000
+            CONSTANT       2.7440254       0.0727290      37.7294400       0.0000000
+        accommodates       0.0697596       0.0048157      14.4859187       0.0000000
+           bathrooms       0.1626725       0.0104007      15.6405467       0.0000000
+            bedrooms       0.1604137       0.0104823      15.3033012       0.0000000
+                beds      -0.0365065       0.0065336      -5.5874750       0.0000000
+     rt_Private_room      -0.4981415       0.0151396     -32.9031780       0.0000000
+      rt_Shared_room      -1.1157392       0.0365563     -30.5210777       0.0000000
+      pg_Condominium       0.1072995       0.0209048       5.1327614       0.0000003
+            pg_House      -0.0004017       0.0136828      -0.0293598       0.9765777
+            pg_Other       0.1207503       0.0214771       5.6222929       0.0000000
+        pg_Townhouse      -0.0185543       0.0322730      -0.5749190       0.5653461
+         W_log_price       0.3416482       0.0147787      23.1175620       0.0000000
 ------------------------------------------------------------------------------------
 Instrumented: W_log_price
 Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
@@ -1146,15 +1325,15 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </div>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-python">
-<h3>Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>Python</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-python" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>Python</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-python" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">libpysal</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">import</span> <span class="nn">spreg</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queen</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spreg</span>
 
 <span class="c1"># Cargar datos</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
@@ -1198,66 +1377,6 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">spreg</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Cargar datos</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Calcular la densidad de movimientos en masa y aplicar la transformación log + 1</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;density_lands_rec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;lands_rec&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">])</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:281,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">path_or_bytes</span> <span class="o">=</span> <span class="n">filename</span>
-<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="k">return</span> <span class="n">_read_file_fiona</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">from_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown engine &#39;</span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:379,</span> in <span class="ni">_read_file_fiona</span><span class="nt">(path_or_bytes, from_bytes, bbox, mask, rows, where, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="p">[</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">f_filt</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">379</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="n">f_filt</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">datetime_fields</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">as_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:635,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">features_lst</span> <span class="o">=</span> <span class="n">features</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">--&gt; </span><span class="mi">635</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features_lst</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">636</span>     <span class="c1"># load geometry</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
-
-<span class="nn">File fiona\ogrext.pyx:1739,</span> in <span class="ni">fiona.ogrext.Iterator.__next__</span><span class="nt">()</span>
-
-<span class="nn">File fiona\ogrext.pyx:389,</span> in <span class="ni">fiona.ogrext.FeatureBuilder.build</span><span class="nt">()</span>
-
-<span class="nn">File fiona\_geometry.pyx:188,</span> in <span class="ni">fiona._geometry.GeomBuilder.build_from_feature</span><span class="nt">()</span>
-
-<span class="nn">File ~\miniconda3\Lib\enum.py:192,</span> in <span class="ni">property.__get__</span><span class="nt">(self, instance, ownerclass)</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">class</span> <span class="nc">property</span><span class="p">(</span><span class="n">DynamicClassAttribute</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">184</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span><span class="sd">     This is a descriptor, used to define attributes that act differently</span>
-<span class="g g-Whitespace">    </span><span class="mi">186</span><span class="sd">     when accessed through an enum member and through an enum class.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd">     a corresponding enum member.</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">192</span>     <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">ownerclass</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span>         <span class="k">if</span> <span class="n">instance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span>             <span class="k">try</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1290,7 +1409,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </section>
 </section>
 <section id="modelos-de-regresion-espacial-sar-en-r">
-<h2>Modelos de regresión espacial SAR en R<a class="headerlink" href="#modelos-de-regresion-espacial-sar-en-r" title="Permalink to this heading">#</a></h2>
+<h2>Modelos de regresión espacial SAR en R<a class="headerlink" href="#modelos-de-regresion-espacial-sar-en-r" title="Link to this heading">#</a></h2>
 <p>Aunque la librería <em>Pysal</em> en <em>Python</em> ofrece una gran variedad de herramientas para datos espaciales, el lenguaje R ofrece librerías mas versátiles para implementar modelos espaciales. La librería <em>spatialreg</em> permite estimar modelos de regresión espacial, en particular los modelos SAR. Esta librería se desarrolló a partir de <em>spdep</em> y proporciona herramientas para la estimación por máxima verosimilitud y el cálculo de impactos espaciales. la función <code class="docutils literal notranslate"><span class="pre">lagsarlm()</span></code> estima modelos SAR y SDM, <code class="docutils literal notranslate"><span class="pre">errorsarlm()</span></code> estima modelos SEM y SDEM, <code class="docutils literal notranslate"><span class="pre">lagsarlm(...,</span> <span class="pre">type</span> <span class="pre">=</span> <span class="pre">&quot;mixed&quot;)</span></code> estima modelos SARAR o GNS, <code class="docutils literal notranslate"><span class="pre">impacts()</span></code> calcula los efectos directos, indirectos (spillover) y totales.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar librerías</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w">         </span><span class="c1"># Para trabajar con datos espaciales (simple features)</span>
@@ -1332,7 +1451,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </pre></div>
 </div>
 <section id="slx-spatially-lagged-x-model">
-<h3>SLX (Spatially Lagged X) Model<a class="headerlink" href="#slx-spatially-lagged-x-model" title="Permalink to this heading">#</a></h3>
+<h3>SLX (Spatially Lagged X) Model<a class="headerlink" href="#slx-spatially-lagged-x-model" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- SLX Spatially Lagged X Model ---</span>
 <span class="c1"># La fórmula ya incluye las variables originales, y lmSLX se encarga de crear las rezagadas.</span>
 <span class="n">m5_r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmSLX</span><span class="p">(</span><span class="n">formula_r</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_df</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_listw</span><span class="p">)</span>
@@ -1343,7 +1462,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="spatial-error-model-sem">
-<h3>Spatial Error Model (SEM)<a class="headerlink" href="#spatial-error-model-sem" title="Permalink to this heading">#</a></h3>
+<h3>Spatial Error Model (SEM)<a class="headerlink" href="#spatial-error-model-sem" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Spatial Error Model ---</span>
 <span class="c1"># En R, se utiliza errorsarlm con el parámetro etype=&quot;error&quot; (que es el predeterminado)</span>
 <span class="n">m6_r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">errorsarlm</span><span class="p">(</span><span class="n">formula_r</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_df</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_listw</span><span class="p">)</span>
@@ -1354,7 +1473,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="spatial-lag-model-sar">
-<h3>Spatial Lag Model (SAR)<a class="headerlink" href="#spatial-lag-model-sar" title="Permalink to this heading">#</a></h3>
+<h3>Spatial Lag Model (SAR)<a class="headerlink" href="#spatial-lag-model-sar" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Spatial Lag Model ---</span>
 <span class="c1"># En R, se utiliza lagsarlm</span>
 <span class="n">m7_r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lagsarlm</span><span class="p">(</span><span class="n">formula_r</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_df</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_listw</span><span class="p">)</span>
@@ -1365,7 +1484,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="spatial-durbin-model-sdm">
-<h3>Spatial Durbin Model (SDM)<a class="headerlink" href="#spatial-durbin-model-sdm" title="Permalink to this heading">#</a></h3>
+<h3>Spatial Durbin Model (SDM)<a class="headerlink" href="#spatial-durbin-model-sdm" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Spatial Durbin Lag Model ---</span>
 <span class="c1"># En R, lagsarlm con type = &quot;mixed&quot;</span>
 <span class="n">col.fit4_r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lagsarlm</span><span class="p">(</span><span class="n">formula_r</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_df</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_listw</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mixed&quot;</span><span class="p">)</span>
@@ -1376,7 +1495,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="spatial-durbin-error-model-sdem">
-<h3>Spatial Durbin Error Model (SDEM)<a class="headerlink" href="#spatial-durbin-error-model-sdem" title="Permalink to this heading">#</a></h3>
+<h3>Spatial Durbin Error Model (SDEM)<a class="headerlink" href="#spatial-durbin-error-model-sdem" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Spatial Durbin Error Model ---</span>
 <span class="c1"># En R, errorsarlm con etype = &quot;emixed&quot;</span>
 <span class="n">col.fit6_r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">errorsarlm</span><span class="p">(</span><span class="n">formula_r</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_df</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_listw</span><span class="p">,</span><span class="w"> </span><span class="n">etype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;emixed&quot;</span><span class="p">)</span>
@@ -1387,7 +1506,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="sac-model">
-<h3>SAC model<a class="headerlink" href="#sac-model" title="Permalink to this heading">#</a></h3>
+<h3>SAC model<a class="headerlink" href="#sac-model" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># type=&quot;sac&quot; es el modelo SAC estándar (lag + error) sin rezago de X</span>
 <span class="n">col.fit8_r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sacsarlm</span><span class="p">(</span><span class="n">formula_r</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_df</span><span class="p">,</span><span class="w"> </span><span class="n">listw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db_listw</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sac&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\n--- SAC/SARAR Model (type=&#39;sac&#39;) Summary ---\n&quot;</span><span class="p">)</span>
@@ -1397,7 +1516,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="mansky-sarar-gns-model">
-<h3>Mansky (SARAR/GNS) Model<a class="headerlink" href="#mansky-sarar-gns-model" title="Permalink to this heading">#</a></h3>
+<h3>Mansky (SARAR/GNS) Model<a class="headerlink" href="#mansky-sarar-gns-model" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Mansky Model / SARAR ---</span>
 <span class="c1"># En R, sacsarlm</span>
 <span class="c1"># type=&quot;sacmixed&quot; incluye el rezago de X (SDM + error)</span>
@@ -1436,7 +1555,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-r">
-<h3>Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>R</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-r" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>R</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-r" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">spdep</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">spatialreg</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span><span class="w"> </span><span class="c1"># Or sf for more modern spatial data handling</span>
@@ -1550,6 +1669,42 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 </div>
 </section>
 </section>
+<section id="actividades">
+<h2>Actividades<a class="headerlink" href="#actividades" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Comparación SAR vs. OLS:</strong> Para el dataset de cuencas, ajusta un OLS y un SAR-Lag con las mismas covariables. Compara: (a) los coeficientes (¿cambian en magnitud o signo?), (b) el AIC, y (c) el Moran I de los residuos. ¿Qué modelo es preferible y por qué?</p></li>
+<li><p><strong>Efectos directos e indirectos:</strong> En un modelo SAR-Lag, el efecto total de una covariable se descompone en efecto directo (sobre la propia unidad) e indirecto (spillover hacia vecinas). Usando las funciones de <code class="docutils literal notranslate"><span class="pre">spatialreg</span></code> en R (<code class="docutils literal notranslate"><span class="pre">impacts()</span></code>), calcula los impactos directos, indirectos y totales de <code class="docutils literal notranslate"><span class="pre">slope_mean</span></code> en el modelo SAR-Lag. ¿Qué fracción del efecto total es spillover?</p></li>
+<li><p><strong>Modelo SEM con diferentes matrices:</strong> Ajusta el modelo SEM (error espacial) con tres matrices de pesos distintas: Queen, Rook y KNN(k=4). Compara el valor de <span class="math notranslate nohighlight">\(\lambda\)</span> estimado y el AIC entre las tres especificaciones. ¿Es el modelo sensible a la definición de vecindad?</p></li>
+<li><p><strong>Interpretación del modelo SLX:</strong> En el modelo SLX, los coeficientes de las variables rezagadas <span class="math notranslate nohighlight">\(\mathbf{W}\mathbf{x}_k\)</span> representan el efecto de las covariables de las vecinas. Si el coeficiente del rezago de <code class="docutils literal notranslate"><span class="pre">RainfallDaysmean</span></code> es positivo y significativo, ¿qué proceso físico podría explicar que la precipitación de las subcuencas vecinas influya en la ocurrencia de deslizamientos locales?</p></li>
+</ol>
+</section>
+<section id="recursos-adicionales">
+<h2>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h2>
+<section id="documentacion-oficial">
+<h3>Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cran.r-project.org/web/packages/spatialreg/">spatialreg (R) — CRAN</a></p></li>
+<li><p><a class="reference external" href="https://cran.r-project.org/web/packages/spdep/">spdep (R) — CRAN</a></p></li>
+<li><p><a class="reference external" href="https://pysal.org/spreg/">PySAL spreg</a></p></li>
+</ul>
+</section>
+<section id="lecturas-recomendadas">
+<h3>Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>LeSage, J. &amp; Pace, R. K. (2009). <em>Introduction to Spatial Econometrics</em>. CRC Press.</p></li>
+<li><p>Elhorst, J. P. (2010). Applied spatial econometrics: Raising the bar. <em>Spatial Economic Analysis</em>, 5(1), 9–28.</p></li>
+<li><p>Anselin, L. et al. (2006). An introduction to spatial regression analysis in R. Unpublished manuscript.</p></li>
+<li><p>Bivand, R. &amp; Piras, G. (2015). Comparing implementations of estimation methods for spatial econometrics. <em>Journal of Statistical Software</em>, 63(18).</p></li>
+</ul>
+</section>
+<section id="tutoriales">
+<h3>Tutoriales<a class="headerlink" href="#tutoriales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cran.r-project.org/web/views/Spatial.html">Spatial Econometrics — R. Bivand (CRAN)</a></p></li>
+<li><p><a class="reference external" href="https://pysal.org/notebooks/model/spreg/OLS-spreg.html">PySAL Spatial Lag Notebooks</a></p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1579,8 +1734,8 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="09_SpatialRegression.html"
@@ -1609,6 +1764,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1616,6 +1772,7 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-exogena-entre-las-variables-predictoras">Efectos de autocorrelación exógena entre las variables predictoras</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-con-el-error-espacial">Efectos de autocorrelación endógena con el error espacial</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-autocorrelacion-endogena-con-la-variable-dependiente">Efectos de autocorrelación endógena con la variable dependiente</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-python">Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>Python</em></a></li>
@@ -1630,6 +1787,13 @@ Instruments: W_accommodates, W_bathrooms, W_bedrooms, W_beds,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sac-model">SAC model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mansky-sarar-gns-model">Mansky (SARAR/GNS) Model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-sar-en-r">Ejemplo con datos de cuencas de la implementación de modelos SAR en <em>R</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
 </ul>
 </li>
 </ul>
@@ -1653,6 +1817,7 @@ By Edier V. Aristizábal G.
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1679,8 +1844,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

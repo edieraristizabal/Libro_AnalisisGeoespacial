@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Modelos Lineales Generalizados (GML) &#8212; Análisis Geoespacial</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '04_GLMPhyton';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -159,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -169,12 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -183,8 +202,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y heterogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -205,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -343,26 +365,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -383,6 +407,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-normal-para-regresion-lineal-gaussiana">Distribución Normal (para Regresión Lineal Gaussiana)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-lineal-gaussiana">Ejemplo con datos sintéticos de la implementación de un modelo de regresión lineal gaussiana</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-gaussiano">Ejemplo con datos de cuencas de la implementación de un modelo gaussiano</a></li>
@@ -410,6 +435,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-cero-inflado-poisson">Ejemplo con datos de cuencas de la implementación de un modelo cero inflado poisson</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -419,10 +451,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://github.com/Mark-Kramer/Case-Studies-Python/blob/master/09.ipynb">Mar Kramer</a> y <a href="https://stats.oarc.ucla.edu/r/dae/poisson-regression/">UCLA</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales-generalizados-gml">
-<h1>Modelos Lineales Generalizados (GML)<a class="headerlink" href="#modelos-lineales-generalizados-gml" title="Permalink to this heading">#</a></h1>
+<h1>Modelos Lineales Generalizados (GML)<a class="headerlink" href="#modelos-lineales-generalizados-gml" title="Link to this heading">#</a></h1>
 <p>Los Modelos Lineales Generalizados (GLM) son una extensión de los modelos lineales clásicos (como la regresión lineal) que permiten modelar una variedad más amplia de tipos de datos, incluyendo aquellos que no siguen una distribución normal. Estos modelos son especialmente útiles cuando la variable dependiente sigue una distribución distinta, como una distribución binomial (en el caso de variables de respuesta dicotómicas), una distribución de Poisson (para conteos con baja dispersión), o una distribución binomial negativa (para conteos con valores muy dispersos).</p>
 <p>Pero antes hay que marcar la diferencia entre los modelos y las distribuciones, en este caso de la variable dependiente <span class="math notranslate nohighlight">\(Y\)</span>, los cuales son conceptos diferentes pero estrechamente relacionados. Una distribución describe cómo se distribuyen los valores de una variable aleatoria. La distribución es una descripción de las probabilidades de que una variable tome diferentes valores. Las distribuciones definen propiedades como la media, varianza y forma de los datos. Mientras que el modelo estadístico es una representación matemática de un proceso o fenómeno. En los modelos de regresión (como los GLM), el modelo describe la relación entre una variable dependiente y una o más variables independientes.</p>
 <p>Los modelos GLM (se basan en una distribución para la variable dependiente, pero también definen la relación matemática entre las variables dependientes e independientes. En otras palabras, en un GLM, estamos modelando cómo la variable dependiente (que sigue una distribución específica) se relaciona con los predictores. En este contexto, las distribuciones son las que determinan la forma de los errores o la variabilidad de los datos en función del modelo.</p>
@@ -450,8 +482,20 @@ g(\mathbb{E}[Y_i]) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p
 <li><p>Si <span class="math notranslate nohighlight">\(𝑌_𝑖\)</span> es una variable de conteo positiva de eventos raros independientes donde la media es igual a la varianza y sigue una distribución de Poisson, se utiliza la regresión de Poisson donde la función de enlace es la logaritmo.</p></li>
 <li><p>Si <span class="math notranslate nohighlight">\(𝑌_𝑖\)</span> es una variable de conteo positiva donde la varianza es mayor a la media (sobredispersión) y sigue una distribución binomial, se utiliza la regresión binomial negativa donde la función de enlace es la logaritmo.</p></li>
 </ul>
+<section id="objetivos-de-aprendizaje">
+<h2>Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este notebook, el estudiante será capaz de:</p>
+<ul class="simple">
+<li><p>Comprender la estructura matemática de los Modelos Lineales Generalizados (GLM): distribución, predictor lineal y función de enlace.</p></li>
+<li><p>Ajustar modelos de regresión lineal (Gaussiana), logística (Binomial) y de Poisson con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> y <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p></li>
+<li><p>Interpretar coeficientes, odds ratios y sus intervalos de confianza.</p></li>
+<li><p>Evaluar el ajuste del modelo con pseudo-R², AUC-ROC, matriz de confusión y criterios AIC/DIC.</p></li>
+<li><p>Aplicar los tres tipos de GLM al dataset de cuencas colombianas para modelar la ocurrencia de deslizamientos.</p></li>
+</ul>
+<p><strong>Requisitos previos:</strong> <code class="docutils literal notranslate"><span class="pre">00_Data</span></code> — dataset de cuencas cargado; álgebra lineal básica; nociones de probabilidad y distribuciones.</p>
+</section>
 <section id="distribucion-normal-para-regresion-lineal-gaussiana">
-<h2>Distribución Normal (para Regresión Lineal Gaussiana)<a class="headerlink" href="#distribucion-normal-para-regresion-lineal-gaussiana" title="Permalink to this heading">#</a></h2>
+<h2>Distribución Normal (para Regresión Lineal Gaussiana)<a class="headerlink" href="#distribucion-normal-para-regresion-lineal-gaussiana" title="Link to this heading">#</a></h2>
 <p>La distribución Gaussiana (también conocida como distribución normal) es una distribución continua que describe cómo se distribuyen los datos alrededor de una media. Se utiliza para modelar fenómenos naturales y en muchas aplicaciones estadísticas cuando los datos siguen un patrón de dispersión que se puede aproximar con una curva en forma de campana. Esta distribución tiene como parámetros la Media 𝜇 (el centro de la distribución) y desviación estándar 𝜎 (que indica la dispersión de los datos alrededor de la media).</p>
 <div class="math notranslate nohighlight">
 \[f(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left( -\frac{(x - \mu)^2}{2 \sigma^2} \right)\]</div>
@@ -461,8 +505,8 @@ g(\mathbb{E}[Y_i]) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p
 <p>A continuación se presenta una distribución normal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Parámetros de la distribución normal</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>        <span class="c1"># Media</span>
@@ -477,7 +521,7 @@ g(\mathbb{E}[Y_i]) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
 <span class="c1"># Graficar la curva de la distribución normal</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
 <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
@@ -494,18 +538,18 @@ g(\mathbb{E}[Y_i]) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c9372e72383c3078d5dc7e37a948025bcc780e9b3d09781377f71f0258494204.png" src="_images/c9372e72383c3078d5dc7e37a948025bcc780e9b3d09781377f71f0258494204.png" />
+<img alt="_images/2861ffef72166aa1f39da3e22eb213441558323fc5898ffddbb9fc82867ae0b2.png" src="_images/2861ffef72166aa1f39da3e22eb213441558323fc5898ffddbb9fc82867ae0b2.png" />
 </div>
 </div>
 <section id="ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-lineal-gaussiana">
-<h3>Ejemplo con datos sintéticos de la implementación de un modelo de regresión lineal gaussiana<a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-lineal-gaussiana" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos sintéticos de la implementación de un modelo de regresión lineal gaussiana<a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-lineal-gaussiana" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
 
 <span class="c1"># Generar datos de ejemplo</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -554,10 +598,10 @@ g(\mathbb{E}[Y_i]) = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error cuadrático medio (MSE): 2.6147980548680105
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error cuadrático medio (MSE): 2.614798054868009
 </pre></div>
 </div>
-<img alt="_images/3cc387c3e1e2e61a2e757d2306d2001140a153502ae63431a81bddd7af100e72.png" src="_images/3cc387c3e1e2e61a2e757d2306d2001140a153502ae63431a81bddd7af100e72.png" />
+<img alt="_images/5aaada96a0fdfcec63d215e43fc7ca8fdb6fc011aea52082801d9930075006b0.png" src="_images/5aaada96a0fdfcec63d215e43fc7ca8fdb6fc011aea52082801d9930075006b0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeficiente (beta_1): [2.91972946]
 Intercepto (beta_0): [5.28582664]
 </pre></div>
@@ -566,14 +610,14 @@ Intercepto (beta_0): [5.28582664]
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-gaussiano">
-<h3>Ejemplo con datos de cuencas de la implementación de un modelo gaussiano<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-gaussiano" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de un modelo gaussiano<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-gaussiano" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
 <span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -599,88 +643,33 @@ Intercepto (beta_0): [5.28582664]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">gdf</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1"># Preparar datos</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  y_log   R-squared:                       0.499
+Model:                            OLS   Adj. R-squared:                  0.497
+Method:                 Least Squares   F-statistic:                     173.6
+Date:                Mon, 16 Jun 2025   Prob (F-statistic):           4.62e-78
+Time:                        09:01:12   Log-Likelihood:                -800.35
+No. Observations:                 526   AIC:                             1609.
+Df Residuals:                     522   BIC:                             1626.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          1.8396      0.048     37.931      0.000       1.744       1.935
+x1             0.5567      0.049     11.439      0.000       0.461       0.652
+x2             0.5140      0.058      8.857      0.000       0.400       0.628
+x3             0.5463      0.058      9.438      0.000       0.433       0.660
+==============================================================================
+Omnibus:                        8.308   Durbin-Watson:                   1.391
+Prob(Omnibus):                  0.016   Jarque-Bera (JB):                8.213
+Skew:                           0.294   Prob(JB):                       0.0165
+Kurtosis:                       3.172   Cond. No.                         1.85
+==============================================================================
 
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:281,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">path_or_bytes</span> <span class="o">=</span> <span class="n">filename</span>
-<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="k">return</span> <span class="n">_read_file_fiona</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">from_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown engine &#39;</span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\io\file.py:379,</span> in <span class="ni">_read_file_fiona</span><span class="nt">(path_or_bytes, from_bytes, bbox, mask, rows, where, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="p">[</span><span class="n">record</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">f_filt</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">379</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="n">f_filt</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">datetime_fields</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">as_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\geopandas\geodataframe.py:640,</span> in <span class="ni">GeoDataFrame.from_features</span><span class="nt">(cls, features, crs, columns)</span>
-<span class="g g-Whitespace">    </span><span class="mi">637</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;__geo_interface__&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span>     <span class="n">feature</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">__geo_interface__</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ne">--&gt; </span><span class="mi">640</span>     <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">641</span> <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="c1"># load properties</span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\geo.py:102,</span> in <span class="ni">shape</span><span class="nt">(context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="k">return</span> <span class="n">LinearRing</span><span class="p">(</span><span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="k">elif</span> <span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;polygon&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">102</span>     <span class="k">return</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="k">elif</span> <span class="n">geom_type</span> <span class="o">==</span> <span class="s2">&quot;multipoint&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="k">return</span> <span class="n">MultiPoint</span><span class="p">(</span><span class="n">ob</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">])</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:230,</span> in <span class="ni">Polygon.__new__</span><span class="nt">(self, shell, holes)</span>
-<span class="g g-Whitespace">    </span><span class="mi">228</span>     <span class="k">return</span> <span class="n">shell</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="n">shell</span> <span class="o">=</span> <span class="n">LinearRing</span><span class="p">(</span><span class="n">shell</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="k">if</span> <span class="n">holes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">holes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>         <span class="c1"># shapely constructor cannot handle holes=[]</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:93,</span> in <span class="ni">LinearRing.__new__</span><span class="nt">(self, coordinates)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>         <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">93</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_coords</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">coordinates</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="c1"># conversion of coords to 2D array failed, this might be due</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="c1"># to inconsistent coordinate dimensionality</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inconsistent coordinate dimensionality&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:93,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>         <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">93</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_coords</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">coordinates</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="c1"># conversion of coords to 2D array failed, this might be due</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="c1"># to inconsistent coordinate dimensionality</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Inconsistent coordinate dimensionality&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:91,</span> in <span class="ni">LinearRing.__new__.&lt;locals&gt;._coords</span><span class="nt">(o)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\shapely\geometry\polygon.py:91,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="k">return</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div>
 </div>
 </div>
@@ -735,7 +724,7 @@ Intercepto (beta_0): [5.28582664]
 </section>
 </section>
 <section id="distribucion-binomial-para-regresion-logistica">
-<h2>Distribución binomial (para Regresión Logística)<a class="headerlink" href="#distribucion-binomial-para-regresion-logistica" title="Permalink to this heading">#</a></h2>
+<h2>Distribución binomial (para Regresión Logística)<a class="headerlink" href="#distribucion-binomial-para-regresion-logistica" title="Link to this heading">#</a></h2>
 <p>La distribución binomial es una distribución discreta con resultados enteros positivos que describe la probabilidad de obtener un número específico de éxitos en una secuencia de experimentos independientes y con dos resultados posibles (éxito o fracaso). Es apropiada cuando tenemos una cantidad fija de ensayos (n), y cada ensayo tiene una probabilidad constante de éxito 𝑝.</p>
 <div class="math notranslate nohighlight">
 \[P(Y = y) = \binom{n}{y} p^y (1 - p)^{n - y}\]</div>
@@ -810,9 +799,9 @@ $<span class="math notranslate nohighlight">\(
 <p>A continuación podemos ver con <em>Python</em> como se observa la función de distribución acumulada de la distribución logística variando sus parámetros.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">logistic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">logistic</span>
 
 <span class="c1"># Rango de valores de x</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -852,12 +841,12 @@ $<span class="math notranslate nohighlight">\(
 <p>Cuando 𝑠 aumenta (por ejemplo, 𝑠=2), la curva se aplana: los cambios en 𝑥 tienen menor impacto inmediato en la probabilidad.</p>
 <p>Cuando 𝜇 se desplaza (por ejemplo, 𝜇=−3 o 𝜇=3), se mueve el punto de inflexión de la sigmoide hacia la izquierda o derecha, sin cambiar la forma de la curva.</p>
 <section id="ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-logistica-con-la-libreria-statsmodels">
-<h3>Ejemplo con datos sintéticos de la implementación de un modelo de regresión logística con la librería <em>Statsmodels</em><a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-logistica-con-la-libreria-statsmodels" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos sintéticos de la implementación de un modelo de regresión logística con la librería <em>Statsmodels</em><a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-logistica-con-la-libreria-statsmodels" title="Link to this heading">#</a></h3>
 <p>Simulamos una variable binaria y como respuesta a dos covariables x1 (continua) y x2 (binaria).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
 
@@ -920,7 +909,7 @@ x2            -1.2812      0.242     -5.285      0.000      -1.756      -0.806
 </div>
 </div>
 </div>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Elemento</p></th>
 <th class="head"><p>Interpretación</p></th>
@@ -962,9 +951,10 @@ x2            -1.2812      0.242     -5.285      0.000      -1.756      -0.806
 </tr>
 </tbody>
 </table>
+</div>
 <hr class="docutils" />
 <p>La siguiente tabla presenta los parámetros estimados para el modelo logístico:</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Columna</p></th>
 <th class="head"><p>Interpretación</p></th>
@@ -988,6 +978,7 @@ x2            -1.2812      0.242     -5.285      0.000      -1.756      -0.806
 </tr>
 </tbody>
 </table>
+</div>
 <hr class="docutils" />
 <ul class="simple">
 <li><p>Si <span class="math notranslate nohighlight">\(( \beta_j &gt; 0 )\)</span>: A mayor valor de la covariable <span class="math notranslate nohighlight">\(( x_j )\)</span>, aumenta el <strong>log-odds</strong> de que la variable dependiente sea 1.</p></li>
@@ -1001,13 +992,13 @@ Este valor representa cuánto se multiplica el odds por cada unidad adicional de
 <p>El valor LLR p-value: 3.591e-60 indica que el modelo con predictores explica significativamente más que el modelo nulo. Esto es evidencia a favor del modelo propuesto.</p>
 </section>
 <section id="ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-logistica-con-la-libreria-sklearn">
-<h3>Ejemplo con datos sintéticos de la implementación de un modelo de regresión logística con la librería <em>Sklearn</em><a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-logistica-con-la-libreria-sklearn" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos sintéticos de la implementación de un modelo de regresión logística con la librería <em>Sklearn</em><a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-logistica-con-la-libreria-sklearn" title="Link to this heading">#</a></h3>
 <p>Simulamos dos covariables 𝑥1 y 𝑥2, y una respuesta binaria 𝑦 con base en un modelo logístico.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -1111,15 +1102,15 @@ weighted avg       0.92      0.93      0.92      1000
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-de-regresion-logistica">
-<h3>Ejemplo con datos de cuencas de la implementación de un modelo de regresión logística<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-de-regresion-logistica" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de un modelo de regresión logística<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-de-regresion-logistica" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 
 <span class="c1"># Cargar datos</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
@@ -1216,7 +1207,7 @@ x3             1.0362      0.194      5.350      0.000       0.657       1.416
 </section>
 </section>
 <section id="distribucion-de-poisson-para-los-modelos-de-regresion-de-poisson">
-<h2>Distribución de Poisson (para los modelos de regresión de Poisson)<a class="headerlink" href="#distribucion-de-poisson-para-los-modelos-de-regresion-de-poisson" title="Permalink to this heading">#</a></h2>
+<h2>Distribución de Poisson (para los modelos de regresión de Poisson)<a class="headerlink" href="#distribucion-de-poisson-para-los-modelos-de-regresion-de-poisson" title="Link to this heading">#</a></h2>
 <p>La distribución de Poisson se utiliza cuando la variable dependiente <span class="math notranslate nohighlight">\(y\)</span> son datos de conteo no negativos de eventos raros e independientes (<span class="math notranslate nohighlight">\(𝑌_𝑖\)</span>=0,1,2,…) en un intervalo de tiempo o una región espacial dada, si esos eventos suceden con una tasa constante <span class="math notranslate nohighlight">\(𝜆_𝑖\)</span>. La distribución de Poisson asume dos condiciones principales: (i) Los eventos son independientes, (ii) La tasa de ocurrencia de los eventos es constante en el tiempo o espacio.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1271,7 +1262,7 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 <p>A continuación se visualiza en <em>Python</em> un ejemplo de una variable con uan distribución tipo Poisson con una tasa de ocurrencia constante igual a 4.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">poisson</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">poisson</span>
 
 <span class="c1"># Define the parameter (lambda, or average rate of occurrence)</span>
 <span class="n">lambda_rate</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Average number of events in an interval</span>
@@ -1296,13 +1287,13 @@ P\{N(A) = n\} = \frac{\lambda^{|A|} (|A|)^n}{n!} e^{-\lambda |A|}
 </div>
 </div>
 <section id="ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-poisson-con-la-libreria-statsmodels">
-<h3>Ejemplo con datos sintéticos de la implementación de un modelo de Poisson con la librería <em>Statsmodels</em><a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-poisson-con-la-libreria-statsmodels" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos sintéticos de la implementación de un modelo de Poisson con la librería <em>Statsmodels</em><a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-poisson-con-la-libreria-statsmodels" title="Link to this heading">#</a></h3>
 <p>Supongamos que estamos analizando la cantidad de “puntos calientes” de incendios forestales en diferentes celdas de una cuadrícula en una región forestal. Queremos modelar cómo ciertos factores ambientales afectan el número de puntos calientes en cada celda. Los factores considerados son la temperatura media de la celda, la humedad relativa y la densidad de vegetación (medida con el índice NDVI). Utilizaremos un modelo de Poisson para modelar el número de puntos calientes en función de estas covariables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerías necesarias</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
 
 <span class="c1"># Crear un conjunto de datos simulado con pandas</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
@@ -1391,7 +1382,7 @@ ndvi                 0.1347      0.290      0.464      0.643      -0.434       0
 <p>Si los coeficientes de “temperatura” y “ndvi” son positivos, esto sugiere que a mayor temperatura y mayor densidad de vegetación, se incrementa la probabilidad de tener más puntos calientes. Si el coeficiente de “humedad_relativa” es negativo, indica que un incremento en la humedad relativa reduce el número esperado de puntos calientes.</p>
 </section>
 <section id="ejemplo-de-la-implementacion-de-un-modelo-de-regresion-con-poisson">
-<h3>Ejemplo de la implementación de un modelo de regresión con Poisson<a class="headerlink" href="#ejemplo-de-la-implementacion-de-un-modelo-de-regresion-con-poisson" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo de la implementación de un modelo de regresión con Poisson<a class="headerlink" href="#ejemplo-de-la-implementacion-de-un-modelo-de-regresion-con-poisson" title="Link to this heading">#</a></h3>
 <p>Cualquier modelo estadístico que describa datos que ocurren en puntos localizados en el tiempo, como los tiempos de disparo de neuronas, se denomina modelo de proceso puntual temporal. Aquí, queremos construir un modelo estadístico que describa la distribución de probabilidad de los tiempos de espera entre los disparos para una neurona sin un estímulo de conducción explícito, en este caso, el modelo debería caracterizar cómo la distribución de los datos depende de las covariables de interés: la posición del ratón y la dirección del movimiento.</p>
 <p>Un enfoque utilizado para modelar datos enteros positivos es un modelo de Poisson, en el que usamos un parámetro de tasa, <span class="math notranslate nohighlight">\(\lambda\)</span>, para definir la tasa esperada de disparos en cualquier intervalo de tiempo. Para los datos de interés aquí, ampliamos este concepto definiendo una tasa que varía en el tiempo como una función de un conjunto de covariables. Estas covariables son cualquier variable cuya influencia sobre la actividad de disparo deseemos explorar. Nuestras visualizaciones sugieren que las covariables útiles para nuestro modelo incluyen la posición del ratón y su dirección de movimiento.</p>
 <p>Definamos algunos términos. Dejemos que <span class="math notranslate nohighlight">\(X(t)\)</span> represente la posición del ratón en el tiempo <span class="math notranslate nohighlight">\(t\)</span>, y que <span class="math notranslate nohighlight">\(D(t)\)</span> represente la dirección del movimiento; establecemos <span class="math notranslate nohighlight">\(D(t) = -1\)</span> cuando <span class="math notranslate nohighlight">\(X(t)\)</span> está disminuyendo o el ratón está detenido, y <span class="math notranslate nohighlight">\(D(t) = +1\)</span> cuando <span class="math notranslate nohighlight">\(X(t)\)</span> está aumentando. Dado que estas señales de posición y dirección cambian en función del tiempo, también lo hace la tasa de disparo. Escribimos <span class="math notranslate nohighlight">\(\lambda(t) = f(X(t), D(t))\)</span>, donde <span class="math notranslate nohighlight">\(\lambda(t)\)</span> se llama la función de tasa de Poisson, y <span class="math notranslate nohighlight">\(f\)</span> es una función que necesitamos para definir el modelo.</p>
@@ -1412,7 +1403,7 @@ ndvi                 0.1347      0.290      0.464      0.643      -0.434       0
 <p>El atributo <code class="docutils literal notranslate"><span class="pre">params</span></code> de la función <code class="docutils literal notranslate"><span class="pre">fit</span></code> es un vector de números que representa las estimaciones de máxima verosimilitud de los parámetros del modelo, que para este ejemplo hemos etiquetado como <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>. Usamos la notación con “sombrero” (hat) sobre un parámetro para representar su estimación. La estimación de máxima verosimilitud de <span class="math notranslate nohighlight">\(\beta_0\)</span> se escribe como <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span>, y la estimación de máxima verosimilitud de <span class="math notranslate nohighlight">\(\beta_1\)</span> se escribe como <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>. Ahora, usemos esta función para ajustar los parámetros del Modelo 1 a los datos observados de ubicación y disparos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/Mark-Kramer/Case-Studies-Python/raw/master/matfiles/spikes-1.mat&#39;</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;spikles-1.mat&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
@@ -1427,8 +1418,8 @@ ndvi                 0.1347      0.290      0.464      0.643      -0.434       0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">loadmat</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;spikles-1.mat&quot;</span><span class="p">)</span>  
 <span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>              
@@ -1461,7 +1452,7 @@ ndvi                 0.1347      0.290      0.464      0.643      -0.434       0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">spikeindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">spiketrain</span><span class="o">!=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># Get the spike indices.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>                               <span class="c1"># Plot the position,</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">spikeindex</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>  <span class="c1"># ... and the spikes.  </span>
@@ -1494,8 +1485,8 @@ ndvi                 0.1347      0.290      0.464      0.643      -0.434       0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.genmod.families</span> <span class="kn">import</span> <span class="n">Poisson</span>
-<span class="kn">from</span> <span class="nn">statsmodels.genmod.families.links</span> <span class="kn">import</span> <span class="n">identity</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.genmod.families</span><span class="w"> </span><span class="kn">import</span> <span class="n">Poisson</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.genmod.families.links</span><span class="w"> </span><span class="kn">import</span> <span class="n">identity</span>
 
 <span class="c1"># Create a dataframe of predictors that includes X and a constant term</span>
 <span class="n">predictors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="n">X</span><span class="p">})</span>
@@ -1626,16 +1617,16 @@ dtype: float64
 <p>Hay muchas variables que podríamos considerar agregar a este modelo, pero ¿qué variables podríamos añadir para capturar mejor la dependencia entre la tasa de disparo y la posición, en particular? Una idea podría ser incluir términos no lineales, como el cuadrado del valor de la posición.</p>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-de-poisson">
-<h3>Ejemplo con datos de cuencas de la implementación de un modelo de Poisson<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-de-poisson" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de un modelo de Poisson<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-de-poisson" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">statsmodels.genmod.generalized_linear_model</span> <span class="kn">import</span> <span class="n">GLM</span>
-<span class="kn">from</span> <span class="nn">statsmodels.genmod</span> <span class="kn">import</span> <span class="n">families</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.genmod.generalized_linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.genmod</span><span class="w"> </span><span class="kn">import</span> <span class="n">families</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
 
@@ -1724,7 +1715,7 @@ x2             0.5264      0.011     47.788      0.000       0.505       0.548
 </section>
 </section>
 <section id="distribucion-binomial-negativa-para-modelos-de-regresion-binomial-negativa">
-<h2>Distribución Binomial Negativa (para modelos de regresión binomial negativa)<a class="headerlink" href="#distribucion-binomial-negativa-para-modelos-de-regresion-binomial-negativa" title="Permalink to this heading">#</a></h2>
+<h2>Distribución Binomial Negativa (para modelos de regresión binomial negativa)<a class="headerlink" href="#distribucion-binomial-negativa-para-modelos-de-regresion-binomial-negativa" title="Link to this heading">#</a></h2>
 <p>La distribución binomial negativa describe el número de fracasos antes de que ocurra un número fijo de éxitos en un proceso de Bernoulli. Es una generalización de la binomial cuando no hay una cantidad fija de ensayos, sino que se sigue realizando el experimento hasta que se alcanzan un número de éxitos específicos.</p>
 <div class="math notranslate nohighlight">
 \[P(Y = y) = \binom{y + r - 1}{y} p^r (1 - p)^y\]</div>
@@ -1823,7 +1814,7 @@ x2             0.5264      0.011     47.788      0.000       0.505       0.548
 <p>Esto muestra cómo la binomial negativa captura la variabilidad natural en procesos con baja probabilidad de éxito y repeticiones aleatorias.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">nbinom</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">nbinom</span>
 
 <span class="c1"># Valores posibles de fallos</span>
 <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -1926,7 +1917,7 @@ x2             0.5264      0.011     47.788      0.000       0.505       0.548
 </ul>
 <p>En resumen: A mayor 𝑟, más ensayos y mayor dispersión. A menor 𝑝, mayor varianza.</p>
 <section id="ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-binomial-negativo">
-<h3>Ejemplo con datos sintéticos de la implementación de un modelo binomial negativo<a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-binomial-negativo" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos sintéticos de la implementación de un modelo binomial negativo<a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-binomial-negativo" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulación de datos de conteo con sobredispersión</span>
@@ -1986,7 +1977,7 @@ x2             0.5264      0.011     47.788      0.000       0.505       0.548
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualización en 3D (opcional)</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Axes3D</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
@@ -2008,16 +1999,16 @@ x2             0.5264      0.011     47.788      0.000       0.505       0.548
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-binomial-negativo">
-<h3>Ejemplo con datos de cuencas de la implementación de un modelo binomial negativo<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-binomial-negativo" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de un modelo binomial negativo<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-binomial-negativo" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">statsmodels.genmod.generalized_linear_model</span> <span class="kn">import</span> <span class="n">GLM</span>
-<span class="kn">from</span> <span class="nn">statsmodels.genmod</span> <span class="kn">import</span> <span class="n">families</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.genmod.generalized_linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.genmod</span><span class="w"> </span><span class="kn">import</span> <span class="n">families</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
 
@@ -2110,7 +2101,7 @@ x2             0.7186      0.054     13.216      0.000       0.612       0.825
 </section>
 </section>
 <section id="modelo-de-ceros-inflados">
-<h2>Modelo de Ceros Inflados<a class="headerlink" href="#modelo-de-ceros-inflados" title="Permalink to this heading">#</a></h2>
+<h2>Modelo de Ceros Inflados<a class="headerlink" href="#modelo-de-ceros-inflados" title="Link to this heading">#</a></h2>
 <p>Los modelos de conteo clásicos como Poisson o binomial negativa suponen que los ceros ocurren como parte del proceso natural. Pero en muchos contextos reales (como deslizamientos), hay más ceros de los que esos modelos predicen, por ejemplo:</p>
 <ul class="simple">
 <li><p>Celdas donde realmente no hay condiciones físicas para deslizamientos (ceros estructurales).</p></li>
@@ -2123,10 +2114,10 @@ x2             0.7186      0.054     13.216      0.000       0.612       0.825
 <li><p>Una parte de conteo (binomial negativa) que modela el número de eventos si no está en el grupo siempre cero.</p></li>
 </ul>
 <section id="ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-cero-inflado-binomial-negativo">
-<h3>Ejemplo con datos sintéticos de la implementación de un modelo cero inflado binomial negativo<a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-cero-inflado-binomial-negativo" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos sintéticos de la implementación de un modelo cero inflado binomial negativo<a class="headerlink" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-cero-inflado-binomial-negativo" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="kn">import</span> <span class="n">ZeroInflatedNegativeBinomialP</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.discrete.count_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ZeroInflatedNegativeBinomialP</span>
 
 <span class="c1"># 1. Simular datos reales</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
@@ -2139,7 +2130,7 @@ x2             0.7186      0.054     13.216      0.000       0.612       0.825
 <span class="n">beta_1</span> <span class="o">=</span> <span class="mf">0.8</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta_0</span> <span class="o">+</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">nbinom</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">nbinom</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">/</span> <span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">mu</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">theta</span>
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">nbinom</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
@@ -2187,15 +2178,15 @@ x2             0.7186      0.054     13.216      0.000       0.612       0.825
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-cero-inflado-poisson">
-<h3>Ejemplo con datos de cuencas de la implementación de un modelo cero inflado poisson<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-cero-inflado-poisson" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de un modelo cero inflado poisson<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-cero-inflado-poisson" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="kn">import</span> <span class="n">ZeroInflatedPoisson</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.discrete.count_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ZeroInflatedPoisson</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;G:/My Drive/INVESTIGACION/PAPERS/ELABORACION/PAPER_SAR/Data/df_catchments_kmeans.gpkg&quot;</span><span class="p">)</span>
 
@@ -2288,6 +2279,42 @@ x2                0.3642      0.011     33.775      0.000       0.343       0.38
 </div>
 </section>
 </section>
+<section id="actividades">
+<h2>Actividades<a class="headerlink" href="#actividades" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Selección de distribución:</strong> Para el dataset de cuencas, grafica la relación entre la media y la varianza de <code class="docutils literal notranslate"><span class="pre">lands_rec</span></code> agrupando por rangos de <code class="docutils literal notranslate"><span class="pre">elev_mean</span></code>. Si la varianza es mayor que la media, ¿qué problema presenta un modelo de Poisson estándar? ¿Qué alternativa propondrías?</p></li>
+<li><p><strong>Regresión logística binaria:</strong> Crea una variable binaria <code class="docutils literal notranslate"><span class="pre">desliz_alto</span></code> que valga 1 si la subcuenca tiene más deslizamientos que la mediana y 0 en caso contrario. Ajusta un modelo de regresión logística con las tres covariables estandarizadas. Reporta: coeficientes, odds ratios con IC 95%, AUC-ROC y matriz de confusión con umbral 0.5.</p></li>
+<li><p><strong>Comparación de modelos:</strong> Ajusta tres modelos para predecir <code class="docutils literal notranslate"><span class="pre">lands_rec</span></code>: (a) regresión lineal (Gaussiana), (b) regresión de Poisson y (c) regresión Binomial Negativa. Compara su ajuste con AIC y un gráfico de valores observados vs. predichos. ¿Cuál se ajusta mejor a los datos de deslizamientos?</p></li>
+<li><p><strong>Validación cruzada:</strong> Para el modelo de regresión logística del ejercicio 2, realiza una validación cruzada k-fold (k=5) usando <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>. Reporta la media y desviación estándar del AUC-ROC entre los pliegues. ¿Es el modelo estable entre pliegues?</p></li>
+</ol>
+</section>
+<section id="recursos-adicionales">
+<h2>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h2>
+<section id="documentacion-oficial">
+<h3>Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/glm.html">statsmodels — GLM</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/linear_model.html">scikit-learn — Generalized Linear Models</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">SciPy — Statistical functions</a></p></li>
+</ul>
+</section>
+<section id="lecturas-recomendadas">
+<h3>Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Nelder, J. A. &amp; Wedderburn, R. W. M. (1972). Generalized linear models. <em>Journal of the Royal Statistical Society A</em>, 135(3), 370–384.</p></li>
+<li><p>McCullagh, P. &amp; Nelder, J. A. (1989). <em>Generalized Linear Models</em> (2nd ed.). Chapman &amp; Hall.</p></li>
+<li><p>James, G. et al. (2021). <em>An Introduction to Statistical Learning with Python</em>. Springer. <a class="reference external" href="https://www.statlearning.com/">Disponible en línea</a></p></li>
+<li><p>Agresti, A. (2015). <em>Foundations of Linear and Generalized Linear Models</em>. Wiley.</p></li>
+</ul>
+</section>
+<section id="tutoriales">
+<h3>Tutoriales<a class="headerlink" href="#tutoriales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=yIYKR4sgzI8">StatQuest — Logistic Regression (YouTube)</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/">Towards Data Science — GLM in Python</a></p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2317,8 +2344,8 @@ x2                0.3642      0.011     33.775      0.000       0.343       0.38
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="03_PointPattern.html"
@@ -2347,12 +2374,14 @@ x2                0.3642      0.011     33.775      0.000       0.343       0.38
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-normal-para-regresion-lineal-gaussiana">Distribución Normal (para Regresión Lineal Gaussiana)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-sinteticos-de-la-implementacion-de-un-modelo-de-regresion-lineal-gaussiana">Ejemplo con datos sintéticos de la implementación de un modelo de regresión lineal gaussiana</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-gaussiano">Ejemplo con datos de cuencas de la implementación de un modelo gaussiano</a></li>
@@ -2380,6 +2409,13 @@ x2                0.3642      0.011     33.775      0.000       0.343       0.38
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-un-modelo-cero-inflado-poisson">Ejemplo con datos de cuencas de la implementación de un modelo cero inflado poisson</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -2401,6 +2437,7 @@ By Edier V. Aristizábal G.
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -2427,8 +2464,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

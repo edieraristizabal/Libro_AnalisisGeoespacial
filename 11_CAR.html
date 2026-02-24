@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Modelos de regresión para dependencia espacial tipo CAR &#8212; Análisis Geoespacial</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '11_CAR';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -159,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -169,12 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -183,8 +202,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y heterogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -205,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -343,26 +365,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -383,18 +407,48 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-conceptual-entre-sar-y-car">Diferencia conceptual entre SAR y CAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacion-global-sar-vs-condicional-car">Especificación: global (SAR) vs. condicional (CAR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sar-sistema-simultaneo">SAR: sistema simultáneo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#car-propiedad-de-markov-espacial">CAR: propiedad de Markov espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuando-preferir-uno-u-otro">¿Cuándo preferir uno u otro?</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-carbayes-en-r">Modelos con la librería CARBayes en R</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-inla-en-r">Modelos con la librería INLA en R</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-clasico">Modelo gaussiano clásico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados">Modelo Gaussiano con efectos aleatorios NO estructurados</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados">Modelo Gaussiano con efectos aleatorios estructurados</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-icar">Modelo ICAR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-icar-intrinsic-car">Modelo ICAR (Intrinsic CAR)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-bym-besag-york-y-mollie">Modelo BYM (Besag, York y Mollié)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-leroux-et-al">Modelo de Leroux et al.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-leroux-et-al-car-propio">Modelo de Leroux et al. (CAR propio)</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-carbayes">Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>CARBayes</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-y-comparacion-de-los-modelos-carbayes">Interpretación y comparación de los modelos CARBayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-autocorrelacion-espacial-residual">1. Diagnóstico de autocorrelación espacial residual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-del-modelo-modelfit">2. Ajuste del modelo: <code class="docutils literal notranslate"><span class="pre">modelfit</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convergencia-mcmc-cadenas-y-trazas">3. Convergencia MCMC: cadenas y trazas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-coeficientes-boldsymbol-beta">4. Interpretación de los coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-parametro-rho-en-el-modelo-de-leroux">5. Interpretación del parámetro <span class="math notranslate nohighlight">\(\rho\)</span> en el modelo de Leroux</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-inla">Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>INLA</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-output-de-inla-y-comparacion-de-modelos">Interpretación del output de INLA y comparación de modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-summary-en-inla">Lectura del <code class="docutils literal notranslate"><span class="pre">summary()</span></code> en INLA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-modelos-con-dic-y-waic">Selección de modelos con DIC y WAIC</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-residuos-moran-i-secuencial">Diagnóstico de residuos: Moran I secuencial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-los-efectos-espaciales">Visualización de los efectos espaciales</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-interactivos">Recursos interactivos</a></li>
 </ul>
 </li>
 </ul>
@@ -406,11 +460,11 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://rpubs.com/jimclark/883880">Jim Clark</a>, <a href="https://cran.r-project.org/web/packages/CARBayes/vignettes/CARBayes.pdf">CARBayes</a>, <a href="https://search.r-project.org/CRAN/refmans/CARBayes/html/00Index.html">CRAN</a>, <a href="https://datascienceplus.com/spatial-regression-in-r-part-1-spamm-vs-glmmtmb/">Lionel Hertzog</a>, <a href="https://codingclubuc3m.rbind.io/post/2019-11-05/">Virgilio Gómez Rubio</a>. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p>
 <section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-dependencia-espacial-tipo-car">
-<h1>Modelos de regresión para dependencia espacial tipo CAR<a class="headerlink" href="#modelos-de-regresion-para-dependencia-espacial-tipo-car" title="Permalink to this heading">#</a></h1>
+<h1>Modelos de regresión para dependencia espacial tipo CAR<a class="headerlink" href="#modelos-de-regresion-para-dependencia-espacial-tipo-car" title="Link to this heading">#</a></h1>
 <p>Los modelos CAR con Campos Aleatorios de Markov (MRF) se utilizan ampliamente en estadísticas espaciales para modelar datos observados, así como
 variables latentes y efectos aleatorios que varían espacialmente. Las estructuras CAR se implementan en modelos jerárquicos con efectos aleatorios latentes
 (Schmidt 2014). CAR es un tipo de Campo Aleatorio de Markov (MRF) (Besag 1991), que es el enfoque dominante para
@@ -441,8 +495,83 @@ condicional incorpora características tanto de efectos aleatorios espaciales es
 parámetro (<span class="math notranslate nohighlight">\(\rho\)</span>). El modelo de Leroux generaliza el modelo ICAR y el modelo independiente (es decir, un modelo sin ningún efecto aleatorio
 espacial estructurado). Cuando <span class="math notranslate nohighlight">\(\rho=1\)</span>, se recupera el modelo ICAR; cuando <span class="math notranslate nohighlight">\(\rho=0\)</span>, se recupera el modelo independiente. Así, el modelo de
 Leroux busca equilibrar estos dos modelos estimando el valor de <span class="math notranslate nohighlight">\(\rho\)</span>.</p>
+<section id="objetivos-de-aprendizaje">
+<h2>Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este notebook, el estudiante será capaz de:</p>
+<ul class="simple">
+<li><p>Diferenciar conceptualmente entre los enfoques SAR (especificación conjunta) y CAR (especificación condicional, propiedad de Markov).</p></li>
+<li><p>Comprender la estructura de los modelos ICAR, BYM y Leroux como efectos aleatorios latentes en un marco bayesiano.</p></li>
+<li><p>Ajustar modelos CAR con <code class="docutils literal notranslate"><span class="pre">CARBayes</span></code> en R y evaluar la convergencia de las cadenas MCMC.</p></li>
+<li><p>Ajustar modelos ICAR, BYM y Leroux con INLA en R aprovechando la aproximación de Laplace anidada.</p></li>
+<li><p>Comparar modelos mediante DIC/WAIC e interpretar los hiperparámetros de precisión.</p></li>
+</ul>
+<p><strong>Requisitos previos:</strong> <code class="docutils literal notranslate"><span class="pre">10_SAR</span></code> — modelos SAR; nociones de estadística bayesiana (distribuciones prior/posterior); R básico.</p>
+</section>
+<section id="diferencia-conceptual-entre-sar-y-car">
+<h2>Diferencia conceptual entre SAR y CAR<a class="headerlink" href="#diferencia-conceptual-entre-sar-y-car" title="Link to this heading">#</a></h2>
+<p>Antes de adentrarnos en los modelos CAR, es fundamental entender en qué se diferencian de los modelos SAR (<em>Simultaneous Autoregressive</em>) presentados en el capítulo anterior. Aunque ambos modelan dependencia espacial, lo hacen de formas matemáticamente distintas.</p>
+<section id="especificacion-global-sar-vs-condicional-car">
+<h3>Especificación: global (SAR) vs. condicional (CAR)<a class="headerlink" href="#especificacion-global-sar-vs-condicional-car" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Característica</p></th>
+<th class="head text-left"><p>SAR</p></th>
+<th class="head text-left"><p>CAR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Especificación</strong></p></td>
+<td class="text-left"><p>Distribución conjunta</p></td>
+<td class="text-left"><p>Distribución condicional</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Perspectiva</strong></p></td>
+<td class="text-left"><p>Global: todo el sistema simultáneamente</p></td>
+<td class="text-left"><p>Local: unidad por unidad dado su entorno</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Propiedad de Markov</strong></p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Sí — depende solo de vecinas directas</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Parámetro de dependencia</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\rho \in (-1, 1)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\lambda\)</span> (precisión condicional)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Enfoque estadístico</strong></p></td>
+<td class="text-left"><p>Frecuentista (máx. verosimilitud)</p></td>
+<td class="text-left"><p>Bayesiano jerárquico (MCMC o INLA)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Implementación en R</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spatialreg</span></code> (<code class="docutils literal notranslate"><span class="pre">lagsarlm</span></code>, <code class="docutils literal notranslate"><span class="pre">errorsarlm</span></code>)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CARBayes</span></code>, <code class="docutils literal notranslate"><span class="pre">INLA</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sar-sistema-simultaneo">
+<h3>SAR: sistema simultáneo<a class="headerlink" href="#sar-sistema-simultaneo" title="Link to this heading">#</a></h3>
+<p>Un modelo SAR-lag define la variable dependiente como función de <strong>todo el sistema a la vez</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = \rho \mathbf{W}\mathbf{y} + \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\]</div>
+<p>Aquí <span class="math notranslate nohighlight">\(\rho\)</span> captura cuánto del valor de <span class="math notranslate nohighlight">\(y_i\)</span> se explica por el promedio ponderado de sus vecinas <span class="math notranslate nohighlight">\(\sum_j w_{ij} y_j\)</span>. La solución requiere invertir la matriz <span class="math notranslate nohighlight">\((I - \rho W)\)</span>, lo que implica que cada unidad influye —aunque indirectamente— en todas las demás.</p>
+</section>
+<section id="car-propiedad-de-markov-espacial">
+<h3>CAR: propiedad de Markov espacial<a class="headerlink" href="#car-propiedad-de-markov-espacial" title="Link to this heading">#</a></h3>
+<p>Los modelos CAR especifican la distribución de cada efecto aleatorio <span class="math notranslate nohighlight">\(\phi_i\)</span> <strong>condicionada en todas las demás unidades</strong>:</p>
+<div class="math notranslate nohighlight">
+\[[\phi_i \mid \phi_{j \neq i}] \sim \mathcal{N}\!\left(\frac{\sum_{j \in \mathcal{N}(i)} \phi_j}{n_i},\ \frac{\sigma^2}{n_i}\right)\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathcal{N}(i)\)</span> es el conjunto de vecinas directas de <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(n_i\)</span> su cardinalidad. Esta es la <strong>propiedad de Markov espacial</strong>: el estado esperado de <span class="math notranslate nohighlight">\(\phi_i\)</span> es simplemente el promedio de sus vecinas inmediatas, con una varianza inversamente proporcional al número de vecinos (áreas con más vecinos tienen estimaciones más precisas). No hay influencia de unidades lejanas más allá de la cadena de vecindad.</p>
+</section>
+<section id="cuando-preferir-uno-u-otro">
+<h3>¿Cuándo preferir uno u otro?<a class="headerlink" href="#cuando-preferir-uno-u-otro" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>SAR</strong> es adecuado cuando se quiere modelar la dependencia espacial directamente en la variable observada, en un marco de estimación frecuentista con interpretación directa de coeficientes.</p></li>
+<li><p><strong>CAR</strong> es preferible en modelos <strong>bayesianos jerárquicos</strong>, donde la dependencia espacial se introduce como un <strong>efecto aleatorio latente</strong> <span class="math notranslate nohighlight">\(\phi_i\)</span> que suaviza la variabilidad residual entre unidades vecinas, capturando variación espacial no explicada por las covariables fijas. Este es el uso que desarrollaremos a lo largo de este capítulo.</p></li>
+</ul>
+</section>
+</section>
 <section id="modelos-con-la-libreria-carbayes-en-r">
-<h2>Modelos con la librería CARBayes en R<a class="headerlink" href="#modelos-con-la-libreria-carbayes-en-r" title="Permalink to this heading">#</a></h2>
+<h2>Modelos con la librería CARBayes en R<a class="headerlink" href="#modelos-con-la-libreria-carbayes-en-r" title="Link to this heading">#</a></h2>
 <p>Existen diferentes librerías en <em>R</em> para trabajar modelos espaciales. A continuación se presenta una de ellas.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">spBayes</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
@@ -509,7 +638,7 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </div>
 </section>
 <section id="modelos-con-la-libreria-inla-en-r">
-<h2>Modelos con la librería INLA en R<a class="headerlink" href="#modelos-con-la-libreria-inla-en-r" title="Permalink to this heading">#</a></h2>
+<h2>Modelos con la librería INLA en R<a class="headerlink" href="#modelos-con-la-libreria-inla-en-r" title="Link to this heading">#</a></h2>
 <p>La librería INLA (<em>Integrated Nested Laplace Approximation</em>) es una herramienta poderosa para ajustar modelos bayesianos latentes gaussianos (LGMs), ampliamente utilizados en estadística espacial. A diferencia de los métodos MCMC tradicionales, INLA ofrece una aproximación determinista, mucho más rápida y eficiente, especialmente útil en contextos con grandes volúmenes de datos o estructuras espaciales complejas. INLA no elimina la incertidumbre bayesiana. Más bien, lo que hace es utilizar aproximaciones tipo Laplace para calcular directamente la media, desviación estándar y cuantiles de las distribuciones posteriores. Estas aproximaciones son deterministas, por lo tanto reproducibles. Los resultados siguen siendo probabilísticos: por ejemplo, se puede obtener una distribución posterior para cada parámetro o predicción, pero no mediante muestreo aleatorio.</p>
 <p>Para ilustrar cómo se ajustan los modelos espaciales con INLA, se utilizará el conjunto de datos de leucemia de Nueva York. Éste ha sido ampliamente analizado en la literatura (ver, por ejemplo, Waller y Gotway, 2004) y está disponible en el paquete <code class="docutils literal notranslate"><span class="pre">DClusterm</span></code>. El conjunto de datos registra una serie de casos de leucemia en el norte del estado de Nueva York a nivel de distrito censal. Algunas de las variables en el conjunto de datos son:</p>
 <ul class="simple">
@@ -547,7 +676,7 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </pre></div>
 </div>
 <section id="modelo-gaussiano-clasico">
-<h3>Modelo gaussiano clásico<a class="headerlink" href="#modelo-gaussiano-clasico" title="Permalink to this heading">#</a></h3>
+<h3>Modelo gaussiano clásico<a class="headerlink" href="#modelo-gaussiano-clasico" title="Link to this heading">#</a></h3>
 <p>El primer modelo que consideraremos es un modelo Gausiano sin efectos aleatorios latentes, ya que proporcionará una línea base para comparar con otros modelos. Para ajustar el modelo con INLA, se utiliza la función <code class="docutils literal notranslate"><span class="pre">inla</span></code>:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
 </pre></div>
@@ -564,7 +693,7 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </div>
 </section>
 <section id="modelo-gaussiano-con-efectos-aleatorios-no-estructurados">
-<h3>Modelo Gaussiano con efectos aleatorios NO estructurados<a class="headerlink" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados" title="Permalink to this heading">#</a></h3>
+<h3>Modelo Gaussiano con efectos aleatorios NO estructurados<a class="headerlink" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados" title="Link to this heading">#</a></h3>
 <p>Se pueden agregar efectos aleatorios latentes al modelo para tener en cuenta la sobredispersión incluyendo efectos aleatorios Gaussianos i.i.d. en el predictor lineal. Para ajustar el modelo con INLA, primero se crea un índice para identificar los efectos aleatorios (ID). Los efectos aleatorios latentes se especifican con la función <code class="docutils literal notranslate"><span class="pre">f</span></code> en INLA:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NY8</span><span class="o">$</span><span class="n">ID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">NY8</span><span class="p">)</span>
 <span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">AVGIDIST</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;iid&quot;</span><span class="p">),</span>
@@ -583,7 +712,7 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </div>
 </section>
 <section id="modelo-gaussiano-con-efectos-aleatorios-estructurados">
-<h3>Modelo Gaussiano con efectos aleatorios estructurados<a class="headerlink" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados" title="Permalink to this heading">#</a></h3>
+<h3>Modelo Gaussiano con efectos aleatorios estructurados<a class="headerlink" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados" title="Link to this heading">#</a></h3>
 <p>Tenemos observaciones <span class="math notranslate nohighlight">\(y = {y_i}_{i=1}^n\)</span> donde n es el número de áreas. A y se le asigna una distribución multivariante que tiene en cuenta la dependencia espacial. Una forma común de describir la proximidad espacial en datos discretos es mediante una matriz de adyacencia W. El elemento <span class="math notranslate nohighlight">\(W_{i,j}\)</span> es distinto de cero si las áreas i y j son vecinas. Por lo general, dos áreas son vecinas si comparten un límite común.</p>
 <p>La matriz de adyacencia se puede calcular utilizando la función <code class="docutils literal notranslate"><span class="pre">poly2nb</span></code> en el paquete <code class="docutils literal notranslate"><span class="pre">spdep</span></code>. Esta función considerará dos áreas como vecinas si sus bordes se tocan al menos en un punto (es decir, adyacencia de “Queen”):</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NY8.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">poly2nb</span><span class="p">(</span><span class="n">NY8</span><span class="p">)</span>
@@ -598,9 +727,15 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 <span class="nf">plot</span><span class="p">(</span><span class="n">NY8.nb</span><span class="p">,</span><span class="w"> </span><span class="nf">coordinates</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="modelo-icar">
-<h4>Modelo ICAR<a class="headerlink" href="#modelo-icar" title="Permalink to this heading">#</a></h4>
-<p>El primer ejemplo se basará en la especificación ICAR. Tenga en cuenta que el efecto latente espacial se define usando la función f. Esto requerirá un índice para identificar los efectos aleatorios en cada área, el tipo de modelo y la matriz de adyacencia. Para ello, se utilizará una matriz dispersa.</p>
+<section id="modelo-icar-intrinsic-car">
+<h4>Modelo ICAR (Intrinsic CAR)<a class="headerlink" href="#modelo-icar-intrinsic-car" title="Link to this heading">#</a></h4>
+<p>El modelo <strong>ICAR</strong> (<em>Intrinsic Conditional Autoregressive</em>) es la forma más simple de estructura CAR. Su distribución conjunta es <strong>impropia</strong> (no integra a 1), lo que significa que no puede usarse como una distribución de probabilidad absoluta, sino como una <em>prior</em> impropia en un modelo bayesiano. A pesar de ello, el modelo posterior sí es propio siempre que los datos sean informativos.</p>
+<p><strong>Intuición:</strong> El ICAR impone que el efecto aleatorio <span class="math notranslate nohighlight">\(\phi_i\)</span> tenga como valor esperado el promedio simple de sus vecinas:</p>
+<div class="math notranslate nohighlight">
+\[[\phi_i \mid \boldsymbol{\phi}_{-i}] \sim \mathcal{N}\!\left(\bar{\phi}_{\mathcal{N}(i)},\ \frac{\sigma^2}{n_i}\right)\]</div>
+<p>Esto genera un <strong>suavizado espacial fuerte</strong>: áreas vecinas tenderán a tener efectos similares. El modelo no tiene intercepto propio (la suma de todos los efectos debe ser cero, restricción de identificabilidad), por lo que captura solo <em>variación espacial relativa</em>, no niveles absolutos.</p>
+<p><strong>Cuándo usarlo:</strong> Es adecuado cuando se espera que los datos presenten una autocorrelación espacial fuerte y se quiere capturar patrones de variación espacial suave sin modelar explícitamente su intensidad.</p>
+<p>El primer ejemplo se basará en la especificación ICAR. Tenga en cuenta que el efecto latente espacial se define usando la función <code class="docutils literal notranslate"><span class="pre">f</span></code>. Esto requerirá un índice para identificar los efectos aleatorios en cada área, el tipo de modelo y la matriz de adyacencia. Para ello, se utilizará una matriz dispersa.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sparse adjacency matrix</span>
 <span class="n">NY8.mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as</span><span class="p">(</span><span class="nf">nb2mat</span><span class="p">(</span><span class="n">NY8.nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Matrix&quot;</span><span class="p">)</span>
 </pre></div>
@@ -618,8 +753,18 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </div>
 </section>
 <section id="modelo-bym-besag-york-y-mollie">
-<h4>Modelo BYM (Besag, York y Mollié)<a class="headerlink" href="#modelo-bym-besag-york-y-mollie" title="Permalink to this heading">#</a></h4>
-<p>El modelo de Besag, York y Mollié incluye dos efectos aleatorios latentes: un efecto latente ICAR y un efecto latente Gaussiano i.i.d. No es necesario definir estos dos efectos latentes si se establece el argumento <code class="docutils literal notranslate"><span class="pre">model</span></code> como “bym” cuando se define el efecto aleatorio latente con la función <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<h4>Modelo BYM (Besag, York y Mollié)<a class="headerlink" href="#modelo-bym-besag-york-y-mollie" title="Link to this heading">#</a></h4>
+<p>El modelo <strong>BYM</strong> fue propuesto por Besag, York y Mollié en 1991 y se convirtió en el estándar de facto para el análisis de enfermedades en áreas pequeñas (<em>small area estimation</em>). Su innovación central es descomponer la variabilidad espacial en <strong>dos fuentes independientes</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\phi_i = u_i + v_i\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span> es un efecto <strong>espacialmente estructurado</strong> (ICAR): captura la variación que comparten unidades vecinas (autocorrelación espacial).</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_i\)</span> es un efecto <strong>no estructurado</strong> i.i.d.: captura variabilidad intrínseca de cada unidad que no sigue ningún patrón espacial (heterogeneidad pura o sobredispersión).</p></li>
+</ul>
+<p><strong>Intuición:</strong> Imaginemos que la tasa de deslizamientos en una subcuenca es más alta de lo esperado. Hay dos explicaciones posibles: (a) sus vecinas también tienen tasas altas, sugiriendo un proceso geográfico compartido (<span class="math notranslate nohighlight">\(u_i\)</span>); o (b) algo particular de esa subcuenca no relacionado con la vecindad la hace distinta (<span class="math notranslate nohighlight">\(v_i\)</span>). El BYM modela ambas explicaciones simultáneamente.</p>
+<p><strong>Limitación:</strong> Los componentes <span class="math notranslate nohighlight">\(u_i\)</span> y <span class="math notranslate nohighlight">\(v_i\)</span> no son individualmente identificables — solo su suma <span class="math notranslate nohighlight">\(\phi_i = u_i + v_i\)</span> puede estimarse de forma robusta. Esto motivó el posterior modelo BYM2 (Riebler et al. 2016), que reparametriza la descomposición para hacer los componentes identificables.</p>
+<p>El modelo de Besag, York y Mollié incluye dos efectos aleatorios latentes: un efecto latente ICAR y un efecto latente Gaussiano i.i.d. No es necesario definir estos dos efectos latentes por separado si se establece el argumento <code class="docutils literal notranslate"><span class="pre">model</span></code> como <code class="docutils literal notranslate"><span class="pre">&quot;bym&quot;</span></code> cuando se define el efecto aleatorio latente con la función <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m.bym</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">Cases</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">AVGIDIST</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
 <span class="w">    </span><span class="nf">f</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bym&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8.mat</span><span class="p">),</span>
 <span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NY8</span><span class="o">$</span><span class="n">Expected</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;Gaussian&quot;</span><span class="p">,</span>
@@ -631,19 +776,23 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </pre></div>
 </div>
 </section>
-<section id="modelo-de-leroux-et-al">
-<h4>Modelo de Leroux et al.<a class="headerlink" href="#modelo-de-leroux-et-al" title="Permalink to this heading">#</a></h4>
-<p>Este modelo se define utilizando una “mezcla” de matrices (modelo de Leroux et al.) para definir la matriz de precisión del efecto latente. Este modelo se implementa utilizando el efecto latente <code class="docutils literal notranslate"><span class="pre">generic1</span></code>, que utiliza la siguiente matriz de precisión:</p>
+<section id="modelo-de-leroux-et-al-car-propio">
+<h4>Modelo de Leroux et al. (CAR propio)<a class="headerlink" href="#modelo-de-leroux-et-al-car-propio" title="Link to this heading">#</a></h4>
+<p>El modelo de <strong>Leroux et al. (2000)</strong> surge como una solución elegante al problema de la distribución impropia del ICAR. En lugar de separar efectos estructurados y no estructurados como hace el BYM, propone un <strong>único efecto aleatorio</strong> que interpola entre los dos extremos mediante un solo parámetro <span class="math notranslate nohighlight">\(\rho \in [0, 1]\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[Σ^{-1} = 1 / τ (I_n - ρ * λ_max * C); ρ ∈ [0,1)\]</div>
-<p>En esta ecuación, C es una matriz y λ_max su autovalor máximo.</p>
-<p>Para definir el modelo correcto, debemos tomar la matriz C de la siguiente manera:</p>
+\[[\phi_i \mid \boldsymbol{\phi}_{-i}] \sim \mathcal{N}\!\left(\frac{\rho \sum_{j \in \mathcal{N}(i)} \phi_j}{\rho n_i + (1 - \rho)},\ \frac{\sigma^2}{\rho n_i + (1 - \rho)}\right)\]</div>
+<p><strong>Interpretación de <span class="math notranslate nohighlight">\(\rho\)</span>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho = 0\)</span>: el efecto es puramente i.i.d. (sin estructura espacial) — equivale a un modelo independiente.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho = 1\)</span>: el efecto es puramente ICAR (estructura espacial máxima) — recupera el modelo intrínseco.</p></li>
+<li><p><span class="math notranslate nohighlight">\(0 &lt; \rho &lt; 1\)</span>: el modelo interpola entre ambos extremos; <span class="math notranslate nohighlight">\(\rho\)</span> se estima a partir de los datos.</p></li>
+</ul>
+<p><strong>Ventaja clave:</strong> La distribución conjunta del modelo de Leroux es <strong>propia</strong> para cualquier <span class="math notranslate nohighlight">\(\rho \in [0, 1)\)</span>, lo que lo hace más manejable computacionalmente que el ICAR. Además, el valor estimado de <span class="math notranslate nohighlight">\(\rho\)</span> proporciona una medida directa de la <em>fuerza de la dependencia espacial</em> en los datos — algo que ni el ICAR ni el BYM ofrecen directamente.</p>
+<p><strong>Implementación en INLA:</strong> Como INLA no implementa directamente el modelo de Leroux, se aproxima mediante el efecto latente <code class="docutils literal notranslate"><span class="pre">generic1</span></code>, que utiliza la siguiente matriz de precisión:</p>
 <div class="math notranslate nohighlight">
-\[C = I_n - M; M = diag(n_i) - W\]</div>
-<p>Entonces, λ_max = 1 y:</p>
-<div class="math notranslate nohighlight">
-\[Σ^{-1} = 1 / τ (I_n - ρ * λ_max * C) = 1 / τ (I_n - ρ * (I_n - M)) = 1 / τ ((1 - ρ)I_n + ρM)\]</div>
-<p>Para ajustar el modelo, el primer paso es crear la matriz M.</p>
+\[\Sigma^{-1} = \frac{1}{\tau} \left(I_n - \rho \cdot \lambda_{\max} \cdot C\right), \quad \rho \in [0, 1)\]</div>
+<p>donde <span class="math notranslate nohighlight">\(C = I_n - M\)</span> y <span class="math notranslate nohighlight">\(M = D - W\)</span> es la matriz laplaciana del grafo de vecindad (<span class="math notranslate nohighlight">\(D\)</span> es la matriz diagonal de grados). Se puede verificar que <span class="math notranslate nohighlight">\(\lambda_{\max}(C) = 1\)</span>, por lo que la construcción se simplifica.</p>
+<p>Este modelo se define utilizando una “mezcla” de matrices (modelo de Leroux et al.) para definir la matriz de precisión del efecto latente. Para ajustar el modelo, el primer paso es crear la matriz <span class="math notranslate nohighlight">\(M\)</span>.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ICARmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Diagonal</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">NY8.mat</span><span class="p">),</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">NY8.mat</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">NY8.mat</span>
 <span class="n">Cmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Diagonal</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">NY8</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w">  </span><span class="n">ICARmatrix</span>
 </pre></div>
@@ -661,7 +810,7 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 </section>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-carbayes">
-<h3>Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>CARBayes</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-carbayes" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>CARBayes</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-carbayes" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;https://github.com/edieraristizabal/ModeloMultinivel/blob/main/DATA/df_catchments_spatial.gpkg&quot;</span><span class="p">)</span>
 <span class="n">aoi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">aoi</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate_at</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;elev_mean&#39;</span><span class="p">,</span><span class="s">&#39;slope_mean&#39;</span><span class="p">,</span><span class="s">&#39;RainfallDaysmean&#39;</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="p">(</span><span class="nf">scale</span><span class="p">(</span><span class="n">.</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.vector</span><span class="p">))</span>
 <span class="n">aoi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">aoi</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">cuenca_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">cuenca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;Atrato&#39;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">cuenca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;Cauca&#39;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">cuenca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;Magdalena&#39;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
@@ -734,32 +883,24 @@ Leroux busca equilibrar estos dos modelos estimando el valor de <span class="mat
 <p>En el siguiente caso el parámetro rho no está especificado directamente en la función S.CARleroux. Cuando rho no se especifica, la función estima como parte del proceso de muestreo MCMC. En el caso de S.CARleroux sin especificar rho, el modelo permite que la fuerza de la dependencia espacial (autocorrelación) sea estimada a partir de los datos dentro del rango (0, 1).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>```r
-carleroux &lt;- S.CARleroux(formula=lands_rec ~ 1 + RainfallDaysmean + elev_mean + slope_mean + offset(log(area)),
-                  data=aoi, family=&quot;poisson&quot;, W=W.mat,
-                  burnin=100000, n.sample=300000, thin=100, n.chains=3, n.cores=3)
-carleroux
-carleroux$modelfit
-plot( carleroux$samples$rho, bty = &#39;n&#39; )
-summary(carleroux$samples)
-summary.beta &lt;- summary(carleroux$samples$beta, quantiles=c(0.025, 0.975))
-beta.mean &lt;- summary.beta$statistics[ ,&quot;Mean&quot;]
-beta.ci &lt;- summary.beta$quantiles
-beta.results &lt;- cbind(beta.mean, beta.ci)
-rownames(beta.results) &lt;- colnames(carleroux$X)
-round(beta.results, 5)
-aoi_sp$carleroux &lt;- carleroux$fitted.values
-aoi$carleroux_res &lt;- carleroux$residuals
-moran.mc(x=residuals(carleroux), listw=W.list, nsim=1000)
-```
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  Cell In[1], line 1
-    ```r
-    ^
-SyntaxError: invalid syntax
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">```</span><span class="n">r</span>
+<span class="n">carleroux</span> <span class="o">&lt;-</span> <span class="n">S</span><span class="o">.</span><span class="n">CARleroux</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">lands_rec</span> <span class="o">~</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">RainfallDaysmean</span> <span class="o">+</span> <span class="n">elev_mean</span> <span class="o">+</span> <span class="n">slope_mean</span> <span class="o">+</span> <span class="n">offset</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">area</span><span class="p">)),</span>
+                  <span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;poisson&quot;</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="n">W</span><span class="o">.</span><span class="n">mat</span><span class="p">,</span>
+                  <span class="n">burnin</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">sample</span><span class="o">=</span><span class="mi">300000</span><span class="p">,</span> <span class="n">thin</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">chains</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">cores</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">carleroux</span>
+<span class="n">carleroux</span><span class="err">$</span><span class="n">modelfit</span>
+<span class="n">plot</span><span class="p">(</span> <span class="n">carleroux</span><span class="err">$</span><span class="n">samples</span><span class="err">$</span><span class="n">rho</span><span class="p">,</span> <span class="n">bty</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span> <span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">carleroux</span><span class="err">$</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">summary</span><span class="o">.</span><span class="n">beta</span> <span class="o">&lt;-</span> <span class="n">summary</span><span class="p">(</span><span class="n">carleroux</span><span class="err">$</span><span class="n">samples</span><span class="err">$</span><span class="n">beta</span><span class="p">,</span> <span class="n">quantiles</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">))</span>
+<span class="n">beta</span><span class="o">.</span><span class="n">mean</span> <span class="o">&lt;-</span> <span class="n">summary</span><span class="o">.</span><span class="n">beta</span><span class="err">$</span><span class="n">statistics</span><span class="p">[</span> <span class="p">,</span><span class="s2">&quot;Mean&quot;</span><span class="p">]</span>
+<span class="n">beta</span><span class="o">.</span><span class="n">ci</span> <span class="o">&lt;-</span> <span class="n">summary</span><span class="o">.</span><span class="n">beta</span><span class="err">$</span><span class="n">quantiles</span>
+<span class="n">beta</span><span class="o">.</span><span class="n">results</span> <span class="o">&lt;-</span> <span class="n">cbind</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">beta</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+<span class="n">rownames</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">colnames</span><span class="p">(</span><span class="n">carleroux</span><span class="err">$</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">round</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">aoi_sp</span><span class="err">$</span><span class="n">carleroux</span> <span class="o">&lt;-</span> <span class="n">carleroux</span><span class="err">$</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span>
+<span class="n">aoi</span><span class="err">$</span><span class="n">carleroux_res</span> <span class="o">&lt;-</span> <span class="n">carleroux</span><span class="err">$</span><span class="n">residuals</span>
+<span class="n">moran</span><span class="o">.</span><span class="n">mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">residuals</span><span class="p">(</span><span class="n">carleroux</span><span class="p">),</span> <span class="n">listw</span><span class="o">=</span><span class="n">W</span><span class="o">.</span><span class="n">list</span><span class="p">,</span> <span class="n">nsim</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="err">```</span>
 </pre></div>
 </div>
 </div>
@@ -789,6 +930,56 @@ SyntaxError: invalid syntax
 <span class="nf">moran.mc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">residuals</span><span class="p">(</span><span class="n">carbym</span><span class="p">),</span><span class="w"> </span><span class="n">listw</span><span class="o">=</span><span class="n">W.list</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">1000</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="interpretacion-y-comparacion-de-los-modelos-carbayes">
+<h3>Interpretación y comparación de los modelos CARBayes<a class="headerlink" href="#interpretacion-y-comparacion-de-los-modelos-carbayes" title="Link to this heading">#</a></h3>
+<p>Una vez ajustados los modelos (<code class="docutils literal notranslate"><span class="pre">m1_carbayes</span></code>, <code class="docutils literal notranslate"><span class="pre">cariid</span></code>, <code class="docutils literal notranslate"><span class="pre">caricar</span></code>, <code class="docutils literal notranslate"><span class="pre">carleroux</span></code>, <code class="docutils literal notranslate"><span class="pre">carbym</span></code>), la comparación y evaluación debe hacerse en varios niveles:</p>
+<section id="diagnostico-de-autocorrelacion-espacial-residual">
+<h4>1. Diagnóstico de autocorrelación espacial residual<a class="headerlink" href="#diagnostico-de-autocorrelacion-espacial-residual" title="Link to this heading">#</a></h4>
+<p>El test de Moran sobre los residuos (<code class="docutils literal notranslate"><span class="pre">moran.mc(residuals(modelo),</span> <span class="pre">...)</span></code>) es el primer indicador de si el modelo ha logrado capturar la dependencia espacial. Se espera que:</p>
+<ul class="simple">
+<li><p>El modelo base (<code class="docutils literal notranslate"><span class="pre">m1_carbayes</span></code>, sin estructura CAR) muestre un Moran I significativo → confirma la presencia de dependencia espacial.</p></li>
+<li><p>Los modelos CAR (Leroux, ICAR, BYM) reduzcan el Moran I de los residuos hasta que no sea estadísticamente significativo (p &gt; 0.05).</p></li>
+</ul>
+<p>Si los residuos siguen mostrando autocorrelación significativa después de incluir el efecto CAR, puede indicar que la matriz de vecindad <span class="math notranslate nohighlight">\(W\)</span> no captura adecuadamente la estructura espacial relevante, o que la dependencia es de orden mayor (vecinas de vecinas).</p>
+</section>
+<section id="ajuste-del-modelo-modelfit">
+<h4>2. Ajuste del modelo: <code class="docutils literal notranslate"><span class="pre">modelfit</span></code><a class="headerlink" href="#ajuste-del-modelo-modelfit" title="Link to this heading">#</a></h4>
+<p>El objeto <code class="docutils literal notranslate"><span class="pre">$modelfit</span></code> de cada modelo CARBayes reporta:</p>
+<ul class="simple">
+<li><p><strong>DIC</strong> (<em>Deviance Information Criterion</em>): penaliza la complejidad. <strong>Valores más bajos indican mejor ajuste</strong> (similar al AIC).</p></li>
+<li><p><strong>WAIC</strong> (<em>Widely Applicable AIC</em>): alternativa bayesiana al DIC, más robusta.</p></li>
+<li><p><strong>Deviance (mean)</strong>: desviación promedio del modelo.</p></li>
+</ul>
+<p>Para comparar modelos: un modelo con DIC/WAIC menor es preferible, pero una diferencia &lt; 5 unidades generalmente no es sustancial.</p>
+</section>
+<section id="convergencia-mcmc-cadenas-y-trazas">
+<h4>3. Convergencia MCMC: cadenas y trazas<a class="headerlink" href="#convergencia-mcmc-cadenas-y-trazas" title="Link to this heading">#</a></h4>
+<p>CARBayes utiliza MCMC para la estimación. Antes de interpretar coeficientes, se debe verificar convergencia:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(carleroux$samples$rho)</span></code> — la traza de <span class="math notranslate nohighlight">\(\rho\)</span> debe verse como “ruido blanco” (sin tendencia ni ciclos), indicando que la cadena ha convergido.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary(modelo$samples)</span></code> — el diagnóstico de Geweke (proporcionado automáticamente) compara la primera y última parte de la cadena; un z-score <span class="math notranslate nohighlight">\(|z| &lt; 2\)</span> sugiere convergencia.</p></li>
+<li><p>Si hay problemas de convergencia: aumentar <code class="docutils literal notranslate"><span class="pre">burnin</span></code> y <code class="docutils literal notranslate"><span class="pre">n.sample</span></code>, o reducir <code class="docutils literal notranslate"><span class="pre">thin</span></code>.</p></li>
+</ul>
+</section>
+<section id="interpretacion-de-los-coeficientes-boldsymbol-beta">
+<h4>4. Interpretación de los coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span><a class="headerlink" href="#interpretacion-de-los-coeficientes-boldsymbol-beta" title="Link to this heading">#</a></h4>
+<p>Los coeficientes se extraen de <code class="docutils literal notranslate"><span class="pre">$samples$beta</span></code>. El output de <code class="docutils literal notranslate"><span class="pre">round(beta.results,</span> <span class="pre">5)</span></code> muestra:</p>
+<ul class="simple">
+<li><p><strong>Mean</strong>: el valor esperado <em>a posteriori</em> del coeficiente — análogo al coeficiente en regresión frecuentista.</p></li>
+<li><p><strong>2.5%</strong> y <strong>97.5%</strong>: intervalo de credibilidad del 95%. Si <strong>no incluye el cero</strong>, el efecto es estadísticamente significativo.</p></li>
+</ul>
+<p>En modelos de Poisson con offset <code class="docutils literal notranslate"><span class="pre">log(area)</span></code>, los coeficientes se interpretan como <strong>log-razones de incidencia</strong> (<em>log Incidence Rate Ratios</em>): <span class="math notranslate nohighlight">\(e^{\beta_k}\)</span> es el factor multiplicativo en la tasa de deslizamientos por unidad de cambio en la covariable <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</section>
+<section id="interpretacion-del-parametro-rho-en-el-modelo-de-leroux">
+<h4>5. Interpretación del parámetro <span class="math notranslate nohighlight">\(\rho\)</span> en el modelo de Leroux<a class="headerlink" href="#interpretacion-del-parametro-rho-en-el-modelo-de-leroux" title="Link to this heading">#</a></h4>
+<p>El parámetro <span class="math notranslate nohighlight">\(\rho\)</span> estimado en <code class="docutils literal notranslate"><span class="pre">carleroux</span></code> (el modelo sin <span class="math notranslate nohighlight">\(\rho\)</span> fijado) indica la fuerza de la dependencia espacial en los datos:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\rho}\)</span> cercano a 1 → la dependencia espacial es fuerte; el modelo se acerca al ICAR.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\rho}\)</span> cercano a 0 → poca estructura espacial; un modelo i.i.d. sería suficiente.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\rho}\)</span> intermedio → el modelo Leroux aporta genuina flexibilidad frente al ICAR fijo.</p></li>
+</ul>
+<p>La traza de <code class="docutils literal notranslate"><span class="pre">plot(carleroux$samples$rho)</span></code> también permite evaluar si <span class="math notranslate nohighlight">\(\rho\)</span> está bien identificado (distribución posterior concentrada) o si los datos no son suficientemente informativos para estimarlo (distribución posterior plana).</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">carbym</span><span class="p">),</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">annotation_scale</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s">&quot;br&quot;</span><span class="p">,</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ticks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">annotation_north_arrow</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tr&quot;</span><span class="p">,</span><span class="n">which_north</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),)</span><span class="w"> </span><span class="o">+</span>
@@ -811,8 +1002,9 @@ SyntaxError: invalid syntax
 </pre></div>
 </div>
 </section>
+</section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-inla">
-<h3>Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>INLA</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-inla" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>INLA</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-inla" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#Spatial matrix</span>
 <span class="n">aoi.nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">poly2nb</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span><span class="w"> </span><span class="c1">#Queen matrix</span>
 <span class="n">aoi.mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as</span><span class="p">(</span><span class="nf">nb2mat</span><span class="p">(</span><span class="n">aoi.nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Matrix&quot;</span><span class="p">)</span>
@@ -947,6 +1139,126 @@ Cmatrix &lt;- Diagonal(nrow(aoi), 1) - m5_leroux:</p>
 </pre></div>
 </div>
 </section>
+<section id="interpretacion-del-output-de-inla-y-comparacion-de-modelos">
+<h3>Interpretación del output de INLA y comparación de modelos<a class="headerlink" href="#interpretacion-del-output-de-inla-y-comparacion-de-modelos" title="Link to this heading">#</a></h3>
+<section id="lectura-del-summary-en-inla">
+<h4>Lectura del <code class="docutils literal notranslate"><span class="pre">summary()</span></code> en INLA<a class="headerlink" href="#lectura-del-summary-en-inla" title="Link to this heading">#</a></h4>
+<p>El objeto devuelto por <code class="docutils literal notranslate"><span class="pre">inla()</span></code> contiene toda la inferencia bayesiana posterior. Los elementos clave son:</p>
+<p><strong>Efectos fijos</strong> (<code class="docutils literal notranslate"><span class="pre">summary(modelo)$fixed</span></code>):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Campo</p></th>
+<th class="head text-left"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
+<td class="text-left"><p>Media posterior del coeficiente (interpretación análoga a MLE)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sd</span></code></p></td>
+<td class="text-left"><p>Desviación estándar posterior</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0.025quant</span></code>, <code class="docutils literal notranslate"><span class="pre">0.975quant</span></code></p></td>
+<td class="text-left"><p>Intervalo de credibilidad del 95%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mode</span></code></p></td>
+<td class="text-left"><p>Moda de la distribución posterior</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Si el intervalo <code class="docutils literal notranslate"><span class="pre">[0.025quant,</span> <span class="pre">0.975quant]</span></code> <strong>no contiene el cero</strong>, el efecto es estadísticamente relevante.</p>
+<p><strong>Hiperparámetros</strong> (<code class="docutils literal notranslate"><span class="pre">summary(modelo)$hyperpar</span></code>):</p>
+<ul class="simple">
+<li><p>Para modelos con efectos aleatorios, INLA estima la <strong>precisión</strong> <span class="math notranslate nohighlight">\(\tau = 1/\sigma^2\)</span>. Un valor alto de <span class="math notranslate nohighlight">\(\tau\)</span> indica efectos aleatorios pequeños (poca varianza no explicada).</p></li>
+<li><p>Para el modelo Leroux (<code class="docutils literal notranslate"><span class="pre">generic1</span></code>), el hiperparámetro <code class="docutils literal notranslate"><span class="pre">Beta</span> <span class="pre">for</span> <span class="pre">ID</span></code> corresponde a <span class="math notranslate nohighlight">\(\rho\)</span> — el nivel de dependencia espacial estimado.</p></li>
+</ul>
+</section>
+<section id="seleccion-de-modelos-con-dic-y-waic">
+<h4>Selección de modelos con DIC y WAIC<a class="headerlink" href="#seleccion-de-modelos-con-dic-y-waic" title="Link to this heading">#</a></h4>
+<p>INLA calcula automáticamente DIC y WAIC cuando se especifica <code class="docutils literal notranslate"><span class="pre">control.compute</span> <span class="pre">=</span> <span class="pre">list(dic=TRUE,</span> <span class="pre">waic=TRUE)</span></code>. La lógica de comparación:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Criterio</p></th>
+<th class="head text-left"><p>Regla</p></th>
+<th class="head text-left"><p>Umbral práctico</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>DIC</strong></p></td>
+<td class="text-left"><p>Menor = mejor</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\Delta\)</span>DIC &gt; 10 es sustancial</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>WAIC</strong></p></td>
+<td class="text-left"><p>Menor = mejor</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\Delta\)</span>WAIC &gt; 5 sugiere diferencia real</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se espera la siguiente jerarquía en términos de ajuste: Modelo base (sin CAR) &lt; ICAR &lt; BYM ≈ Leroux. Sin embargo, el modelo más complejo no siempre gana — un modelo más simple puede ser preferible si la diferencia de DIC/WAIC es pequeña.</p>
+</section>
+<section id="diagnostico-de-residuos-moran-i-secuencial">
+<h4>Diagnóstico de residuos: Moran I secuencial<a class="headerlink" href="#diagnostico-de-residuos-moran-i-secuencial" title="Link to this heading">#</a></h4>
+<p>La secuencia de tests de Moran (<code class="docutils literal notranslate"><span class="pre">moran_m1</span></code>, <code class="docutils literal notranslate"><span class="pre">moran_m3</span></code>, <code class="docutils literal notranslate"><span class="pre">moran_m4</span></code>, <code class="docutils literal notranslate"><span class="pre">moran_m5</span></code>) permite evaluar si la estructura espacial explícita reduce la dependencia residual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Modelo 1 (sin CAR) → Moran I significativo (p &lt; 0.05) ✓ Hay dependencia espacial
+Modelo 3 (ICAR)   → Moran I no significativo           ✓ Dependencia capturada
+Modelo 4 (BYM)    → Moran I no significativo           ✓ Dependencia capturada
+Modelo 5 (Leroux) → Moran I no significativo           ✓ Dependencia capturada
+</pre></div>
+</div>
+<p>Si los modelos CAR todavía muestran Moran I significativo, considerar: (a) redefinir la matriz de vecindad, (b) incluir covariables adicionales, o (c) usar modelos de mayor complejidad (BYM jerárquico, ver siguiente capítulo).</p>
+</section>
+<section id="visualizacion-de-los-efectos-espaciales">
+<h4>Visualización de los efectos espaciales<a class="headerlink" href="#visualizacion-de-los-efectos-espaciales" title="Link to this heading">#</a></h4>
+<p>Los valores ajustados <code class="docutils literal notranslate"><span class="pre">m3_icar$summary.fitted[,</span> <span class="pre">&quot;mean&quot;]</span></code> representan la <strong>tasa esperada de deslizamientos</strong> por subcuenca, suavizada por la estructura espacial. Al mapear estos valores junto con los residuos de Pearson:</p>
+<ul class="simple">
+<li><p><strong>Valores ajustados</strong>: muestran el patrón espacial capturado por el modelo — zonas de alto/bajo riesgo.</p></li>
+<li><p><strong>Residuos de Pearson positivos</strong> (observado &gt; esperado): el modelo subestima el riesgo en esa subcuenca.</p></li>
+<li><p><strong>Residuos de Pearson negativos</strong> (observado &lt; esperado): el modelo sobreestima el riesgo.</p></li>
+</ul>
+<p>La comparación de los mapas de residuos entre el modelo base y el modelo ICAR/BYM/Leroux debe mostrar una reducción en la estructura espacial de los residuos (menos clústers visibles), confirmando que la dependencia espacial fue absorbida por el efecto aleatorio latente.</p>
+</section>
+</section>
+</section>
+<section id="actividades">
+<h2>Actividades<a class="headerlink" href="#actividades" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Comparación ICAR, BYM y Leroux:</strong> Ajusta los tres modelos CAR (ICAR, BYM y Leroux) para el dataset de cuencas usando <code class="docutils literal notranslate"><span class="pre">CARBayes</span></code>. Construye una tabla comparativa con: DIC, WAIC, Moran I de residuos (p-valor), y <span class="math notranslate nohighlight">\(\hat{
+ho}\)</span> (para Leroux). ¿Qué modelo recomendarías y por qué?</p></li>
+<li><p><strong>Convergencia MCMC:</strong> Para el modelo Leroux, grafica las trazas MCMC de los tres coeficientes <span class="math notranslate nohighlight">\(eta\)</span> y del parámetro <span class="math notranslate nohighlight">\(
+ho\)</span>. Evalúa la convergencia usando el diagnóstico de Geweke. Si alguna cadena no converge, ¿qué ajustes en los parámetros de muestreo (<code class="docutils literal notranslate"><span class="pre">burnin</span></code>, <code class="docutils literal notranslate"><span class="pre">n.sample</span></code>, <code class="docutils literal notranslate"><span class="pre">thin</span></code>) harías?</p></li>
+<li><p><strong>Interpretación geomorfológica de coeficientes:</strong> Para el modelo BYM ajustado al dataset de cuencas, calcula los Incidence Rate Ratios (<span class="math notranslate nohighlight">\(e^{\hat{eta}_k}\)</span>) para cada covariable. Interpreta cada uno en términos geomorfológicos: ¿qué significa un IRR de 1.5 para la pendiente media?</p></li>
+<li><p><strong>Efectos aleatorios espaciales:</strong> Del modelo ICAR ajustado con INLA, extrae los efectos aleatorios <span class="math notranslate nohighlight">\(\hat{\phi}_i\)</span> (<code class="docutils literal notranslate"><span class="pre">m3_icar$summary.random$ID$mean</span></code>). Mapea estos efectos. Las subcuencas con <span class="math notranslate nohighlight">\(\hat{\phi}_i &gt; 0\)</span> tienen una tasa de deslizamientos más alta de lo esperado por las covariables. ¿Se agrupan geográficamente estas subcuencas? ¿Qué variables no medidas podrían explicarlas (litología, cobertura vegetal, etc.)?</p></li>
+</ol>
+</section>
+<section id="recursos-adicionales">
+<h2>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h2>
+<section id="documentacion-oficial">
+<h3>Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cran.r-project.org/web/packages/CARBayes/vignettes/CARBayes.pdf">CARBayes (R) — CRAN</a></p></li>
+<li><p><a class="reference external" href="https://www.r-inla.org/">R-INLA Project</a></p></li>
+<li><p><a class="reference external" href="https://www.r-inla.org/examples-tutorials">INLA — Tutorials and Examples</a></p></li>
+</ul>
+</section>
+<section id="lecturas-recomendadas">
+<h3>Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Besag, J., York, J., &amp; Mollié, A. (1991). Bayesian image restoration, with two applications in spatial statistics. <em>Annals of the Institute of Statistical Mathematics</em>, 43(1), 1–20.</p></li>
+<li><p>Leroux, B. G., Lei, X., &amp; Breslow, N. (2000). Estimation of disease rates in small areas: A new mixed model for spatial dependence. <em>Statistical Models in Epidemiology, the Environment, and Clinical Trials</em>, 179–191.</p></li>
+<li><p>Lee, D. (2013). CARBayes: An R package for Bayesian spatial modeling with conditional autoregressive priors. <em>Journal of Statistical Software</em>, 55(13), 1–24.</p></li>
+<li><p>Rue, H. &amp; Held, L. (2005). <em>Gaussian Markov Random Fields: Theory and Applications</em>. CRC Press.</p></li>
+<li><p>Gómez-Rubio, V. (2020). <em>Bayesian Inference with INLA</em>. CRC Press. <a class="reference external" href="https://becarioprecario.bitbucket.io/inla-gitbook/">Disponible online</a></p></li>
+</ul>
+</section>
+<section id="recursos-interactivos">
+<h3>Recursos interactivos<a class="headerlink" href="#recursos-interactivos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.paulamoraga.com/book-geospatial/">INLA — Disease Mapping Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://www.paulamoraga.com/">Paula Moraga — Geospatial Health Data with R</a></p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -977,8 +1289,8 @@ Cmatrix &lt;- Diagonal(nrow(aoi), 1) - m5_leroux:</p>
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="10_SAR.html"
@@ -1007,24 +1319,55 @@ Cmatrix &lt;- Diagonal(nrow(aoi), 1) - m5_leroux:</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-conceptual-entre-sar-y-car">Diferencia conceptual entre SAR y CAR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacion-global-sar-vs-condicional-car">Especificación: global (SAR) vs. condicional (CAR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sar-sistema-simultaneo">SAR: sistema simultáneo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#car-propiedad-de-markov-espacial">CAR: propiedad de Markov espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuando-preferir-uno-u-otro">¿Cuándo preferir uno u otro?</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-carbayes-en-r">Modelos con la librería CARBayes en R</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-la-libreria-inla-en-r">Modelos con la librería INLA en R</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-clasico">Modelo gaussiano clásico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-no-estructurados">Modelo Gaussiano con efectos aleatorios NO estructurados</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-gaussiano-con-efectos-aleatorios-estructurados">Modelo Gaussiano con efectos aleatorios estructurados</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-icar">Modelo ICAR</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-icar-intrinsic-car">Modelo ICAR (Intrinsic CAR)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-bym-besag-york-y-mollie">Modelo BYM (Besag, York y Mollié)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-leroux-et-al">Modelo de Leroux et al.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-leroux-et-al-car-propio">Modelo de Leroux et al. (CAR propio)</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-carbayes">Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>CARBayes</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-y-comparacion-de-los-modelos-carbayes">Interpretación y comparación de los modelos CARBayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-autocorrelacion-espacial-residual">1. Diagnóstico de autocorrelación espacial residual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-del-modelo-modelfit">2. Ajuste del modelo: <code class="docutils literal notranslate"><span class="pre">modelfit</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convergencia-mcmc-cadenas-y-trazas">3. Convergencia MCMC: cadenas y trazas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-coeficientes-boldsymbol-beta">4. Interpretación de los coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-parametro-rho-en-el-modelo-de-leroux">5. Interpretación del parámetro <span class="math notranslate nohighlight">\(\rho\)</span> en el modelo de Leroux</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-car-en-r-en-inla">Ejemplo con datos de cuencas de la implementación de modelos CAR en <em>R</em> en <em>INLA</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-output-de-inla-y-comparacion-de-modelos">Interpretación del output de INLA y comparación de modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-del-summary-en-inla">Lectura del <code class="docutils literal notranslate"><span class="pre">summary()</span></code> en INLA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-modelos-con-dic-y-waic">Selección de modelos con DIC y WAIC</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-residuos-moran-i-secuencial">Diagnóstico de residuos: Moran I secuencial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-los-efectos-espaciales">Visualización de los efectos espaciales</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-interactivos">Recursos interactivos</a></li>
 </ul>
 </li>
 </ul>
@@ -1048,6 +1391,7 @@ By Edier V. Aristizábal G.
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1074,8 +1418,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

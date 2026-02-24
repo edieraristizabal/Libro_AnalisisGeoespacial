@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Regresión Ponderada Geográficamente (GWR) &#8212; Análisis Geoespacial</title>
   
@@ -15,60 +14,56 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '13_MGWR';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Kriging con Python" href="14_Kriging.html" />
-    <link rel="prev" title="Modelos con dependencia y hetereogeneidad espacial" href="12_CARJerarquicos.html" />
+    <link rel="prev" title="Modelos con dependencia y heterogeneidad espacial" href="12_CARJerarquicos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -159,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -169,12 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -183,8 +202,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y heterogeneidad espacial</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="14_Kriging.html">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -205,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -343,26 +365,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -383,8 +407,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ponderada-geograficamente-multiescala-mgwr">Regresión Ponderada Geográficamente Multiescala (MGWR)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ponderada-geograficamente-multiescala-mgwr">Regresión Ponderada Geográficamente Multiescala (MGWR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -394,10 +428,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="regresion-ponderada-geograficamente-gwr">
-<h1>Regresión Ponderada Geográficamente (GWR)<a class="headerlink" href="#regresion-ponderada-geograficamente-gwr" title="Permalink to this heading">#</a></h1>
+<h1>Regresión Ponderada Geográficamente (GWR)<a class="headerlink" href="#regresion-ponderada-geograficamente-gwr" title="Link to this heading">#</a></h1>
 <p>Los Modelos de Regresión Espacial Ponderados (GWR, por sus siglas en inglés) constituyen una herramienta estadística avanzada desarrollada para analizar la heterogeneidad espacial de relaciones entre una variable respuesta y un conjunto de variables predictoras en un contexto geográfico (Brunsdon 1996, Fotheringham 2000, Fotheringham 2009). A diferencia de los modelos de regresión tradicional, que asumen que la relación entre las variables es constante en todo el espacio de estudio, los modelos GWR permiten que los coeficientes varíen de manera local. Esto se logra ajustando un modelo de regresión independiente en cada ubicación geográfica, utilizando datos cercanos para ponderar las estimaciones (Brunsdon 1996). Esta metodología es particularmente valiosa para el análisis de susceptibilidad a movimientos en masa, ya que permite representar cómo las diferentes condiciones del terreno afectan la susceptibilidad de manera no uniforme a lo largo de un área.</p>
 <p>La formulación matemática de un modelo de regresión espacial ponderada es de la siguiente forma (Brunsdon 1996):</p>
 <div class="math notranslate nohighlight">
@@ -408,15 +442,26 @@ document.write(`
 <p>Una de las principales ventajas de los modelos GWR es la facilidad con la que los resultados de GWR pueden ser interpretados y visualizados en un contexto espacial, facilitando la identificación de patrones locales de susceptibilidad y ayudando a la toma de decisiones. Los mapas de coeficientes permiten identificar áreas donde ciertas variables tienen una mayor o menor influencia, aportando información útil para el manejo territorial y la planificación.</p>
 <p>Sin embargo, los modelos GWR también presentan limitaciones importantes. Una de ellas es la multicolinealidad local, ya que, debido a la naturaleza local de las regresiones, es posible que en algunas áreas las variables predictoras estén altamente correlacionadas, lo que dificulta la interpretación de los coeficientes (Fotheringham 2000, Brunsdon 1996). Además, los modelos GWR suelen ser computacionalmente más exigentes que los modelos de regresión globales o clásicos, especialmente cuando se trabaja con grandes volúmenes de datos espaciales.</p>
 <p>Otra limitación a destacar es la selección del ancho de banda (BW) del kernel de ponderación (Guo 2008). El BW determina cuántas observaciones se consideran en el cálculo de los coeficientes locales, y su elección tiene un impacto en los resultados del modelo. Un BW demasiado amplio puede resultar en un modelo más similar a una regresión global, mientras que un BW muy estrecho puede llevar a resultados sobre-ajustados y poco generalizables. La selección adecuada del BW suele requerir un proceso iterativo y cuidadoso.</p>
+<section id="objetivos-de-aprendizaje">
+<h2>Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este notebook, el estudiante será capaz de:</p>
+<ul class="simple">
+<li><p>Comprender el principio de no-estacionariedad espacial: coeficientes que varían en el espacio.</p></li>
+<li><p>Ajustar un modelo GWR (Geographically Weighted Regression) con <code class="docutils literal notranslate"><span class="pre">mgwr</span></code> y seleccionar el ancho de banda óptimo.</p></li>
+<li><p>Extender el GWR al MGWR (Multiscale GWR), donde cada predictor tiene su propia escala espacial.</p></li>
+<li><p>Mapear e interpretar los coeficientes localmente variables de cada covariable.</p></li>
+<li><p>Identificar las escalas espaciales de cada predictor y relacionarlas con procesos geomorfológicos.</p></li>
+</ul>
+<p><strong>Requisitos previos:</strong> <code class="docutils literal notranslate"><span class="pre">09_SpatialRegression</span></code> — regresión espacial OLS; <code class="docutils literal notranslate"><span class="pre">07_MatrizCorrelacion</span></code> — autocorrelación espacial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libpysal</span> <span class="k">as</span> <span class="nn">ps</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ps</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -594,8 +639,8 @@ memory usage: 21.2 KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Calibrate GWR model</span>
-<span class="kn">from</span> <span class="nn">mgwr.gwr</span> <span class="kn">import</span> <span class="n">GWR</span><span class="p">,</span> <span class="n">MGWR</span>
-<span class="kn">from</span> <span class="nn">mgwr.sel_bw</span> <span class="kn">import</span> <span class="n">Sel_BW</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mgwr.gwr</span><span class="w"> </span><span class="kn">import</span> <span class="n">GWR</span><span class="p">,</span> <span class="n">MGWR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mgwr.sel_bw</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sel_BW</span>
 
 <span class="n">gwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">)</span>
 <span class="n">gwr_bw</span> <span class="o">=</span> <span class="n">gwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">bw_min</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -797,7 +842,7 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 </div>
 </div>
 <section id="regresion-ponderada-geograficamente-multiescala-mgwr">
-<h2>Regresión Ponderada Geográficamente Multiescala (MGWR)<a class="headerlink" href="#regresion-ponderada-geograficamente-multiescala-mgwr" title="Permalink to this heading">#</a></h2>
+<h3>Regresión Ponderada Geográficamente Multiescala (MGWR)<a class="headerlink" href="#regresion-ponderada-geograficamente-multiescala-mgwr" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Calibrate MGWR model</span>
@@ -805,123 +850,6 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 <span class="n">mgwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">mgwr_bw</span> <span class="o">=</span> <span class="n">mgwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">multi_bw_min</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">mgwr_results</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">mgwr_selector</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b632429e5cbe4841bf847d0aa1a75520"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Calibrate MGWR model</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mgwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">mgwr_bw</span> <span class="o">=</span> <span class="n">mgwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">multi_bw_min</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">mgwr_results</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">mgwr_selector</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:318,</span> in <span class="ni">Sel_BW.search</span><span class="nt">(self, search_method, criterion, bw_min, bw_max, interval, tol, max_iter, init_multi, tol_multi, rss_score, max_iter_multi, multi_bw_min, multi_bw_max, bws_same_times, verbose, pool)</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_score</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">318</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_mbw</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1">#params n by k</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="bp">self</span><span class="o">.</span><span class="n">sel_hist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1">#bw searching history</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:403,</span> in <span class="ni">Sel_BW._mbw</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span> <span class="k">def</span> <span class="nf">sel_func</span><span class="p">(</span><span class="n">bw_func</span><span class="p">,</span> <span class="n">bw_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bw_max</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span>     <span class="k">return</span> <span class="n">bw_func</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span>         <span class="n">search_method</span><span class="o">=</span><span class="n">search_method</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="n">criterion</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>         <span class="n">bw_min</span><span class="o">=</span><span class="n">bw_min</span><span class="p">,</span> <span class="n">bw_max</span><span class="o">=</span><span class="n">bw_max</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">403</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">multi_bw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init_multi</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol_multi</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>                    <span class="bp">self</span><span class="o">.</span><span class="n">max_iter_multi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rss_score</span><span class="p">,</span> <span class="n">gwr_func</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>                    <span class="n">bw_func</span><span class="p">,</span> <span class="n">sel_func</span><span class="p">,</span> <span class="n">multi_bw_min</span><span class="p">,</span> <span class="n">multi_bw_max</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>                    <span class="n">bws_same_times</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\search.py:240,</span> in <span class="ni">multi_bw</span><span class="nt">(init, y, X, n, k, family, tol, max_iter, rss_score, gwr_func, bw_func, sel_func, multi_bw_min, multi_bw_max, bws_same_times, verbose)</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="n">bw</span> <span class="o">=</span> <span class="n">bws</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">240</span>     <span class="n">bw</span> <span class="o">=</span> <span class="n">sel_func</span><span class="p">(</span><span class="n">bw_class</span><span class="p">,</span> <span class="n">multi_bw_min</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">multi_bw_max</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span>     <span class="n">gwr_sel_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">bw_class</span><span class="o">.</span><span class="n">sel_hist</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="n">optim_model</span> <span class="o">=</span> <span class="n">gwr_func</span><span class="p">(</span><span class="n">temp_y</span><span class="p">,</span> <span class="n">temp_X</span><span class="p">,</span> <span class="n">bw</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:398,</span> in <span class="ni">Sel_BW._mbw.&lt;locals&gt;.sel_func</span><span class="nt">(bw_func, bw_min, bw_max)</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span> <span class="k">def</span> <span class="nf">sel_func</span><span class="p">(</span><span class="n">bw_func</span><span class="p">,</span> <span class="n">bw_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bw_max</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">398</span>     <span class="k">return</span> <span class="n">bw_func</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span>         <span class="n">search_method</span><span class="o">=</span><span class="n">search_method</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="n">criterion</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>         <span class="n">bw_min</span><span class="o">=</span><span class="n">bw_min</span><span class="p">,</span> <span class="n">bw_max</span><span class="o">=</span><span class="n">bw_max</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:324,</span> in <span class="ni">Sel_BW.search</span><span class="nt">(self, search_method, criterion, bw_min, bw_max, interval, tol, max_iter, init_multi, tol_multi, rss_score, max_iter_multi, multi_bw_min, multi_bw_max, bws_same_times, verbose, pool)</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="bp">self</span><span class="o">.</span><span class="n">bw_init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1">#scalar, optimal bw from initial gwr model</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">324</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_bw</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="bp">self</span><span class="o">.</span><span class="n">sel_hist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">327</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:341,</span> in <span class="ni">Sel_BW._bw</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">338</span>     <span class="n">a</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_section</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_glob</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_loc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span>                               <span class="bp">self</span><span class="o">.</span><span class="n">constant</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">340</span>     <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.38197</span>  <span class="c1">#1 - (np.sqrt(5.0)-1.0)/2.0</span>
-<span class="ne">--&gt; </span><span class="mi">341</span>     <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">golden_section</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gwr_func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span>                              <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_score</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span>                              <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_method</span> <span class="o">==</span> <span class="s1">&#39;interval&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">345</span>     <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">equal_interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">346</span>                              <span class="n">gwr_func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_score</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\search.py:75,</span> in <span class="ni">golden_section</span><span class="nt">(a, c, delta, function, tol, max_iter, bw_max, int_score, verbose)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="n">score_d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">75</span>     <span class="n">score_d</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span>     <span class="nb">dict</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">score_d</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\sel_bw.py:333,</span> in <span class="ni">Sel_BW._bw.&lt;locals&gt;.&lt;lambda&gt;</span><span class="nt">(bw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="k">def</span> <span class="nf">_bw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">330</span>     <span class="n">gwr_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">bw</span><span class="p">:</span> <span class="n">getDiag</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">](</span><span class="n">GWR</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_loc</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">family</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span>         <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">constant</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span>
-<span class="ne">--&gt; </span><span class="mi">333</span>         <span class="n">offset</span><span class="p">,</span> <span class="n">spherical</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">spherical</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">lite</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_optimized_function</span> <span class="o">=</span> <span class="n">gwr_func</span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_method</span> <span class="o">==</span> <span class="s1">&#39;golden_section&#39;</span><span class="p">:</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\mgwr\gwr.py:348,</span> in <span class="ni">GWR.fit</span><span class="nt">(self, ini_params, tol, max_iter, solve, lite, pool)</span>
-<span class="g g-Whitespace">    </span><span class="mi">345</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">346</span>     <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nn">--&gt; 348 rslt = Parallel(n_jobs=self.n_jobs)(delayed(self._local_fit)(i) for i</span> in <span class="ni">range</span><span class="nt">(m))</span>
-<span class="g g-Whitespace">    </span><span class="mi">350</span> <span class="n">rslt_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">rslt</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">351</span> <span class="n">influ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rslt_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\joblib\parallel.py:1952,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1946</span> <span class="c1"># The first item from the output is blank, but it makes the interpreter</span>
-<span class="g g-Whitespace">   </span><span class="mi">1947</span> <span class="c1"># progress until it enters the Try/Except block of the generator and</span>
-<span class="g g-Whitespace">   </span><span class="mi">1948</span> <span class="c1"># reach the first `yield` statement. This starts the aynchronous</span>
-<span class="g g-Whitespace">   </span><span class="mi">1949</span> <span class="c1"># dispatch of the tasks to the workers.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1950</span> <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1952</span> <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\joblib\parallel.py:1595,</span> in <span class="ni">Parallel._get_outputs</span><span class="nt">(self, iterator, pre_dispatch)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1592</span>     <span class="k">yield</span>
-<span class="g g-Whitespace">   </span><span class="mi">1594</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1595</span>         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1597</span> <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1598</span>     <span class="c1"># The generator has been garbage collected before being fully</span>
-<span class="g g-Whitespace">   </span><span class="mi">1599</span>     <span class="c1"># consumed. This aborts the remaining tasks if possible and warn</span>
-<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="c1"># the user if necessary.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">File ~\miniconda3\Lib\site-packages\joblib\parallel.py:1707,</span> in <span class="ni">Parallel._retrieve</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1702</span> <span class="c1"># If the next job is not ready for retrieval yet, we just wait for</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span> <span class="c1"># async callbacks to progress.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span> <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span>
-<span class="g g-Whitespace">   </span><span class="mi">1705</span>     <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>         <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span> <span class="o">==</span> <span class="n">TASK_PENDING</span><span class="p">)):</span>
-<span class="ne">-&gt; </span><span class="mi">1707</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="k">continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span> <span class="c1"># We need to be careful: the job list can be filling up as</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span> <span class="c1"># we empty it and Python list are not thread-safe by</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span> <span class="c1"># default hence the use of the lock</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1016,7 +944,7 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Comparison maps of GWR vs. MGWR parameter surfaces where the grey units pertain to statistically insignificant parameters</span>
 
-<span class="kn">from</span> <span class="nn">mgwr.utils</span> <span class="kn">import</span> <span class="n">shift_colormap</span><span class="p">,</span> <span class="n">truncate_colormap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mgwr.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">shift_colormap</span><span class="p">,</span> <span class="n">truncate_colormap</span>
 
 <span class="c1">#Prep plot and add axes</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
@@ -1296,17 +1224,17 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">
-<h2>Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python" title="Permalink to this heading">#</a></h2>
+<h3>Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em><a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">mgwr.gwr</span> <span class="kn">import</span> <span class="n">GWR</span><span class="p">,</span> <span class="n">MGWR</span>
-<span class="kn">from</span> <span class="nn">mgwr.sel_bw</span> <span class="kn">import</span> <span class="n">Sel_BW</span>
-<span class="kn">from</span> <span class="nn">matplotlib_scalebar.scalebar</span> <span class="kn">import</span> <span class="n">ScaleBar</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
-<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mgwr.gwr</span><span class="w"> </span><span class="kn">import</span> <span class="n">GWR</span><span class="p">,</span> <span class="n">MGWR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mgwr.sel_bw</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sel_BW</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib_scalebar.scalebar</span><span class="w"> </span><span class="kn">import</span> <span class="n">ScaleBar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
 <span class="n">np</span><span class="o">.</span><span class="n">float</span> <span class="o">=</span> <span class="nb">float</span> 
 </pre></div>
 </div>
@@ -1315,8 +1243,8 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the dataset</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/edieraristizabal/ModeloMultinivel/raw/refs/heads/main/DATA/df_catchments_spatial.gpkg&quot;</span>
 
@@ -1663,6 +1591,42 @@ X3                       -0.218      0.002     -0.221     -0.218     -0.213
 </div>
 </section>
 </section>
+<section id="actividades">
+<h2>Actividades<a class="headerlink" href="#actividades" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>GWR vs. OLS:</strong> Ajusta un GWR al dataset de cuencas para la variable respuesta <code class="docutils literal notranslate"><span class="pre">lands_rec</span></code> (transformada). Extrae los coeficientes locales de <code class="docutils literal notranslate"><span class="pre">slope_mean</span></code> y mapéalos. ¿En qué zonas el efecto de la pendiente es más fuerte? ¿Coincide con la distribución conocida de deslizamientos?</p></li>
+<li><p><strong>Selección de ancho de banda:</strong> Compara el AIC del GWR para al menos tres anchos de banda fijos (50, 100, 150 km) versus el ancho de banda óptimo seleccionado automáticamente por <code class="docutils literal notranslate"><span class="pre">Sel_BW</span></code>. ¿Cómo cambia la variación espacial de los coeficientes con el ancho de banda?</p></li>
+<li><p><strong>Comparación GWR vs. MGWR:</strong> Ajusta tanto el GWR como el MGWR al mismo dataset. Para cada covariable, compara el ancho de banda óptimo en MGWR. ¿Qué variable opera a una escala más local (ancho de banda pequeño) y cuál a una escala más regional (ancho de banda grande)? Interpreta este resultado geomorfológicamente.</p></li>
+<li><p><strong>Significancia estadística de coeficientes locales:</strong> Para el MGWR, identifica las subcuencas donde el coeficiente local de <code class="docutils literal notranslate"><span class="pre">RainfallDaysmean</span></code> es estadísticamente significativo (t &gt; 1.96). Mapea estas subcuencas. ¿Representan un patrón geográfico coherente con las zonas de mayor precipitación?</p></li>
+</ol>
+</section>
+<section id="recursos-adicionales">
+<h2>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h2>
+<section id="documentacion-oficial">
+<h3>Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mgwr.readthedocs.io/">mgwr — Multiscale GWR (Python)</a></p></li>
+<li><p><a class="reference external" href="https://sgsup.asu.edu/sparc/gwr4">GWR4 — Software oficial de Fotheringham</a></p></li>
+</ul>
+</section>
+<section id="lecturas-recomendadas">
+<h3>Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Fotheringham, A. S., Brunsdon, C., &amp; Charlton, M. (2002). <em>Geographically Weighted Regression: The Analysis of Spatially Varying Relationships</em>. Wiley.</p></li>
+<li><p>Fotheringham, A. S., Yang, W., &amp; Kang, W. (2017). Multiscale geographically weighted regression. <em>Annals of the American Association of Geographers</em>, 107(6), 1247–1265.</p></li>
+<li><p>Brunsdon, C., Fotheringham, A. S., &amp; Charlton, M. (1996). Geographically weighted regression: A method for exploring spatial nonstationarity. <em>Geographical Analysis</em>, 28(4), 281–298.</p></li>
+<li><p>Wheeler, D. &amp; Tiefelsdorf, M. (2005). Multicollinearity and correlation among local regression coefficients in geographically weighted regression. <em>Journal of Geographical Systems</em>, 7(2), 161–187.</p></li>
+</ul>
+</section>
+<section id="tutoriales">
+<h3>Tutoriales<a class="headerlink" href="#tutoriales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mgwr.readthedocs.io/en/latest/notebooks/Notebooks.html">mgwr — Python Tutorials</a></p></li>
+<li><p><a class="reference external" href="https://geodacenter.github.io/workbook/9b_gwr2/lab9b.html">GWR en GeoDa</a></p></li>
+</ul>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1691,8 +1655,8 @@ X3                       -0.218      0.002     -0.221     -0.218     -0.213
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="12_CARJerarquicos.html"
@@ -1700,7 +1664,7 @@ X3                       -0.218      0.002     -0.221     -0.218     -0.213
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Modelos con dependencia y hetereogeneidad espacial</p>
+        <p class="prev-next-title">Modelos con dependencia y heterogeneidad espacial</p>
       </div>
     </a>
     <a class="right-next"
@@ -1721,14 +1685,25 @@ X3                       -0.218      0.002     -0.221     -0.218     -0.213
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ponderada-geograficamente-multiescala-mgwr">Regresión Ponderada Geográficamente Multiescala (MGWR)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ponderada-geograficamente-multiescala-mgwr">Regresión Ponderada Geográficamente Multiescala (MGWR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-gwr-en-python">Ejemplo con datos de cuencas de la implementación de GWR en <em>Python</em></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -1750,6 +1725,7 @@ By Edier V. Aristizábal G.
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1776,8 +1752,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

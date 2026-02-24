@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Modelos de Regresión para Heterogeneidad Espacial &#8212; Análisis Geoespacial</title>
   
@@ -15,59 +14,55 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '12_Jerarquicos';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Modelos con dependencia y hetereogeneidad espacial" href="12_CARJerarquicos.html" />
+    <link rel="next" title="Modelos con dependencia y heterogeneidad espacial" href="12_CARJerarquicos.html" />
     <link rel="prev" title="Modelos de regresión para dependencia espacial tipo CAR" href="11_CAR.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -159,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -190,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos de Regresión para Heterogeneidad Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y heterogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
@@ -215,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -224,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -353,26 +365,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -393,6 +407,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regimenes-espaciales">Regímenes Espaciales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-variable-efectos-fijos-espaciales">Intercepto variable (Efectos fijos espaciales)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-y-coeficientes-variables">Intercepto y coeficientes variables</a></li>
@@ -401,6 +416,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
 </ul>
 </li>
 </ul>
@@ -412,10 +434,21 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="modelos-de-regresion-para-heterogeneidad-espacial">
-<h1>Modelos de Regresión para Heterogeneidad Espacial<a class="headerlink" href="#modelos-de-regresion-para-heterogeneidad-espacial" title="Permalink to this heading">#</a></h1>
+<h1>Modelos de Regresión para Heterogeneidad Espacial<a class="headerlink" href="#modelos-de-regresion-para-heterogeneidad-espacial" title="Link to this heading">#</a></h1>
+<section id="objetivos-de-aprendizaje">
+<h2>Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este notebook, el estudiante será capaz de:</p>
+<ul class="simple">
+<li><p>Comprender la diferencia entre efectos fijos y efectos aleatorios en modelos jerárquicos/multinivel.</p></li>
+<li><p>Especificar modelos con intercepto aleatorio y pendientes aleatorias por grupo en R (<code class="docutils literal notranslate"><span class="pre">lme4</span></code>, INLA).</p></li>
+<li><p>Calcular e interpretar el Coeficiente de Correlación Intraclase (ICC).</p></li>
+<li><p>Aplicar modelos jerárquicos logísticos al dataset de cuencas para modelar la presencia/ausencia de deslizamientos.</p></li>
+<li><p>Evaluar el modelo con pseudo-R², curva ROC y análisis de los efectos aleatorios estimados.</p></li>
+</ul>
+<p><strong>Requisitos previos:</strong> <code class="docutils literal notranslate"><span class="pre">09_SpatialRegression</span></code> — regresión lineal espacial; <code class="docutils literal notranslate"><span class="pre">04_GLMPhyton</span></code> — GLM logístico; R básico con <code class="docutils literal notranslate"><span class="pre">lme4</span></code>.</p>
 <p>La heterogeneidad espacial es una característica fundamental de los datos geoespaciales y suponen importantes desafíos para los modelos estadísticos convencionales (Anselin 1988, Cressie 2015, Lesage 2009). La heterogeneidad espacial se refiere a la variabilidad de las condiciones del terreno a lo largo del espacio (Anselin 1990). Por ejemplo, las propiedades geomorfológicas de una ladera pueden diferir sustancialmente de las de otra dentro de una misma cuenca, afectando la susceptibilidad de cada zona a los movimientos en masa.  Ignorar esta heterogeneidad del espacio puede llevar a una subestimación o sobrestimación de la susceptibilidad en ciertas zonas del área de estudio.</p>
 <p>Para abordar estas limitaciones, se han desarrollado modelos que permiten la variación espacial de los coeficientes de las variables predictoras, permitiendo capturar la heterogeneidad inherente al terreno (Rey et al. 2023). Entre estos enfoques se encuentran los modelos multiniveles (Wong 1985) (también conocidos como jerárquicos, y en algunos casos modelos mixtos o regímenes espaciales) y los modelos de regresión espacial ponderada (GWR, por sus siglas en inglés) (Brunsdon 1996). Los modelos multiniveles permiten modelar la variabilidad espacial mediante la introducción de estructuras jerárquicas, asignando un coeficiente e intercepto para cada nivel o región incorporada en el modelo. Lo cual resulta particularmente útil cuando los datos presentan una organización natural en grupos o niveles (por ejemplo, cuencas y subcuencas). Estos nos permiten modelar explícitamente tanto los efectos a nivel poblacional (efectos fijos) como las desviaciones específicas por grupo (efectos aleatorios), capturando la variabilidad estructurada de los datos en lugar de forzar a que todas las observaciones se comporten como si fueran independientes. Los modelos de efectos mixtos son adecuados para analizar datos correlacionados o anidados, proporcionando una inferencia más precisa y una mejor representación de estructuras complejas del mundo real. En un modelo con efectos mixtos, tenemos:</p>
 <ul class="simple">
@@ -438,16 +471,17 @@ document.write(`
 </li>
 </ul>
 <p>En contraste, los modelos GWR son menos complejos computacionalmente, ya que no requieren definir niveles jerárquicos. Los modelos GWR permiten que los coeficientes de las variables predictoras varíen para cada observación, proporcionando una caracterización más detallada de la influencia de las variables en función de su localización geográfica. Ambos enfoques presentan ventajas significativas frente a los modelos tradicionales, al capturar la variabilidad espacial, mejorando la precisión en la evaluación de la susceptibilidad a movimientos en masa.</p>
+</section>
 <section id="regimenes-espaciales">
-<h2>Regímenes Espaciales<a class="headerlink" href="#regimenes-espaciales" title="Permalink to this heading">#</a></h2>
+<h2>Regímenes Espaciales<a class="headerlink" href="#regimenes-espaciales" title="Link to this heading">#</a></h2>
 <p>En el siguiente ejemplo queremos conocer la relación que hay entre el número de carros y los niveles de contaminación en una ciudad. En el análisis inicial se desconoce en el análisis las comunas de la ciudad, en este caso Belén, Centro y el Poblado. Los resultados indican que a mayor número de carros menores valores de contaminación.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 
 <span class="c1"># Data generation</span>
 <span class="n">group_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -497,7 +531,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6ebf25804bef364c61a5ca3146cc01da22ecd22534a2d5ab06c7c5abe93fe551.png" src="_images/6ebf25804bef364c61a5ca3146cc01da22ecd22534a2d5ab06c7c5abe93fe551.png" />
+<img alt="_images/7f0912caf23925db49efa41ae0cbe8b6fc9719f893f3fe7ac5de95e6971188fe.png" src="_images/7f0912caf23925db49efa41ae0cbe8b6fc9719f893f3fe7ac5de95e6971188fe.png" />
 </div>
 </div>
 <p>Pero si incorporamos en el análisis la variable comuna, lo que significa que cada comuna tiene sus condiciones particulares, y realizamos una regresión para cada grupo de datos, los resultados del análisis cambian completamente.</p>
@@ -532,12 +566,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a29f8549114cb7b97585d8e39d6dee72eec2bcabb15334530afa8d3bcb42986a.png" src="_images/a29f8549114cb7b97585d8e39d6dee72eec2bcabb15334530afa8d3bcb42986a.png" />
+<img alt="_images/e03123cd3e76c8f7d1c7cf205333b2cee22d36b7bd7591490f4292ab12636e83.png" src="_images/e03123cd3e76c8f7d1c7cf205333b2cee22d36b7bd7591490f4292ab12636e83.png" />
 </div>
 </div>
 <p>Cómo podemos entonces realizar uan regresión donde tome todos los datos y los elementos que comparten en común, pero que al mismo tiempo considere los cambios espaciales que hay por regiones.</p>
 <section id="intercepto-variable-efectos-fijos-espaciales">
-<h3>Intercepto variable (Efectos fijos espaciales)<a class="headerlink" href="#intercepto-variable-efectos-fijos-espaciales" title="Permalink to this heading">#</a></h3>
+<h3>Intercepto variable (Efectos fijos espaciales)<a class="headerlink" href="#intercepto-variable-efectos-fijos-espaciales" title="Link to this heading">#</a></h3>
 <p>Mientras asumimos que nuestra variable de proximidad podría representar un premium difícil de medir que las personas pagan cuando están cerca de una zona recreativa. Sin embargo, no todos los vecindarios son iguales; algunos vecindarios pueden ser más lucrativos que otros, independientemente de su proximidad a Balboa Park. Cuando este es el caso, necesitamos alguna forma de tener en cuenta el hecho de que cada vecindario puede experimentar estos tipos de efectos <em>gestalt</em>, únicos. Una forma de hacerlo es capturando la <em>heterogeneidad espacial</em>. En su forma más básica, la <em>heterogeneidad espacial</em> significa que partes del modelo pueden cambiar en diferentes lugares. Por ejemplo, los cambios en la intercepción, <span class="math notranslate nohighlight">\(\alpha\)</span>, pueden reflejar el hecho de que diferentes áreas tienen exposiciones basales diferentes a un proceso dado. Los cambios en los términos de pendiente, <span class="math notranslate nohighlight">\(\beta\)</span>, pueden indicar algún tipo de factor mediador geográfico, como cuando una política gubernamental no se aplica de manera consistente en todas las jurisdicciones. Finalmente, los cambios en la varianza de los residuos, comúnmente denotada como <span class="math notranslate nohighlight">\(\sigma^2\)</span>, pueden introducir heterocedasticidad espacial.</p>
 <p>Para ilustrar los efectos fijos espaciales, consideremos el ejemplo del precio de las casas de la sección anterior para introducir una ilustración más general de “espacio como proxy”. Dado que solo estamos incluyendo dos variables explicativas en el modelo, es probable que estemos omitiendo algunos factores importantes que juegan un papel en la determinación del precio al que se vende una casa. Algunos de ellos, sin embargo, es probable que varíen sistemáticamente en el espacio (por ejemplo, diferentes características del vecindario). Si ese es el caso, podemos controlar esos factores no observados utilizando variables dummy tradicionales pero basando su creación en una regla espacial. Por ejemplo, incluyamos una variable binaria para cada vecindario, indicando si una casa dada se encuentra dentro de dicho área (<code class="docutils literal notranslate"><span class="pre">1</span></code>) o no (<code class="docutils literal notranslate"><span class="pre">0</span></code>). Matemáticamente, ahora estamos ajustando la siguiente ecuación:</p>
 <div class="math notranslate nohighlight">
@@ -550,22 +584,16 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
-<span class="kn">from</span> <span class="nn">pysal.model</span> <span class="kn">import</span> <span class="n">spreg</span>
-<span class="kn">from</span> <span class="nn">pysal.lib</span> <span class="kn">import</span> <span class="n">weights</span>
-<span class="kn">from</span> <span class="nn">pysal.explore</span> <span class="kn">import</span> <span class="n">esda</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sbn</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\spaghetti\network.py:40: FutureWarning: The next major release of pysal/spaghetti (2.0.0) will drop support for all ``libpysal.cg`` geometries. This change is a first step in refactoring ``spaghetti`` that is expected to result in dramatically reduced runtimes for network instantiation and operations. Users currently requiring network and point pattern input as ``libpysal.cg`` geometries should prepare for this simply by converting to ``shapely`` geometries.
-  warnings.warn(dep_msg, FutureWarning, stacklevel=1)
+<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">spreg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.explore</span><span class="w"> </span><span class="kn">import</span> <span class="n">esda</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sbn</span>
 </pre></div>
 </div>
 </div>
@@ -742,7 +770,7 @@ memory usage: 954.8+ KB
 ======================================================================================
 Model:                      OLS                    Adj. R-squared:           0.709    
 Dependent Variable:         log_price              AIC:                      7229.6640
-Date:                       2026-02-18 15:31       BIC:                      7599.1365
+Date:                       2024-10-11 17:58       BIC:                      7599.1365
 No. Observations:           6110                   Log-Likelihood:           -3559.8  
 Df Model:                   54                     F-statistic:              276.9    
 Df Residuals:               6055                   Prob (F-statistic):       0.00     
@@ -1015,7 +1043,7 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://data.insideairbnb.com/united-states/&#39;</span>\
       <span class="s1">&#39;ca/san-diego/2016-07-07/visualisations/&#39;</span>\
       <span class="s1">&#39;neighbourhoods.geojson&#39;</span>
@@ -1050,86 +1078,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Local\Temp\ipykernel_43024\3990184523.py</span> in <span class="ni">?</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">neighborhoods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighborhood_effects</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;neighbourhoods&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                     <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                   <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixed_effect&#39;</span><span class="p">])</span>\
-
-<span class="nn">~\miniconda3\Lib\site-packages\geopandas\geodataframe.py</span> in <span class="ni">?</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1565</span>         <span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pandas</span><span class="o">.</span><span class="n">pydata</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="n">reference</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">pandas</span>\
-<span class="g g-Whitespace">   </span><span class="mi">1566</span> <span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">merge</span><span class="o">.</span><span class="n">html</span>
-<span class="g g-Whitespace">   </span><span class="mi">1567</span>         <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="o">.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1568</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1569</span><span class="s2">         result = DataFrame.merge(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1570</span><span class="s2">         geo_col = self._geometry_column_name</span>
-<span class="g g-Whitespace">   </span><span class="mi">1571</span><span class="s2">         if isinstance(result, DataFrame) and geo_col in result:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1572</span><span class="s2">             result.__class__ = GeoDataFrame</span>
-
-<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\frame.py</span> in <span class="ni">?</span><span class="nt">(self, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
-<span class="g g-Whitespace">   </span><span class="mi">9839</span><span class="s2">         validate: str | None = None,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9840</span><span class="s2">     ) -&gt; DataFrame:</span>
-<span class="g g-Whitespace">   </span><span class="mi">9841</span><span class="s2">         from pandas.core.reshape.merge import merge</span>
-<span class="g g-Whitespace">   </span><span class="mi">9842</span><span class="s2"> </span>
-<span class="ne">-&gt; </span><span class="mi">9843</span><span class="s2">         return merge(</span>
-<span class="g g-Whitespace">   </span><span class="mi">9844</span><span class="s2">             self,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9845</span><span class="s2">             right,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9846</span><span class="s2">             how=how,</span>
-
-<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="s2">     copy: bool | None = None,</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="s2">     indicator: str | bool = False,</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span><span class="s2">     validate: str | None = None,</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span><span class="s2"> ) -&gt; DataFrame:</span>
-<span class="ne">--&gt; </span><span class="mi">148</span><span class="s2">     op = _MergeOperation(</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="s2">         left,</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span><span class="s2">         right,</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="s2">         how=how,</span>
-
-<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(self, left, right, how, on, left_on, right_on, axis, left_index, right_index, sort, suffixes, indicator, validate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">733</span><span class="s2">         (</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span><span class="s2">             self.left_join_keys,</span>
-<span class="g g-Whitespace">    </span><span class="mi">735</span><span class="s2">             self.right_join_keys,</span>
-<span class="g g-Whitespace">    </span><span class="mi">736</span><span class="s2">             self.join_names,</span>
-<span class="ne">--&gt; </span><span class="mi">737</span><span class="s2">         ) = self._get_merge_keys()</span>
-<span class="g g-Whitespace">    </span><span class="mi">738</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">739</span><span class="s2">         # validate the merge keys dtypes. We may need to coerce</span>
-<span class="g g-Whitespace">    </span><span class="mi">740</span><span class="s2">         # to avoid incompatible dtypes</span>
-
-<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\reshape\merge.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1233</span><span class="s2">                 else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1234</span><span class="s2">                     # Then we&#39;re either Hashable or a wrong-length arraylike,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1235</span><span class="s2">                     #  the latter of which will raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">1236</span><span class="s2">                     k = cast(Hashable, k)</span>
-<span class="ne">-&gt; </span><span class="mi">1237</span><span class="s2">                     left_keys.append(left._get_label_or_level_values(k))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1238</span><span class="s2">                     join_names.append(k)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1239</span><span class="s2">             if isinstance(self.right.index, MultiIndex):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1240</span><span class="s2">                 right_keys = [</span>
-
-<span class="nn">~\miniconda3\Lib\site-packages\pandas\core\generic.py</span> in <span class="ni">?</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1774</span><span class="s2">             values = self.xs(key, axis=other_axes[0])._values</span>
-<span class="g g-Whitespace">   </span><span class="mi">1775</span><span class="s2">         elif self._is_level_reference(key, axis=axis):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1776</span><span class="s2">             values = self.axes[axis].get_level_values(key)._values</span>
-<span class="g g-Whitespace">   </span><span class="mi">1777</span><span class="s2">         else:</span>
-<span class="ne">-&gt; </span><span class="mi">1778</span><span class="s2">             raise KeyError(key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1779</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1780</span><span class="s2">         # Check for duplicates</span>
-<span class="g g-Whitespace">   </span><span class="mi">1781</span><span class="s2">         if values.ndim &gt; 1:</span>
-
-<span class="ne">KeyError</span>: &#39;neighbourhoods&#39;
-</pre></div>
-</div>
-<img alt="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" src="_images/f66fd78fe9ecc022901193a201d3bb3d66ae3da4f68267d7432b46e51fedc6dc.png" />
+<img alt="_images/37ff7e0f78a28a5cbd4481283fac3845ee55f7dec5016293d7668e4e127baa30.png" src="_images/37ff7e0f78a28a5cbd4481283fac3845ee55f7dec5016293d7668e4e127baa30.png" />
 </div>
 </div>
 </section>
 <section id="intercepto-y-coeficientes-variables">
-<h3>Intercepto y coeficientes variables<a class="headerlink" href="#intercepto-y-coeficientes-variables" title="Permalink to this heading">#</a></h3>
+<h3>Intercepto y coeficientes variables<a class="headerlink" href="#intercepto-y-coeficientes-variables" title="Link to this heading">#</a></h3>
 <p>En el núcleo de la estimación de efectos fijos espaciales está la idea de que, en lugar de asumir que la variable dependiente se comporta uniformemente en el espacio, existen efectos sistemáticos que siguen un patrón geográfico y afectan su comportamiento. En otras palabras, <strong>los efectos fijos espaciales introducen econometricamente la noción de heterogeneidad espacial</strong>. Lo hacen en la forma más simple posible: al permitir que el término constante varíe geográficamente. Los demás elementos de la regresión permanecen sin cambios y, por lo tanto, se aplican uniformemente en todo el espacio. <strong>La idea de los regímenes espaciales (RE) es generalizar el enfoque de los efectos fijos espaciales para permitir que no solo el término constante varíe, sino también cualquier otra variable explicativa</strong>. Esto implica que la ecuación que estaremos estimando es:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1231,11 +1185,11 @@ Koenker-Bassett test             21         164.276           0.0000
 </section>
 </section>
 <section id="modelos-jerarquicos-con-r">
-<h2>Modelos jerarquicos con R<a class="headerlink" href="#modelos-jerarquicos-con-r" title="Permalink to this heading">#</a></h2>
+<h2>Modelos jerarquicos con R<a class="headerlink" href="#modelos-jerarquicos-con-r" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lme4</span></code> es la librería más utilizada en R para ajustar modelos lineales mixtos (LMMs) y modelos lineales generalizados mixtos (GLMMs). Estos modelos son fundamentales para analizar datos con estructuras jerárquicas o anidadas. <code class="docutils literal notranslate"><span class="pre">lmer()</span></code> se utiliza para ajustar modelos lineales mixtos, donde la variable de respuesta es continua y se asume que sigue una distribución normal, mientras <code class="docutils literal notranslate"><span class="pre">glmer()</span></code> se utiliza para ajustar modelos lineales generalizados mixtos, donde la variable de respuesta puede seguir otras distribuciones (como binomial, Poisson, gamma, etc.). La principal fortaleza de <code class="docutils literal notranslate"><span class="pre">lme4</span></code> radica en su capacidad para modelar efectos aleatorios. Estos efectos permiten capturar la variabilidad asociada a los diferentes niveles de agrupación en los datos jerárquicos (por ejemplo, la variabilidad entre individuos, entre grupos, entre localizaciones, etc.).</p>
 <p>Los efectos fijos (variables predictoras cuyos efectos se asumen constantes en toda la población) se incluyen de manera similar a los modelos lineales estándar (ej., variable_dependiente ~ predictor1 + predictor2). Los efectos aleatorios se añaden utilizando términos como (1 | variable_de_grupo) para un intercepto aleatorio (la media de la variable dependiente varía aleatoriamente entre los grupos definidos por variable_de_grupo), o (predictor | variable_de_grupo) para un efecto aleatorio de pendiente (el efecto del predictor varía aleatoriamente entre los grupos).</p>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r">
-<h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r" title="Link to this heading">#</a></h3>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#importar librerias</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w"> </span><span class="c1">#para importar datos geoespaciales</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">lme4</span><span class="p">)</span><span class="w"> </span><span class="c1"># para el modelo</span>
@@ -1333,7 +1287,7 @@ Koenker-Bassett test             21         164.276           0.0000
 </div>
 </section>
 <section id="ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">
-<h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA<a class="headerlink" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla" title="Link to this heading">#</a></h3>
 <p>WEn la librearía INLA podemos incorporar los efectos aleatorios de la siguiente forma, donde <code class="docutils literal notranslate"><span class="pre">m2_cuenca$summary.random$cuenca</span></code> extrae y muestra un resumen específico de los efectos aleatorios para cada nivel de la variable cuenca. Esto brinda información sobre la media, la desviación estándar y los intervalos de credibilidad de la desviación del intercepto para cada cuenca.</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#basic random intercept (cuenca)</span>
 <span class="n">m2_cuenca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inla</span><span class="p">(</span><span class="n">lands_rec</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RainfallDaysmean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">elev_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">slope_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
@@ -1370,6 +1324,42 @@ Koenker-Bassett test             21         164.276           0.0000
 </div>
 </section>
 </section>
+<section id="actividades">
+<h2>Actividades<a class="headerlink" href="#actividades" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Efectos fijos vs. aleatorios:</strong> Ajusta dos modelos para el dataset de cuencas: (a) regresión logística con efectos fijos de cuenca (variables dummy), y (b) modelo jerárquico con intercepto aleatorio por cuenca. Compara el AIC, el número de parámetros y la interpretabilidad. ¿Cuándo preferirías cada enfoque?</p></li>
+<li><p><strong>Pendientes aleatorias:</strong> Extiende el modelo jerárquico para incluir pendientes aleatorias para <code class="docutils literal notranslate"><span class="pre">slope_mean</span></code> por cuenca. Grafica los intervalos de confianza de las pendientes para cada cuenca. ¿El efecto de la pendiente es homogéneo entre cuencas o varía significativamente?</p></li>
+<li><p><strong>ICC (Intraclass Correlation Coefficient):</strong> Calcula el ICC del modelo con intercepto aleatorio. El ICC mide la proporción de la varianza total que se debe a diferencias entre cuencas. Si ICC = 0.3, ¿qué significa en términos de la similitud de subcuencas dentro de una misma cuenca?</p></li>
+<li><p><strong>Curva ROC por cuenca:</strong> Para el modelo logístico jerárquico, calcula la curva ROC y el AUC por separado para cada cuenca (Atrato, Cauca, Magdalena). ¿Varía el poder predictivo del modelo entre cuencas? ¿Qué implicaciones tiene para la aplicabilidad del modelo en distintas regiones?</p></li>
+</ol>
+</section>
+<section id="recursos-adicionales">
+<h2>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h2>
+<section id="documentacion-oficial">
+<h3>Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf">lme4 (R) — Mixed Effects Models</a></p></li>
+<li><p><a class="reference external" href="https://cran.r-project.org/web/packages/pROC/">pROC (R) — ROC Curves</a></p></li>
+<li><p><a class="reference external" href="https://strengejacke.github.io/sjPlot/">sjPlot (R) — Model Visualization</a></p></li>
+</ul>
+</section>
+<section id="lecturas-recomendadas">
+<h3>Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Gelman, A. &amp; Hill, J. (2007). <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Cambridge University Press.</p></li>
+<li><p>Bates, D. et al. (2015). Fitting linear mixed-effects models using lme4. <em>Journal of Statistical Software</em>, 67(1), 1–48.</p></li>
+<li><p>Snijders, T. A. B. &amp; Bosker, R. J. (2012). <em>Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling</em> (2nd ed.). SAGE.</p></li>
+<li><p>Nakagawa, S. &amp; Schielzeth, H. (2013). A general and simple method for obtaining R² from generalized linear mixed-effects models. <em>Methods in Ecology and Evolution</em>, 4(2), 133–142.</p></li>
+</ul>
+</section>
+<section id="tutoriales">
+<h3>Tutoriales<a class="headerlink" href="#tutoriales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stats.oarc.ucla.edu/r/dae/mixed-effects-logistic-regression/">Introduction to Multilevel Modeling — UCLA</a></p></li>
+<li><p><a class="reference external" href="https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf">lme4 Vignette — Douglas Bates</a></p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1399,8 +1389,8 @@ Koenker-Bassett test             21         164.276           0.0000
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="11_CAR.html"
@@ -1416,7 +1406,7 @@ Koenker-Bassett test             21         164.276           0.0000
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modelos con dependencia y hetereogeneidad espacial</p>
+        <p class="prev-next-title">Modelos con dependencia y heterogeneidad espacial</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1429,12 +1419,14 @@ Koenker-Bassett test             21         164.276           0.0000
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regimenes-espaciales">Regímenes Espaciales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-variable-efectos-fijos-espaciales">Intercepto variable (Efectos fijos espaciales)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intercepto-y-coeficientes-variables">Intercepto y coeficientes variables</a></li>
@@ -1443,6 +1435,13 @@ Koenker-Bassett test             21         164.276           0.0000
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-jerarquicos-con-r">Modelos jerarquicos con R</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-r">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en R</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-con-datos-de-cuencas-de-la-implementacion-de-modelos-jerarquicos-en-inla">Ejemplo con datos de cuencas de la implementación de modelos jerárquicos en INLA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutoriales">Tutoriales</a></li>
 </ul>
 </li>
 </ul>
@@ -1466,6 +1465,7 @@ By Edier V. Aristizábal G.
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1492,8 +1492,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

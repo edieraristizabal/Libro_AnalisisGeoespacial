@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Kriging con Python &#8212; Análisis Geoespacial</title>
   
@@ -15,53 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '14_Kriging';</script>
@@ -78,28 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -121,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
@@ -159,7 +160,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -169,12 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I: Intro</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Ambiente.html">Ambiente computacional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_Data.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_DatosEspaciales.html">Análisis Geoespacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Mapping.html">El arte de hacer mapas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II: Puntos</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_PointPattern.html">Patrón de puntos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III: Áreas</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="04_GLMPhyton.html">Modelos Lineales Generalizados (GML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_Coropleta.html">Visualización de datos discretos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_MatrizCorrelacion.html">Matriz espacial</a></li>
@@ -183,8 +202,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_SAR.html">Modelos de regresión para dependencia espacial tipo SAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_CAR.html">Modelos de regresión para dependencia espacial tipo CAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_Jerarquicos.html">Modelos de Regresión para Heterogeneidad Espacial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y hetereogeneidad espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_CARJerarquicos.html">Modelos con dependencia y heterogeneidad espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_MGWR.html">Regresión Ponderada Geográficamente (GWR)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte IV: Superficies</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Kriging con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_GP.html">Procesos Gaussianos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_GP.html">Procesos Gaussianos con R</a></li>
@@ -205,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -214,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -343,26 +365,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -383,6 +407,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-distance-weighted-idw">Inverse Distance Weighted (IDW)</a></li>
@@ -399,6 +424,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-kriging-universal">Ejemplo Kriging universal</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas">Herramientas</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -408,28 +440,40 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <p style="font-size:11px;"><em><strong>Créditos</strong>: El contenido de este cuaderno ha sido tomado de varias fuentes, pero especialmente de <a href="https://github.com/mmaelicke/scikit-gstat">Scikit GStat</a>, <a href="http://darribas.org/">Dani Arribas-Bel</a> - University of Liverpool & <a href="http://spatial.ucr.edu/peopleRey.html">Sergio Rey</a> - Center for Geospatial Sciences, University of California, Riverside. El compilador se disculpa por cualquier omisión involuntaria y estaría encantado de agregar un reconocimiento.</em></p><section class="tex2jax_ignore mathjax_ignore" id="kriging-con-python">
-<h1>Kriging con Python<a class="headerlink" href="#kriging-con-python" title="Permalink to this heading">#</a></h1>
+<h1>Kriging con Python<a class="headerlink" href="#kriging-con-python" title="Link to this heading">#</a></h1>
 <p>El tipo de análisis estadístico espacial que trata con variables de campo continuo se denomina <strong>geoestadística</strong>. La geoestadística se centra en la descripción de la variación espacial en un conjunto de valores observados y en su predicción en ubicaciones no muestreadas. La idea básica de la geoestadística es describir y estimar las correlaciones espaciales en un conjunto de datos puntuales. Aunque la herramienta principal, el variograma, es bastante fácil de implementar y usar, subyacen muchas suposiciones.</p>
 <p>La aplicación típica de la geoestadística es la interpolación. Por lo tanto, aunque se utilicen datos puntuales, un concepto básico es entender estos datos puntuales como una muestra de una variable continua (espacialmente) que puede describirse como un campo aleatorio, o para ser más precisos, como un campo aleatorio gaussiano en muchos casos. La suposición más fundamental en geoestadística es que dos valores xi y xi+h son más similares cuanto más pequeño sea h, que es una distancia de separación en el campo aleatorio. En otras palabras, los puntos de observación cercanos mostrarán mayores covarianzas que los puntos distantes. En caso de que esta suposición conceptual fundamental no se cumpla para una variable específica, la geoestadística no será la herramienta correcta para analizar e interpolar dicha variable.</p>
 <p>A veces, todo lo que tenemos disponible es un conjunto de puntos con mediciones de la variable de interés que no coinciden con los puntos para los que queremos la información. En esta situación, una solución en la que podemos confiar es la <strong>interpolación espacial</strong>. Para un campo geográfico continuo medido en un conjunto de puntos, los métodos de “interpolación espacial” nos proporcionan una forma de estimar el valor que tomaría un campo en sitios donde no hemos realizado mediciones.</p>
 <p>Existen muchas herramientas de interpolación disponibles, pero generalmente estas herramientas se pueden agrupar en dos categorías: métodos determinísticos y métodos de interpolación.</p>
+<section id="objetivos-de-aprendizaje">
+<h2>Objetivos de aprendizaje<a class="headerlink" href="#objetivos-de-aprendizaje" title="Link to this heading">#</a></h2>
+<p>Al finalizar este notebook, el estudiante será capaz de:</p>
+<ul class="simple">
+<li><p>Aplicar métodos de interpolación espacial determinísticos: vecino más cercano, IDW, Voronoi y Delaunay.</p></li>
+<li><p>Calcular e interpretar el variograma experimental como función de la distancia entre puntos.</p></li>
+<li><p>Ajustar modelos teóricos de variograma (esférico, exponencial, gaussiano) a los datos.</p></li>
+<li><p>Implementar Kriging Ordinario con <code class="docutils literal notranslate"><span class="pre">scikit-gstat</span></code> y <code class="docutils literal notranslate"><span class="pre">pykrige</span></code> para predecir valores en ubicaciones no muestreadas.</p></li>
+<li><p>Cuantificar y mapear la incertidumbre de las predicciones espaciales mediante la varianza de Kriging.</p></li>
+</ul>
+<p><strong>Requisitos previos:</strong> <code class="docutils literal notranslate"><span class="pre">01_DatosEspaciales</span></code> — datos espaciales y raster; nociones de estadística básica (correlación, varianza).</p>
+</section>
 <section id="metodos-deterministicos">
-<h2>Métodos determinísticos<a class="headerlink" href="#metodos-deterministicos" title="Permalink to this heading">#</a></h2>
+<h2>Métodos determinísticos<a class="headerlink" href="#metodos-deterministicos" title="Link to this heading">#</a></h2>
 <section id="interpolacion-por-proximidad">
-<h3>Interpolación por proximidad<a class="headerlink" href="#interpolacion-por-proximidad" title="Permalink to this heading">#</a></h3>
+<h3>Interpolación por proximidad<a class="headerlink" href="#interpolacion-por-proximidad" title="Link to this heading">#</a></h3>
 <p>Fue introducido por Alfred H. Thiessen hace más de un siglo. El objetivo es simple: asignar a todas las ubicaciones no muestreadas el valor de la ubicación muestreada más cercana. Esto genera una superficie teselada donde se conectan líneas que dividen el punto medio entre cada ubicación muestreada, encerrando así un área. Cada área termina rodeando un punto de muestra cuyo valor hereda.</p>
 <center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-proximity-1.png" width="1000"></center><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -555,7 +599,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-87d0c743-a3c2-40e4-86df-4c6703d66357">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -644,7 +691,83 @@ document.write(`
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-87d0c743-a3c2-40e4-86df-4c6703d66357')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-87d0c743-a3c2-40e4-86df-4c6703d66357 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-87d0c743-a3c2-40e4-86df-4c6703d66357');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -683,7 +806,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e8eb92c1b0cfdb352f6a8d498ad33862c28eac338f71d9304aeb7e633f71a269.png" src="_images/e8eb92c1b0cfdb352f6a8d498ad33862c28eac338f71d9304aeb7e633f71a269.png" />
+<img alt="_images/09bf7b5e65e065cb0276953d789940730721203a11a17a3cef2d0559e3e9bacb.png" src="_images/09bf7b5e65e065cb0276953d789940730721203a11a17a3cef2d0559e3e9bacb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -701,15 +824,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7eff69708390&gt;
 </pre></div>
 </div>
-<img alt="_images/d7eae3b0389ba88fdcff6c0a519f438625d3ec777deae3f685134f806602d184.png" src="_images/d7eae3b0389ba88fdcff6c0a519f438625d3ec777deae3f685134f806602d184.png" />
+<img alt="_images/02ff67f2d84e9abc8553894b441d1b2cb1270a996cf8ebbed8e42f6f1e19c087.png" src="_images/02ff67f2d84e9abc8553894b441d1b2cb1270a996cf8ebbed8e42f6f1e19c087.png" />
 </div>
 </div>
 </section>
 <section id="inverse-distance-weighted-idw">
-<h3>Inverse Distance Weighted (IDW)<a class="headerlink" href="#inverse-distance-weighted-idw" title="Permalink to this heading">#</a></h3>
+<h3>Inverse Distance Weighted (IDW)<a class="headerlink" href="#inverse-distance-weighted-idw" title="Link to this heading">#</a></h3>
 <p>La técnica IDW calcula un valor promedio para las ubicaciones no muestreadas utilizando valores de ubicaciones cercanas ponderadas. Los pesos son proporcionales a la proximidad de los puntos muestreados a la ubicación no muestreada y pueden ser especificados por el coeficiente de potencia IDW.</p>
 <p><span class="math notranslate nohighlight">\(\hat{Z_j} = \frac{\sum_i{Z_i/d^n_{ij}}}{\sum_i{1/d^n_{ij}}}\)</span></p>
 <p>Donde <span class="math notranslate nohighlight">\(Z_j\)</span> es la variable de interes a interpolar a partir de los valores de sus vecinos <span class="math notranslate nohighlight">\(Z_i\)</span>, <span class="math notranslate nohighlight">\(d_{ij}\)</span> es la distancia entre el punto <span class="math notranslate nohighlight">\(j\)</span> y cada posición del vecino <span class="math notranslate nohighlight">\(i\)</span> , y <span class="math notranslate nohighlight">\(n\)</span> es un exponente. Cuando <span class="math notranslate nohighlight">\(n=0\)</span> todos los puntos vecinos pesas igual. Cuando <span class="math notranslate nohighlight">\(n\)</span> es grande hace que los puntos cercanos ejerzan una influencia mucho mayor en la ubicación no muestreada que un punto más alejado, lo que resulta en un resultado interpolado que se asemeja a una interpolación de Thiessen.</p>
@@ -722,7 +845,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsRegressor(weights=&#x27;distance&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsRegressor</label><div class="sk-toggleable__content"><pre>KNeighborsRegressor(weights=&#x27;distance&#x27;)</pre></div></div></div></div></div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsRegressor(weights=&#39;distance&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -739,17 +865,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
-<img alt="_images/723b0ac97ce175e9e46fbfd3f063ae5947f63556be2957f01d9029382a71b345.png" src="_images/723b0ac97ce175e9e46fbfd3f063ae5947f63556be2957f01d9029382a71b345.png" />
+<img alt="_images/6dc72ea043e8ef828c6aa2d9667fabeac7574b273f510324750166369ed052e3.png" src="_images/6dc72ea043e8ef828c6aa2d9667fabeac7574b273f510324750166369ed052e3.png" />
 </div>
 </div>
 <p>Para implementar en esta librería la función <em>weights</em> con IDW utilizando un valor de <span class="math notranslate nohighlight">\(n\)</span> diferente, se debe crear una función de la siguiente manera la interpolación IDW con <span class="math notranslate nohighlight">\(𝑘=5\)</span> vecinos y exponente <span class="math notranslate nohighlight">\(𝑝=2\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="k">def</span> <span class="nf">idw_weights</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">idw_weights</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
     <span class="c1"># evita división por cero si hay distancias nulas</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">distances</span><span class="p">[</span><span class="n">distances</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-12</span>
@@ -762,13 +888,13 @@ document.write(`
 </div>
 </section>
 <section id="triangulacion-de-delaunay">
-<h3>Triangulación de Delaunay<a class="headerlink" href="#triangulacion-de-delaunay" title="Permalink to this heading">#</a></h3>
+<h3>Triangulación de Delaunay<a class="headerlink" href="#triangulacion-de-delaunay" title="Link to this heading">#</a></h3>
 <p>Conecta los puntos que comparten un borde en sus celdas de Voronoi para formar una malla de triángulos que cumple la propiedad del círculo vacío (ningún punto interno al circuncírculo de un triángulo). Para cualquier triángulo hay un círculo único que pasa exactamente por sus tres vértices; se llama circuncírculo y su centro es el punto donde se cortan las mediatrices de los lados. En una triangulación de Delaunay, ningún otro punto de la nube de datos (fuera de esos tres vértices) está dentro de ese circuncírculo.</p>
 <p>Voronoi y Delaunay son duales, donde cada arista Voronoi es perpendicular y pasa por el punto medio de la arista Delaunay que conecta los dos sitios vecinos. Cada vértice Voronoi es el centro del circuncírculo de un triángulo Delaunay; a la inversa, cada triángulo Delaunay está formado por los sitios cuyas celdas convergen en ese vértice.</p>
 <p>La dualidad Voronoi ↔ Delaunay permite pasar fácilmente de un modelo basado en áreas de influencia (Thiessen/Voronoi) a uno basado en conectividad y mallas (Delaunay), ambos fundamentales en interpolación y análisis espacial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Delaunay</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Delaunay</span>
 <span class="n">tri</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="p">(</span><span class="n">two_bed_home_locations</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -776,23 +902,26 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">triplot</span><span class="p">(</span><span class="n">two_bed_home_locations</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">two_bed_home_locations</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">tri</span><span class="o">.</span><span class="n">simplices</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">two_bed_home_locations</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">two_bed_home_locations</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c26c5c6d009455397e2a005158b21254e2aa642515d332169cacc69d3953c2fc.png" src="_images/c26c5c6d009455397e2a005158b21254e2aa642515d332169cacc69d3953c2fc.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d70bdfbe80&gt;]
+</pre></div>
+</div>
+<img alt="_images/f76c2aa7d874f3b90936b16e10efb24ead962dc17ac4acdb0eb0268a3b101ebd.png" src="_images/f76c2aa7d874f3b90936b16e10efb24ead962dc17ac4acdb0eb0268a3b101ebd.png" />
 </div>
 </div>
 </section>
 <section id="interpolacion-de-thiessen-poligonos-de-voronoy">
-<h3>Interpolación de Thiessen (Poligonos de Voronoy)<a class="headerlink" href="#interpolacion-de-thiessen-poligonos-de-voronoy" title="Permalink to this heading">#</a></h3>
+<h3>Interpolación de Thiessen (Poligonos de Voronoy)<a class="headerlink" href="#interpolacion-de-thiessen-poligonos-de-voronoy" title="Link to this heading">#</a></h3>
 <p>Asigna al punto desconocido el valor de la muestra en cuyo polígono de Voronoi cae. Produce un mapa escalonado (función 0-orden). Los poligonos de Voronoy dividen el plano en celdas: cada punto del espacio pertenece al sitio muestreado más cercano. No depende de valores, solo de posiciones. Los poligonso de Voronoy son la base geométrica tanto de la <em>interpolación de Thiessen</em> (valor constante por celda) como de la versión <em>límite</em> del IDW cuando el exponente <span class="math notranslate nohighlight">\(𝑝\)</span> tiende a infinito.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">Voronoi</span><span class="p">,</span> <span class="n">voronoi_plot_2d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Voronoi</span><span class="p">,</span> <span class="n">voronoi_plot_2d</span>
 <span class="n">vor</span> <span class="o">=</span> <span class="n">Voronoi</span><span class="p">(</span><span class="n">two_bed_home_locations</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -805,13 +934,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4ef6214fb7fc69f1db4d832ee9582f4312727adaf7490bb116c635da5177da41.png" src="_images/4ef6214fb7fc69f1db4d832ee9582f4312727adaf7490bb116c635da5177da41.png" />
+<img alt="_images/3cea426aeffcd607ef7b6c07018cd9a0e06b0b99946016a1a377341842785e6a.png" src="_images/3cea426aeffcd607ef7b6c07018cd9a0e06b0b99946016a1a377341842785e6a.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="kriging">
-<h2>Kriging<a class="headerlink" href="#kriging" title="Permalink to this heading">#</a></h2>
+<h2>Kriging<a class="headerlink" href="#kriging" title="Link to this heading">#</a></h2>
 <p>Existen varias formas de interpoladores kriging: ordinario, universal y simple, por nombrar algunos. Esta sección se centrará en la interpolación por kriging ordinario (OK). Esta forma de kriging generalmente involucra cuatro pasos:</p>
 <ul class="simple">
 <li><p>Eliminar cualquier tendencia espacial en los datos.</p></li>
@@ -829,19 +958,19 @@ document.write(`
 </pre></div>
 </div>
 <section id="experimental-variogram">
-<h3>Experimental variogram<a class="headerlink" href="#experimental-variogram" title="Permalink to this heading">#</a></h3>
+<h3>Experimental variogram<a class="headerlink" href="#experimental-variogram" title="Link to this heading">#</a></h3>
 <center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-variogram-1.png" width="800"></center>
 <center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-sample-variogram-1.png" width="800"></center>
 </section>
 <section id="modelos-de-variograma">
-<h3>Modelos de Variograma<a class="headerlink" href="#modelos-de-variograma" title="Permalink to this heading">#</a></h3>
+<h3>Modelos de Variograma<a class="headerlink" href="#modelos-de-variograma" title="Link to this heading">#</a></h3>
 <center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-variogram-models-1.png" width="800"></center>
 </section>
 <section id="parametros">
-<h3>Parámetros<a class="headerlink" href="#parametros" title="Permalink to this heading">#</a></h3>
+<h3>Parámetros<a class="headerlink" href="#parametros" title="Link to this heading">#</a></h3>
 <center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-model-explained-1.png" width="1000"></center></section>
 <section id="scikit-gstat">
-<h3>Scikit-Gstat<a class="headerlink" href="#scikit-gstat" title="Permalink to this heading">#</a></h3>
+<h3>Scikit-Gstat<a class="headerlink" href="#scikit-gstat" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://scikit-gstat.readthedocs.io/en/latest/userguide/introduction.html">Scikit-gstat</a> es un módulo de análisis de geoestadística con un estilo similar a scipy. Incluye dos clases base: Variogram y OrdinaryKriging. Adicionalmente, se encuentran disponibles diversas clases de variogramas que heredan de Variogram para resolver tareas relacionadas con la dirección o espacio-tiempo. El módulo hace uso de una rica selección de estimadores de semivarianza y funciones de modelos de variogramas, mientras que sigue siendo extensible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -850,7 +979,98 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-gstat in c:\users\edier\miniconda3\lib\site-packages (1.0.16)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting scikit-gstat
+  Downloading scikit_gstat-1.0.16-py3-none-any.whl (708 kB)
+                                              0.0/708.3 kB ? eta -:--:--
+                                              10.2/708.3 kB ? eta -:--:--
+                                              10.2/708.3 kB ? eta -:--:--
+     -                                     30.7/708.3 kB 217.9 kB/s eta 0:00:04
+     -                                     30.7/708.3 kB 217.9 kB/s eta 0:00:04
+     -                                     30.7/708.3 kB 217.9 kB/s eta 0:00:04
+     ---                                   61.4/708.3 kB 217.9 kB/s eta 0:00:03
+     ---                                   71.7/708.3 kB 218.6 kB/s eta 0:00:03
+     ----                                  92.2/708.3 kB 275.8 kB/s eta 0:00:03
+     ------                               122.9/708.3 kB 300.4 kB/s eta 0:00:02
+     -------                              153.6/708.3 kB 339.7 kB/s eta 0:00:02
+     ---------                            194.6/708.3 kB 393.0 kB/s eta 0:00:02
+     -----------                          225.3/708.3 kB 416.7 kB/s eta 0:00:02
+     -----------                          225.3/708.3 kB 416.7 kB/s eta 0:00:02
+     -----------                          235.5/708.3 kB 400.1 kB/s eta 0:00:02
+     -------------                        256.0/708.3 kB 393.2 kB/s eta 0:00:02
+     --------------                       276.5/708.3 kB 405.9 kB/s eta 0:00:02
+     --------------                       286.7/708.3 kB 401.9 kB/s eta 0:00:02
+     --------------                       286.7/708.3 kB 401.9 kB/s eta 0:00:02
+     ----------------                     317.4/708.3 kB 385.4 kB/s eta 0:00:02
+     ----------------                     317.4/708.3 kB 385.4 kB/s eta 0:00:02
+     -----------------                    337.9/708.3 kB 367.8 kB/s eta 0:00:02
+     -----------------                    337.9/708.3 kB 367.8 kB/s eta 0:00:02
+     -----------------                    337.9/708.3 kB 367.8 kB/s eta 0:00:02
+     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
+     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
+     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
+     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
+     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
+     ------------------                   368.6/708.3 kB 290.2 kB/s eta 0:00:02
+     ------------------                   368.6/708.3 kB 290.2 kB/s eta 0:00:02
+     ------------------                   368.6/708.3 kB 290.2 kB/s eta 0:00:02
+     -------------------                  389.1/708.3 kB 275.5 kB/s eta 0:00:02
+     -------------------                  389.1/708.3 kB 275.5 kB/s eta 0:00:02
+     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
+     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
+     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
+     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
+     --------------------                 409.6/708.3 kB 241.2 kB/s eta 0:00:02
+     --------------------                 409.6/708.3 kB 241.2 kB/s eta 0:00:02
+     --------------------                 409.6/708.3 kB 241.2 kB/s eta 0:00:02
+     ---------------------                430.1/708.3 kB 231.6 kB/s eta 0:00:02
+     ---------------------                430.1/708.3 kB 231.6 kB/s eta 0:00:02
+     ---------------------                430.1/708.3 kB 231.6 kB/s eta 0:00:02
+     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
+     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
+     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
+     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
+     -----------------------              460.8/708.3 kB 215.2 kB/s eta 0:00:02
+     -----------------------              460.8/708.3 kB 215.2 kB/s eta 0:00:02
+     -----------------------              460.8/708.3 kB 215.2 kB/s eta 0:00:02
+     ------------------------             481.3/708.3 kB 212.3 kB/s eta 0:00:02
+     ------------------------             481.3/708.3 kB 212.3 kB/s eta 0:00:02
+     ------------------------             491.5/708.3 kB 205.3 kB/s eta 0:00:02
+     ------------------------             491.5/708.3 kB 205.3 kB/s eta 0:00:02
+     ------------------------             491.5/708.3 kB 205.3 kB/s eta 0:00:02
+     --------------------------           512.0/708.3 kB 203.2 kB/s eta 0:00:01
+     --------------------------           512.0/708.3 kB 203.2 kB/s eta 0:00:01
+     ---------------------------          532.5/708.3 kB 203.8 kB/s eta 0:00:01
+     ---------------------------          532.5/708.3 kB 203.8 kB/s eta 0:00:01
+     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
+     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
+     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
+     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
+     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
+     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
+     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
+     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
+     -----------------------------        573.4/708.3 kB 185.8 kB/s eta 0:00:01
+     -----------------------------        573.4/708.3 kB 185.8 kB/s eta 0:00:01
+     -----------------------------        573.4/708.3 kB 185.8 kB/s eta 0:00:01
+     ------------------------------       593.9/708.3 kB 183.1 kB/s eta 0:00:01
+     ------------------------------       593.9/708.3 kB 183.1 kB/s eta 0:00:01
+     ------------------------------       593.9/708.3 kB 183.1 kB/s eta 0:00:01
+     -------------------------------      614.4/708.3 kB 184.1 kB/s eta 0:00:01
+     -------------------------------      624.6/708.3 kB 183.7 kB/s eta 0:00:01
+     -------------------------------      624.6/708.3 kB 183.7 kB/s eta 0:00:01
+     --------------------------------     645.1/708.3 kB 184.7 kB/s eta 0:00:01
+     --------------------------------     645.1/708.3 kB 184.7 kB/s eta 0:00:01
+     --------------------------------     645.1/708.3 kB 184.7 kB/s eta 0:00:01
+     ---------------------------------    655.4/708.3 kB 181.9 kB/s eta 0:00:01
+     ---------------------------------    655.4/708.3 kB 181.9 kB/s eta 0:00:01
+     ---------------------------------    655.4/708.3 kB 181.9 kB/s eta 0:00:01
+     ----------------------------------   675.8/708.3 kB 181.3 kB/s eta 0:00:01
+     ----------------------------------   675.8/708.3 kB 181.3 kB/s eta 0:00:01
+     ----------------------------------   675.8/708.3 kB 181.3 kB/s eta 0:00:01
+     -----------------------------------  696.3/708.3 kB 177.7 kB/s eta 0:00:01
+     -----------------------------------  696.3/708.3 kB 177.7 kB/s eta 0:00:01
+     -----------------------------------  696.3/708.3 kB 177.7 kB/s eta 0:00:01
+     ------------------------------------ 708.3/708.3 kB 175.9 kB/s eta 0:00:00
 Requirement already satisfied: scipy in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (1.11.3)
 Requirement already satisfied: numpy in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (1.25.1)
 Requirement already satisfied: pandas in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (2.0.3)
@@ -874,15 +1094,17 @@ Requirement already satisfied: joblib&gt;=1.1.1 in c:\users\edier\miniconda3\lib
 Requirement already satisfied: threadpoolctl&gt;=2.0.0 in c:\users\edier\miniconda3\lib\site-packages (from scikit-learn-&gt;scikit-gstat) (3.2.0)
 Requirement already satisfied: colorama in c:\users\edier\miniconda3\lib\site-packages (from tqdm-&gt;scikit-gstat) (0.4.6)
 Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;scikit-gstat) (1.16.0)
+Installing collected packages: scikit-gstat
+Successfully installed scikit-gstat-1.0.16
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">skgstat</span> <span class="k">as</span> <span class="nn">skg</span>
-<span class="kn">from</span> <span class="nn">skgstat</span> <span class="kn">import</span> <span class="n">Variogram</span><span class="p">,</span> <span class="n">OrdinaryKriging</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">skgstat</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">skg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skgstat</span><span class="w"> </span><span class="kn">import</span> <span class="n">Variogram</span><span class="p">,</span> <span class="n">OrdinaryKriging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -943,10 +1165,10 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x27cf429cc50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1d70c839610&gt;
 </pre></div>
 </div>
-<img alt="_images/30946f02bb65769e960152f214dc89b306cfc468d218a5589923b5e05f88dd15.png" src="_images/30946f02bb65769e960152f214dc89b306cfc468d218a5589923b5e05f88dd15.png" />
+<img alt="_images/b148e14aeaa2502366ca4c464a0af9a7caa1181280b1e64cc4c38dd55f778477.png" src="_images/b148e14aeaa2502366ca4c464a0af9a7caa1181280b1e64cc4c38dd55f778477.png" />
 </div>
 </div>
 <p>Ya podemos ver mucho desde aquí:</p>
@@ -963,7 +1185,11 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9094e22cb695fcafe0e83acefe04cd0df532b8b64e643b89f4005e4dca5b913e.png" src="_images/9094e22cb695fcafe0e83acefe04cd0df532b8b64e643b89f4005e4dca5b913e.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\usuario\miniconda3\envs\geospatial\lib\site-packages\skgstat\plotting\variogram_plot.py:123: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+  fig.show()
+</pre></div>
+</div>
+<img alt="_images/776cad9fb63bc08d36d0828649d872098b45ce48746f929d97dcfb9a8ba1c0a4.png" src="_images/776cad9fb63bc08d36d0828649d872098b45ce48746f929d97dcfb9a8ba1c0a4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -973,7 +1199,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model&#39;: &#39;spherical&#39;, &#39;estimator&#39;: &#39;entropy&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;normalized_effective_range&#39;: 1834.26922557867, &#39;normalized_sill&#39;: 1.3943088515026683, &#39;normalized_nugget&#39;: 0, &#39;effective_range&#39;: 30.571153759644503, &#39;sill&#39;: 1.0997281090664, &#39;nugget&#39;: 0, &#39;params&#39;: {&#39;estimator&#39;: &#39;entropy&#39;, &#39;model&#39;: &#39;spherical&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;bin_func&#39;: &#39;even&#39;, &#39;normalize&#39;: False, &#39;fit_method&#39;: &#39;trf&#39;, &#39;fit_sigma&#39;: None, &#39;use_nugget&#39;: False, &#39;maxlag&#39;: 60, &#39;n_lags&#39;: 20, &#39;verbose&#39;: False}, &#39;kwargs&#39;: {}}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model&#39;: &#39;spherical&#39;, &#39;estimator&#39;: &#39;matheron&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;normalized_effective_range&#39;: 2281.7783283856843, &#39;normalized_sill&#39;: 1.8366472766475495, &#39;normalized_nugget&#39;: 0, &#39;effective_range&#39;: 38.02963880642807, &#39;sill&#39;: 1.2512444944568355, &#39;nugget&#39;: 0, &#39;params&#39;: {&#39;estimator&#39;: &#39;matheron&#39;, &#39;model&#39;: &#39;spherical&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;bin_func&#39;: &#39;even&#39;, &#39;normalize&#39;: False, &#39;fit_method&#39;: &#39;trf&#39;, &#39;fit_sigma&#39;: None, &#39;use_nugget&#39;: False, &#39;maxlag&#39;: 60, &#39;n_lags&#39;: 20, &#39;verbose&#39;: False}, &#39;kwargs&#39;: {}}
 </pre></div>
 </div>
 </div>
@@ -985,7 +1211,11 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fddd4d2418b2ff6bf8394434945e3f0e0aece66c29f9a23e0e57358d8a46cc91.png" src="_images/fddd4d2418b2ff6bf8394434945e3f0e0aece66c29f9a23e0e57358d8a46cc91.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\usuario\miniconda3\envs\geospatial\lib\site-packages\skgstat\plotting\variogram_dd_plot.py:49: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+  fig.show()
+</pre></div>
+</div>
+<img alt="_images/67af085e71497acd1d56fcc831ec646dcdf08ed1f0561180370a153a51e8679e.png" src="_images/67af085e71497acd1d56fcc831ec646dcdf08ed1f0561180370a153a51e8679e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1007,7 +1237,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site
  &lt;BarContainer object of 20 artists&gt;)
 </pre></div>
 </div>
-<img alt="_images/dc9f9c1645c807ed3e5d50bec19a53c09adb789360f7e1ba18ffe96589237ca8.png" src="_images/dc9f9c1645c807ed3e5d50bec19a53c09adb789360f7e1ba18ffe96589237ca8.png" />
+<img alt="_images/395303a801da39f4793e41458d92653443766d4afc671e23e433a7b9ea699f23.png" src="_images/395303a801da39f4793e41458d92653443766d4afc671e23e433a7b9ea699f23.png" />
 </div>
 </div>
 <p>El subgráfico superior muestra el histograma del conteo de pares de puntos en cada clase de retraso (lag). Se pueden observar varias cosas aquí:</p>
@@ -1023,10 +1253,10 @@ La forma de la dependencia no se captura del todo bien, pero es suficientemente 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1043879677736883
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.104387967773688
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0997281090664
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2553698540989082
 </pre></div>
 </div>
 </div>
@@ -1098,12 +1328,12 @@ La forma de la dependencia no se captura del todo bien, pero es suficientemente 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0a214a10fcc10dbafc4624cc6e8d02a6ff973b3031a272625c18644d74e42891.png" src="_images/0a214a10fcc10dbafc4624cc6e8d02a6ff973b3031a272625c18644d74e42891.png" />
+<img alt="_images/3a149214ae49762f0eb748b7d9a6f981dfaba922406259387c9890aa40c559f3.png" src="_images/3a149214ae49762f0eb748b7d9a6f981dfaba922406259387c9890aa40c559f3.png" />
 </div>
 </div>
 </section>
 <section id="pykrige">
-<h3>Pykrige<a class="headerlink" href="#pykrige" title="Permalink to this heading">#</a></h3>
+<h3>Pykrige<a class="headerlink" href="#pykrige" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pykrige
@@ -1111,18 +1341,34 @@ La forma de la dependencia no se captura del todo bien, pero es suficientemente 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pykrige in c:\users\edier\miniconda3\lib\site-packages (1.7.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pykrige
+  Downloading PyKrige-1.7.1-cp311-cp311-win_amd64.whl (183 kB)
+                                              0.0/183.9 kB ? eta -:--:--
+     --                                       10.2/183.9 kB ? eta -:--:--
+     --                                       10.2/183.9 kB ? eta -:--:--
+     --                                       10.2/183.9 kB ? eta -:--:--
+     --                                       10.2/183.9 kB ? eta -:--:--
+     --                                       10.2/183.9 kB ? eta -:--:--
+     ------                                 30.7/183.9 kB 93.5 kB/s eta 0:00:02
+     --------                              41.0/183.9 kB 115.9 kB/s eta 0:00:02
+     ------------                          61.4/183.9 kB 164.1 kB/s eta 0:00:01
+     ----------------------               112.6/183.9 kB 273.1 kB/s eta 0:00:01
+     ------------------------             122.9/183.9 kB 266.9 kB/s eta 0:00:01
+     ------------------------------       153.6/183.9 kB 305.7 kB/s eta 0:00:01
+     ------------------------------------ 183.9/183.9 kB 327.1 kB/s eta 0:00:00
 Requirement already satisfied: numpy&lt;2,&gt;=1.14.5 in c:\users\edier\miniconda3\lib\site-packages (from pykrige) (1.25.1)
 Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda3\lib\site-packages (from pykrige) (1.11.3)
+Installing collected packages: pykrige
+Successfully installed pykrige-1.7.1
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Generate synthetic data: 50 points</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># For reproducibility</span>
@@ -1146,9 +1392,9 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pykrige.ok</span> <span class="kn">import</span> <span class="n">OrdinaryKriging</span>
-<span class="kn">from</span> <span class="nn">pykrige.kriging_tools</span> <span class="kn">import</span> <span class="n">write_asc_grid</span>
-<span class="kn">import</span> <span class="nn">pykrige.kriging_tools</span> <span class="k">as</span> <span class="nn">kt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pykrige.ok</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrdinaryKriging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pykrige.kriging_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_asc_grid</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pykrige.kriging_tools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">kt</span>
 
 <span class="c1"># Create the Ordinary Kriging object</span>
 <span class="n">OK</span> <span class="o">=</span> <span class="n">OrdinaryKriging</span><span class="p">(</span>
@@ -1186,13 +1432,13 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 </div>
 </section>
 <section id="ejemplo-kriging-universal">
-<h3>Ejemplo Kriging universal<a class="headerlink" href="#ejemplo-kriging-universal" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo Kriging universal<a class="headerlink" href="#ejemplo-kriging-universal" title="Link to this heading">#</a></h3>
 <p>El Kriging Universal se utiliza cuando se sospecha que existe una tendencia espacial en los datos, es decir, que la media de la variable no es constante en todo el dominio de estudio. En contraste con el Kriging Ordinario, que asume una media constante, el Kriging Universal permite modelar esta tendencia espacial y obtener mejores predicciones en presencia de variaciones en la media. En kriging universal (o regression-kriging/kriging con deriva externa) la predicción en un punto nuevo <span class="math notranslate nohighlight">\(𝑠_0\)</span> se descompone en dos piezas:</p>
 <p>donde <span class="math notranslate nohighlight">\(𝑒(𝑠_𝑖)=𝑍(𝑠_𝑖)−𝑚(𝑠_𝑖)\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># -----------------------------</span>
 <span class="c1"># 1. Toy data: coordinates (x,y), covariate (elevation) and target variable (temperature)</span>
@@ -1257,7 +1503,7 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gamma_ij</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dist_ij</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear model  γ(h) = a·h  with  a = </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">gamma_linear</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gamma_linear</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">h</span>
 
 <span class="c1"># -----------------------------</span>
@@ -1304,42 +1550,8 @@ Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observations
-     x    y  elev  temp
-A  0.0  0.0   100  10.0
-B  1.0  0.0   110  12.0
-C  0.0  1.0   105  13.0 
-
-Target point P = (0.5,0.5), elevation = 115 m
-
-Trend model  m(s) = β0 + β1*elev
-β0 = -9.3333, β1 = 0.2000
-
-Trend at sample points  m_i: [10.6667 12.6667 11.6667]
-Residuals e_i = z_i - m_i: [-0.6667 -0.6667  1.3333] 
-
-Trend at target m0 = 13.6667
-
-Empirical semi‑variogram (residuals):
-pair     dist  gamma
- A-B 1.000000    0.0
- A-C 1.000000    2.0
- B-C 1.414214    2.0 
-
-Linear model  γ(h) = a·h  with  a = 1.1381
-
-Kriging system solution
-λ (weights): [-0.7929  1.2071  0.5858]
-μ (multipliers): [-21.2357   0.2   ] 
-
-Predicted temperature at P: Ẑ = 14.17 °C
-Kriging variance at P    : σ²_k = 2.569
-</pre></div>
 </div>
-</div>
-</div>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Paso</p></th>
 <th class="head"><p>¿Qué hicimos?</p></th>
@@ -1381,6 +1593,45 @@ Kriging variance at P    : σ²_k = 2.569
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+</section>
+<section id="actividades">
+<h2>Actividades<a class="headerlink" href="#actividades" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Comparación de métodos de interpolación:</strong> Usando los datos de precipitación del dataset, aplica cuatro métodos de interpolación: Vecino más cercano, IDW (p=2), Triangulación de Delaunay y Kriging Ordinario. Para evaluar cada método, usa validación cruzada leave-one-out y reporta el RMSE. ¿Cuál método produce el menor error?</p></li>
+<li><p><strong>Ajuste del variograma:</strong> Para el mismo dataset de precipitación, calcula el variograma experimental y ajusta tres modelos teóricos: Esférico, Exponencial y Gaussiano. Compara el ajuste visual de cada modelo. ¿Cómo cambian las predicciones de Kriging según el modelo de variograma elegido?</p></li>
+<li><p><strong>Interpolación con incertidumbre:</strong> Con el Kriging Ordinario, además de los valores predichos, extrae la varianza de predicción (kriging variance). Mapea tanto la predicción como la incertidumbre. ¿En qué zonas es mayor la incertidumbre y por qué? ¿Cómo podría usarse este mapa de incertidumbre en la toma de decisiones?</p></li>
+<li><p><strong>Universal Kriging:</strong> Ajusta un Universal Kriging incorporando la elevación como tendencia de primer orden (drift). Compara las predicciones con el Kriging Ordinario. En zonas de alta montaña, ¿mejora significativamente el ajuste al incluir la tendencia altitudinal?</p></li>
+</ol>
+</section>
+<section id="recursos-adicionales">
+<h2>Recursos adicionales<a class="headerlink" href="#recursos-adicionales" title="Link to this heading">#</a></h2>
+<section id="documentacion-oficial">
+<h3>Documentación oficial<a class="headerlink" href="#documentacion-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-gstat.readthedocs.io/">scikit-gstat Documentation</a></p></li>
+<li><p><a class="reference external" href="https://geostat-framework.readthedocs.io/projects/pykrige/">pykrige Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/spatial.html">SciPy Spatial — Voronoi, Delaunay</a></p></li>
+</ul>
+</section>
+<section id="lecturas-recomendadas">
+<h3>Lecturas recomendadas<a class="headerlink" href="#lecturas-recomendadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Cressie, N. (1993). <em>Statistics for Spatial Data</em> (rev. ed.). Wiley.</p></li>
+<li><p>Goovaerts, P. (1997). <em>Geostatistics for Natural Resources Evaluation</em>. Oxford University Press.</p></li>
+<li><p>Matheron, G. (1963). Principles of geostatistics. <em>Economic Geology</em>, 58(8), 1246–1266.</p></li>
+<li><p>Webster, R. &amp; Oliver, M. A. (2007). <em>Geostatistics for Environmental Scientists</em> (2nd ed.). Wiley.</p></li>
+<li><p>Pebesma, E. J. (2004). Multivariable geostatistics in S: The gstat package. <em>Computers &amp; Geosciences</em>, 30(7), 683–691.</p></li>
+</ul>
+</section>
+<section id="herramientas">
+<h3>Herramientas<a class="headerlink" href="#herramientas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.gslib.com/">GSLIB — Geostatistical Library</a></p></li>
+<li><p><a class="reference external" href="https://www.ai-geostats.org/">Variogram Tutorial — AI Geostats</a></p></li>
+<li><p><a class="reference external" href="https://gstatsim.readthedocs.io/">GStatSim — Geostatistical Simulation in Python</a></p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -1412,8 +1663,8 @@ Kriging variance at P    : σ²_k = 2.569
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="13_MGWR.html"
@@ -1442,12 +1693,14 @@ Kriging variance at P    : σ²_k = 2.569
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-distance-weighted-idw">Inverse Distance Weighted (IDW)</a></li>
@@ -1462,6 +1715,13 @@ Kriging variance at P    : σ²_k = 2.569
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-gstat">Scikit-Gstat</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pykrige">Pykrige</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-kriging-universal">Ejemplo Kriging universal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actividades">Actividades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-adicionales">Recursos adicionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-oficial">Documentación oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecturas-recomendadas">Lecturas recomendadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas">Herramientas</a></li>
 </ul>
 </li>
 </ul>
@@ -1485,6 +1745,7 @@ By Edier V. Aristizábal G.
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1511,8 +1772,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

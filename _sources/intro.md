@@ -7,9 +7,6 @@
   </td>
   <td style="width: 50%; vertical-align: top;">
 <strong><span style="font-size: 26px;">Tabla de Contenido:</span></strong>
-
-```{tableofcontents}
-```
   </td>
 </tr>
 </table>
