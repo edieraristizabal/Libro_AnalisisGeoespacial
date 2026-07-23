@@ -11,6 +11,12 @@ logo: logo.png
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 300
+
+# Legacy/draft sources superseded by their .ipynb equivalents, not part of the TOC
+exclude_patterns:
+  - CAR.Rmd
+  - Kriging.Rmd
 
 # Define the name of the latex output file for PDF builds
 latex:
