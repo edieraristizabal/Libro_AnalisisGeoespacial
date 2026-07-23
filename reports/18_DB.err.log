@@ -1,42 +1,236 @@
 Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 778, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 182, in ensure_async
-    result = await obj
-             ^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_client\channels.py", line 315, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1323, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\asyncio\base_events.py", line 719, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1001, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 802, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 852, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-gdf_house_price.to_file("gdf_house_price.shp", crs={'init' :'epsg:4326'})
--------------------
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+prueba.insert_one({"name": "Mondongos", "location": "Unal"})
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mServerSelectionTimeoutError[39m               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[12][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m prueba.insert_one({[33m"name"[39m: [33m"Mondongos"[39m, [33m"location"[39m: [33m"Unal"[39m})
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\collection.py:890[39m, in [36mCollection.insert_one[39m[34m(self, document, bypass_document_validation, session, comment)[39m
+[32m    886[39m     document[[33m"[39m[33m_id[39m[33m"[39m] = ObjectId()  [38;5;66;03m# type: ignore[index][39;00m
+[32m    888[39m write_concern = [38;5;28mself[39m._write_concern_for(session)
+[32m    889[39m [38;5;28;01mreturn[39;00m InsertOneResult(
+[32m--> [39m[32m890[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_insert_one[39;49m[30;43m([39;49m
+[32m    891[39m [30;43m        [39;49m[30;43mdocument[39;49m[30;43m,[39;49m
+[32m    892[39m [30;43m        [39;49m[30;43mordered[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m
+[32m    893[39m [30;43m        [39;49m[30;43mwrite_concern[39;49m[30;43m=[39;49m[30;43mwrite_concern[39;49m[30;43m,[39;49m
+[32m    894[39m [30;43m        [39;49m[30;43mop_id[39;49m[30;43m=[39;49m[30;43;01mNone[39;49;00m[30;43m,[39;49m
+[32m    895[39m [30;43m        [39;49m[30;43mbypass_doc_val[39;49m[30;43m=[39;49m[30;43mbypass_document_validation[39;49m[30;43m,[39;49m
+[32m    896[39m [30;43m        [39;49m[30;43msession[39;49m[30;43m=[39;49m[30;43msession[39;49m[30;43m,[39;49m
+[32m    897[39m [30;43m        [39;49m[30;43mcomment[39;49m[30;43m=[39;49m[30;43mcomment[39;49m[30;43m,[39;49m
+[32m    898[39m [30;43m    [39;49m[30;43m)[39;49m,
+[32m    899[39m     write_concern.acknowledged,
+[32m    900[39m )
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\collection.py:830[39m, in [36mCollection._insert_one[39m[34m(self, doc, ordered, write_concern, op_id, bypass_doc_val, session, comment)[39m
+[32m    818[39m     result = conn.command(
+[32m    819[39m         [38;5;28mself[39m._database.name,
+[32m    820[39m         command,
+[32m   (...)[39m[32m    825[39m         retryable_write=retryable_write,
+[32m    826[39m     )
+[32m    828[39m     _check_write_command_response(result)
+[32m--> [39m[32m830[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_database[39;49m[30;43m.[39;49m[30;43mclient[39;49m[30;43m.[39;49m[30;43m_retryable_write[39;49m[30;43m([39;49m
+[32m    831[39m [30;43m    [39;49m[30;43macknowledged[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m_insert_command[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43msession[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43moperation[39;49m[30;43m=[39;49m[30;43m_Op[39;49m[30;43m.[39;49m[30;43mINSERT[39;49m
+[32m    832[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    834[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(doc, RawBSONDocument):
+[32m    835[39m     [38;5;28;01mreturn[39;00m doc.get([33m"[39m[33m_id[39m[33m"[39m)
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2113[39m, in [36mMongoClient._retryable_write[39m[34m(self, retryable, func, session, operation, bulk, operation_id)[39m
+[32m   2099[39m [38;5;250m[39m[33;03m"""Execute an operation with consecutive retries if possible[39;00m
+[32m   2100[39m 
+[32m   2101[39m [33;03mReturns func()'s return value on success. On error retries the same[39;00m
+[32m   (...)[39m[32m   2110[39m [33;03m:param bulk: bulk abstraction to execute operations in bulk, defaults to None[39;00m
+[32m   2111[39m [33;03m"""[39;00m
+[32m   2112[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m._tmp_session(session) [38;5;28;01mas[39;00m s:
+[32m-> [39m[32m2113[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_retry_with_session[39;49m[30;43m([39;49m[30;43mretryable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfunc[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43ms[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mbulk[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43moperation[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43moperation_id[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:1986[39m, in [36mMongoClient._retry_with_session[39m[34m(self, retryable, func, session, bulk, operation, operation_id)[39m
+[32m   1981[39m [38;5;66;03m# Ensure that the options supports retry_writes and there is a valid session not in[39;00m
+[32m   1982[39m [38;5;66;03m# transaction, otherwise, we will not support retry behavior for this txn.[39;00m
+[32m   1983[39m retryable = [38;5;28mbool[39m(
+[32m   1984[39m     retryable [38;5;129;01mand[39;00m [38;5;28mself[39m.options.retry_writes [38;5;129;01mand[39;00m session [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m session.in_transaction
+[32m   1985[39m )
+[32m-> [39m[32m1986[39m [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_retry_internal[39;49m[30;43m([39;49m
+[32m   1987[39m [30;43m    [39;49m[30;43mfunc[39;49m[30;43m=[39;49m[30;43mfunc[39;49m[30;43m,[39;49m
+[32m   1988[39m [30;43m    [39;49m[30;43msession[39;49m[30;43m=[39;49m[30;43msession[39;49m[30;43m,[39;49m
+[32m   1989[39m [30;43m    [39;49m[30;43mbulk[39;49m[30;43m=[39;49m[30;43mbulk[39;49m[30;43m,[39;49m
+[32m   1990[39m [30;43m    [39;49m[30;43moperation[39;49m[30;43m=[39;49m[30;43moperation[39;49m[30;43m,[39;49m
+[32m   1991[39m [30;43m    [39;49m[30;43mretryable[39;49m[30;43m=[39;49m[30;43mretryable[39;49m[30;43m,[39;49m
+[32m   1992[39m [30;43m    [39;49m[30;43moperation_id[39;49m[30;43m=[39;49m[30;43moperation_id[39;49m[30;43m,[39;49m
+[32m   1993[39m [30;43m[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\_csot.py:125[39m, in [36mapply.<locals>.csot_wrapper[39m[34m(self, *args, **kwargs)[39m
+[32m    123[39m         [38;5;28;01mwith[39;00m _TimeoutContext(timeout):
+[32m    124[39m             [38;5;28;01mreturn[39;00m func([38;5;28mself[39m, *args, **kwargs)
+[32m--> [39m[32m125[39m [38;5;28;01mreturn[39;00m [30;43mfunc[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2038[39m, in [36mMongoClient._retry_internal[39m[34m(self, func, session, bulk, operation, is_read, address, read_pref, retryable, operation_id, is_run_command, is_aggregate_write)[39m
+[32m   1995[39m [38;5;129m@_csot[39m.apply
+[32m   1996[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_retry_internal[39m(
+[32m   1997[39m     [38;5;28mself[39m,
+[32m   (...)[39m[32m   2008[39m     is_aggregate_write: [38;5;28mbool[39m = [38;5;28;01mFalse[39;00m,
+[32m   2009[39m ) -> T:
+[32m   2010[39m [38;5;250m    [39m[33;03m"""Internal retryable helper for all client transactions.[39;00m
+[32m   2011[39m 
+[32m   2012[39m [33;03m    :param func: Callback function we want to retry[39;00m
+[32m   (...)[39m[32m   2023[39m [33;03m    :return: Output of the calling func()[39;00m
+[32m   2024[39m [33;03m    """[39;00m
+[32m   2025[39m     [38;5;28;01mreturn[39;00m [30;43m_ClientConnectionRetryable[39;49m[30;43m([39;49m
+[32m   2026[39m [30;43m        [39;49m[30;43mmongo_client[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m,[39;49m
+[32m   2027[39m [30;43m        [39;49m[30;43mfunc[39;49m[30;43m=[39;49m[30;43mfunc[39;49m[30;43m,[39;49m
+[32m   2028[39m [30;43m        [39;49m[30;43mbulk[39;49m[30;43m=[39;49m[30;43mbulk[39;49m[30;43m,[39;49m
+[32m   2029[39m [30;43m        [39;49m[30;43moperation[39;49m[30;43m=[39;49m[30;43moperation[39;49m[30;43m,[39;49m
+[32m   2030[39m [30;43m        [39;49m[30;43mis_read[39;49m[30;43m=[39;49m[30;43mis_read[39;49m[30;43m,[39;49m
+[32m   2031[39m [30;43m        [39;49m[30;43msession[39;49m[30;43m=[39;49m[30;43msession[39;49m[30;43m,[39;49m
+[32m   2032[39m [30;43m        [39;49m[30;43mread_pref[39;49m[30;43m=[39;49m[30;43mread_pref[39;49m[30;43m,[39;49m
+[32m   2033[39m [30;43m        [39;49m[30;43maddress[39;49m[30;43m=[39;49m[30;43maddress[39;49m[30;43m,[39;49m
+[32m   2034[39m [30;43m        [39;49m[30;43mretryable[39;49m[30;43m=[39;49m[30;43mretryable[39;49m[30;43m,[39;49m
+[32m   2035[39m [30;43m        [39;49m[30;43moperation_id[39;49m[30;43m=[39;49m[30;43moperation_id[39;49m[30;43m,[39;49m
+[32m   2036[39m [30;43m        [39;49m[30;43mis_run_command[39;49m[30;43m=[39;49m[30;43mis_run_command[39;49m[30;43m,[39;49m
+[32m   2037[39m [30;43m        [39;49m[30;43mis_aggregate_write[39;49m[30;43m=[39;49m[30;43mis_aggregate_write[39;49m[30;43m,[39;49m
+[32m-> [39m[32m2038[39m [30;43m    [39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2811[39m, in [36m_ClientConnectionRetryable.run[39m[34m(self)[39m
+[32m   2809[39m [38;5;28mself[39m._check_last_error(check_csot=[38;5;28;01mTrue[39;00m)
+[32m   2810[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2811[39m     res = [38;5;28mself[39m._read() [38;5;28;01mif[39;00m [38;5;28mself[39m._is_read [38;5;28;01melse[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_write[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   2812[39m     [38;5;66;03m# Track whether the transaction has completed a command.[39;00m
+[32m   2813[39m     [38;5;66;03m# If we need to apply backpressure to the first command,[39;00m
+[32m   2814[39m     [38;5;66;03m# we will need to revert back to starting state.[39;00m
+[32m   2815[39m     [38;5;28;01mif[39;00m [38;5;28mself[39m._session [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m [38;5;28mself[39m._session.in_transaction:
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2992[39m, in [36m_ClientConnectionRetryable._write[39m[34m(self)[39m
+[32m   2990[39m max_wire_version = [32m0[39m
+[32m   2991[39m is_mongos = [38;5;28;01mFalse[39;00m
+[32m-> [39m[32m2992[39m [38;5;28mself[39m._server = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_server[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   2993[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m._client._checkout([38;5;28mself[39m._server, [38;5;28mself[39m._session) [38;5;28;01mas[39;00m conn:
+[32m   2994[39m     max_wire_version = conn.max_wire_version
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2975[39m, in [36m_ClientConnectionRetryable._get_server[39m[34m(self)[39m
+[32m   2970[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_get_server[39m([38;5;28mself[39m) -> Server:
+[32m   2971[39m [38;5;250m    [39m[33;03m"""Retrieves a server object based on provided object context[39;00m
+[32m   2972[39m 
+[32m   2973[39m [33;03m    :return: Abstraction to connect to server[39;00m
+[32m   2974[39m [33;03m    """[39;00m
+[32m-> [39m[32m2975[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_client[39;49m[30;43m.[39;49m[30;43m_select_server[39;49m[30;43m([39;49m
+[32m   2976[39m [30;43m        [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_server_selector[39;49m[30;43m,[39;49m
+[32m   2977[39m [30;43m        [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_session[39;49m[30;43m,[39;49m
+[32m   2978[39m [30;43m        [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_operation[39;49m[30;43m,[39;49m
+[32m   2979[39m [30;43m        [39;49m[30;43maddress[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_address[39;49m[30;43m,[39;49m
+[32m   2980[39m [30;43m        [39;49m[30;43mdeprioritized_servers[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_deprioritized_servers[39;49m[30;43m,[39;49m
+[32m   2981[39m [30;43m        [39;49m[30;43moperation_id[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_operation_id[39;49m[30;43m,[39;49m
+[32m   2982[39m [30;43m    [39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:1851[39m, in [36mMongoClient._select_server[39m[34m(self, server_selector, session, operation, address, deprioritized_servers, operation_id)[39m
+[32m   1849[39m             [38;5;28;01mraise[39;00m AutoReconnect([33m"[39m[33mserver [39m[38;5;132;01m%s[39;00m[33m:[39m[38;5;132;01m%s[39;00m[33m no longer available[39m[33m"[39m % address)  [38;5;66;03m# noqa: UP031[39;00m
+[32m   1850[39m     [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1851[39m         server = [30;43mtopology[39;49m[30;43m.[39;49m[30;43mselect_server[39;49m[30;43m([39;49m
+[32m   1852[39m [30;43m            [39;49m[30;43mserver_selector[39;49m[30;43m,[39;49m
+[32m   1853[39m [30;43m            [39;49m[30;43moperation[39;49m[30;43m,[39;49m
+[32m   1854[39m [30;43m            [39;49m[30;43mdeprioritized_servers[39;49m[30;43m=[39;49m[30;43mdeprioritized_servers[39;49m[30;43m,[39;49m
+[32m   1855[39m [30;43m            [39;49m[30;43moperation_id[39;49m[30;43m=[39;49m[30;43moperation_id[39;49m[30;43m,[39;49m
+[32m   1856[39m [30;43m        [39;49m[30;43m)[39;49m
+[32m   1857[39m     [38;5;28;01mreturn[39;00m server
+[32m   1858[39m [38;5;28;01mexcept[39;00m PyMongoError [38;5;28;01mas[39;00m exc:
+[32m   1859[39m     [38;5;66;03m# Server selection errors in a transaction are transient.[39;00m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:428[39m, in [36mTopology.select_server[39m[34m(self, selector, operation, server_selection_timeout, address, deprioritized_servers, operation_id)[39m
+[32m    418[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mselect_server[39m(
+[32m    419[39m     [38;5;28mself[39m,
+[32m    420[39m     selector: Callable[[Selection], Selection],
+[32m   (...)[39m[32m    425[39m     operation_id: Optional[[38;5;28mint[39m] = [38;5;28;01mNone[39;00m,
+[32m    426[39m ) -> Server:
+[32m    427[39m [38;5;250m    [39m[33;03m"""Like select_servers, but choose a random server if several match."""[39;00m
+[32m--> [39m[32m428[39m     server = [30;43mself[39;49m[30;43m.[39;49m[30;43m_select_server[39;49m[30;43m([39;49m
+[32m    429[39m [30;43m        [39;49m[30;43mselector[39;49m[30;43m,[39;49m
+[32m    430[39m [30;43m        [39;49m[30;43moperation[39;49m[30;43m,[39;49m
+[32m    431[39m [30;43m        [39;49m[30;43mserver_selection_timeout[39;49m[30;43m,[39;49m
+[32m    432[39m [30;43m        [39;49m[30;43maddress[39;49m[30;43m,[39;49m
+[32m    433[39m [30;43m        [39;49m[30;43mdeprioritized_servers[39;49m[30;43m,[39;49m
+[32m    434[39m [30;43m        [39;49m[30;43moperation_id[39;49m[30;43m=[39;49m[30;43moperation_id[39;49m[30;43m,[39;49m
+[32m    435[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    436[39m     [38;5;28;01mif[39;00m _csot.get_timeout():
+[32m    437[39m         _csot.set_rtt(server.description.min_round_trip_time)
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:402[39m, in [36mTopology._select_server[39m[34m(self, selector, operation, server_selection_timeout, address, deprioritized_servers, operation_id)[39m
+[32m    393[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_select_server[39m(
+[32m    394[39m     [38;5;28mself[39m,
+[32m    395[39m     selector: Callable[[Selection], Selection],
+[32m   (...)[39m[32m    400[39m     operation_id: Optional[[38;5;28mint[39m] = [38;5;28;01mNone[39;00m,
+[32m    401[39m ) -> Server:
+[32m--> [39m[32m402[39m     servers = [30;43mself[39;49m[30;43m.[39;49m[30;43mselect_servers[39;49m[30;43m([39;49m
+[32m    403[39m [30;43m        [39;49m[30;43mselector[39;49m[30;43m,[39;49m
+[32m    404[39m [30;43m        [39;49m[30;43moperation[39;49m[30;43m,[39;49m
+[32m    405[39m [30;43m        [39;49m[30;43mserver_selection_timeout[39;49m[30;43m,[39;49m
+[32m    406[39m [30;43m        [39;49m[30;43maddress[39;49m[30;43m,[39;49m
+[32m    407[39m [30;43m        [39;49m[30;43moperation_id[39;49m[30;43m,[39;49m
+[32m    408[39m [30;43m        [39;49m[30;43mdeprioritized_servers[39;49m[30;43m,[39;49m
+[32m    409[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    410[39m     [38;5;28;01mif[39;00m [38;5;28mlen[39m(servers) == [32m1[39m:
+[32m    411[39m         [38;5;28;01mreturn[39;00m servers[[32m0[39m]
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:298[39m, in [36mTopology.select_servers[39m[34m(self, selector, operation, server_selection_timeout, address, operation_id, deprioritized_servers)[39m
+[32m    295[39m     [38;5;28mself[39m.cleanup_monitors()
+[32m    297[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m._lock:
+[32m--> [39m[32m298[39m     server_descriptions = [30;43mself[39;49m[30;43m.[39;49m[30;43m_select_servers_loop[39;49m[30;43m([39;49m
+[32m    299[39m [30;43m        [39;49m[30;43mselector[39;49m[30;43m,[39;49m
+[32m    300[39m [30;43m        [39;49m[30;43mserver_timeout[39;49m[30;43m,[39;49m
+[32m    301[39m [30;43m        [39;49m[30;43moperation[39;49m[30;43m,[39;49m
+[32m    302[39m [30;43m        [39;49m[30;43moperation_id[39;49m[30;43m,[39;49m
+[32m    303[39m [30;43m        [39;49m[30;43maddress[39;49m[30;43m,[39;49m
+[32m    304[39m [30;43m        [39;49m[30;43mdeprioritized_servers[39;49m[30;43m=[39;49m[30;43mdeprioritized_servers[39;49m[30;43m,[39;49m
+[32m    305[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    307[39m     [38;5;28;01mreturn[39;00m [
+[32m    308[39m         cast(Server, [38;5;28mself[39m.get_server_by_address(sd.address)) [38;5;28;01mfor[39;00m sd [38;5;129;01min[39;00m server_descriptions
+[32m    309[39m     ]
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:359[39m, in [36mTopology._select_servers_loop[39m[34m(self, selector, timeout, operation, operation_id, address, deprioritized_servers)[39m
+[32m    348[39m     [38;5;28;01mif[39;00m _SERVER_SELECTION_LOGGER.isEnabledFor(logging.DEBUG):
+[32m    349[39m         _debug_log(
+[32m    350[39m             _SERVER_SELECTION_LOGGER,
+[32m    351[39m             message=_ServerSelectionStatusMessage.FAILED,
+[32m   (...)[39m[32m    357[39m             failure=[38;5;28mself[39m._error_message(selector),
+[32m    358[39m         )
+[32m--> [39m[32m359[39m     [38;5;28;01mraise[39;00m ServerSelectionTimeoutError(
+[32m    360[39m         [33mf[39m[33m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m._error_message(selector)[38;5;132;01m}[39;00m[33m, Timeout: [39m[38;5;132;01m{[39;00mtimeout[38;5;132;01m}[39;00m[33ms, Topology Description: [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.description[38;5;132;01m!r}[39;00m[33m"[39m
+[32m    361[39m     )
+[32m    363[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m logged_waiting:
+[32m    364[39m     _debug_log(
+[32m    365[39m         _SERVER_SELECTION_LOGGER,
+[32m    366[39m         message=_ServerSelectionStatusMessage.WAITING,
+[32m   (...)[39m[32m    372[39m         remainingTimeMS=[38;5;28mint[39m([32m1000[39m * (end_time - time.monotonic())),
+[32m    373[39m     )
+
+[31mServerSelectionTimeoutError[39m: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6a62704c861d98b09cde0d79, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
 

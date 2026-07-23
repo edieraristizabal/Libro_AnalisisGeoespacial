@@ -1,44 +1,232 @@
 Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 778, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 182, in ensure_async
-    result = await obj
-             ^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_client\channels.py", line 315, in get_msg
-    raise Empty
-_queue.Empty
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from owslib.wms import WebMapService
+import matplotlib.pyplot as plt
+from PIL import Image
+from io import BytesIO
+import requests
+
+wms_url = "https://ows.terrestris.de/osm/service?"
+
+# Conexión al servicio WMS
+wms = WebMapService(wms_url, version='1.3.0')
+
+# Ver las capas disponibles en el servicio WMS
+print(list(wms.contents))
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mgaierror[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py:204[39m, in [36mHTTPConnection._new_conn[39m[34m(self)[39m
+[32m    203[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m204[39m     sock = [30;43mconnection[39;49m[30;43m.[39;49m[30;43mcreate_connection[39;49m[30;43m([39;49m
+[32m    205[39m [30;43m        [39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_dns_host[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mport[39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m    206[39m [30;43m        [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m
+[32m    207[39m [30;43m        [39;49m[30;43msource_address[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43msource_address[39;49m[30;43m,[39;49m
+[32m    208[39m [30;43m        [39;49m[30;43msocket_options[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43msocket_options[39;49m[30;43m,[39;49m
+[32m    209[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    210[39m [38;5;28;01mexcept[39;00m socket.gaierror [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\util\connection.py:60[39m, in [36mcreate_connection[39m[34m(address, timeout, source_address, socket_options)[39m
+[32m     58[39m     [38;5;28;01mraise[39;00m LocationParseError([33mf[39m[33m"[39m[33m'[39m[38;5;132;01m{[39;00mhost[38;5;132;01m}[39;00m[33m'[39m[33m, label empty or too long[39m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m---> [39m[32m60[39m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [30;43msocket[39;49m[30;43m.[39;49m[30;43mgetaddrinfo[39;49m[30;43m([39;49m[30;43mhost[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mport[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfamily[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43msocket[39;49m[30;43m.[39;49m[30;43mSOCK_STREAM[39;49m[30;43m)[39;49m:
+[32m     61[39m     af, socktype, proto, canonname, sa = res
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\socket.py:983[39m, in [36mgetaddrinfo[39m[34m(host, port, family, type, proto, flags)[39m
+[32m    982[39m addrlist = []
+[32m--> [39m[32m983[39m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [30;43m_socket[39;49m[30;43m.[39;49m[30;43mgetaddrinfo[39;49m[30;43m([39;49m[30;43mhost[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mport[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfamily[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtype[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mproto[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mflags[39;49m[30;43m)[39;49m:
+[32m    984[39m     af, socktype, proto, canonname, sa = res
+
+[31mgaierror[39m: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+[31mNameResolutionError[39m                       Traceback (most recent call last)
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:788[39m, in [36mHTTPConnectionPool.urlopen[39m[34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[39m
+[32m    787[39m [38;5;66;03m# Make the request on the HTTPConnection object[39;00m
+[32m--> [39m[32m788[39m response = [30;43mself[39;49m[30;43m.[39;49m[30;43m_make_request[39;49m[30;43m([39;49m
+[32m    789[39m [30;43m    [39;49m[30;43mconn[39;49m[30;43m,[39;49m
+[32m    790[39m [30;43m    [39;49m[30;43mmethod[39;49m[30;43m,[39;49m
+[32m    791[39m [30;43m    [39;49m[30;43murl[39;49m[30;43m,[39;49m
+[32m    792[39m [30;43m    [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout_obj[39;49m[30;43m,[39;49m
+[32m    793[39m [30;43m    [39;49m[30;43mbody[39;49m[30;43m=[39;49m[30;43mbody[39;49m[30;43m,[39;49m
+[32m    794[39m [30;43m    [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mheaders[39;49m[30;43m,[39;49m
+[32m    795[39m [30;43m    [39;49m[30;43mchunked[39;49m[30;43m=[39;49m[30;43mchunked[39;49m[30;43m,[39;49m
+[32m    796[39m [30;43m    [39;49m[30;43mretries[39;49m[30;43m=[39;49m[30;43mretries[39;49m[30;43m,[39;49m
+[32m    797[39m [30;43m    [39;49m[30;43mresponse_conn[39;49m[30;43m=[39;49m[30;43mresponse_conn[39;49m[30;43m,[39;49m
+[32m    798[39m [30;43m    [39;49m[30;43mpreload_content[39;49m[30;43m=[39;49m[30;43mpreload_content[39;49m[30;43m,[39;49m
+[32m    799[39m [30;43m    [39;49m[30;43mdecode_content[39;49m[30;43m=[39;49m[30;43mdecode_content[39;49m[30;43m,[39;49m
+[32m    800[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mresponse_kw[39;49m[30;43m,[39;49m
+[32m    801[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    803[39m [38;5;66;03m# Everything went great![39;00m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:488[39m, in [36mHTTPConnectionPool._make_request[39m[34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[39m
+[32m    487[39m         new_e = _wrap_proxy_error(new_e, conn.proxy.scheme)
+[32m--> [39m[32m488[39m     [38;5;28;01mraise[39;00m new_e
+[32m    490[39m [38;5;66;03m# conn.request() calls http.client.*.request, not the method in[39;00m
+[32m    491[39m [38;5;66;03m# urllib3.request. It also calls makefile (recv) on the socket.[39;00m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:464[39m, in [36mHTTPConnectionPool._make_request[39m[34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[39m
+[32m    463[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m464[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_validate_conn[39;49m[30;43m([39;49m[30;43mconn[39;49m[30;43m)[39;49m
+[32m    465[39m [38;5;28;01mexcept[39;00m (SocketTimeout, BaseSSLError) [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1106[39m, in [36mHTTPSConnectionPool._validate_conn[39m[34m(self, conn)[39m
+[32m   1105[39m [38;5;28;01mif[39;00m conn.is_closed:
+[32m-> [39m[32m1106[39m     [30;43mconn[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1108[39m [38;5;66;03m# TODO revise this, see https://github.com/urllib3/urllib3/issues/2791[39;00m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py:759[39m, in [36mHTTPSConnection.connect[39m[34m(self)[39m
+[32m    758[39m sock: socket.socket | ssl.SSLSocket
+[32m--> [39m[32m759[39m [38;5;28mself[39m.sock = sock = [30;43mself[39;49m[30;43m.[39;49m[30;43m_new_conn[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    760[39m server_hostname: [38;5;28mstr[39m = [38;5;28mself[39m.host
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py:211[39m, in [36mHTTPConnection._new_conn[39m[34m(self)[39m
+[32m    210[39m [38;5;28;01mexcept[39;00m socket.gaierror [38;5;28;01mas[39;00m e:
+[32m--> [39m[32m211[39m     [38;5;28;01mraise[39;00m NameResolutionError([38;5;28mself[39m.host, [38;5;28mself[39m, e) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m    212[39m [38;5;28;01mexcept[39;00m SocketTimeout [38;5;28;01mas[39;00m e:
+
+[31mNameResolutionError[39m: HTTPSConnection(host='ows.terrestris.de', port=443): Failed to resolve 'ows.terrestris.de' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+[31mMaxRetryError[39m                             Traceback (most recent call last)
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py:696[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    695[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m696[39m     resp = [30;43mconn[39;49m[30;43m.[39;49m[30;43murlopen[39;49m[30;43m([39;49m
+[32m    697[39m [30;43m        [39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43mmethod[39;49m[30;43m,[39;49m
+[32m    698[39m [30;43m        [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m
+[32m    699[39m [30;43m        [39;49m[30;43mbody[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43mbody[39;49m[30;43m,[39;49m[30;43m  [39;49m[30;43;03m# type: ignore[arg-type]  # urllib3 stubs don't accept Iterable[bytes | str][39;49;00m
+[32m    700[39m [30;43m        [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m  [39;49m[30;43;03m# type: ignore[arg-type]  # urllib3#3072[39;49;00m
+[32m    701[39m [30;43m        [39;49m[30;43mredirect[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    702[39m [30;43m        [39;49m[30;43massert_same_host[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    703[39m [30;43m        [39;49m[30;43mpreload_content[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    704[39m [30;43m        [39;49m[30;43mdecode_content[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    705[39m [30;43m        [39;49m[30;43mretries[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mmax_retries[39;49m[30;43m,[39;49m
+[32m    706[39m [30;43m        [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mresolved_timeout[39;49m[30;43m,[39;49m
+[32m    707[39m [30;43m        [39;49m[30;43mchunked[39;49m[30;43m=[39;49m[30;43mchunked[39;49m[30;43m,[39;49m
+[32m    708[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    710[39m [38;5;28;01mexcept[39;00m (ProtocolError, [38;5;167;01mOSError[39;00m) [38;5;28;01mas[39;00m err:
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:842[39m, in [36mHTTPConnectionPool.urlopen[39m[34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[39m
+[32m    840[39m     new_e = ProtocolError([33m"[39m[33mConnection aborted.[39m[33m"[39m, new_e)
+[32m--> [39m[32m842[39m retries = [30;43mretries[39;49m[30;43m.[39;49m[30;43mincrement[39;49m[30;43m([39;49m
+[32m    843[39m [30;43m    [39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43merror[39;49m[30;43m=[39;49m[30;43mnew_e[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m_pool[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m_stacktrace[39;49m[30;43m=[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexc_info[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m[[39;49m[30;43m2[39;49m[30;43m][39;49m
+[32m    844[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    845[39m retries.sleep()
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\urllib3\util\retry.py:543[39m, in [36mRetry.increment[39m[34m(self, method, url, response, error, _pool, _stacktrace)[39m
+[32m    542[39m     reason = error [38;5;129;01mor[39;00m ResponseError(cause)
+[32m--> [39m[32m543[39m     [38;5;28;01mraise[39;00m MaxRetryError(_pool, url, reason) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mreason[39;00m  [38;5;66;03m# type: ignore[arg-type][39;00m
+[32m    545[39m log.debug([33m"[39m[33mIncremented Retry for (url=[39m[33m'[39m[38;5;132;01m%s[39;00m[33m'[39m[33m): [39m[38;5;132;01m%r[39;00m[33m"[39m, url, new_retry)
+
+[31mMaxRetryError[39m: HTTPSConnectionPool(host='ows.terrestris.de', port=443): Max retries exceeded with url: /osm/service?service=WMS&request=GetCapabilities&version=1.3.0 (Caused by NameResolutionError("HTTPSConnection(host='ows.terrestris.de', port=443): Failed to resolve 'ows.terrestris.de' ([Errno 11001] getaddrinfo failed)"))
 
 During handling of the above exception, another exception occurred:
 
-Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
-    executenb(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
-    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
-    return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
-    await self.async_execute_cell(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1001, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 802, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 852, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-G = ox.graph_from_place('Medellín, Colombia', network_type='drive')
+[31mConnectionError[39m                           Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 10[39m
+[32m      6[39m 
+[32m      7[39m wms_url = [33m"https://ows.terrestris.de/osm/service?"[39m
+[32m      8[39m 
+[32m      9[39m [38;5;66;03m# Conexión al servicio WMS[39;00m
+[32m---> [39m[32m10[39m wms = WebMapService(wms_url, version=[33m'1.3.0'[39m)
+[32m     11[39m 
+[32m     12[39m [38;5;66;03m# Ver las capas disponibles en el servicio WMS[39;00m
+[32m     13[39m print(list(wms.contents))
 
-ox.plot_graph(G, figsize=(10, 10), node_size=0, edge_color='y', edge_linewidth=0.2)
--------------------
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\site-packages\owslib\wms.py:54[39m, in [36mWebMapService[39m[34m(url, version, xml, username, password, parse_remote_metadata, timeout, headers, auth)[39m
+[32m     50[39m     [38;5;28;01mreturn[39;00m wms111.WebMapService_1_1_1(
+[32m     51[39m         clean_url, version=version, xml=xml, parse_remote_metadata=parse_remote_metadata,
+[32m     52[39m         timeout=timeout, headers=headers, auth=auth)
+[32m     53[39m [38;5;28;01melif[39;00m version [38;5;129;01min[39;00m [[33m'[39m[33m1.3.0[39m[33m'[39m]:
+[32m---> [39m[32m54[39m     [38;5;28;01mreturn[39;00m [30;43mwms130[39;49m[30;43m.[39;49m[30;43mWebMapService_1_3_0[39;49m[30;43m([39;49m
+[32m     55[39m [30;43m        [39;49m[30;43mclean_url[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mversion[39;49m[30;43m=[39;49m[30;43mversion[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mxml[39;49m[30;43m=[39;49m[30;43mxml[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparse_remote_metadata[39;49m[30;43m=[39;49m[30;43mparse_remote_metadata[39;49m[30;43m,[39;49m
+[32m     56[39m [30;43m        [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mauth[39;49m[30;43m=[39;49m[30;43mauth[39;49m[30;43m)[39;49m
+[32m     57[39m [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m(
+[32m     58[39m     [33m'[39m[33mThe WMS version ([39m[38;5;132;01m{}[39;00m[33m) you requested is not implemented. Please use 1.1.1 or 1.3.0.[39m[33m'[39m.format(version))
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\site-packages\owslib\map\wms130.py:76[39m, in [36mWebMapService_1_3_0.__init__[39m[34m(self, url, version, xml, username, password, parse_remote_metadata, timeout, headers, auth)[39m
+[32m     74[39m     [38;5;28mself[39m._capabilities = reader.readString(xml)
+[32m     75[39m [38;5;28;01melse[39;00m:  [38;5;66;03m# read from server[39;00m
+[32m---> [39m[32m76[39m     [38;5;28mself[39m._capabilities = [30;43mreader[39;49m[30;43m.[39;49m[30;43mread[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtimeout[39;49m[30;43m)[39;49m
+[32m     78[39m [38;5;28mself[39m.request = reader.request
+[32m     80[39m [38;5;66;03m# avoid building capabilities metadata if the[39;00m
+[32m     81[39m [38;5;66;03m# response is a ServiceExceptionReport[39;00m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\site-packages\owslib\map\common.py:65[39m, in [36mWMSCapabilitiesReader.read[39m[34m(self, service_url, timeout)[39m
+[32m     63[39m [38;5;66;03m# now split it up again to use the generic openURL function...[39;00m
+[32m     64[39m spliturl = [38;5;28mself[39m.request.split([33m'[39m[33m?[39m[33m'[39m)
+[32m---> [39m[32m65[39m u = [30;43mopenURL[39;49m[30;43m([39;49m[30;43mspliturl[39;49m[30;43m[[39;49m[30;43m0[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mspliturl[39;49m[30;43m[[39;49m[30;43m1[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43m'[39;49m[30;43mGet[39;49m[30;43m'[39;49m[30;43m,[39;49m
+[32m     66[39m [30;43m            [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mauth[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mauth[39;49m[30;43m)[39;49m
+[32m     67[39m [38;5;28;01mreturn[39;00m getXMLTree(u)
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\site-packages\owslib\util.py:209[39m, in [36mopenURL[39m[34m(url_base, data, method, cookies, username, password, timeout, headers, verify, cert, auth)[39m
+[32m    206[39m [38;5;28;01mif[39;00m cookies [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    207[39m     rkwargs[[33m'[39m[33mcookies[39m[33m'[39m] = cookies
+[32m--> [39m[32m209[39m req = [30;43mrequests[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m.[39;49m[30;43mupper[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl_base[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mrkwargs[39;49m[30;43m)[39;49m
+[32m    211[39m [38;5;28;01mif[39;00m req.status_code == [32m400[39m:
+[32m    212[39m     [38;5;28;01mraise[39;00m ServiceException(req.text)
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\requests\api.py:71[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
+[32m     67[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[32m     68[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[32m     69[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[32m     70[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
+[32m---> [39m[32m71[39m     [38;5;28;01mreturn[39;00m [30;43msession[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py:784[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    781[39m start = preferred_clock()
+[32m    783[39m [38;5;66;03m# Send the request[39;00m
+[32m--> [39m[32m784[39m r = [30;43madapter[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mrequest[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    786[39m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[32m    787[39m elapsed = preferred_clock() - start
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py:729[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    725[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e.reason, _SSLError):
+[32m    726[39m         [38;5;66;03m# This branch is for urllib3 v1.22 and later.[39;00m
+[32m    727[39m         [38;5;28;01mraise[39;00m SSLError(e, request=request)
+[32m--> [39m[32m729[39m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request=request)
+[32m    731[39m [38;5;28;01mexcept[39;00m ClosedPoolError [38;5;28;01mas[39;00m e:
+[32m    732[39m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request=request)
+
+[31mConnectionError[39m: HTTPSConnectionPool(host='ows.terrestris.de', port=443): Max retries exceeded with url: /osm/service?service=WMS&request=GetCapabilities&version=1.3.0 (Caused by NameResolutionError("HTTPSConnection(host='ows.terrestris.de', port=443): Failed to resolve 'ows.terrestris.de' ([Errno 11001] getaddrinfo failed)"))
 

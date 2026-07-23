@@ -16,43 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -60,40 +63,37 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '15_GP';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Procesos Gaussianos con R" href="16_GP.html" />
     <link rel="prev" title="Kriging con Python" href="14_Kriging.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +101,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,15 +108,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -126,7 +169,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +200,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -220,9 +260,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -352,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -366,25 +411,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -406,7 +443,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-gaussiana">Distribución Gaussiana</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-conjunta">Distribución conjunta</a></li>
@@ -512,7 +549,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8c6db22203e384c2a2f4d3404e55553d5655677da9983a2f1f595a2a90f99f0f.png" src="_images/8c6db22203e384c2a2f4d3404e55553d5655677da9983a2f1f595a2a90f99f0f.png" />
+<img alt="_images/ab6c95930c3c33f90c2225ed5fa88ad034670dab7ee1ecf3ca268b6f23a53806.png" src="_images/ab6c95930c3c33f90c2225ed5fa88ad034670dab7ee1ecf3ca268b6f23a53806.png" />
 </div>
 </div>
 <p>Vamos a crear ahora dos vectores gaussianos, cada uno con <span class="math notranslate nohighlight">\(m\)</span> puntos. Por ejemplo, colocar el vector <span class="math notranslate nohighlight">\(X_1\)</span> en <span class="math notranslate nohighlight">\(X = 0\)</span> y otro vector <span class="math notranslate nohighlight">\(X_2\)</span> en <span class="math notranslate nohighlight">\(X = 1\)</span>.</p>
@@ -533,11 +570,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7b25a51656b90c6c30aa2fa0e7be9d0803176ed9eb3acbc42e58ab19483c0f84.png" src="_images/7b25a51656b90c6c30aa2fa0e7be9d0803176ed9eb3acbc42e58ab19483c0f84.png" />
+<img alt="_images/625a1d16a73d8a209b3648cf5a7c3b4a891b93ddb7751bf78aabb656b78b811a.png" src="_images/625a1d16a73d8a209b3648cf5a7c3b4a891b93ddb7751bf78aabb656b78b811a.png" />
 </div>
 </div>
 <p>Ten en cuenta que tanto el vector <span class="math notranslate nohighlight">\(X_1\)</span> como el vector <span class="math notranslate nohighlight">\(X_2\)</span> son Gaussianos.</p>
-<img src="https://github.com/jwangjie/Gaussian-Process-be-comfortable-using-it/blob/master/img/2gaussian.png?raw=1" width="500"/> <p>Ahora creamos funciones lineales que conecten estos puntos. En este caso solo mostraremos 10 puntos y sus funciones lineales.</p>
+<img src="https://github.com/jwangjie/Gaussian-Process-Regression-Tutorial/blob/master/img/2gaussian.png?raw=1" width="500"/> <p>Ahora creamos funciones lineales que conecten estos puntos. En este caso solo mostraremos 10 puntos y sus funciones lineales.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>          
@@ -554,7 +591,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ceede2827e9a6c8ecca7107f4fabcd763dce64bc486e5307a67e67981a9ee906.png" src="_images/ceede2827e9a6c8ecca7107f4fabcd763dce64bc486e5307a67e67981a9ee906.png" />
+<img alt="_images/841df8dbb2f646ff45a7cc0e78beccb53baab1764297524a2ab83e33048f11e6.png" src="_images/841df8dbb2f646ff45a7cc0e78beccb53baab1764297524a2ab83e33048f11e6.png" />
 </div>
 </div>
 <p>Estas líneas se parecen a <strong>funciones</strong> para cada par de puntos. Por otro lado, la gráfica también parece como si estuviéramos muestreando la región <span class="math notranslate nohighlight">\([0, 1]\)</span> con 10 funciones lineales, aunque solo haya dos puntos en cada línea. Desde la perspectiva del muestreo, el dominio <span class="math notranslate nohighlight">\([0, 1]\)</span> es nuestra región de interés, es decir, la región específica en la que realizamos nuestra regresión.</p>
@@ -576,7 +613,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e4fa76d5c7603ec9905dc0a4ef58e901bdaae4c3edde080e3d31a39fe5ba1318.png" src="_images/e4fa76d5c7603ec9905dc0a4ef58e901bdaae4c3edde080e3d31a39fe5ba1318.png" />
+<img alt="_images/23421ec379454a0a8ce622b655ad4a9a6a1dcab2de508c3f6f4273013a5de5eb.png" src="_images/23421ec379454a0a8ce622b655ad4a9a6a1dcab2de508c3f6f4273013a5de5eb.png" />
 </div>
 </div>
 <p>¿Qué estamos intentando hacer al conectar puntos de variables Gaussianas independientes generados aleatoriamente?</p>
@@ -591,10 +628,10 @@ document.write(`
     <table>
 	    <tr>
     	    <td style="padding:10px">
-        	    <img src="https://github.com/jwangjie/Gaussian-Process-be-comfortable-using-it/blob/master/img/2d_gaussian3D_0.8.png?raw=1" width="400"/>
+        	    <img src="https://github.com/jwangjie/Gaussian-Process-Regression-Tutorial/blob/master/img/2d_gaussian3D_0.8.png?raw=1" width="400"/>
       	    </td>
             <td style="padding:10px">
-            	<img src="https://github.com/jwangjie/Gaussian-Process-be-comfortable-using-it/blob/master/img/2d_gaussian_0.8.png?raw=1" width="380"/>
+            	<img src="https://github.com/jwangjie/Gaussian-Process-Regression-Tutorial/blob/master/img/2d_gaussian_0.8.png?raw=1" width="380"/>
             </td>
         </tr>
     </table>
@@ -675,24 +712,25 @@ p(x_1) = \frac{1}{\sqrt{2\pi\sigma_1^2}} \exp\left(-\frac{(x_1 - \mu_1)^2}{2\sig
 \[
 p(x_1 | x_2 = a) = \frac{1}{\sqrt{2\pi\sigma^2_{1|2}}} \exp\left(-\frac{(x_1 - \mu_{1|2})^2}{2\sigma^2_{1|2}}\right)
 \]</div>
+<p><img alt="Distribución Marginal" src="_images/distribucion_marginal.png" />\n</p>
 <section id="ejemplo">
 <h4>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h4>
-<p>Sea
-$<span class="math notranslate nohighlight">\(
+<p>Sea</p>
+<p><span class="math notranslate nohighlight">\(
  \mathbf{Z}=\begin{bmatrix}X\\Y\end{bmatrix}\sim \mathcal N_2\Bigl(\begin{bmatrix}1\\2\end{bmatrix},\begin{bmatrix}4 &amp; 2\\2 &amp; 3\end{bmatrix}\Bigr).
-\)</span>$</p>
-<p><strong>Conjunta</strong>
-$<span class="math notranslate nohighlight">\(
+\)</span></p>
+<p><strong>Conjunta</strong></p>
+<p><span class="math notranslate nohighlight">\(
  f_{X,Y}(x,y)=\frac{1}{2\pi\sqrt{\det\boldsymbol\Sigma}}\exp\Bigl\{-\tfrac12[(x-1,\,y-2)\boldsymbol\Sigma^{-1}(x-1,\,y-2)^\top]\Bigr\}.
-\)</span>$</p>
-<p><strong>Marginales</strong>
-$<span class="math notranslate nohighlight">\(
+\)</span></p>
+<p><strong>Marginales</strong></p>
+<p><span class="math notranslate nohighlight">\(
  X\sim\mathcal N(1,4),\qquad Y\sim\mathcal N(2,3).
-\)</span>$</p>
-<p><strong>Condicional de <span class="math notranslate nohighlight">\((Y\mid X=x)\)</span></strong>
-$<span class="math notranslate nohighlight">\(
+\)</span></p>
+<p><strong>Condicional de <span class="math notranslate nohighlight">\((Y\mid X=x)\)</span></strong></p>
+<p><span class="math notranslate nohighlight">\(
  Y\mid X=x\;\sim\;\mathcal N\bigl(2+\frac{2}{4}(x-1),\,3-\frac{2^2}{4}\bigr).
-\)</span>$</p>
+\)</span></p>
 <p>Si <span class="math notranslate nohighlight">\((X=5\)</span>), entonces <span class="math notranslate nohighlight">\((Y\mid X=5\sim\mathcal N(4,2))\)</span>.</p>
 </section>
 </section>
@@ -716,7 +754,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f01b3afca2421f8708d6855a5d989b88f535c185f47fd2394cd9f68ad671ce43.png" src="_images/f01b3afca2421f8708d6855a5d989b88f535c185f47fd2394cd9f68ad671ce43.png" />
+<img alt="_images/e3adc68b39d15d9fcaf8710394ddb2ad5c804e3251d95813362b1680fc20e7be.png" src="_images/e3adc68b39d15d9fcaf8710394ddb2ad5c804e3251d95813362b1680fc20e7be.png" />
 </div>
 </div>
 <p>Obtuvimos exactamente el mismo gráfico como se esperaba. Ahora, kernelicemos nuestras funciones utilizando la RBF como nuestra covarianza. Si usas una matriz de covarianza con ceros fuera de la diagonal (covarianza cero), obtienes funciones “ruidosas” y sin estructura, porque cada punto es independiente del resto.</p>
@@ -782,7 +820,7 @@ exp(−z), tiene una propiedad clave: Si z es pequeño (los puntos están cerca)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/83afe03d8d7a969b032dce714bb5c383f957f013a9b21ab062e87db87a8e15c5.png" src="_images/83afe03d8d7a969b032dce714bb5c383f957f013a9b21ab062e87db87a8e15c5.png" />
+<img alt="_images/93d2738b68c81c025ad7a84d0db668c375c0f7f36aefa1df6071352c677fd340.png" src="_images/93d2738b68c81c025ad7a84d0db668c375c0f7f36aefa1df6071352c677fd340.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -811,7 +849,7 @@ exp(−z), tiene una propiedad clave: Si z es pequeño (los puntos están cerca)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/01cdcc8ddfa3bf31811da18a53b5998fe2dff7db092f2d12270ccf49070cf830.png" src="_images/01cdcc8ddfa3bf31811da18a53b5998fe2dff7db092f2d12270ccf49070cf830.png" />
+<img alt="_images/ede3e256265b68cbd8822fecc15144a5d793be3b1f6a561a3a6002ea6ff02377.png" src="_images/ede3e256265b68cbd8822fecc15144a5d793be3b1f6a561a3a6002ea6ff02377.png" />
 </div>
 </div>
 <p>Obtenemos líneas mucho más suaves que se asemejan más a funciones. Cuando la dimensión de la Gaussiana aumenta, ya no es necesario conectar puntos. Cuando la dimensión se vuelve infinita, hay un punto que representa cualquier entrada posible. Vamos a graficar <code class="docutils literal notranslate"><span class="pre">m=200</span></code> muestras de una Gaussiana de <code class="docutils literal notranslate"><span class="pre">n=200-D</span></code> para tener una idea de cómo se ven las funciones con infinitos parámetros.</p>
@@ -834,7 +872,7 @@ exp(−z), tiene una propiedad clave: Si z es pequeño (los puntos están cerca)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5534c69e30d1fa9768969a0df4f8caf2b902ee9d5ecc7c7c0e662eb53d2c1b17.png" src="_images/5534c69e30d1fa9768969a0df4f8caf2b902ee9d5ecc7c7c0e662eb53d2c1b17.png" />
+<img alt="_images/5f90aa3ee8a47bd42f6abceacc5b6ca183ac28c2f77ce19f15d49379bfed8053.png" src="_images/5f90aa3ee8a47bd42f6abceacc5b6ca183ac28c2f77ce19f15d49379bfed8053.png" />
 </div>
 </div>
 </section>
@@ -862,11 +900,11 @@ exp(−z), tiene una propiedad clave: Si z es pequeño (los puntos están cerca)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/57e9e02c860c523c8bb777232eccc9d4d695e912719cda5123d48f3ad09daa53.png" src="_images/57e9e02c860c523c8bb777232eccc9d4d695e912719cda5123d48f3ad09daa53.png" />
+<img alt="_images/f2fbccf18603a514b1c0a010fbcc3ca7c661eb46929e8fab5eccaf64b0eaae24.png" src="_images/f2fbccf18603a514b1c0a010fbcc3ca7c661eb46929e8fab5eccaf64b0eaae24.png" />
 </div>
 </div>
 <p>Entonces, tenemos observaciones, y hemos estimado funciones <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> con estas observaciones. Ahora digamos que tenemos algunos puntos nuevos <span class="math notranslate nohighlight">\(\mathbf{X}_*\)</span> donde queremos predecir <span class="math notranslate nohighlight">\(f(\mathbf{X}_*)\)</span>.</p>
-<img src="https://github.com/jwangjie/Gaussian-Process-be-comfortable-using-it/blob/master/img/mvn.png?raw=1" width="500"/>
+<img src="https://github.com/jwangjie/Gaussian-Process-Regression-Tutorial/blob/master/img/mvn.png?raw=1" width="500"/>
 <p>La distribución conjunta de <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{f}_*\)</span> se puede modelar como:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{pmatrix}\mathbf{f} \\ \mathbf{f}_*\end{pmatrix} \sim\mathcal{N}\left(\begin{pmatrix}m(\mathbf{X})\\ m(\mathbf{X}_*)\end{pmatrix}, \begin{pmatrix}\mathbf{K} &amp; \mathbf{K}_* \\ \mathbf{K}_*^T &amp; \mathbf{K}_{**}\end{pmatrix}\right) \end{split}\]</div>
@@ -995,7 +1033,17 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/df6eef248d78f6dd4dec9ea1472f3e423e8a1615a2725672fb91a8989ddd121c.png" src="_images/df6eef248d78f6dd4dec9ea1472f3e423e8a1615a2725672fb91a8989ddd121c.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:6: SyntaxWarning: &quot;\s&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\s&quot;? A raw string is also an option.
+&lt;&gt;:7: SyntaxWarning: &quot;\m&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\m&quot;? A raw string is also an option.
+&lt;&gt;:6: SyntaxWarning: &quot;\s&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\s&quot;? A raw string is also an option.
+&lt;&gt;:7: SyntaxWarning: &quot;\m&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\m&quot;? A raw string is also an option.
+C:\Users\edier\AppData\Local\Temp\ipykernel_15644\3853475604.py:6: SyntaxWarning: &quot;\s&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\s&quot;? A raw string is also an option.
+  ax.fill_between(X2.flat, μ2-2*σ2, μ2+2*σ2, color=&#39;red&#39;, alpha=0.15, label=&#39;$2 \sigma_{2|1}$&#39;)
+C:\Users\edier\AppData\Local\Temp\ipykernel_15644\3853475604.py:7: SyntaxWarning: &quot;\m&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\m&quot;? A raw string is also an option.
+  ax.plot(X2, μ2, &#39;r-&#39;, lw=2, label=&#39;$\mu_{2|1}$&#39;)
+</pre></div>
+</div>
+<img alt="_images/5c9b163480d82898b766e950ed69dfdb10a88e946f43cbce953bf1ea5c07c029.png" src="_images/5c9b163480d82898b766e950ed69dfdb10a88e946f43cbce953bf1ea5c07c029.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1019,7 +1067,7 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7750b209c1f0475966d16d7720f5c0557fdc9dd09a35c52e761c4c5b0a01a1de.png" src="_images/7750b209c1f0475966d16d7720f5c0557fdc9dd09a35c52e761c4c5b0a01a1de.png" />
+<img alt="_images/3dee79cff2e56da766620b1d2e92971efbb84d65a09f62a56980ae1f87797098.png" src="_images/3dee79cff2e56da766620b1d2e92971efbb84d65a09f62a56980ae1f87797098.png" />
 </div>
 </div>
 </section>
@@ -1091,7 +1139,17 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/de2c697f6b0657581a337b7f94433722142de1dd867939fb89f7cb5b653c3615.png" src="_images/de2c697f6b0657581a337b7f94433722142de1dd867939fb89f7cb5b653c3615.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:7: SyntaxWarning: &quot;\s&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\s&quot;? A raw string is also an option.
+&lt;&gt;:8: SyntaxWarning: &quot;\m&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\m&quot;? A raw string is also an option.
+&lt;&gt;:7: SyntaxWarning: &quot;\s&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\s&quot;? A raw string is also an option.
+&lt;&gt;:8: SyntaxWarning: &quot;\m&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\m&quot;? A raw string is also an option.
+C:\Users\edier\AppData\Local\Temp\ipykernel_15644\2935246419.py:7: SyntaxWarning: &quot;\s&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\s&quot;? A raw string is also an option.
+  alpha=0.15, label=&#39;$2\sigma_{2|1}$&#39;)
+C:\Users\edier\AppData\Local\Temp\ipykernel_15644\2935246419.py:8: SyntaxWarning: &quot;\m&quot; is an invalid escape sequence. Such sequences will not work in the future. Did you mean &quot;\\m&quot;? A raw string is also an option.
+  ax.plot(X2, μ2, &#39;r-&#39;, lw=2, label=&#39;$\mu_{2|1}$&#39;)
+</pre></div>
+</div>
+<img alt="_images/dbe19a406b1ae8b1ec52bb8d8d972f13728cc5f8183f6df5f779ce353e3e4c83.png" src="_images/dbe19a406b1ae8b1ec52bb8d8d972f13728cc5f8183f6df5f779ce353e3e4c83.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1113,7 +1171,7 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6c89f7b8e7b9587ed1c2c2b55d9918aa2188d2251199c1231532ef086ab89599.png" src="_images/6c89f7b8e7b9587ed1c2c2b55d9918aa2188d2251199c1231532ef086ab89599.png" />
+<img alt="_images/9e4c86aa5196f9f21e215435fa25adbe2ba90ffa0aeb695596484d366341305f.png" src="_images/9e4c86aa5196f9f21e215435fa25adbe2ba90ffa0aeb695596484d366341305f.png" />
 </div>
 </div>
 </section>
@@ -1189,35 +1247,35 @@ $<span class="math notranslate nohighlight">\(\mathbf{\bar{f}_*} \overset{\Delta
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[RBF(length_scale=1), RationalQuadratic(alpha=1, length_scale=1), ExpSineSquared(length_scale=1, periodicity=10), DotProduct(sigma_0=1) ** 2, Matern(length_scale=1, nu=1.5)] 
 </pre></div>
 </div>
-<img alt="_images/8963166734d9eab6dbdf95767cab08508b419c9d686c2dd6e987dc90756aa8f2.png" src="_images/8963166734d9eab6dbdf95767cab08508b419c9d686c2dd6e987dc90756aa8f2.png" />
+<img alt="_images/95fc61374669b47ebbf911f22146a7d754bc8a9d474e5367ea59aa332a79b23f.png" src="_images/95fc61374669b47ebbf911f22146a7d754bc8a9d474e5367ea59aa332a79b23f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ RBF(length_scale=1.93)
-gp.log_marginal_likelihood: -3.444937833462115
+gp.log_marginal_likelihood: -3.4449378334621152
 -------------------------------------------------- 
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/evaristizabalg/anaconda3/envs/ml/lib/python3.10/site-packages/sklearn/gaussian_process/kernels.py:452: ConvergenceWarning: The optimal value found for dimension 0 of parameter alpha is close to the specified upper bound 100000.0. Increasing the bound and calling fit again may find a better value.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\sklearn\gaussian_process\kernels.py:455: ConvergenceWarning: The optimal value found for dimension 0 of parameter alpha is close to the specified upper bound 100000.0. Increasing the bound and calling fit again may find a better value.
   warnings.warn(
 </pre></div>
 </div>
-<img alt="_images/70eb3c27b141cc2d11889d7fcb644852de1847fd3699ec16982dd199480345d8.png" src="_images/70eb3c27b141cc2d11889d7fcb644852de1847fd3699ec16982dd199480345d8.png" />
+<img alt="_images/b58461401c435913d2e9bf5e1554b8d7f0659b6c055c2189a5f8c0272632baab.png" src="_images/b58461401c435913d2e9bf5e1554b8d7f0659b6c055c2189a5f8c0272632baab.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ RationalQuadratic(alpha=1e+05, length_scale=1.93)
-gp.log_marginal_likelihood: -3.4449718909150966
+gp.log_marginal_likelihood: -3.444971892267393
 -------------------------------------------------- 
 </pre></div>
 </div>
-<img alt="_images/1596352dcaed8a363a98549962d5331a0cd686107b29235c7113f071ea076eb6.png" src="_images/1596352dcaed8a363a98549962d5331a0cd686107b29235c7113f071ea076eb6.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ ExpSineSquared(length_scale=0.000524, periodicity=2.31e+04)
-gp.log_marginal_likelihood: -3.444938145492622
+<img alt="_images/7d0e11b88ed09334457771989e8e9b6782c175c062c3eb44ddad8d92f9287149.png" src="_images/7d0e11b88ed09334457771989e8e9b6782c175c062c3eb44ddad8d92f9287149.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ ExpSineSquared(length_scale=0.000524, periodicity=2.32e+04)
+gp.log_marginal_likelihood: -3.444938144963266
 -------------------------------------------------- 
 </pre></div>
 </div>
-<img alt="_images/2651b78ecca2198db703931227a3c9b6ec3eacc055519ca2cae034e40aac8e4e.png" src="_images/2651b78ecca2198db703931227a3c9b6ec3eacc055519ca2cae034e40aac8e4e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ DotProduct(sigma_0=0.998) ** 2
-gp.log_marginal_likelihood: -150204291.56018084
+<img alt="_images/7d3fcfedfa7042d0288e17385b17b9b6cbc5c0a719a11170e225d42b6b1349ea.png" src="_images/7d3fcfedfa7042d0288e17385b17b9b6cbc5c0a719a11170e225d42b6b1349ea.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ DotProduct(sigma_0=1) ** 2
+gp.log_marginal_likelihood: -150226375.36896336
 -------------------------------------------------- 
 </pre></div>
 </div>
-<img alt="_images/61936e982a5ad23b06adf3af95521988f450b41aab04834754fe0a02c225d600.png" src="_images/61936e982a5ad23b06adf3af95521988f450b41aab04834754fe0a02c225d600.png" />
+<img alt="_images/b0f445cff831d86b3f0888e5c7beacd49d510147cb16e5960b8dce84950be13c.png" src="_images/b0f445cff831d86b3f0888e5c7beacd49d510147cb16e5960b8dce84950be13c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gp.kernel_ Matern(length_scale=1.99, nu=1.5)
 gp.log_marginal_likelihood: -5.131637070524745
 -------------------------------------------------- 
@@ -1290,7 +1348,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9863e5e206092dc8358dfade0be572563e6a996e5261bebd8677a57b8ce200df.png" src="_images/9863e5e206092dc8358dfade0be572563e6a996e5261bebd8677a57b8ce200df.png" />
+<img alt="_images/1f47ce09f40a9907a51323862ede8c7b434da65017ac0413bbcd0fbef8b65362.png" src="_images/1f47ce09f40a9907a51323862ede8c7b434da65017ac0413bbcd0fbef8b65362.png" />
 </div>
 </div>
 <p>Ahora vamos a generar funciones, en este ejemplo 5, a partir de la matriz de covarianza con RBF y diferentes hiperparámetros.</p>
@@ -1320,7 +1378,7 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e21ceef940747940ff7cbbd606c065e268b603d297b0a303880917471fa5ea34.png" src="_images/e21ceef940747940ff7cbbd606c065e268b603d297b0a303880917471fa5ea34.png" />
+<img alt="_images/2ca26baacf6073f9bde27ccb628f8d2b085ef719f5b05ac3f9db269d67229512.png" src="_images/2ca26baacf6073f9bde27ccb628f8d2b085ef719f5b05ac3f9db269d67229512.png" />
 </div>
 </div>
 <p>A continuación se presentan funciones de kernel de la librearía <em>sklearn</em> de 1 dimension (Q).</p>
@@ -1378,7 +1436,17 @@ gp.log_marginal_likelihood: -5.131637070524745
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3a37f29b4685c3eeca4eff89a9fa075f2bef8a5af41eabe49773ebc2093ede56.png" src="_images/3a37f29b4685c3eeca4eff89a9fa075f2bef8a5af41eabe49773ebc2093ede56.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">GPy</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">Q</span><span class="o">=</span><span class="mi">1</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">x_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;GPy&#39;
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -2815,15 +2883,17 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-gaussiana">Distribución Gaussiana</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-conjunta">Distribución conjunta</a></li>
@@ -2913,8 +2983,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

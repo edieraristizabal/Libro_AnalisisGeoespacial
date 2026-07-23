@@ -16,43 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -60,40 +63,37 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '09_SpatialRegression';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Modelos de regresión para dependencia espacial tipo SAR" href="10_SAR.html" />
     <link rel="prev" title="Cluster espacial" href="08_ClusterEspacial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +101,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,15 +108,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -126,7 +169,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +200,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -220,9 +260,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -352,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -366,25 +411,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -406,7 +443,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los-datos-airbnb-en-san-diego">Los Datos: AirBnB en San Diego</a></li>
 </ul>
@@ -458,9 +495,9 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">spreg</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.explore</span><span class="w"> </span><span class="kn">import</span> <span class="n">esda</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spreg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
@@ -474,7 +511,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;https://geographicdata.science/book/_downloads/dcd429d1761a2d0efdbc4532e141ba14/regression_db.geojson&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/gdsbook/book/main/data/airbnb/regression_db.geojson&#39;</span><span class="p">)</span>
 <span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -485,28 +522,28 @@ RangeIndex: 6110 entries, 0 to 6109
 Data columns (total 20 columns):
  #   Column              Non-Null Count  Dtype   
 ---  ------              --------------  -----   
- 0   accommodates        6110 non-null   int64   
+ 0   accommodates        6110 non-null   int32   
  1   bathrooms           6110 non-null   float64 
  2   bedrooms            6110 non-null   float64 
  3   beds                6110 non-null   float64 
- 4   neighborhood        6110 non-null   object  
- 5   pool                6110 non-null   int64   
+ 4   neighborhood        6110 non-null   str     
+ 5   pool                6110 non-null   int32   
  6   d2balboa            6110 non-null   float64 
- 7   coastal             6110 non-null   int64   
+ 7   coastal             6110 non-null   int32   
  8   price               6110 non-null   float64 
  9   log_price           6110 non-null   float64 
- 10  id                  6110 non-null   int64   
- 11  pg_Apartment        6110 non-null   int64   
- 12  pg_Condominium      6110 non-null   int64   
- 13  pg_House            6110 non-null   int64   
- 14  pg_Other            6110 non-null   int64   
- 15  pg_Townhouse        6110 non-null   int64   
- 16  rt_Entire_home/apt  6110 non-null   int64   
- 17  rt_Private_room     6110 non-null   int64   
- 18  rt_Shared_room      6110 non-null   int64   
+ 10  id                  6110 non-null   int32   
+ 11  pg_Apartment        6110 non-null   int32   
+ 12  pg_Condominium      6110 non-null   int32   
+ 13  pg_House            6110 non-null   int32   
+ 14  pg_Other            6110 non-null   int32   
+ 15  pg_Townhouse        6110 non-null   int32   
+ 16  rt_Entire_home/apt  6110 non-null   int32   
+ 17  rt_Private_room     6110 non-null   int32   
+ 18  rt_Shared_room      6110 non-null   int32   
  19  geometry            6110 non-null   geometry
-dtypes: float64(6), geometry(1), int64(12), object(1)
-memory usage: 954.8+ KB
+dtypes: float64(6), geometry(1), int32(12), str(1)
+memory usage: 668.4 KB
 </pre></div>
 </div>
 </div>
@@ -518,10 +555,7 @@ memory usage: 954.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="_images/4b1dce0d20495e3f57d4f0909e3ec99690baa4ee675f447b99f02f41307aff03.png" src="_images/4b1dce0d20495e3f57d4f0909e3ec99690baa4ee675f447b99f02f41307aff03.png" />
+<img alt="_images/c8f6ea54c6d6c7dea65fe4b63f8ef0e59a9c7ff1f4ad0c7c139fed5afe3cac9c.png" src="_images/c8f6ea54c6d6c7dea65fe4b63f8ef0e59a9c7ff1f4ad0c7c139fed5afe3cac9c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -666,7 +700,7 @@ P = \alpha + \mathbf{X}\beta + \epsilon
 ------------------
 
 SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES
------------------------------------------
+------------------------------------------------------------------------------------
 Data set            :     unknown
 Weights matrix      :        None
 Dependent Variable  :   log_price                Number of Observations:        6110
@@ -697,17 +731,17 @@ S.E of regression ML:      0.4648                Schwarz criterion     :    8073
 ------------------------------------------------------------------------------------
 
 REGRESSION DIAGNOSTICS
-MULTICOLLINEARITY CONDITION NUMBER           11.964
+MULTICOLLINEARITY CONDITION NUMBER          11.964
 
 TEST ON NORMALITY OF ERRORS
 TEST                             DF        VALUE           PROB
-Jarque-Bera                       2        2671.611           0.0000
+Jarque-Bera                       2       2671.611           0.0000
 
 DIAGNOSTICS FOR HETEROSKEDASTICITY
 RANDOM COEFFICIENTS
 TEST                             DF        VALUE           PROB
-Breusch-Pagan test               10         322.532           0.0000
-Koenker-Bassett test             10         135.581           0.0000
+Breusch-Pagan test               10        322.532           0.0000
+Koenker-Bassett test             10        135.581           0.0000
 ================================ END OF REPORT =====================================
 </pre></div>
 </div>
@@ -733,8 +767,8 @@ Koenker-Bassett test             10         135.581           0.0000
 Dep. Variable:              log_price   R-squared:                       0.668
 Model:                            OLS   Adj. R-squared:                  0.668
 Method:                 Least Squares   F-statistic:                     1229.
-Date:                Fri, 11 Oct 2024   Prob (F-statistic):               0.00
-Time:                        17:43:14   Log-Likelihood:                -3988.9
+Date:                Thu, 23 Jul 2026   Prob (F-statistic):               0.00
+Time:                        14:41:28   Log-Likelihood:                -3988.9
 No. Observations:                6110   AIC:                             8000.
 Df Residuals:                    6099   BIC:                             8074.
 Df Model:                          10                                         
@@ -784,7 +818,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/76c092528fdd9aef2ea5687887e6f8495d2420820dd352776781aa30ff2d6520.png" src="_images/76c092528fdd9aef2ea5687887e6f8495d2420820dd352776781aa30ff2d6520.png" />
+<img alt="_images/1f7c45f62c68d6570b43dc26bc72cc88126dea4b369a53169aa5722b64551d8e.png" src="_images/1f7c45f62c68d6570b43dc26bc72cc88126dea4b369a53169aa5722b64551d8e.png" />
 </div>
 </div>
 <p>Aunque parece que los vecindarios en la costa tienen errores promedio solo ligeramente más altos (y tienen menor varianza en sus errores de predicción), las dos distribuciones son significativamente distintas entre sí cuando se comparan usando una prueba <span class="math notranslate nohighlight">\(t\)</span> clásica:</p>
@@ -916,14 +950,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Local\Temp\ipykernel_13996\1987411078.py:6: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
-
-  sbn.boxplot(x=&#39;neighborhood&#39;, y=&#39;residual&#39;, ax = ax,
-</pre></div>
-</div>
-<img alt="_images/e30fa6d923e8c319ea32cbabb82471e33c770ebb7e0c5701f5b0a4eac0121752.png" src="_images/e30fa6d923e8c319ea32cbabb82471e33c770ebb7e0c5701f5b0a4eac0121752.png" />
+<img alt="_images/bb9db86ff22e0f9a8951eb164c52f86b6ceed3fc76a8aa9469db26ce5a0f2de6.png" src="_images/bb9db86ff22e0f9a8951eb164c52f86b6ceed3fc76a8aa9469db26ce5a0f2de6.png" />
 </div>
 </div>
 <p>Ningún vecindario está completamente aislado de los demás, pero algunos parecen ser más destacados que otros, como las conocidas áreas turísticas del centro de la ciudad, como Gaslamp Quarter, Little Italy o The Core. Por lo tanto, puede haber un efecto distintivo de la moda del vecindario que importa en este modelo.</p>
@@ -932,13 +959,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">KNN</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
- There are 11 disconnected components.
-  warnings.warn(message)
 </pre></div>
 </div>
 </div>
@@ -954,7 +974,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b106607b6664f71d07fe6cf9a8678f7a333f64b036ea93ed5f7bfa17d217f6b9.png" src="_images/b106607b6664f71d07fe6cf9a8678f7a333f64b036ea93ed5f7bfa17d217f6b9.png" />
+<img alt="_images/882bffc34bf7998f8a23dc509530d649d6c88d3f3068047ae3d825ab362efe7b.png" src="_images/882bffc34bf7998f8a23dc509530d649d6c88d3f3068047ae3d825ab362efe7b.png" />
 </div>
 </div>
 <p>En este gráfico, vemos que nuestros errores de predicción tienden a agruparse. Arriba, mostramos la relación entre nuestro error de predicción en cada sitio y el error de predicción en el sitio más cercano a él. Aquí, estamos utilizando este sitio más cercano para representar el <em>entorno</em> de ese Airbnb. Esto significa que, cuando el modelo tiende a sobreestimar el precio logarítmico nocturno de un determinado Airbnb, es más probable que los sitios alrededor de ese Airbnb también sean <em>sobreestimados</em>.</p>
@@ -973,12 +993,7 @@ Recordando las estadísticas de <em>Índice de Moran local</em>, podemos identif
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\miniconda3\Lib\site-packages\libpysal\weights\weights.py:224: UserWarning: The weights matrix is not fully connected: 
- There are 3 disconnected components.
-  warnings.warn(message)
-</pre></div>
-</div>
-<img alt="_images/6524ac5c66324c856989fbff4462ff870f7859194f4b91d85c0a9371705fedf5.png" src="_images/6524ac5c66324c856989fbff4462ff870f7859194f4b91d85c0a9371705fedf5.png" />
+<img alt="_images/751e61802172186986484c28cfd2c868ff9df85cf9d6ce06acbc000ea67128e3.png" src="_images/751e61802172186986484c28cfd2c868ff9df85cf9d6ce06acbc000ea67128e3.png" />
 </div>
 </div>
 <p>Por lo tanto, estas áreas tienden a ser lugares donde nuestro modelo subestima significativamente el precio nocturno de Airbnb tanto para esa observación específica como para las observaciones en sus alrededores inmediatos.
@@ -1000,7 +1015,7 @@ Esto es crítico porque, si podemos identificar cómo están estructuradas estas
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/a106d3306ef703abed467babcb86a473590a51fe89ec09cbd793fe4e00729f81.png" src="_images/a106d3306ef703abed467babcb86a473590a51fe89ec09cbd793fe4e00729f81.png" />
+<img alt="_images/00795055b0ffceca4833d9215d31cb528af971c7ca6bc33c6fd12ad464ce2ea6.png" src="_images/00795055b0ffceca4833d9215d31cb528af971c7ca6bc33c6fd12ad464ce2ea6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1030,7 +1045,7 @@ Esto es crítico porque, si podemos identificar cómo están estructuradas estas
 ------------------
 
 SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES
------------------------------------------
+------------------------------------------------------------------------------------
 Data set            :     unknown
 Weights matrix      :        None
 Dependent Variable  :   log_price                Number of Observations:        6110
@@ -1062,17 +1077,17 @@ S.E of regression ML:      0.4647                Schwarz criterion     :    8079
 ------------------------------------------------------------------------------------
 
 REGRESSION DIAGNOSTICS
-MULTICOLLINEARITY CONDITION NUMBER           12.745
+MULTICOLLINEARITY CONDITION NUMBER          12.745
 
 TEST ON NORMALITY OF ERRORS
 TEST                             DF        VALUE           PROB
-Jarque-Bera                       2        2710.322           0.0000
+Jarque-Bera                       2       2710.322           0.0000
 
 DIAGNOSTICS FOR HETEROSKEDASTICITY
 RANDOM COEFFICIENTS
 TEST                             DF        VALUE           PROB
-Breusch-Pagan test               11         317.519           0.0000
-Koenker-Bassett test             11         132.860           0.0000
+Breusch-Pagan test               11        317.519           0.0000
+Koenker-Bassett test             11        132.860           0.0000
 ================================ END OF REPORT =====================================
 </pre></div>
 </div>
@@ -1086,7 +1101,7 @@ Koenker-Bassett test             11         132.860           0.0000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/930a513f2272108ac09a67449b68ac1da53f283d12f08fb0339139672749d95b.png" src="_images/930a513f2272108ac09a67449b68ac1da53f283d12f08fb0339139672749d95b.png" />
+<img alt="_images/3e22a371c8d892f5678b632dcf4f13e2aa110691c1e586cd4c5453756bcc57fe.png" src="_images/3e22a371c8d892f5678b632dcf4f13e2aa110691c1e586cd4c5453756bcc57fe.png" />
 </div>
 </div>
 <p>Finalmente, la variable de distancia al Parque Balboa no se ajusta a nuestra teoría sobre cómo debería afectar el precio de un Airbnb la distancia a un lugar de interés; el estimado del coeficiente es <em>positivo</em>, lo que significa que las personas están pagando más para estar <em>más alejadas</em> del parque.</p>
@@ -1195,15 +1210,17 @@ para otros factores que no podemos pero deberíamos incluir en nuestro modelo. C
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#los-datos-airbnb-en-san-diego">Los Datos: AirBnB en San Diego</a></li>
 </ul>
@@ -1266,8 +1283,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

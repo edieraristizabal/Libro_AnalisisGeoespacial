@@ -1,33 +1,161 @@
 Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1323, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\asyncio\base_events.py", line 719, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-br = gpd.read_file('http://darribas.org/gds19/content/labs/data/brexit.gpkg')
-br.head(2)
+# Read the file in
+abb = gpd.read_file("https://darribas.org/gds_course/content/data/london_abb.gpkg")
+
+# Inspect the structure of the table
+abb.info()
 ------------------
 
 
-[1;31m---------------------------------------------------------------------------[0m
-[1;31mNameError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[1], line 1[0m
-[1;32m----> 1[0m br [38;5;241m=[39m [43mgpd[49m[38;5;241m.[39mread_file([38;5;124m'[39m[38;5;124mhttp://darribas.org/gds19/content/labs/data/brexit.gpkg[39m[38;5;124m'[39m)
-[0;32m      2[0m br[38;5;241m.[39mhead([38;5;241m2[39m)
+[31m---------------------------------------------------------------------------[39m
+[31mgaierror[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:1321[39m, in [36mAbstractHTTPHandler.do_open[39m[34m(self, http_class, req, **http_conn_args)[39m
+[32m   1320[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1321[39m     [30;43mh[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mget_method[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mselector[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m,[39;49m
+[32m   1322[39m [30;43m              [39;49m[30;43mencode_chunked[39;49m[30;43m=[39;49m[30;43mreq[39;49m[30;43m.[39;49m[30;43mhas_header[39;49m[30;43m([39;49m[30;43m'[39;49m[30;43mTransfer-encoding[39;49m[30;43m'[39;49m[30;43m)[39;49m[30;43m)[39;49m
+[32m   1323[39m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
 
-[1;31mNameError[0m: name 'gpd' is not defined
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1358[39m, in [36mHTTPConnection.request[39m[34m(self, method, url, body, headers, encode_chunked)[39m
+[32m   1357[39m [38;5;250m[39m[33;03m"""Send a complete request to the server."""[39;00m
+[32m-> [39m[32m1358[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_send_request[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mbody[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencode_chunked[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1404[39m, in [36mHTTPConnection._send_request[39m[34m(self, method, url, body, headers, encode_chunked)[39m
+[32m   1403[39m     body = _encode(body, [33m'[39m[33mbody[39m[33m'[39m)
+[32m-> [39m[32m1404[39m [30;43mself[39;49m[30;43m.[39;49m[30;43mendheaders[39;49m[30;43m([39;49m[30;43mbody[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencode_chunked[39;49m[30;43m=[39;49m[30;43mencode_chunked[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1353[39m, in [36mHTTPConnection.endheaders[39m[34m(self, message_body, encode_chunked)[39m
+[32m   1352[39m     [38;5;28;01mraise[39;00m CannotSendHeader()
+[32m-> [39m[32m1353[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_send_output[39;49m[30;43m([39;49m[30;43mmessage_body[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencode_chunked[39;49m[30;43m=[39;49m[30;43mencode_chunked[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1113[39m, in [36mHTTPConnection._send_output[39m[34m(self, message_body, encode_chunked)[39m
+[32m   1112[39m [38;5;28;01mdel[39;00m [38;5;28mself[39m._buffer[:]
+[32m-> [39m[32m1113[39m [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mmsg[39;49m[30;43m)[39;49m
+[32m   1115[39m [38;5;28;01mif[39;00m message_body [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1116[39m 
+[32m   1117[39m     [38;5;66;03m# create a consistent interface to message_body[39;00m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1057[39m, in [36mHTTPConnection.send[39m[34m(self, data)[39m
+[32m   1056[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.auto_open:
+[32m-> [39m[32m1057[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1058[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1492[39m, in [36mHTTPSConnection.connect[39m[34m(self)[39m
+[32m   1490[39m [33m"[39m[33mConnect to a host on a given (SSL) port.[39m[33m"[39m
+[32m-> [39m[32m1492[39m [30;43msuper[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1494[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._tunnel_host:
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\http\client.py:1023[39m, in [36mHTTPConnection.connect[39m[34m(self)[39m
+[32m   1022[39m sys.audit([33m"[39m[33mhttp.client.connect[39m[33m"[39m, [38;5;28mself[39m, [38;5;28mself[39m.host, [38;5;28mself[39m.port)
+[32m-> [39m[32m1023[39m [38;5;28mself[39m.sock = [30;43mself[39;49m[30;43m.[39;49m[30;43m_create_connection[39;49m[30;43m([39;49m
+[32m   1024[39m [30;43m    [39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mhost[39;49m[30;43m,[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mport[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43msource_address[39;49m[30;43m)[39;49m
+[32m   1025[39m [38;5;66;03m# Might fail in OSs that don't implement TCP_NODELAY[39;00m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\socket.py:846[39m, in [36mcreate_connection[39m[34m(address, timeout, source_address, all_errors)[39m
+[32m    845[39m exceptions = []
+[32m--> [39m[32m846[39m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [30;43mgetaddrinfo[39;49m[30;43m([39;49m[30;43mhost[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mport[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m0[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mSOCK_STREAM[39;49m[30;43m)[39;49m:
+[32m    847[39m     af, socktype, proto, canonname, sa = res
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\socket.py:983[39m, in [36mgetaddrinfo[39m[34m(host, port, family, type, proto, flags)[39m
+[32m    982[39m addrlist = []
+[32m--> [39m[32m983[39m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [30;43m_socket[39;49m[30;43m.[39;49m[30;43mgetaddrinfo[39;49m[30;43m([39;49m[30;43mhost[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mport[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfamily[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtype[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mproto[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mflags[39;49m[30;43m)[39;49m:
+[32m    984[39m     af, socktype, proto, canonname, sa = res
+
+[31mgaierror[39m: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+[31mURLError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m# Read the file in[39;00m
+[32m----> [39m[32m2[39m abb = gpd.read_file([33m"https://darribas.org/gds_course/content/data/london_abb.gpkg"[39m)
+[32m      3[39m 
+[32m      4[39m [38;5;66;03m# Inspect the structure of the table[39;00m
+[32m      5[39m abb.info()
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\geopandas\io\file.py:300[39m, in [36m_read_file[39m[34m(filename, bbox, mask, columns, rows, engine, **kwargs)[39m
+[32m    294[39m [38;5;28;01mif[39;00m _is_url(filename):
+[32m    295[39m     [38;5;66;03m# if it is a url that supports random access -> pass through to[39;00m
+[32m    296[39m     [38;5;66;03m# pyogrio/fiona as is (to support downloading only part of the file)[39;00m
+[32m    297[39m     [38;5;66;03m# otherwise still download manually because pyogrio/fiona don't support[39;00m
+[32m    298[39m     [38;5;66;03m# all types of urls (https://github.com/geopandas/geopandas/issues/2908)[39;00m
+[32m    299[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m300[39m         [38;5;28;01mwith[39;00m [30;43murllib[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43murlopen[39;49m[30;43m([39;49m
+[32m    301[39m [30;43m            [39;49m[30;43mRequest[39;49m[30;43m([39;49m[30;43mfilename[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43m{[39;49m[30;43m"[39;49m[30;43mRange[39;49m[30;43m"[39;49m[30;43m:[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mbytes=0-1[39;49m[30;43m"[39;49m[30;43m}[39;49m[30;43m)[39;49m
+[32m    302[39m [30;43m        [39;49m[30;43m)[39;49m [38;5;28;01mas[39;00m response:
+[32m    303[39m             [38;5;28;01mif[39;00m (
+[32m    304[39m                 response.headers.get([33m"[39m[33mAccept-Ranges[39m[33m"[39m) == [33m"[39m[33mnone[39m[33m"[39m
+[32m    305[39m                 [38;5;129;01mor[39;00m response.status != HTTPStatus.PARTIAL_CONTENT
+[32m    306[39m             ):
+[32m    307[39m                 from_bytes = [38;5;28;01mTrue[39;00m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:187[39m, in [36murlopen[39m[34m(url, data, timeout, context)[39m
+[32m    185[39m [38;5;28;01melse[39;00m:
+[32m    186[39m     opener = _opener
+[32m--> [39m[32m187[39m [38;5;28;01mreturn[39;00m [30;43mopener[39;49m[30;43m.[39;49m[30;43mopen[39;49m[30;43m([39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtimeout[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:487[39m, in [36mOpenerDirector.open[39m[34m(self, fullurl, data, timeout)[39m
+[32m    484[39m     req = meth(req)
+[32m    486[39m sys.audit([33m'[39m[33murllib.Request[39m[33m'[39m, req.full_url, req.data, req.headers, req.get_method())
+[32m--> [39m[32m487[39m response = [30;43mself[39;49m[30;43m.[39;49m[30;43m_open[39;49m[30;43m([39;49m[30;43mreq[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdata[39;49m[30;43m)[39;49m
+[32m    489[39m [38;5;66;03m# post-process response[39;00m
+[32m    490[39m meth_name = protocol+[33m"[39m[33m_response[39m[33m"[39m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:504[39m, in [36mOpenerDirector._open[39m[34m(self, req, data)[39m
+[32m    501[39m     [38;5;28;01mreturn[39;00m result
+[32m    503[39m protocol = req.type
+[32m--> [39m[32m504[39m result = [30;43mself[39;49m[30;43m.[39;49m[30;43m_call_chain[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mhandle_open[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mprotocol[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mprotocol[39;49m[30;43m [39;49m[30;43m+[39;49m
+[32m    505[39m [30;43m                          [39;49m[30;43m'[39;49m[30;43m_open[39;49m[30;43m'[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m)[39;49m
+[32m    506[39m [38;5;28;01mif[39;00m result:
+[32m    507[39m     [38;5;28;01mreturn[39;00m result
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:464[39m, in [36mOpenerDirector._call_chain[39m[34m(self, chain, kind, meth_name, *args)[39m
+[32m    462[39m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[32m    463[39m     func = [38;5;28mgetattr[39m(handler, meth_name)
+[32m--> [39m[32m464[39m     result = [30;43mfunc[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m)[39;49m
+[32m    465[39m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    466[39m         [38;5;28;01mreturn[39;00m result
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:1369[39m, in [36mHTTPSHandler.https_open[39m[34m(self, req)[39m
+[32m   1368[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mhttps_open[39m([38;5;28mself[39m, req):
+[32m-> [39m[32m1369[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mdo_open[39;49m[30;43m([39;49m[30;43mhttp[39;49m[30;43m.[39;49m[30;43mclient[39;49m[30;43m.[39;49m[30;43mHTTPSConnection[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mreq[39;49m[30;43m,[39;49m
+[32m   1370[39m [30;43m                        [39;49m[30;43mcontext[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_context[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~\miniconda3\envs\geospatial\Lib\urllib\request.py:1324[39m, in [36mAbstractHTTPHandler.do_open[39m[34m(self, http_class, req, **http_conn_args)[39m
+[32m   1321[39m         h.request(req.get_method(), req.selector, req.data, headers,
+[32m   1322[39m                   encode_chunked=req.has_header([33m'[39m[33mTransfer-encoding[39m[33m'[39m))
+[32m   1323[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+[32m-> [39m[32m1324[39m         [38;5;28;01mraise[39;00m URLError(err)
+[32m   1325[39m     r = h.getresponse()
+[32m   1326[39m [38;5;28;01mexcept[39;00m:
+
+[31mURLError[39m: <urlopen error [Errno 11001] getaddrinfo failed>
 

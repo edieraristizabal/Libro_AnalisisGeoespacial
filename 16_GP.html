@@ -16,43 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -60,40 +63,37 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '16_GP';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Modelo GLM de Poisson no-homogéneo" href="17_LGCP.html" />
     <link rel="prev" title="Procesos Gaussianos con Python" href="15_GP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +101,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,15 +108,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -126,7 +169,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +200,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -220,9 +260,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -352,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -366,25 +411,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -406,7 +443,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-efecto-espacial-parametro">Alcance del Efecto Espacial (parámetro κ)</a></li>
@@ -442,32 +479,45 @@ document.write(`
 <p>La inferencia en la geoestadística basada en modelos puede realizarse utilizando los enfoques INLA y la ecuación diferencial parcial estocástica (SPDE), los cuales proporcionan una alternativa computacionalmente eficiente a los métodos MCMC (Lindgren y Rue 2015). En resumen, esto implica resolver una SPDE en una malla discreta de puntos e interpolar para obtener una solución continua a lo largo del dominio espacial (Krainski et al. 2019), que se calcula utilizando INLA (Rue, Martino y Chopin 2009).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(geoR)
-library(ggplot2)
-library(tidyverse)
-library(INLA)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">geoR</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">library</span><span class="p">(</span><span class="n">geoR</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;library&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># the ca20 dataset
-# load the example dataset,
-# calcium content in soil samples in Brazil
-data(ca20)
-# put this in a data frame
-dat &lt;- data.frame(x = ca20$coords[,1],y = ca20$coords[,2],calcium = ca20$data, 
-                  elevation = ca20$covariate[,1], 
-                  region = factor(ca20$covariate[,2]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the ca20 dataset</span>
+<span class="c1"># load the example dataset,</span>
+<span class="c1"># calcium content in soil samples in Brazil</span>
+<span class="n">data</span><span class="p">(</span><span class="n">ca20</span><span class="p">)</span>
+<span class="c1"># put this in a data frame</span>
+<span class="n">dat</span> <span class="o">&lt;-</span> <span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">ca20</span><span class="err">$</span><span class="n">coords</span><span class="p">[,</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span> <span class="o">=</span> <span class="n">ca20</span><span class="err">$</span><span class="n">coords</span><span class="p">[,</span><span class="mi">2</span><span class="p">],</span><span class="n">calcium</span> <span class="o">=</span> <span class="n">ca20</span><span class="err">$</span><span class="n">data</span><span class="p">,</span> 
+                  <span class="n">elevation</span> <span class="o">=</span> <span class="n">ca20</span><span class="err">$</span><span class="n">covariate</span><span class="p">[,</span><span class="mi">1</span><span class="p">],</span> 
+                  <span class="n">region</span> <span class="o">=</span> <span class="n">factor</span><span class="p">(</span><span class="n">ca20</span><span class="err">$</span><span class="n">covariate</span><span class="p">[,</span><span class="mi">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># meshes in 2D space can be created as follow:
-mesh &lt;- inla.mesh.2d(loc = dat[,c(&quot;x&quot;, &quot;y&quot;)], max.edge = c(50, 5000))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># meshes in 2D space can be created as follow:</span>
+<span class="n">mesh</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">mesh</span><span class="mf">.2</span><span class="n">d</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[,</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)],</span> <span class="nb">max</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -491,7 +541,7 @@ mesh &lt;- inla.mesh.2d(loc = dat[,c(&quot;x&quot;, &quot;y&quot;)], max.edge = 
 <p>En resumen, <code class="docutils literal notranslate"><span class="pre">inla.mesh.2d</span></code> es una herramienta esencial para crear mallas en el modelado espacial de INLA. Al considerar cuidadosamente la compensación entre precisión y cómputo, y potencialmente usar <code class="docutils literal notranslate"><span class="pre">meshbuilder</span></code> para la exploración, puede crear una malla adecuada para capturar los efectos espaciales en sus datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Amat &lt;- inla.spde.make.A(mesh, loc = as.matrix(dat[,c(&quot;x&quot;, &quot;y&quot;)]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Amat</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="k">as</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">dat</span><span class="p">[,</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)]))</span>
 </pre></div>
 </div>
 </div>
@@ -522,9 +572,9 @@ mesh &lt;- inla.mesh.2d(loc = dat[,c(&quot;x&quot;, &quot;y&quot;)], max.edge = 
 <p>Encontrar los valores óptimos para κ y δ es crucial para capturar adecuadamente el efecto espacial en su modelo. INLA permite especificar valores iniciales para estos parámetros, y luego estima sus valores finales durante el proceso de ajuste del modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spde &lt;- inla.spde2.pcmatern(mesh, 
-                            prior.range = c(500, 0.5),
-                            prior.sigma = c(2, 0.05))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spde</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde2</span><span class="o">.</span><span class="n">pcmatern</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> 
+                            <span class="n">prior</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+                            <span class="n">prior</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -576,13 +626,13 @@ mesh &lt;- inla.mesh.2d(loc = dat[,c(&quot;x&quot;, &quot;y&quot;)], max.edge = 
 <p>Tenga en cuenta que INLA permite especificar estos valores iniciales y luego estima los valores finales durante el proceso de ajuste del modelo. El análisis de sensibilidad y la referencia a otras fuentes te ayudarán a encontrar una buena configuración inicial para tus modelos espaciales en INLA.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># create the data stack
-dat_stack &lt;- inla.stack(data = list(calcium = dat$calcium), # the response variable
-                        A = list(Amat, 1, 1, 1), # the projection matrix
-                        effects = list(i = 1:spde$n.spde, # the spatial effect
-                                       Intercept = rep(1, nrow(dat)), 
-                                       elevation = dat$elevation,
-                                       region = factor(dat$region)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the data stack</span>
+<span class="n">dat_stack</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">calcium</span> <span class="o">=</span> <span class="n">dat</span><span class="err">$</span><span class="n">calcium</span><span class="p">),</span> <span class="c1"># the response variable</span>
+                        <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Amat</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># the projection matrix</span>
+                        <span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">spde</span><span class="err">$</span><span class="n">n</span><span class="o">.</span><span class="n">spde</span><span class="p">,</span> <span class="c1"># the spatial effect</span>
+                                       <span class="n">Intercept</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">dat</span><span class="p">)),</span> 
+                                       <span class="n">elevation</span> <span class="o">=</span> <span class="n">dat</span><span class="err">$</span><span class="n">elevation</span><span class="p">,</span>
+                                       <span class="n">region</span> <span class="o">=</span> <span class="n">factor</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">region</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -621,19 +671,19 @@ dat_stack &lt;- inla.stack(data = list(calcium = dat$calcium), # the response va
 <p>Al incluir los nuevos datos en el ajuste del modelo, INLA tendrá en cuenta tanto el efecto directo de la elevación y la región como el efecto espacial estimado en el modelo original. Esto permite obtener predicciones más precisas que consideren la dependencia espacial y las relaciones con las covariables de interés.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># a newdata to get the predictions
-modmat &lt;- expand.grid(elevation = seq(min(dat$elevation), 
-                                      max(dat$elevation), 
-                                      length.out = 10),
-                      region = unique(dat$region))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a newdata to get the predictions</span>
+<span class="n">modmat</span> <span class="o">&lt;-</span> <span class="n">expand</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">elevation</span> <span class="o">=</span> <span class="n">seq</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">elevation</span><span class="p">),</span> 
+                                      <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">elevation</span><span class="p">),</span> 
+                                      <span class="n">length</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="mi">10</span><span class="p">),</span>
+                      <span class="n">region</span> <span class="o">=</span> <span class="n">unique</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">region</span><span class="p">))</span>
 
-# the stack for these predictions
-pred_stack_fixef &lt;- inla.stack(data = list(calcium = NA),
-                               A = list(1, 1, 1),
-                               effects = list(Intercept = rep(1, nrow(modmat)),
-                                              elevation = modmat$elevation,
-                                              region = factor(modmat$region)),
-                               tag = &quot;prd_fixef&quot;)
+<span class="c1"># the stack for these predictions</span>
+<span class="n">pred_stack_fixef</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">calcium</span> <span class="o">=</span> <span class="n">NA</span><span class="p">),</span>
+                               <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                               <span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Intercept</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">modmat</span><span class="p">)),</span>
+                                              <span class="n">elevation</span> <span class="o">=</span> <span class="n">modmat</span><span class="err">$</span><span class="n">elevation</span><span class="p">,</span>
+                                              <span class="n">region</span> <span class="o">=</span> <span class="n">factor</span><span class="p">(</span><span class="n">modmat</span><span class="err">$</span><span class="n">region</span><span class="p">)),</span>
+                               <span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;prd_fixef&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -667,53 +717,53 @@ pred_stack_fixef &lt;- inla.stack(data = list(calcium = NA),
 <p>En resumen, la predicción en INLA para modelos espaciales implica definir datos para predicciones puntuales y, si se desea, generar predicciones espaciales teniendo en cuenta los efectos espaciales y las covariables. Los pasos adicionales previos a INLA pueden incluir la creación de rásteres a partir de los datos para cubrir todo el espacio de estudio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(raster)
-library(fields) # for Tps
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="c1"># for Tps</span>
 
-## first we define an empty raster to hold the coordinates of the predictions
-r &lt;- raster(xmn = min(dat$x), xmx = max(dat$x),
-            ymn = min(dat$y), ymx = max(dat$y),
-            resolution = 25)
+<span class="c1">## first we define an empty raster to hold the coordinates of the predictions</span>
+<span class="n">r</span> <span class="o">&lt;-</span> <span class="n">raster</span><span class="p">(</span><span class="n">xmn</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">x</span><span class="p">),</span> <span class="n">xmx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">x</span><span class="p">),</span>
+            <span class="n">ymn</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">y</span><span class="p">),</span> <span class="n">ymx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="err">$</span><span class="n">y</span><span class="p">),</span>
+            <span class="n">resolution</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span>
 
-## the we use thin-plate spline to derive elevation across the data
-elev_m &lt;- Tps(dat[,c(&quot;x&quot;,&quot;y&quot;)], dat$elevation)
+<span class="c1">## the we use thin-plate spline to derive elevation across the data</span>
+<span class="n">elev_m</span> <span class="o">&lt;-</span> <span class="n">Tps</span><span class="p">(</span><span class="n">dat</span><span class="p">[,</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">)],</span> <span class="n">dat</span><span class="err">$</span><span class="n">elevation</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## put this into a raster
-elev &lt;- interpolate(r, elev_m)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## put this into a raster</span>
+<span class="n">elev</span> <span class="o">&lt;-</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">elev_m</span><span class="p">)</span>
 
-## for the region info we create a SpatialPolygons 
-## based on the coordinates given in the ca20 object
-pp &lt;- SpatialPolygons(list(Polygons(list(Polygon(ca20[[5]])), ID = &quot;reg1&quot;),
-                           Polygons(list(Polygon(ca20[[6]])), ID = &quot;reg2&quot;),
-                           Polygons(list(Polygon(ca20[[7]])), ID = &quot;reg3&quot;)))
-# turn the SpatialPolygon into a raster object
-region &lt;- rasterize(pp, r)
+<span class="c1">## for the region info we create a SpatialPolygons </span>
+<span class="c1">## based on the coordinates given in the ca20 object</span>
+<span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">SpatialPolygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">ca20</span><span class="p">[[</span><span class="mi">5</span><span class="p">]])),</span> <span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;reg1&quot;</span><span class="p">),</span>
+                           <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">ca20</span><span class="p">[[</span><span class="mi">6</span><span class="p">]])),</span> <span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;reg2&quot;</span><span class="p">),</span>
+                           <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">ca20</span><span class="p">[[</span><span class="mi">7</span><span class="p">]])),</span> <span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;reg3&quot;</span><span class="p">)))</span>
+<span class="c1"># turn the SpatialPolygon into a raster object</span>
+<span class="n">region</span> <span class="o">&lt;-</span> <span class="n">rasterize</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 
-# the new data frame with coordinates from the raster
-# plus elevation and region information
-newdat &lt;- as.data.frame(xyFromCell(r, cell = 1:ncell(r)))
-newdat$elevation &lt;- values(elev)
-newdat$region &lt;- factor(values(region))
-# remove NAs
-newdat &lt;- na.omit(newdat)
+<span class="c1"># the new data frame with coordinates from the raster</span>
+<span class="c1"># plus elevation and region information</span>
+<span class="n">newdat</span> <span class="o">&lt;-</span> <span class="k">as</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">xyFromCell</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cell</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">ncell</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
+<span class="n">newdat</span><span class="err">$</span><span class="n">elevation</span> <span class="o">&lt;-</span> <span class="n">values</span><span class="p">(</span><span class="n">elev</span><span class="p">)</span>
+<span class="n">newdat</span><span class="err">$</span><span class="n">region</span> <span class="o">&lt;-</span> <span class="n">factor</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="n">region</span><span class="p">))</span>
+<span class="c1"># remove NAs</span>
+<span class="n">newdat</span> <span class="o">&lt;-</span> <span class="n">na</span><span class="o">.</span><span class="n">omit</span><span class="p">(</span><span class="n">newdat</span><span class="p">)</span>
 
-# create a new projection matrix for the points
-Apred &lt;- inla.spde.make.A(mesh,
-                          loc = as.matrix(newdat[,c(&quot;x&quot;, &quot;y&quot;)]))
+<span class="c1"># create a new projection matrix for the points</span>
+<span class="n">Apred</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span>
+                          <span class="n">loc</span> <span class="o">=</span> <span class="k">as</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">newdat</span><span class="p">[,</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)]))</span>
 
-# put this in a new stack
-pred_stack_alleff &lt;- inla.stack(data = list(calcium = NA),
-                               A = list(Apred, 1, 1, 1),
-                               effects = list(i = 1:spde$n.spde,
-                                              Intercept = rep(1, nrow(newdat)),
-                                              elevation = newdat$elevation,
-                                              region = factor(newdat$region)),
-                               tag = &quot;prd_alleff&quot;)
+<span class="c1"># put this in a new stack</span>
+<span class="n">pred_stack_alleff</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">calcium</span> <span class="o">=</span> <span class="n">NA</span><span class="p">),</span>
+                               <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Apred</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                               <span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">spde</span><span class="err">$</span><span class="n">n</span><span class="o">.</span><span class="n">spde</span><span class="p">,</span>
+                                              <span class="n">Intercept</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">newdat</span><span class="p">)),</span>
+                                              <span class="n">elevation</span> <span class="o">=</span> <span class="n">newdat</span><span class="err">$</span><span class="n">elevation</span><span class="p">,</span>
+                                              <span class="n">region</span> <span class="o">=</span> <span class="n">factor</span><span class="p">(</span><span class="n">newdat</span><span class="err">$</span><span class="n">region</span><span class="p">)),</span>
+                               <span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;prd_alleff&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -755,20 +805,20 @@ pred_stack_alleff &lt;- inla.stack(data = list(calcium = NA),
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># put all the stacks together
-all_stack &lt;- inla.stack(dat_stack, pred_stack_fixef,
-                      pred_stack_alleff)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># put all the stacks together</span>
+<span class="n">all_stack</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">dat_stack</span><span class="p">,</span> <span class="n">pred_stack_fixef</span><span class="p">,</span>
+                      <span class="n">pred_stack_alleff</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># fit the model
-m_inla &lt;- inla(calcium ~ -1 + Intercept + elevation + region + f(i, model = spde),
-            data = inla.stack.data(all_stack),
-            control.predictor = list(A = inla.stack.A(all_stack), compute = TRUE),
-            quantiles = NULL)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit the model</span>
+<span class="n">m_inla</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="p">(</span><span class="n">calcium</span> <span class="o">~</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">Intercept</span> <span class="o">+</span> <span class="n">elevation</span> <span class="o">+</span> <span class="n">region</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">spde</span><span class="p">),</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">all_stack</span><span class="p">),</span>
+            <span class="n">control</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">all_stack</span><span class="p">),</span> <span class="n">compute</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">),</span>
+            <span class="n">quantiles</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -793,7 +843,7 @@ m_inla &lt;- inla(calcium ~ -1 + Intercept + elevation + region + f(i, model = s
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>summary(m_inla)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">m_inla</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -822,22 +872,22 @@ m_inla &lt;- inla(calcium ~ -1 + Intercept + elevation + region + f(i, model = s
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## first we create an index to easily find these 
-## prediction within the fitted model
-id_fixef &lt;- inla.stack.index(all_stack, &quot;prd_fixef&quot;)$data
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## first we create an index to easily find these </span>
+<span class="c1">## prediction within the fitted model</span>
+<span class="n">id_fixef</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">all_stack</span><span class="p">,</span> <span class="s2">&quot;prd_fixef&quot;</span><span class="p">)</span><span class="err">$</span><span class="n">data</span>
 
-## add to modmat the prediction and their sd
-modmat$calcium &lt;- m_inla$summary.fitted.values[id_fixef, &quot;mean&quot;]
-modmat$sd &lt;- m_inla$summary.fitted.values[id_fixef, &quot;sd&quot;]
+<span class="c1">## add to modmat the prediction and their sd</span>
+<span class="n">modmat</span><span class="err">$</span><span class="n">calcium</span> <span class="o">&lt;-</span> <span class="n">m_inla</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">id_fixef</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">modmat</span><span class="err">$</span><span class="n">sd</span> <span class="o">&lt;-</span> <span class="n">m_inla</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">id_fixef</span><span class="p">,</span> <span class="s2">&quot;sd&quot;</span><span class="p">]</span>
 
-## a plot with the original data
-ggplot(dat, aes(x = elevation, y = calcium)) +
-  geom_ribbon(data = modmat, aes(ymin = calcium - 2 * sd,
-                                 ymax = calcium + 2 * sd,
-                                 fill = region),
-              alpha = 0.2) +
-  geom_line(data = modmat, aes(color = region)) +
-  geom_point(aes(color = region))
+<span class="c1">## a plot with the original data</span>
+<span class="n">ggplot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">calcium</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_ribbon</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">modmat</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">ymin</span> <span class="o">=</span> <span class="n">calcium</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sd</span><span class="p">,</span>
+                                 <span class="n">ymax</span> <span class="o">=</span> <span class="n">calcium</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sd</span><span class="p">,</span>
+                                 <span class="n">fill</span> <span class="o">=</span> <span class="n">region</span><span class="p">),</span>
+              <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_line</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">modmat</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">region</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">region</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -869,23 +919,23 @@ ggplot(dat, aes(x = elevation, y = calcium)) +
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># again get the correct indices
-id_alleff &lt;- inla.stack.index(all_stack, &quot;prd_alleff&quot;)$data
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># again get the correct indices</span>
+<span class="n">id_alleff</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">all_stack</span><span class="p">,</span> <span class="s2">&quot;prd_alleff&quot;</span><span class="p">)</span><span class="err">$</span><span class="n">data</span>
 
-# now add the model predictions
-newdat$pred &lt;- m_inla$summary.fitted.values[id_alleff, &quot;mean&quot;]
-newdat$sd &lt;- m_inla$summary.fitted.values[id_alleff, &quot;sd&quot;]
-# get lower and upper confidence interval
-newdat$lower_ci &lt;- with(newdat, pred - 2 * sd)
-newdat$upper_ci &lt;- with(newdat, pred + 2 * sd)
+<span class="c1"># now add the model predictions</span>
+<span class="n">newdat</span><span class="err">$</span><span class="n">pred</span> <span class="o">&lt;-</span> <span class="n">m_inla</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">id_alleff</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">newdat</span><span class="err">$</span><span class="n">sd</span> <span class="o">&lt;-</span> <span class="n">m_inla</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">id_alleff</span><span class="p">,</span> <span class="s2">&quot;sd&quot;</span><span class="p">]</span>
+<span class="c1"># get lower and upper confidence interval</span>
+<span class="n">newdat</span><span class="err">$</span><span class="n">lower_ci</span> <span class="o">&lt;-</span> <span class="k">with</span><span class="p">(</span><span class="n">newdat</span><span class="p">,</span> <span class="n">pred</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sd</span><span class="p">)</span>
+<span class="n">newdat</span><span class="err">$</span><span class="n">upper_ci</span> <span class="o">&lt;-</span> <span class="k">with</span><span class="p">(</span><span class="n">newdat</span><span class="p">,</span> <span class="n">pred</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sd</span><span class="p">)</span>
 
-# some data wraggling
-nn &lt;- pivot_longer(newdat, cols = c(&quot;pred&quot;, &quot;lower_ci&quot;, &quot;upper_ci&quot;))
+<span class="c1"># some data wraggling</span>
+<span class="n">nn</span> <span class="o">&lt;-</span> <span class="n">pivot_longer</span><span class="p">(</span><span class="n">newdat</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;pred&quot;</span><span class="p">,</span> <span class="s2">&quot;lower_ci&quot;</span><span class="p">,</span> <span class="s2">&quot;upper_ci&quot;</span><span class="p">))</span>
 
-ggplot(nn, aes(x=x, y=y, fill=value)) +
-  geom_raster() +
-  facet_wrap(~name) +
-  scale_fill_continuous(type = &quot;viridis&quot;)
+<span class="n">ggplot</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">value</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_raster</span><span class="p">()</span> <span class="o">+</span>
+  <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">scale_fill_continuous</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -896,13 +946,13 @@ ggplot(nn, aes(x=x, y=y, fill=value)) +
 <h2>Ejemplo con INLA<a class="headerlink" href="#ejemplo-con-inla" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(sf)
-library(rnaturalearth)
-library(sf)
-library(terra)
-library(geodata)
-library(INLA)
-library(rasterVis)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rnaturalearth</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">geodata</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rasterVis</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -910,11 +960,10 @@ library(rasterVis)
 <p>Los promedios anuales de los niveles de concentración de PM2.5 registrados en 1429 estaciones de monitoreo de la Agencia de Protección Ambiental de los Estados Unidos en 2022 se encuentran en el archivo PM25USA2022.csv, que se puede descargar desde este sitio web. Usamos la función <code class="docutils literal notranslate"><span class="pre">read.csv()</span></code> para leer los datos, que contienen los valores de longitud y latitud de las estaciones de monitoreo, y los valores registrados de PM2.5 en microgramos por metro cúbico. Luego, usamos la función <code class="docutils literal notranslate"><span class="pre">st_as_sf()</span></code> para transformar el data.frame obtenido en un objeto <code class="docutils literal notranslate"><span class="pre">sf</span></code> con CRS geográfico dado por el código EPSG 4326.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-f &lt;- file.path(&quot;https://www.paulamoraga.com/book-spatial/&quot;, &quot;data/PM25USA2022.csv&quot;)
-d &lt;- read.csv(f)
-d &lt;- st_as_sf(d, coords = c(&quot;longitude&quot;, &quot;latitude&quot;))
-st_crs(d) &lt;- &quot;EPSG:4326&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">&lt;-</span> <span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;https://www.paulamoraga.com/book-spatial/&quot;</span><span class="p">,</span> <span class="s2">&quot;data/PM25USA2022.csv&quot;</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">st_as_sf</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">))</span>
+<span class="n">st_crs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s2">&quot;EPSG:4326&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -922,29 +971,29 @@ st_crs(d) &lt;- &quot;EPSG:4326&quot;
 <p>Luego, obtenemos el mapa de los EE. UU. con la función <code class="docutils literal notranslate"><span class="pre">ne_countries()</span></code> de <code class="docutils literal notranslate"><span class="pre">rnaturalearth</span></code>. Usamos <code class="docutils literal notranslate"><span class="pre">st_crop()</span></code> para eliminar Alaska y otras áreas que están fuera de la región comprendida por los valores de longitud (–130, 60) y los valores de latitud (18, 72).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>map &lt;- ne_countries(type = &quot;countries&quot;,
-                    country = &quot;United States of America&quot;,
-                    scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
-map &lt;- st_crop(map, xmin = -130, xmax = -60, ymin = 18, ymax = 72)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span> <span class="o">&lt;-</span> <span class="n">ne_countries</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;countries&quot;</span><span class="p">,</span>
+                    <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;United States of America&quot;</span><span class="p">,</span>
+                    <span class="n">scale</span> <span class="o">=</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="n">returnclass</span> <span class="o">=</span> <span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="nb">map</span> <span class="o">&lt;-</span> <span class="n">st_crop</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">130</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mi">72</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>d &lt;- st_filter(d, map)
-nrow(d)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">&lt;-</span> <span class="n">st_filter</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">map</span><span class="p">)</span>
+<span class="n">nrow</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(ggplot2)
-library(viridis)
-ggplot() + geom_sf(data = map) +
-  geom_sf(data = d, aes(col = value)) +
-  scale_color_viridis()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">viridis</span><span class="p">)</span>
+<span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="n">value</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">scale_color_viridis</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -952,10 +1001,10 @@ ggplot() + geom_sf(data = map) +
 <p>Aquí, construimos una matriz <code class="docutils literal notranslate"><span class="pre">coop</span></code> con las ubicaciones donde se predecirán los niveles de contaminación del aire. Primero, creamos una cuadrícula ráster de 100 × 100 celdas que cubre el mapa usando la función <code class="docutils literal notranslate"><span class="pre">rast()</span></code> de <code class="docutils literal notranslate"><span class="pre">terra</span></code>. Luego, obtenemos las coordenadas de las celdas con la función <code class="docutils literal notranslate"><span class="pre">xyfromCell()</span></code> de <code class="docutils literal notranslate"><span class="pre">terra</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># raster grid covering map
-grid &lt;- terra::rast(map, nrows = 100, ncols = 100)
-# coordinates of all cells
-xy &lt;- terra::xyFromCell(grid, 1:ncell(grid))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raster grid covering map</span>
+<span class="n">grid</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="p">::</span><span class="n">rast</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># coordinates of all cells</span>
+<span class="n">xy</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="p">::</span><span class="n">xyFromCell</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">ncell</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -963,20 +1012,20 @@ xy &lt;- terra::xyFromCell(grid, 1:ncell(grid))
 <p>Luego, usamos la función <code class="docutils literal notranslate"><span class="pre">st_as_sf()</span></code> para crear un objeto <code class="docutils literal notranslate"><span class="pre">sf</span></code> con las coordenadas de las ubicaciones de predicción, especificando las coordenadas como un data frame, el nombre de las coordenadas y el CRS. Obtenemos los índices de las coordenadas de los puntos que están dentro del mapa con <code class="docutils literal notranslate"><span class="pre">st_intersects()</span></code> configurando <code class="docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>. Luego usaremos estos índices para identificar las ubicaciones de predicción. También obtenemos las coordenadas de los puntos que están dentro del mapa con <code class="docutils literal notranslate"><span class="pre">sf_filter()</span></code>. La Figura muestra las ubicaciones de predicción.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># transform points to a sf object
-dp &lt;- st_as_sf(as.data.frame(xy), coords = c(&quot;x&quot;, &quot;y&quot;),
-                 crs = st_crs(map))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transform points to a sf object</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_as_sf</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">),</span>
+                 <span class="n">crs</span> <span class="o">=</span> <span class="n">st_crs</span><span class="p">(</span><span class="nb">map</span><span class="p">))</span>
 
-# indices points within the map
-indicespointswithin &lt;- which(st_intersects(dp, map,
-                                           sparse = FALSE))
+<span class="c1"># indices points within the map</span>
+<span class="n">indicespointswithin</span> <span class="o">&lt;-</span> <span class="n">which</span><span class="p">(</span><span class="n">st_intersects</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span>
+                                           <span class="n">sparse</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">))</span>
 
-# points within the map
-dp &lt;- st_filter(dp, map)
+<span class="c1"># points within the map</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_filter</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="nb">map</span><span class="p">)</span>
 
-# plot
-ggplot() + geom_sf(data = map) +
-  geom_sf(data = dp)
+<span class="c1"># plot</span>
+<span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">dp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -984,10 +1033,10 @@ ggplot() + geom_sf(data = map) +
 <p>En nuestro modelo, utilizamos la temperatura promedio y la precipitación como covariables. Los valores mensuales de estas variables a nivel global pueden obtenerse con la función <code class="docutils literal notranslate"><span class="pre">worldclim_global()</span></code> de <code class="docutils literal notranslate"><span class="pre">geodata</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>covtemp &lt;- worldclim_global(var = &quot;tavg&quot;, res = 10,
-                            path = tempdir())
-covprec &lt;- worldclim_global(var = &quot;prec&quot;, res = 10,
-                            path = tempdir())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covtemp</span> <span class="o">&lt;-</span> <span class="n">worldclim_global</span><span class="p">(</span><span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;tavg&quot;</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                            <span class="n">path</span> <span class="o">=</span> <span class="n">tempdir</span><span class="p">())</span>
+<span class="n">covprec</span> <span class="o">&lt;-</span> <span class="n">worldclim_global</span><span class="p">(</span><span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;prec&quot;</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                            <span class="n">path</span> <span class="o">=</span> <span class="n">tempdir</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -995,26 +1044,26 @@ covprec &lt;- worldclim_global(var = &quot;prec&quot;, res = 10,
 <p>Después de descargar los datos, calculamos los promedios mensuales y extraemos los valores en las ubicaciones de observación y predicción con la función <code class="docutils literal notranslate"><span class="pre">extract()</span></code> de <code class="docutils literal notranslate"><span class="pre">terra</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Extract at observed locations
-d$covtemp &lt;- extract(mean(covtemp), st_coordinates(d))[, 1]
-d$covprec &lt;- extract(mean(covprec), st_coordinates(d))[, 1]
-# Extract at prediction locations
-dp$covtemp &lt;- extract(mean(covtemp), st_coordinates(dp))[, 1]
-dp$covprec &lt;- extract(mean(covprec), st_coordinates(dp))[, 1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract at observed locations</span>
+<span class="n">d</span><span class="err">$</span><span class="n">covtemp</span> <span class="o">&lt;-</span> <span class="n">extract</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">covtemp</span><span class="p">),</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">d</span><span class="p">))[,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">d</span><span class="err">$</span><span class="n">covprec</span> <span class="o">&lt;-</span> <span class="n">extract</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">covprec</span><span class="p">),</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">d</span><span class="p">))[,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Extract at prediction locations</span>
+<span class="n">dp</span><span class="err">$</span><span class="n">covtemp</span> <span class="o">&lt;-</span> <span class="n">extract</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">covtemp</span><span class="p">),</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">dp</span><span class="p">))[,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">dp</span><span class="err">$</span><span class="n">covprec</span> <span class="o">&lt;-</span> <span class="n">extract</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">covprec</span><span class="p">),</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">dp</span><span class="p">))[,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(&quot;patchwork&quot;)
-p1 &lt;- ggplot() + geom_sf(data = map) +
-  geom_sf(data = d, aes(col = covtemp)) +
-  scale_color_viridis()
-p2 &lt;- ggplot() + geom_sf(data = map) +
-  geom_sf(data = d, aes(col = covprec)) +
-  scale_color_viridis()
-p1/p2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;patchwork&quot;</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="n">covtemp</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">scale_color_viridis</span><span class="p">()</span>
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="n">covprec</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">scale_color_viridis</span><span class="p">()</span>
+<span class="n">p1</span><span class="o">/</span><span class="n">p2</span>
 </pre></div>
 </div>
 </div>
@@ -1022,22 +1071,22 @@ p1/p2
 <p>Los datos con los que estamos trabajando tienen un CRS geográfico que referencia ubicaciones utilizando valores de longitud y latitud. Para trabajar con kilómetros en lugar de grados, usamos <code class="docutils literal notranslate"><span class="pre">st_transform()</span></code> para transformar el CRS de los objetos <code class="docutils literal notranslate"><span class="pre">sf</span></code> con los datos correspondientes a las ubicaciones observadas (d) y las ubicaciones de predicción (dp) de geográfico a un CRS proyectado. Específicamente, utilizamos la proyección de Mercator dada por el código EPSG 3857 y usamos kilómetros como unidades. Para ello, usamos la proyección dada por <code class="docutils literal notranslate"><span class="pre">st_crs(&quot;EPSG:3857&quot;)$proj4string</span></code>, reemplazando <code class="docutils literal notranslate"><span class="pre">+units=m</span></code> por <code class="docutils literal notranslate"><span class="pre">+units=km</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>st_crs(&quot;EPSG:3857&quot;)$proj4string
-projMercator&lt;-&quot;+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0
-+x_0=0 +y_0=0 +k=1 +units=km +nadgrids=@null +wktext +no_defs&quot;
-d &lt;- st_transform(d, crs = projMercator)
-dp &lt;- st_transform(dp, crs = projMercator)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:3857&quot;</span><span class="p">)</span><span class="err">$</span><span class="n">proj4string</span>
+<span class="n">projMercator</span><span class="o">&lt;-</span><span class="s2">&quot;+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0</span>
+<span class="o">+</span><span class="n">x_0</span><span class="o">=</span><span class="mi">0</span> <span class="o">+</span><span class="n">y_0</span><span class="o">=</span><span class="mi">0</span> <span class="o">+</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span> <span class="o">+</span><span class="n">units</span><span class="o">=</span><span class="n">km</span> <span class="o">+</span><span class="n">nadgrids</span><span class="o">=</span><span class="nd">@null</span> <span class="o">+</span><span class="n">wktext</span> <span class="o">+</span><span class="n">no_defs</span><span class="s2">&quot;</span>
+<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">st_transform</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">projMercator</span><span class="p">)</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_transform</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">projMercator</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Observed coordinates
-coo &lt;- st_coordinates(d)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Observed coordinates</span>
+<span class="n">coo</span> <span class="o">&lt;-</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-# Predicted coordinates
-coop &lt;- st_coordinates(dp)
+<span class="c1"># Predicted coordinates</span>
+<span class="n">coop</span> <span class="o">&lt;-</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1048,7 +1097,7 @@ coop &lt;- st_coordinates(dp)
 <p>donde <span class="math notranslate nohighlight">\(β₀\)</span> es la intersección, y <span class="math notranslate nohighlight">\(β₁\)</span> <span class="math notranslate nohighlight">\(β₂\)</span> son, respectivamente, los coeficientes de temperatura y precipitación. <span class="math notranslate nohighlight">\(S(⋅)\)</span> es un efecto aleatorio espacial que se modela como un proceso gaussiano de media cero con función de covarianza de Matérn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>summary(dist(coo)) # summary of distances between locations
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">coo</span><span class="p">))</span> <span class="c1"># summary of distances between locations</span>
 </pre></div>
 </div>
 </div>
@@ -1057,19 +1106,19 @@ coop &lt;- st_coordinates(dp)
 <p>Aquí, creamos la malla con la función <code class="docutils literal notranslate"><span class="pre">inla.mesh.2d()</span></code> de R-INLA. Pasamos como argumentos <code class="docutils literal notranslate"><span class="pre">loc</span> <span class="pre">=</span> <span class="pre">coo</span></code> con las coordenadas de ubicación, y <code class="docutils literal notranslate"><span class="pre">max.edge</span> <span class="pre">=</span> <span class="pre">c(200,</span> <span class="pre">500)</span></code> con las longitudes máximas permitidas de los bordes de los triángulos en la región y la extensión para tener triángulos más pequeños dentro de la región que en la extensión. También especificamos <code class="docutils literal notranslate"><span class="pre">cutoff</span> <span class="pre">=</span> <span class="pre">1</span></code> con la distancia mínima permitida entre puntos para evitar la construcción de muchos triángulos pequeños en áreas donde las ubicaciones están cerca unas de otras (Figura 15.4). El número de vértices de la malla se puede obtener con <code class="docutils literal notranslate"><span class="pre">mesh$n</span></code>, y la malla se puede graficar de la siguiente manera.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mesh &lt;- inla.mesh.2d(loc = coo, max.edge = c(200, 500),
-                     cutoff = 1)
-mesh$n
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">mesh</span><span class="mf">.2</span><span class="n">d</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="n">coo</span><span class="p">,</span> <span class="nb">max</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                     <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mesh</span><span class="err">$</span><span class="n">n</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plot(mesh)
-points(coo, col = &quot;red&quot;)
-axis(1)
-axis(2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">points</span><span class="p">(</span><span class="n">coo</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1077,7 +1126,7 @@ axis(2)
 <p>Luego, usamos la función <code class="docutils literal notranslate"><span class="pre">inla.spde2.matern()</span></code> para construir el modelo SPDE. Esta función tiene parámetros <code class="docutils literal notranslate"><span class="pre">mesh</span></code> con la malla triangulada construida y <code class="docutils literal notranslate"><span class="pre">constr</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> para imponer una restricción de integración a cero. Además, establecemos el parámetro de suavidad <span class="math notranslate nohighlight">\(ν\)</span> igual a 1. En el caso espacial <span class="math notranslate nohighlight">\(d = 2\)</span> y <span class="math notranslate nohighlight">\(α = ν + d / 2 = 2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spde &lt;- inla.spde2.matern(mesh = mesh, alpha = 2, constr = TRUE)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spde</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde2</span><span class="o">.</span><span class="n">matern</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constr</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1085,8 +1134,8 @@ axis(2)
 <p>Luego, creamos un conjunto de índices para el modelo SPDE usando la función <code class="docutils literal notranslate"><span class="pre">inla.spde.make.index()</span></code>, donde proporcionamos el nombre del efecto (<code class="docutils literal notranslate"><span class="pre">s</span></code>) y el número de vértices en el modelo SPDE (<code class="docutils literal notranslate"><span class="pre">spde$n.spde</span></code>). Esta función genera una lista con el vector <code class="docutils literal notranslate"><span class="pre">s</span></code> que va del 1 al <code class="docutils literal notranslate"><span class="pre">spde$n.spde</span></code>. Además, crea dos vectores, <code class="docutils literal notranslate"><span class="pre">s.group</span></code> y <code class="docutils literal notranslate"><span class="pre">s.repl</span></code>, que contienen todos los elementos establecidos en 1 y longitudes iguales al número de vértices de la malla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>indexs &lt;- inla.spde.make.index(&quot;s&quot;, spde$n.spde)
-lengths(indexs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indexs</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">spde</span><span class="err">$</span><span class="n">n</span><span class="o">.</span><span class="n">spde</span><span class="p">)</span>
+<span class="n">lengths</span><span class="p">(</span><span class="n">indexs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1143,7 @@ lengths(indexs)
 <p>Usamos la función <code class="docutils literal notranslate"><span class="pre">inla.spde.make.A()</span></code> de R-INLA, pasando la malla (<code class="docutils literal notranslate"><span class="pre">mesh</span></code>) y las coordenadas (<code class="docutils literal notranslate"><span class="pre">coo</span></code>) para construir fácilmente una matriz de proyección A que proyecta el campo aleatorio gaussiano espacialmente continuo desde las observaciones hasta los nodos de la malla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A &lt;- inla.spde.make.A(mesh = mesh, loc = coo)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">coo</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1102,8 +1151,8 @@ lengths(indexs)
 <p>Podemos ver que la matriz de proyección <span class="math notranslate nohighlight">\(A\)</span> tiene un número de filas igual al número de observaciones y un número de columnas igual al número de vértices de la malla. También observamos que los elementos de cada fila de <span class="math notranslate nohighlight">\(A\)</span> suman 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># dimension of the projection matrix
-dim(A)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dimension of the projection matrix</span>
+<span class="n">dim</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1111,7 +1160,7 @@ dim(A)
 <p>También creamos una matriz de proyección para las ubicaciones de predicción.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ap &lt;- inla.spde.make.A(mesh = mesh, loc = coop)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ap</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">coop</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1119,22 +1168,22 @@ dim(A)
 <p>Ahora creamos un stack con los datos para estimación y predicción que organiza datos, efectos y matrices de proyección. Creamos stacks para estimación (<code class="docutils literal notranslate"><span class="pre">stk.e</span></code>) y predicción (<code class="docutils literal notranslate"><span class="pre">stk.p</span></code>) usando <code class="docutils literal notranslate"><span class="pre">tag</span></code> para identificar el tipo de datos, <code class="docutils literal notranslate"><span class="pre">data</span></code> con la lista de vectores de datos, <code class="docutils literal notranslate"><span class="pre">A</span></code> con las matrices de proyección, y <code class="docutils literal notranslate"><span class="pre">effects</span></code> con una lista de efectos fijos y aleatorios. Primero, creamos un stack llamado <code class="docutils literal notranslate"><span class="pre">stk.e</span></code> que contiene los datos para estimación, el cual está etiquetado con la cadena “est”. En <code class="docutils literal notranslate"><span class="pre">data</span></code>, especificamos el vector de respuesta con los valores observados de PM2.5. La matriz de proyección se da en el argumento <code class="docutils literal notranslate"><span class="pre">A</span></code>, que es una lista donde el segundo elemento es la matriz de proyección para los efectos aleatorios (A) y el primer elemento se establece en 1 para indicar que los efectos fijos se mapean directamente uno a uno a la respuesta. Para definir los efectos, pasamos una lista que contiene los efectos fijos y aleatorios. Los efectos fijos son un <code class="docutils literal notranslate"><span class="pre">data.frame</span></code> que consta de una intersección (b0) y covariables de temperatura (covtemp) y precipitación (covprec). El efecto aleatorio está representado por el campo aleatorio gaussiano espacial <code class="docutils literal notranslate"><span class="pre">s</span></code> que contiene una lista con los índices del objeto SPDE (<code class="docutils literal notranslate"><span class="pre">indexs</span></code>). Además, construimos otro stack llamado <code class="docutils literal notranslate"><span class="pre">stk.p</span></code> para predicción, que está etiquetado con la etiqueta “pred”. Los datos, la matriz de proyección y los efectos se especifican para las ubicaciones de predicción. El vector de respuesta en el argumento <code class="docutils literal notranslate"><span class="pre">data</span></code> de este stack se establece en una lista con <code class="docutils literal notranslate"><span class="pre">NA</span></code> porque estos son los valores que queremos predecir. Finalmente, combinamos <code class="docutils literal notranslate"><span class="pre">stk.e</span></code> y <code class="docutils literal notranslate"><span class="pre">stk.p</span></code> en un solo stack completo llamado <code class="docutils literal notranslate"><span class="pre">stk.full</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># stack for estimation stk.e
-stk.e &lt;- inla.stack(tag = &quot;est&quot;,
-data = list(y = d$value), A = list(1, A),
-effects = list(data.frame(b0 = rep(1, nrow(A)),
-covtemp = d$covtemp, covprec = d$covprec),
-s = indexs))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># stack for estimation stk.e</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">e</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;est&quot;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">d</span><span class="err">$</span><span class="n">value</span><span class="p">),</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="p">),</span>
+<span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">A</span><span class="p">)),</span>
+<span class="n">covtemp</span> <span class="o">=</span> <span class="n">d</span><span class="err">$</span><span class="n">covtemp</span><span class="p">,</span> <span class="n">covprec</span> <span class="o">=</span> <span class="n">d</span><span class="err">$</span><span class="n">covprec</span><span class="p">),</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">indexs</span><span class="p">))</span>
 
-# stack for prediction stk.p
-stk.p &lt;- inla.stack(tag = &quot;pred&quot;,
-data = list(y = NA), A = list(1, Ap),
-effects = list(data.frame(b0 = rep(1, nrow(Ap)),
-covtemp = dp$covtemp, covprec = dp$covprec),
-s = indexs))
+<span class="c1"># stack for prediction stk.p</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">p</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;pred&quot;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">NA</span><span class="p">),</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ap</span><span class="p">),</span>
+<span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">Ap</span><span class="p">)),</span>
+<span class="n">covtemp</span> <span class="o">=</span> <span class="n">dp</span><span class="err">$</span><span class="n">covtemp</span><span class="p">,</span> <span class="n">covprec</span> <span class="o">=</span> <span class="n">dp</span><span class="err">$</span><span class="n">covprec</span><span class="p">),</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">indexs</span><span class="p">))</span>
 
-# stk.full has stk.e and stk.p
-stk.full &lt;- inla.stack(stk.e, stk.p)
+<span class="c1"># stk.full has stk.e and stk.p</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">full</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">stk</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1142,7 +1191,7 @@ stk.full &lt;- inla.stack(stk.e, stk.p)
 <p>Luego, especificamos la fórmula incluyendo la variable de respuesta, el símbolo ~ y los efectos fijos y aleatorios. En la fórmula, eliminamos la intersección añadiendo 0 e incluimos la intersección como un término de covariable añadiendo <code class="docutils literal notranslate"><span class="pre">b0</span></code>. Este paso asegura que todos los términos de covariable se capturen adecuadamente dentro de la matriz de proyección.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>formula &lt;- y ~ 0 + b0 + covtemp + covprec + f(s, model = spde)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">~</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">covtemp</span> <span class="o">+</span> <span class="n">covprec</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">spde</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1150,18 +1199,18 @@ stk.full &lt;- inla.stack(stk.e, stk.p)
 <p>Finalmente, llamamos a <code class="docutils literal notranslate"><span class="pre">inla()</span></code> especificando la fórmula, la familia, el stack con los datos y las opciones. Establecemos <code class="docutils literal notranslate"><span class="pre">control.predictor</span> <span class="pre">=</span> <span class="pre">list(compute</span> <span class="pre">=</span> <span class="pre">TRUE)</span></code> y <code class="docutils literal notranslate"><span class="pre">control.compute</span> <span class="pre">=</span> <span class="pre">list(return.marginals.predictor</span> <span class="pre">=</span> <span class="pre">TRUE)</span></code> para calcular y devolver las marginales para el predictor lineal.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>res &lt;- inla(formula, family = &quot;gaussian&quot;,
-       data = inla.stack.data(stk.full),
-       control.predictor = list(compute = TRUE,
-                                A = inla.stack.A(stk.full)),
-       control.compute = list(return.marginals.predictor = TRUE))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
+       <span class="n">data</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="p">),</span>
+       <span class="n">control</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">compute</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span>
+                                <span class="n">A</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="p">)),</span>
+       <span class="n">control</span><span class="o">.</span><span class="n">compute</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="k">return</span><span class="o">.</span><span class="n">marginals</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>res$summary.fixed
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fixed</span>
 </pre></div>
 </div>
 </div>
@@ -1170,10 +1219,10 @@ stk.full &lt;- inla.stack(stk.e, stk.p)
 <p>El objeto <code class="docutils literal notranslate"><span class="pre">res$summary.fitted.values</span></code> contiene la media posterior y los cuantiles de los valores ajustados. Podemos obtener los índices correspondientes a las ubicaciones de predicción utilizando la función <code class="docutils literal notranslate"><span class="pre">inla.stack.index()</span></code> pasando el stack completo y <code class="docutils literal notranslate"><span class="pre">tag</span> <span class="pre">=</span> <span class="pre">&quot;pred&quot;</span></code>. Luego, recuperamos la columna “mean” con la media posterior, y las columnas “0.025quant” y “0.975quant” con los límites inferior y superior de los intervalos creíbles del 95% que denotan la incertidumbre de las predicciones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>index &lt;- inla.stack.index(stack = stk.full, tag = &quot;pred&quot;)$data
-pred_mean &lt;- res$summary.fitted.values[index, &quot;mean&quot;]
-pred_ll &lt;- res$summary.fitted.values[index, &quot;0.025quant&quot;]
-pred_ul &lt;- res$summary.fitted.values[index, &quot;0.975quant&quot;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">stack</span> <span class="o">=</span> <span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;pred&quot;</span><span class="p">)</span><span class="err">$</span><span class="n">data</span>
+<span class="n">pred_mean</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">pred_ll</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;0.025quant&quot;</span><span class="p">]</span>
+<span class="n">pred_ul</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;0.975quant&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1181,15 +1230,15 @@ pred_ul &lt;- res$summary.fitted.values[index, &quot;0.975quant&quot;]
 <p>Asignamos los valores predichos a sus celdas correspondientes dentro del mapa que están en el objeto <code class="docutils literal notranslate"><span class="pre">grid</span></code> que contiene las ubicaciones de predicción.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>grid$mean &lt;- NA
-grid$ll &lt;- NA
-grid$ul &lt;- NA
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="err">$</span><span class="n">mean</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ll</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ul</span> <span class="o">&lt;-</span> <span class="n">NA</span>
 
-grid$mean[indicespointswithin] &lt;- pred_mean
-grid$ll[indicespointswithin] &lt;- pred_ll
-grid$ul[indicespointswithin] &lt;- pred_ul
+<span class="n">grid</span><span class="err">$</span><span class="n">mean</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pred_mean</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ll</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pred_ll</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ul</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pred_ul</span>
 
-summary(grid) # negative values for the lower limit
+<span class="n">summary</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="c1"># negative values for the lower limit</span>
 </pre></div>
 </div>
 </div>
@@ -1197,9 +1246,8 @@ summary(grid) # negative values for the lower limit
 <p>Luego, graficamos la media posterior y los intervalos creíbles del 95% de los valores predichos de PM2.5 con la función <code class="docutils literal notranslate"><span class="pre">levelplot()</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">rasterVis</span></code>. La Figura 15.5 muestra mapas con el patrón espacial de los niveles predichos de PM2.5 así como su incertidumbre asociada.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-levelplot(grid, layout = c(1, 3),
-names.attr = c(&quot;Mean&quot;, &quot;2.5 percentile&quot;, &quot;97.5 percentile&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">levelplot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="n">names</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;2.5 percentile&quot;</span><span class="p">,</span> <span class="s2">&quot;97.5 percentile&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1207,8 +1255,8 @@ names.attr = c(&quot;Mean&quot;, &quot;2.5 percentile&quot;, &quot;97.5 percenti
 <p>También podemos obtener probabilidades de que PM2.5 supere un umbral específico con la función <code class="docutils literal notranslate"><span class="pre">inla.pmarginal()</span></code>. Específicamente, calculamos las probabilidades de que los niveles de PM2.5 superen los 10 microgramos por metro cúbico. Es decir, P(PM2.5 &gt; 10) = 1 – P(PM2.5 ≤ 10).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>excprob &lt;- sapply(res$marginals.fitted.values[index],
-FUN = function(marg){1-inla.pmarginal(q = 10, marginal = marg)})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">excprob</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="n">res</span><span class="err">$</span><span class="n">marginals</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+<span class="n">FUN</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">marg</span><span class="p">){</span><span class="mi">1</span><span class="o">-</span><span class="n">inla</span><span class="o">.</span><span class="n">pmarginal</span><span class="p">(</span><span class="n">q</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">marginal</span> <span class="o">=</span> <span class="n">marg</span><span class="p">)})</span>
 </pre></div>
 </div>
 </div>
@@ -1216,10 +1264,10 @@ FUN = function(marg){1-inla.pmarginal(q = 10, marginal = marg)})
 <p>Luego, añadimos las probabilidades de excedencia como una capa en <code class="docutils literal notranslate"><span class="pre">grid</span></code>, y las graficamos con <code class="docutils literal notranslate"><span class="pre">levelplot()</span></code>. En <code class="docutils literal notranslate"><span class="pre">levelplot()</span></code>, establecemos <code class="docutils literal notranslate"><span class="pre">margin</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> para ocultar los gráficos marginales de los resúmenes de columnas y filas del objeto raster. La Figura muestra las probabilidades de que los niveles de PM2.5 superen los 10 microgramos por metro cúbico. Observamos altas probabilidades en la costa oeste y en la parte sur del país.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>grid$excprob &lt;- NA
-grid$excprob[indicespointswithin] &lt;- excprob
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="err">$</span><span class="n">excprob</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">excprob</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">excprob</span>
 
-levelplot(grid$excprob, margin = FALSE)
+<span class="n">levelplot</span><span class="p">(</span><span class="n">grid</span><span class="err">$</span><span class="n">excprob</span><span class="p">,</span> <span class="n">margin</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1282,15 +1330,17 @@ levelplot(grid$excprob, margin = FALSE)
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-espacial-en-inla-con-ecuaciones-diferenciales-parciales-estocasticas-edpe">Efecto espacial en INLA con ecuaciones diferenciales parciales estocásticas (EDPE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definiendo-priores-para-el-efecto-espacial-en-inla-alcance-y-variacion">Definiendo Priores para el Efecto Espacial en INLA: Alcance y Variación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-del-efecto-espacial-parametro">Alcance del Efecto Espacial (parámetro κ)</a></li>
@@ -1353,8 +1403,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

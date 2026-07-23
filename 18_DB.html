@@ -16,81 +16,81 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '18_DB';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Modelo GLM de Poisson no-homogéneo" href="17_LGCP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -98,7 +98,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -106,15 +105,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -123,7 +166,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -153,21 +197,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -217,9 +257,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -349,7 +394,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -363,25 +408,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -403,7 +440,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis">PostGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis-y-qgis">PostGIS y QGIS</a><ul class="nav section-nav flex-column">
@@ -557,7 +594,7 @@ document.write(`
       <td>...</td>
       <td>72.833592</td>
       <td>11/01/20</td>
-      <td>Gorakh  Chavan</td>
+      <td>Gorakh&nbsp;&nbsp;Chavan</td>
       <td>8060</td>
       <td>1 BHK Apartment for Rent in Veena Dynasty, Vasai</td>
       <td>Rent</td>
@@ -629,6 +666,70 @@ dtype: int64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>city</th>
+      <th>locality</th>
+      <th>bedroom_num</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>price</th>
+      <th>title</th>
+      <th>type</th>
+      <th>user_type</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>45349857</td>
+      <td>Mumbai</td>
+      <td>Malad West</td>
+      <td>1</td>
+      <td>19.201336</td>
+      <td>72.825882</td>
+      <td>9000</td>
+      <td>1 BHK Apartment for Rent in Malad West</td>
+      <td>Apartment</td>
+      <td>Agent</td>
+      <td>2 Bath,Unfurnished,East facing The project has...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>45960973</td>
+      <td>Mumbai</td>
+      <td>Vasai</td>
+      <td>1</td>
+      <td>19.410704</td>
+      <td>72.833592</td>
+      <td>8060</td>
+      <td>1 BHK Apartment for Rent in Veena Dynasty, Vasai</td>
+      <td>Apartment</td>
+      <td>Agent</td>
+      <td>2 Bath,Semi-Furnished,East facing A 1BHK apart...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -701,7 +802,7 @@ dtype: int64
       <td>Apartment</td>
       <td>Agent</td>
       <td>2 Bath,Semi-Furnished,East facing A 1BHK apart...</td>
-      <td>POINT (72.83359 19.41070)</td>
+      <td>POINT (72.83359 19.4107)</td>
     </tr>
   </tbody>
 </table>
@@ -709,13 +810,17 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_house_price</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;gdf_house_price.shp&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;init&#39;</span> <span class="p">:</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_house_price</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;gdf_house_price.shp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-7-fb838af11281&gt;:1: UserWarning: Column names longer than 10 characters will be truncated when saved to ESRI Shapefile.
-  gdf_house_price.to_file(&quot;gdf_house_price.shp&quot;, crs={&#39;init&#39; :&#39;epsg:4326&#39;})
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Local\Temp\ipykernel_45976\2582003840.py:1: UserWarning: Column names longer than 10 characters will be truncated when saved to ESRI Shapefile.
+  gdf_house_price.to_file(&quot;gdf_house_price.shp&quot;)
+C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\pyogrio\raw.py:733: RuntimeWarning: Normalized/laundered field name: &#39;bedroom_num&#39; to &#39;bedroom_nu&#39;
+  ogr_write(
+C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\pyogrio\raw.py:733: RuntimeWarning: Value &#39;2 Bath,Semi-Furnished,East facing A 1BHK apartment is available for rent in vasai east mira road and beyond. This apartment is on the 7th of 7 floors in veena dynasty. This 15 year old property has a super builtUp area of 652 sq. Ft. This is an unfurnished apartment.This apartment comes with 2 bathrooms. The apartment with 2 balconiesIs available to only families.It is a fengShuivaastu compliant property. The apartment with ceramic flooring. This is an east facing apartment. With features like intercom facility lifts maintenance staff park securityfire alarm and water storage the society offers a convenient living. It also has other features like waste disposal.This property is in a gated society and has full power back up. The society has various amenities like security personnel and park.The expected monthly rental is rs. 8060. Some of the additional costs include security of rs. 40K Fixed. The brokerage amount is rs 8k FixedThe booking amount is rs. 5K.&#39; of field desc has been truncated to 254 characters.  This warning will not be emitted any more for that layer.
+  ogr_write(
 </pre></div>
 </div>
 </div>
@@ -834,10 +939,28 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymongo
-  Downloading pymongo-3.12.0-cp39-cp39-win_amd64.whl (397 kB)
-Installing collected packages: pymongo
-Successfully installed pymongo-3.12.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Collecting pymongo
+  Downloading pymongo-4.17.0-cp314-cp314-win_amd64.whl.metadata (10 kB)
+Collecting dnspython&lt;3.0.0,&gt;=2.6.1 (from pymongo)
+  Downloading dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+Downloading pymongo-4.17.0-cp314-cp314-win_amd64.whl (1.0 MB)
+   ---------------------------------------- 0.0/1.0 MB ? eta -:--:--
+   ---------------------------------------- 1.0/1.0 MB 12.5 MB/s  0:00:00
+Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)
+Installing collected packages: dnspython, pymongo
+
+   ---------------------------------------- 0/2 [dnspython]
+   -------------------- ------------------- 1/2 [pymongo]
+   -------------------- ------------------- 1/2 [pymongo]
+   -------------------- ------------------- 1/2 [pymongo]
+   ---------------------------------------- 2/2 [pymongo]
+
+Successfully installed dnspython-2.8.0 pymongo-4.17.0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 26.1.1 -&gt; 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
 </div>
@@ -870,7 +993,207 @@ Successfully installed pymongo-3.12.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.results.InsertOneResult at 0x1efc3a34140&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ServerSelectionTimeoutError</span><span class="g g-Whitespace">               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">prueba</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mondongos&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;Unal&quot;</span><span class="p">})</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\collection.py:890,</span> in <span class="ni">Collection.insert_one</span><span class="nt">(self, document, bypass_document_validation, session, comment)</span>
+<span class="g g-Whitespace">    </span><span class="mi">886</span>     <span class="n">document</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ObjectId</span><span class="p">()</span>  <span class="c1"># type: ignore[index]</span>
+<span class="g g-Whitespace">    </span><span class="mi">888</span> <span class="n">write_concern</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write_concern_for</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">889</span> <span class="k">return</span> <span class="n">InsertOneResult</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">890</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_insert_one</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">891</span>         <span class="n">document</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">892</span>         <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">893</span>         <span class="n">write_concern</span><span class="o">=</span><span class="n">write_concern</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">894</span>         <span class="n">op_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span>         <span class="n">bypass_doc_val</span><span class="o">=</span><span class="n">bypass_document_validation</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">896</span>         <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span>     <span class="n">write_concern</span><span class="o">.</span><span class="n">acknowledged</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">900</span> <span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\collection.py:830,</span> in <span class="ni">Collection._insert_one</span><span class="nt">(self, doc, ordered, write_concern, op_id, bypass_doc_val, session, comment)</span>
+<span class="g g-Whitespace">    </span><span class="mi">818</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">command</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">819</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_database</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">820</span>         <span class="n">command</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">825</span>         <span class="n">retryable_write</span><span class="o">=</span><span class="n">retryable_write</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">826</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">828</span>     <span class="n">_check_write_command_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">830</span> <span class="bp">self</span><span class="o">.</span><span class="n">_database</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_retryable_write</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">831</span>     <span class="n">acknowledged</span><span class="p">,</span> <span class="n">_insert_command</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">_Op</span><span class="o">.</span><span class="n">INSERT</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">RawBSONDocument</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">835</span>     <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;_id&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2113,</span> in <span class="ni">MongoClient._retryable_write</span><span class="nt">(self, retryable, func, session, operation, bulk, operation_id)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2099</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Execute an operation with consecutive retries if possible</span>
+<span class="g g-Whitespace">   </span><span class="mi">2100</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">2101</span><span class="sd"> Returns func()&#39;s return value on success. On error retries the same</span>
+<span class="sd">   (...)   2110 :param bulk: bulk abstraction to execute operations in bulk, defaults to None</span>
+<span class="g g-Whitespace">   </span><span class="mi">2111</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2112</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_session</span><span class="p">(</span><span class="n">session</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2113</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retry_with_session</span><span class="p">(</span><span class="n">retryable</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">bulk</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">operation_id</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:1986,</span> in <span class="ni">MongoClient._retry_with_session</span><span class="nt">(self, retryable, func, session, bulk, operation, operation_id)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1981</span> <span class="c1"># Ensure that the options supports retry_writes and there is a valid session not in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1982</span> <span class="c1"># transaction, otherwise, we will not support retry behavior for this txn.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1983</span> <span class="n">retryable</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1984</span>     <span class="n">retryable</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">retry_writes</span> <span class="ow">and</span> <span class="n">session</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">session</span><span class="o">.</span><span class="n">in_transaction</span>
+<span class="g g-Whitespace">   </span><span class="mi">1985</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1986</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retry_internal</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1987</span>     <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1988</span>     <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1989</span>     <span class="n">bulk</span><span class="o">=</span><span class="n">bulk</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1990</span>     <span class="n">operation</span><span class="o">=</span><span class="n">operation</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1991</span>     <span class="n">retryable</span><span class="o">=</span><span class="n">retryable</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1992</span>     <span class="n">operation_id</span><span class="o">=</span><span class="n">operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1993</span> <span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\_csot.py:125,</span> in <span class="ni">apply.&lt;locals&gt;.csot_wrapper</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span>         <span class="k">with</span> <span class="n">_TimeoutContext</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">125</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2038,</span> in <span class="ni">MongoClient._retry_internal</span><span class="nt">(self, func, session, bulk, operation, is_read, address, read_pref, retryable, operation_id, is_run_command, is_aggregate_write)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1995</span> <span class="nd">@_csot</span><span class="o">.</span><span class="n">apply</span>
+<span class="g g-Whitespace">   </span><span class="mi">1996</span> <span class="k">def</span><span class="w"> </span><span class="nf">_retry_internal</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1997</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">2008</span>     <span class="n">is_aggregate_write</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2009</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2010</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Internal retryable helper for all client transactions.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2011</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">2012</span><span class="sd">     :param func: Callback function we want to retry</span>
+<span class="sd">   (...)   2023     :return: Output of the calling func()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2024</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2025</span>     <span class="k">return</span> <span class="n">_ClientConnectionRetryable</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2026</span>         <span class="n">mongo_client</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2027</span>         <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2028</span>         <span class="n">bulk</span><span class="o">=</span><span class="n">bulk</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2029</span>         <span class="n">operation</span><span class="o">=</span><span class="n">operation</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2030</span>         <span class="n">is_read</span><span class="o">=</span><span class="n">is_read</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2031</span>         <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2032</span>         <span class="n">read_pref</span><span class="o">=</span><span class="n">read_pref</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2033</span>         <span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2034</span>         <span class="n">retryable</span><span class="o">=</span><span class="n">retryable</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2035</span>         <span class="n">operation_id</span><span class="o">=</span><span class="n">operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2036</span>         <span class="n">is_run_command</span><span class="o">=</span><span class="n">is_run_command</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2037</span>         <span class="n">is_aggregate_write</span><span class="o">=</span><span class="n">is_aggregate_write</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">2038</span>     <span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2811,</span> in <span class="ni">_ClientConnectionRetryable.run</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2809</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_last_error</span><span class="p">(</span><span class="n">check_csot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2810</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2811</span>     <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_read</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2812</span>     <span class="c1"># Track whether the transaction has completed a command.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2813</span>     <span class="c1"># If we need to apply backpressure to the first command,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2814</span>     <span class="c1"># we will need to revert back to starting state.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2815</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">in_transaction</span><span class="p">:</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2992,</span> in <span class="ni">_ClientConnectionRetryable._write</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2990</span> <span class="n">max_wire_version</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">   </span><span class="mi">2991</span> <span class="n">is_mongos</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">-&gt; </span><span class="mi">2992</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2993</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2994</span>     <span class="n">max_wire_version</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">max_wire_version</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:2975,</span> in <span class="ni">_ClientConnectionRetryable._get_server</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2970</span> <span class="k">def</span><span class="w"> </span><span class="nf">_get_server</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Server</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2971</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Retrieves a server object based on provided object context</span>
+<span class="g g-Whitespace">   </span><span class="mi">2972</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">2973</span><span class="sd">     :return: Abstraction to connect to server</span>
+<span class="g g-Whitespace">   </span><span class="mi">2974</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">2975</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">_select_server</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2976</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_server_selector</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2977</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2978</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_operation</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2979</span>         <span class="n">address</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2980</span>         <span class="n">deprioritized_servers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_deprioritized_servers</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2981</span>         <span class="n">operation_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2982</span>     <span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\mongo_client.py:1851,</span> in <span class="ni">MongoClient._select_server</span><span class="nt">(self, server_selector, session, operation, address, deprioritized_servers, operation_id)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1849</span>             <span class="k">raise</span> <span class="n">AutoReconnect</span><span class="p">(</span><span class="s2">&quot;server </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2"> no longer available&quot;</span> <span class="o">%</span> <span class="n">address</span><span class="p">)</span>  <span class="c1"># noqa: UP031</span>
+<span class="g g-Whitespace">   </span><span class="mi">1850</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1851</span>         <span class="n">server</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">select_server</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1852</span>             <span class="n">server_selector</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1853</span>             <span class="n">operation</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1854</span>             <span class="n">deprioritized_servers</span><span class="o">=</span><span class="n">deprioritized_servers</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1855</span>             <span class="n">operation_id</span><span class="o">=</span><span class="n">operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1856</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1857</span>     <span class="k">return</span> <span class="n">server</span>
+<span class="g g-Whitespace">   </span><span class="mi">1858</span> <span class="k">except</span> <span class="n">PyMongoError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1859</span>     <span class="c1"># Server selection errors in a transaction are transient.</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:428,</span> in <span class="ni">Topology.select_server</span><span class="nt">(self, selector, operation, server_selection_timeout, address, deprioritized_servers, operation_id)</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="k">def</span><span class="w"> </span><span class="nf">select_server</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="n">selector</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Selection</span><span class="p">],</span> <span class="n">Selection</span><span class="p">],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">425</span>     <span class="n">operation_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">426</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Server</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">427</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Like select_servers, but choose a random server if several match.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">428</span>     <span class="n">server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_server</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span>         <span class="n">selector</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">430</span>         <span class="n">operation</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">431</span>         <span class="n">server_selection_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span>         <span class="n">address</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span>         <span class="n">deprioritized_servers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span>         <span class="n">operation_id</span><span class="o">=</span><span class="n">operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">435</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">436</span>     <span class="k">if</span> <span class="n">_csot</span><span class="o">.</span><span class="n">get_timeout</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">437</span>         <span class="n">_csot</span><span class="o">.</span><span class="n">set_rtt</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">min_round_trip_time</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:402,</span> in <span class="ni">Topology._select_server</span><span class="nt">(self, selector, operation, server_selection_timeout, address, deprioritized_servers, operation_id)</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="k">def</span><span class="w"> </span><span class="nf">_select_server</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">394</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span>     <span class="n">selector</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Selection</span><span class="p">],</span> <span class="n">Selection</span><span class="p">],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">400</span>     <span class="n">operation_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Server</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">402</span>     <span class="n">servers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_servers</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">selector</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="n">operation</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="n">server_selection_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>         <span class="n">address</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>         <span class="n">operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">deprioritized_servers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">servers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="k">return</span> <span class="n">servers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:298,</span> in <span class="ni">Topology.select_servers</span><span class="nt">(self, selector, operation, server_selection_timeout, address, operation_id, deprioritized_servers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_monitors</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">298</span>     <span class="n">server_descriptions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_servers_loop</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="n">selector</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="n">server_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="n">operation</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>         <span class="n">operation_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">address</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="n">deprioritized_servers</span><span class="o">=</span><span class="n">deprioritized_servers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="k">return</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="n">cast</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_server_by_address</span><span class="p">(</span><span class="n">sd</span><span class="o">.</span><span class="n">address</span><span class="p">))</span> <span class="k">for</span> <span class="n">sd</span> <span class="ow">in</span> <span class="n">server_descriptions</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="p">]</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\pymongo\synchronous\topology.py:359,</span> in <span class="ni">Topology._select_servers_loop</span><span class="nt">(self, selector, timeout, operation, operation_id, address, deprioritized_servers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="k">if</span> <span class="n">_SERVER_SELECTION_LOGGER</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">349</span>         <span class="n">_debug_log</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span>             <span class="n">_SERVER_SELECTION_LOGGER</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>             <span class="n">message</span><span class="o">=</span><span class="n">_ServerSelectionStatusMessage</span><span class="o">.</span><span class="n">FAILED</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">357</span>             <span class="n">failure</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_error_message</span><span class="p">(</span><span class="n">selector</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span>         <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">359</span>     <span class="k">raise</span> <span class="n">ServerSelectionTimeoutError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error_message</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span><span class="si">}</span><span class="s2">, Timeout: </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2">s, Topology Description: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="si">!r}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">logged_waiting</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span>     <span class="n">_debug_log</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>         <span class="n">_SERVER_SELECTION_LOGGER</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span>         <span class="n">message</span><span class="o">=</span><span class="n">_ServerSelectionStatusMessage</span><span class="o">.</span><span class="n">WAITING</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">372</span>         <span class="n">remainingTimeMS</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">())),</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span>     <span class="p">)</span>
+
+<span class="ne">ServerSelectionTimeoutError</span>: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: &lt;TopologyDescription id: 6a62704c861d98b09cde0d79, topology_type: Unknown, servers: [&lt;ServerDescription (&#39;localhost&#39;, 27017) server_type: Unknown, rtt: None, error=AutoReconnect(&#39;localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)&#39;)&gt;]&gt;
 </pre></div>
 </div>
 </div>
@@ -1633,15 +1956,17 @@ Successfully installed pymongo-3.12.0
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis">PostGIS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgis-y-qgis">PostGIS y QGIS</a><ul class="nav section-nav flex-column">
@@ -1711,8 +2036,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

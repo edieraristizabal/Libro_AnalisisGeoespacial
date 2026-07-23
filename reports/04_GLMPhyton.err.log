@@ -1,44 +1,103 @@
 Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 778, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 182, in ensure_async
-    result = await obj
-             ^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_client\channels.py", line 315, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\edier\miniconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1323, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 166, in wrapped
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\asyncio\base_events.py", line 719, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 1001, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 802, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\edier\miniconda3\Lib\site-packages\nbclient\client.py", line 852, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['import geopandas as gpd', 'import numpy as np', 'import matplotlib.pyplot as plt', 'import statsmodels.api as sm', 'from sklearn.preprocessing import StandardScaler']
-...
-['# Entrenar el modelo de regresión lineal', 'model = sm.OLS(y, X).fit()', '', '# Imprimir un resumen del modelo', 'print(model.summary())']
--------------------
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\edier\miniconda3\envs\geospatial\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+bins = np.linspace(0, 100, 11)
+plt.bar(bins, spikehist/occupancy, width=8)    # Plot results as bars.
+plt.plot(bins,(b1[0]+b1[1]*bins)*1000, 'k',
+     label="Model spike rate")             # Plot model.
+plt.xlabel('Position [cm]')                    # Label the axes.
+plt.ylabel('Occupancy norm. hist. [spikes/s]')
+plt.title("b1 = [{0[0]:.4}, {0[1]:.4}]".format(b1))
+plt.legend()
+plt.show()
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mKeyError[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pandas\core\indexes\base.py:3641[39m, in [36mIndex.get_loc[39m[34m(self, key)[39m
+[32m   3640[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m3641[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_engine[39;49m[30;43m.[39;49m[30;43mget_loc[39;49m[30;43m([39;49m[30;43mcasted_key[39;49m[30;43m)[39;49m
+[32m   3642[39m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m err:
+
+[36mFile [39m[32mpandas/_libs/index.pyx:168[39m, in [36mpandas._libs.index.IndexEngine.get_loc[39m[34m()[39m
+[32m--> [39m[32m168[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
+
+[36mFile [39m[32mpandas/_libs/index.pyx:176[39m, in [36mpandas._libs.index.IndexEngine.get_loc[39m[34m()[39m
+[32m--> [39m[32m176[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
+
+[36mFile [39m[32mpandas/_libs/index.pyx:583[39m, in [36mpandas._libs.index.StringObjectEngine._check_type[39m[34m()[39m
+[32m--> [39m[32m583[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
+
+[31mKeyError[39m: 0
+
+The above exception was the direct cause of the following exception:
+
+[31mKeyError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[26][39m[32m, line 3[39m
+[32m      1[39m bins = np.linspace([32m0[39m, [32m100[39m, [32m11[39m)
+[32m      2[39m plt.bar(bins, spikehist/occupancy, width=[32m8[39m)    [38;5;66;03m# Plot results as bars.[39;00m
+[32m----> [39m[32m3[39m plt.plot(bins,(b1[0]+b1[1]*bins)*1000, 'k',
+[32m      4[39m      label=[33m"Model spike rate"[39m)             [38;5;66;03m# Plot model.[39;00m
+[32m      5[39m plt.xlabel([33m'Position [cm]'[39m)                    [38;5;66;03m# Label the axes.[39;00m
+[32m      6[39m plt.ylabel([33m'Occupancy norm. hist. [spikes/s]'[39m)
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pandas\core\series.py:959[39m, in [36mSeries.__getitem__[39m[34m(self, key)[39m
+[32m    954[39m     key = unpack_1tuple(key)
+[32m    956[39m [38;5;28;01melif[39;00m key_is_scalar:
+[32m    957[39m     [38;5;66;03m# Note: GH#50617 in 3.0 we changed int key to always be treated as[39;00m
+[32m    958[39m     [38;5;66;03m#  a label, matching DataFrame behavior.[39;00m
+[32m--> [39m[32m959[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_value[39;49m[30;43m([39;49m[30;43mkey[39;49m[30;43m)[39;49m
+[32m    961[39m [38;5;66;03m# Convert generator to list before going through hashable part[39;00m
+[32m    962[39m [38;5;66;03m# (We will iterate through the generator there to check for slices)[39;00m
+[32m    963[39m [38;5;28;01mif[39;00m is_iterator(key):
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pandas\core\series.py:1046[39m, in [36mSeries._get_value[39m[34m(self, label, takeable)[39m
+[32m   1043[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._values[label]
+[32m   1045[39m [38;5;66;03m# Similar to Index.get_value, but we do not fall back to positional[39;00m
+[32m-> [39m[32m1046[39m loc = [30;43mself[39;49m[30;43m.[39;49m[30;43mindex[39;49m[30;43m.[39;49m[30;43mget_loc[39;49m[30;43m([39;49m[30;43mlabel[39;49m[30;43m)[39;49m
+[32m   1048[39m [38;5;28;01mif[39;00m is_integer(loc):
+[32m   1049[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._values[loc]
+
+[36mFile [39m[32m~\AppData\Roaming\Python\Python314\site-packages\pandas\core\indexes\base.py:3648[39m, in [36mIndex.get_loc[39m[34m(self, key)[39m
+[32m   3643[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(casted_key, [38;5;28mslice[39m) [38;5;129;01mor[39;00m (
+[32m   3644[39m         [38;5;28misinstance[39m(casted_key, abc.Iterable)
+[32m   3645[39m         [38;5;129;01mand[39;00m [38;5;28many[39m([38;5;28misinstance[39m(x, [38;5;28mslice[39m) [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m casted_key)
+[32m   3646[39m     ):
+[32m   3647[39m         [38;5;28;01mraise[39;00m InvalidIndexError(key) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01merr[39;00m
+[32m-> [39m[32m3648[39m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m(key) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01merr[39;00m
+[32m   3649[39m [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[32m   3650[39m     [38;5;66;03m# If we have a listlike key, _check_indexing_error will raise[39;00m
+[32m   3651[39m     [38;5;66;03m#  InvalidIndexError. Otherwise we fall through and re-raise[39;00m
+[32m   3652[39m     [38;5;66;03m#  the TypeError.[39;00m
+[32m   3653[39m     [38;5;28mself[39m._check_indexing_error(key)
+
+[31mKeyError[39m: 0
 

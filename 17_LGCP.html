@@ -16,43 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -60,40 +63,37 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '17_LGCP';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Bases de datos geoespaciales" href="18_DB.html" />
     <link rel="prev" title="Procesos Gaussianos con R" href="16_GP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +101,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,15 +108,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -126,7 +169,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +200,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -220,9 +260,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -352,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -366,25 +411,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -406,7 +443,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2">Ejemplo 2</a></li>
 </ul>
@@ -458,21 +495,34 @@ predecir una amplia gama de fenómenos espaciales.</p>
 <p>En este notebook, asumimos que hemos observado un patrón espacial de puntos de ubicaciones de eventos {x_i : i = 1, …, n} que ha sido generado como una realización de un LGCP, y mostramos cómo ajustar un modelo LGCP a los datos utilizando los enfoques INLA y SPDE. El Capítulo 15 introdujo el enfoque SPDE y describió su implementación en el contexto de la geoestadística basada en modelos utilizando un ejemplo de predicción de contaminación del aire. Aquí, describimos cómo usar SPDE para ajustar un modelo LGCP a un patrón de puntos de especies de plantas para estimar la intensidad del proceso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(&quot;sf&quot;)
-library(&quot;spocc&quot;)
-library(&quot;ggplot2&quot;)
-library(sf)
-library(terra)
-library(rnaturalearth)
-library(INLA)
-library(rgeos)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="s2">&quot;spocc&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rnaturalearth</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;spocc&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;library&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>devtools::install_github(&quot;cran/rgeos&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">devtools</span><span class="p">::</span><span class="n">install_github</span><span class="p">(</span><span class="s2">&quot;cran/rgeos&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -485,11 +535,11 @@ Aquí, mostramos cómo formular y ajustar un modelo LGCP para las especies de pl
 continuo con INLA y SPDE. El modelo nos permite estimar la intensidad del proceso que genera las ubicaciones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df &lt;- occ(query = &quot;solanum&quot;, from = &quot;gbif&quot;,
-          date = c(&quot;2015-01-01&quot;, &quot;2022-12-31&quot;),
-          gbifopts = list(country = &quot;BO&quot;),
-          has_coords = TRUE, limit = 1000)
-d &lt;- occ2df(df)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">occ</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;solanum&quot;</span><span class="p">,</span> <span class="kn">from</span><span class="w"> </span><span class="o">=</span> <span class="s2">&quot;gbif&quot;</span><span class="p">,</span>
+          <span class="n">date</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;2015-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2022-12-31&quot;</span><span class="p">),</span>
+          <span class="n">gbifopts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;BO&quot;</span><span class="p">),</span>
+          <span class="n">has_coords</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">occ2df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -499,8 +549,8 @@ sistema de referencia de coordenadas (CRS) al código EPSG 4326 ya que las coord
 latitud.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>d &lt;- st_as_sf(d[, 2:3], coords = c(&quot;longitude&quot;, &quot;latitude&quot;))
-st_crs(d) &lt;- &quot;EPSG:4326&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">&lt;-</span> <span class="n">st_as_sf</span><span class="p">(</span><span class="n">d</span><span class="p">[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">))</span>
+<span class="n">st_crs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s2">&quot;EPSG:4326&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -509,10 +559,10 @@ st_crs(d) &lt;- &quot;EPSG:4326&quot;
 Para hacerlo, obtenemos <code class="docutils literal notranslate"><span class="pre">st_crs(&quot;EPSG:5356&quot;)$proj4string</span></code> y cambiamos <code class="docutils literal notranslate"><span class="pre">+units=m</span></code> por <code class="docutils literal notranslate"><span class="pre">+units=km</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>st_crs(&quot;EPSG:5356&quot;)$proj4string
-projUTM &lt;- &quot;+proj=utm +zone=19 +south +ellps=GRS80
-+towgs84=0,0,0,0,0,0,0 +units=km +no_defs&quot;
-d &lt;- st_transform(d, crs = projUTM)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:5356&quot;</span><span class="p">)</span><span class="err">$</span><span class="n">proj4string</span>
+<span class="n">projUTM</span> <span class="o">&lt;-</span> <span class="s2">&quot;+proj=utm +zone=19 +south +ellps=GRS80</span>
+<span class="o">+</span><span class="n">towgs84</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="o">+</span><span class="n">units</span><span class="o">=</span><span class="n">km</span> <span class="o">+</span><span class="n">no_defs</span><span class="s2">&quot;</span>
+<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">st_transform</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -520,18 +570,17 @@ d &lt;- st_transform(d, crs = projUTM)
 <p>También obtenemos el mapa de Bolivia con el paquete <code class="docutils literal notranslate"><span class="pre">rnaturalearth</span></code> y lo proyectamos a UTM 19S con kilómetros como unidades.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-map &lt;- ne_countries(type = &quot;countries&quot;, country = &quot;Bolivia&quot;,
-                    scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
-map &lt;- st_transform(map, crs = projUTM)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span> <span class="o">&lt;-</span> <span class="n">ne_countries</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;countries&quot;</span><span class="p">,</span> <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;Bolivia&quot;</span><span class="p">,</span>
+                    <span class="n">scale</span> <span class="o">=</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="n">returnclass</span> <span class="o">=</span> <span class="s2">&quot;sf&quot;</span><span class="p">)</span>
+<span class="nb">map</span> <span class="o">&lt;-</span> <span class="n">st_transform</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ggplot() + geom_sf(data = map) +
-  geom_sf(data = d) + coord_sf(datum = projUTM)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">coord_sf</span><span class="p">(</span><span class="n">datum</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -539,7 +588,7 @@ map &lt;- st_transform(map, crs = projUTM)
 <p>Finalmente, creamos un data frame llamado <code class="docutils literal notranslate"><span class="pre">coo</span></code> con las ubicaciones de los eventos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coo &lt;- st_coordinates(d)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coo</span> <span class="o">&lt;-</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -549,10 +598,10 @@ raster que cubra el mapa utilizando la función <code class="docutils literal no
 <code class="docutils literal notranslate"><span class="pre">xyFromCell()</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">terra</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># raster grid covering map
-grid &lt;- terra::rast(map, nrows = 100, ncols = 100)
-# coordinates of all cells
-xy &lt;- terra::xyFromCell(grid, 1:ncell(grid))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raster grid covering map</span>
+<span class="n">grid</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="p">::</span><span class="n">rast</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># coordinates of all cells</span>
+<span class="n">xy</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="p">::</span><span class="n">xyFromCell</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">ncell</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -562,31 +611,31 @@ ubicaciones de predicción que se encuentran dentro del mapa. También recuperam
 <code class="docutils literal notranslate"><span class="pre">st_intersects()</span></code>, configurando <code class="docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">=</span> <span class="pre">FALSE</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># transform points to a sf object
-dp &lt;- st_as_sf(as.data.frame(xy), coords = c(&quot;x&quot;, &quot;y&quot;),
-               crs = st_crs(map))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transform points to a sf object</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_as_sf</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">),</span>
+               <span class="n">crs</span> <span class="o">=</span> <span class="n">st_crs</span><span class="p">(</span><span class="nb">map</span><span class="p">))</span>
 
-# indices points within the map
-indicespointswithin &lt;- which(st_intersects(dp, map,
-                                           sparse = FALSE))
+<span class="c1"># indices points within the map</span>
+<span class="n">indicespointswithin</span> <span class="o">&lt;-</span> <span class="n">which</span><span class="p">(</span><span class="n">st_intersects</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span>
+                                           <span class="n">sparse</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">))</span>
 
-# points within the map
-dp &lt;- st_filter(dp, map)
+<span class="c1"># points within the map</span>
+<span class="n">dp</span> <span class="o">&lt;-</span> <span class="n">st_filter</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="nb">map</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ggplot() + geom_sf(data = map) +
-  geom_sf(data = dp) + coord_sf(datum = projUTM)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">)</span> <span class="o">+</span>
+  <span class="n">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">dp</span><span class="p">)</span> <span class="o">+</span> <span class="n">coord_sf</span><span class="p">(</span><span class="n">datum</span> <span class="o">=</span> <span class="n">projUTM</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coop &lt;- st_coordinates(dp)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coop</span> <span class="o">&lt;-</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -603,27 +652,26 @@ especifica el tamaño de las extensiones interior y exterior alrededor de las ub
 entre puntos que utilizamos para evitar construir muchos triángulos pequeños alrededor de ubicaciones agrupadas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
-summary(dist(coo)) # summary of distances between event locations
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">coo</span><span class="p">))</span> <span class="c1"># summary of distances between event locations</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>loc.d &lt;- cbind(st_coordinates(map)[, 1], st_coordinates(map)[, 2])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loc</span><span class="o">.</span><span class="n">d</span> <span class="o">&lt;-</span> <span class="n">cbind</span><span class="p">(</span><span class="n">st_coordinates</span><span class="p">(</span><span class="nb">map</span><span class="p">)[,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">st_coordinates</span><span class="p">(</span><span class="nb">map</span><span class="p">)[,</span> <span class="mi">2</span><span class="p">])</span>
 
-mesh &lt;- inla.mesh.2d(loc.domain = loc.d, max.edge = c(50, 100), offset = c(50, 100), cutoff = 1)
+<span class="n">mesh</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">mesh</span><span class="mf">.2</span><span class="n">d</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">domain</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="nb">max</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plot(mesh)
-points(coo, col = &quot;red&quot;)
-axis(1)
-axis(2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">points</span><span class="p">(</span><span class="n">coo</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -632,21 +680,21 @@ axis(2)
 Más adelante, utilizaremos estas variables para construir las pilas de datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(nv &lt;- mesh$n)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">nv</span> <span class="o">&lt;-</span> <span class="n">mesh</span><span class="err">$</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(n &lt;- nrow(coo))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;-</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coo</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spde &lt;- inla.spde2.matern(mesh = mesh, alpha = 2, constr = TRUE)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spde</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde2</span><span class="o">.</span><span class="n">matern</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constr</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -654,44 +702,44 @@ Más adelante, utilizaremos estas variables para construir las pilas de datos.</
 <p>Utilizamos la función <code class="docutils literal notranslate"><span class="pre">inla.spde2.matern()</span></code> para construir el modelo SPDE en la malla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>book.mesh.dual &lt;- function(mesh) {
-    if (mesh$manifold==&#39;R2&#39;) {
-        ce &lt;- t(sapply(1:nrow(mesh$graph$tv), function(i)
-            colMeans(mesh$loc[mesh$graph$tv[i, ], 1:2])))
-        library(parallel)
-        pls &lt;- mclapply(1:mesh$n, function(i) {
-            p &lt;- unique(Reduce(&#39;rbind&#39;, lapply(1:3, function(k) {
-            j &lt;- which(mesh$graph$tv[,k]==i)
-            if (length(j)&gt;0) 
-            return(rbind(ce[j, , drop=FALSE],
-            cbind(mesh$loc[mesh$graph$tv[j, k], 1] +
-            mesh$loc[mesh$graph$tv[j, c(2:3,1)[k]], 1], 
-            mesh$loc[mesh$graph$tv[j, k], 2] +
-            mesh$loc[mesh$graph$tv[j, c(2:3,1)[k]], 2])/2))
-            else return(ce[j, , drop=FALSE])
-            })))
-            j1 &lt;- which(mesh$segm$bnd$idx[,1]==i)
-            j2 &lt;- which(mesh$segm$bnd$idx[,2]==i)
-            if ((length(j1)&gt;0) | (length(j2)&gt;0)) {
-            p &lt;- unique(rbind(mesh$loc[i, 1:2], p,
-            mesh$loc[mesh$segm$bnd$idx[j1, 1], 1:2]/2 +
-            mesh$loc[mesh$segm$bnd$idx[j1, 2], 1:2]/2, 
-            mesh$loc[mesh$segm$bnd$idx[j2, 1], 1:2]/2 +
-            mesh$loc[mesh$segm$bnd$idx[j2, 2], 1:2]/2))
-            yy &lt;- p[,2]-mean(p[,2])/2-mesh$loc[i, 2]/2
-            xx &lt;- p[,1]-mean(p[,1])/2-mesh$loc[i, 1]/2
-            }
-            else {
-            yy &lt;- p[,2]-mesh$loc[i, 2]
-            xx &lt;- p[,1]-mesh$loc[i, 1]
-            }
-            Polygon(p[order(atan2(yy,xx)), ])
-        })
-        return(SpatialPolygons(lapply(1:mesh$n, function(i)
-            Polygons(list(pls[[i]]), i))))
-    }
-    else stop(&quot;It only works for R2!&quot;)
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">book</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dual</span> <span class="o">&lt;-</span> <span class="n">function</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">manifold</span><span class="o">==</span><span class="s1">&#39;R2&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ce</span> <span class="o">&lt;-</span> <span class="n">t</span><span class="p">(</span><span class="n">sapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">),</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">colMeans</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])))</span>
+        <span class="n">library</span><span class="p">(</span><span class="n">parallel</span><span class="p">)</span>
+        <span class="n">pls</span> <span class="o">&lt;-</span> <span class="n">mclapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">mesh</span><span class="err">$</span><span class="n">n</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">unique</span><span class="p">(</span><span class="n">Reduce</span><span class="p">(</span><span class="s1">&#39;rbind&#39;</span><span class="p">,</span> <span class="n">lapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">j</span> <span class="o">&lt;-</span> <span class="n">which</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">[,</span><span class="n">k</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> 
+            <span class="k">return</span><span class="p">(</span><span class="n">rbind</span><span class="p">(</span><span class="n">ce</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="n">FALSE</span><span class="p">],</span>
+            <span class="n">cbind</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">],</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span>
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="n">k</span><span class="p">]],</span> <span class="mi">1</span><span class="p">],</span> 
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">],</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span>
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">graph</span><span class="err">$</span><span class="n">tv</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="n">k</span><span class="p">]],</span> <span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+            <span class="k">else</span> <span class="k">return</span><span class="p">(</span><span class="n">ce</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="n">FALSE</span><span class="p">])</span>
+            <span class="p">})))</span>
+            <span class="n">j1</span> <span class="o">&lt;-</span> <span class="n">which</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">segm</span><span class="err">$</span><span class="n">bnd</span><span class="err">$</span><span class="n">idx</span><span class="p">[,</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">j2</span> <span class="o">&lt;-</span> <span class="n">which</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">segm</span><span class="err">$</span><span class="n">bnd</span><span class="err">$</span><span class="n">idx</span><span class="p">[,</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">length</span><span class="p">(</span><span class="n">j1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">j2</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">unique</span><span class="p">(</span><span class="n">rbind</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span>
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">segm</span><span class="err">$</span><span class="n">bnd</span><span class="err">$</span><span class="n">idx</span><span class="p">[</span><span class="n">j1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">segm</span><span class="err">$</span><span class="n">bnd</span><span class="err">$</span><span class="n">idx</span><span class="p">[</span><span class="n">j1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> 
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">segm</span><span class="err">$</span><span class="n">bnd</span><span class="err">$</span><span class="n">idx</span><span class="p">[</span><span class="n">j2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span>
+            <span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">mesh</span><span class="err">$</span><span class="n">segm</span><span class="err">$</span><span class="n">bnd</span><span class="err">$</span><span class="n">idx</span><span class="p">[</span><span class="n">j2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">p</span><span class="p">[,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">mean</span><span class="p">(</span><span class="n">p</span><span class="p">[,</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span>
+            <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">p</span><span class="p">[,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">mean</span><span class="p">(</span><span class="n">p</span><span class="p">[,</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+            <span class="n">yy</span> <span class="o">&lt;-</span> <span class="n">p</span><span class="p">[,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="n">xx</span> <span class="o">&lt;-</span> <span class="n">p</span><span class="p">[,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="p">}</span>
+            <span class="n">Polygon</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">atan2</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">)),</span> <span class="p">])</span>
+        <span class="p">})</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">SpatialPolygons</span><span class="p">(</span><span class="n">lapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">mesh</span><span class="err">$</span><span class="n">n</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pls</span><span class="p">[[</span><span class="n">i</span><span class="p">]]),</span> <span class="n">i</span><span class="p">))))</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">stop</span><span class="p">(</span><span class="s2">&quot;It only works for R2!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -701,10 +749,10 @@ alrededor de cada vértice de la malla original. Podemos crear la malla dual uti
 Krainski et al. (2019).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dmesh &lt;- book.mesh.dual(mesh)
-plot(dmesh)
-axis(1)
-axis(2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmesh</span> <span class="o">&lt;-</span> <span class="n">book</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dual</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">dmesh</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -715,42 +763,42 @@ un vector de pesos llamado <code class="docutils literal notranslate"><span clas
 código.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Domain polygon is converted into a SpatialPolygons
-domain.polys &lt;- Polygons(list(Polygon(loc.d)), &#39;0&#39;)
-domainSP &lt;- SpatialPolygons(list(domain.polys))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Domain polygon is converted into a SpatialPolygons</span>
+<span class="n">domain</span><span class="o">.</span><span class="n">polys</span> <span class="o">&lt;-</span> <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">)),</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">domainSP</span> <span class="o">&lt;-</span> <span class="n">SpatialPolygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">polys</span><span class="p">))</span>
 
-# Because the mesh is larger than the study area, we need to
-# compute the intersection between each polygon
-# in the dual mesh and the study area
+<span class="c1"># Because the mesh is larger than the study area, we need to</span>
+<span class="c1"># compute the intersection between each polygon</span>
+<span class="c1"># in the dual mesh and the study area</span>
 
-w &lt;- sapply(1:length(dmesh), function(i) {
-  if (gIntersects(dmesh[i, ], domainSP))
-    return(gArea(gIntersection(dmesh[i, ], domainSP)))
-  else return(0)
-})
+<span class="n">w</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">dmesh</span><span class="p">),</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gIntersects</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">gArea</span><span class="p">(</span><span class="n">gIntersection</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">)))</span>
+  <span class="k">else</span> <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sum(w) # sum weights
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="c1"># sum weights</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>st_area(map) # area of the study region
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st_area</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span> <span class="c1"># area of the study region</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plot(mesh)
-points(mesh$loc[which(w &gt; 0), 1:2], col = &quot;black&quot;, pch = 20)
-points(mesh$loc[which(w == 0), 1:2], col = &quot;red&quot;, pch = 20)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">points</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">w</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">points</span><span class="p">(</span><span class="n">mesh</span><span class="err">$</span><span class="n">loc</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">w</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -767,22 +815,22 @@ alrededor de cada uno de los vértices de la malla y la región de estudio. Los 
 puntuales.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>y.pp &lt;- rep(0:1, c(nv, n))
-e.pp &lt;- c(w, rep(0, n))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">e</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>head(cbind(y.pp, e.pp))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tail(cbind(y.pp, e.pp))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -792,12 +840,12 @@ Esta matriz se construye utilizando la matriz de proyección para los vértices 
 proyección para las ubicaciones de eventos (<code class="docutils literal notranslate"><span class="pre">A.y</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Projection matrix for the integration points (mesh vertices)
-A.int &lt;- Diagonal(nv, rep(1, nv))
-# Projection matrix for observed points (event locations)
-A.y &lt;- inla.spde.make.A(mesh = mesh, loc = coo)
-# Projection matrix for mesh vertices and event locations
-A.pp &lt;- rbind(A.int, A.y)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Projection matrix for the integration points (mesh vertices)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">int</span> <span class="o">&lt;-</span> <span class="n">Diagonal</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span><span class="p">))</span>
+<span class="c1"># Projection matrix for observed points (event locations)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">coo</span><span class="p">)</span>
+<span class="c1"># Projection matrix for mesh vertices and event locations</span>
+<span class="n">A</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rbind</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -805,7 +853,7 @@ A.pp &lt;- rbind(A.int, A.y)
 <p>También creamos la matriz de proyección <code class="docutils literal notranslate"><span class="pre">Ap.pp</span></code> para las ubicaciones de predicción.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ap.pp &lt;- inla.spde.make.A(mesh = mesh, loc = coop)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ap</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">coop</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -816,21 +864,21 @@ de proyección, y el argumento <code class="docutils literal notranslate"><span 
 una pila completa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># stack for estimation
-stk.e.pp &lt;- inla.stack(tag = &quot;est.pp&quot;,
-data = list(y = y.pp, e = e.pp), 
-A = list(1, A.pp),
-effects = list(list(b0 = rep(1, nv + n)), list(s = 1:nv)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># stack for estimation</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;est.pp&quot;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span> 
+<span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+<span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span> <span class="o">+</span> <span class="n">n</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nv</span><span class="p">)))</span>
 
-# stack for prediction stk.p
-stk.p.pp &lt;- inla.stack(tag = &quot;pred.pp&quot;,
-data = list(y = rep(NA, nrow(coop)), e = rep(0, nrow(coop))),
-A = list(1, Ap.pp),
-effects = list(data.frame(b0 = rep(1, nrow(coop))),
-               list(s = 1:nv)))
+<span class="c1"># stack for prediction stk.p</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;pred.pp&quot;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="n">NA</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coop</span><span class="p">)),</span> <span class="n">e</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coop</span><span class="p">))),</span>
+<span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ap</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+<span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrow</span><span class="p">(</span><span class="n">coop</span><span class="p">))),</span>
+               <span class="nb">list</span><span class="p">(</span><span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nv</span><span class="p">)))</span>
 
-# stk.full has stk.e and stk.p
-stk.full.pp &lt;- inla.stack(stk.e.pp, stk.p.pp)
+<span class="c1"># stk.full has stk.e and stk.p</span>
+<span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">stk</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -838,7 +886,7 @@ stk.full.pp &lt;- inla.stack(stk.e.pp, stk.p.pp)
 <p>La fórmula se especifica incluyendo la variable de respuesta en el lado izquierdo y los efectos aleatorios en el lado derecho.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>formula &lt;- y ~ 0 + b0 + f(s, model = spde)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">~</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">spde</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -847,11 +895,11 @@ stk.full.pp &lt;- inla.stack(stk.e.pp, stk.p.pp)
 <code class="docutils literal notranslate"><span class="pre">res$summary.fitted.values</span></code> y <code class="docutils literal notranslate"><span class="pre">res$marginals.fitted.values</span></code> con la misma función de enlace que la familia especificada en el modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>res &lt;- inla(formula,  family = &#39;poisson&#39;,
-data = inla.stack.data(stk.full.pp),
-control.predictor = list(compute = TRUE, link = 1,
-                         A = inla.stack.A(stk.full.pp)),
-E = inla.stack.data(stk.full.pp)$e)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span>  <span class="n">family</span> <span class="o">=</span> <span class="s1">&#39;poisson&#39;</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+<span class="n">control</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">compute</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">link</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="n">A</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">pp</span><span class="p">)),</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span><span class="err">$</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -861,10 +909,10 @@ ajustados. Los índices de las filas correspondientes a las predicciones se pued
 del stack de predicción.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>index &lt;- inla.stack.index(stk.full.pp, tag = &quot;pred.pp&quot;)$data
-pred_mean &lt;- res$summary.fitted.values[index, &quot;mean&quot;]
-pred_ll &lt;- res$summary.fitted.values[index, &quot;0.025quant&quot;]
-pred_ul &lt;- res$summary.fitted.values[index, &quot;0.975quant&quot;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">full</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;pred.pp&quot;</span><span class="p">)</span><span class="err">$</span><span class="n">data</span>
+<span class="n">pred_mean</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+<span class="n">pred_ll</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;0.025quant&quot;</span><span class="p">]</span>
+<span class="n">pred_ul</span> <span class="o">&lt;-</span> <span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">fitted</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;0.975quant&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -872,13 +920,13 @@ pred_ul &lt;- res$summary.fitted.values[index, &quot;0.975quant&quot;]
 <p>Luego, añadimos capas a la cuadrícula raster con la media posterior y los percentiles 2.5 y 97.5 en las celdas que están dentro del mapa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>grid$mean &lt;- NA
-grid$ll &lt;- NA
-grid$ul &lt;- NA
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="err">$</span><span class="n">mean</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ll</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ul</span> <span class="o">&lt;-</span> <span class="n">NA</span>
 
-grid$mean[indicespointswithin] &lt;- pred_mean
-grid$ll[indicespointswithin] &lt;- pred_ll
-grid$ul[indicespointswithin] &lt;- pred_ul
+<span class="n">grid</span><span class="err">$</span><span class="n">mean</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pred_mean</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ll</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pred_ll</span>
+<span class="n">grid</span><span class="err">$</span><span class="n">ul</span><span class="p">[</span><span class="n">indicespointswithin</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">pred_ul</span>
 </pre></div>
 </div>
 </div>
@@ -888,9 +936,9 @@ puntual de especies en Bolivia (Figura 23.4). Para ello, utilizamos la función 
 con el nombre de cada panel y <code class="docutils literal notranslate"><span class="pre">layout</span></code> con el número de columnas y filas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(rasterVis)
-levelplot(raster::brick(grid), layout = c(3, 1),
-names.attr = c(&quot;Mean&quot;, &quot;2.5 percentile&quot;, &quot;97.5 percentile&quot;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">rasterVis</span><span class="p">)</span>
+<span class="n">levelplot</span><span class="p">(</span><span class="n">raster</span><span class="p">::</span><span class="n">brick</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="n">names</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;Mean&quot;</span><span class="p">,</span> <span class="s2">&quot;2.5 percentile&quot;</span><span class="p">,</span> <span class="s2">&quot;97.5 percentile&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -920,9 +968,9 @@ proceso de puntos log-Cox. Las observaciones se modelan considerando su ubicaci�
 para definir una malla, este enfoque puede manejar áreas no rectangulares sin desperdiciar esfuerzo computacional en un área rectangular grande.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(spatstat)
-library(RandomFields)
-library(rgeos)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">spatstat</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">RandomFields</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -930,7 +978,7 @@ library(rgeos)
 <p>La función <code class="docutils literal notranslate"><span class="pre">rLGCP</span></code> utiliza la función <code class="docutils literal notranslate"><span class="pre">GaussRF()</span></code> del paquete <strong>RandomFields</strong> (Schlather et al. 2015) para simular desde el campo espacial sobre una cuadrícula. Hay un parámetro interno para controlar la resolución de la cuadrícula, que especificamos para dar 300 píxeles en cada dirección:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>win &lt;- owin(c(0, 3), c(0, 3))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">win</span> <span class="o">&lt;-</span> <span class="n">owin</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -947,8 +995,8 @@ espacial <span class="math notranslate nohighlight">\(S(s)\)</span>.</p>
 esperado de puntos es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>beta0 &lt;- 3
-exp(beta0) * diff(range(win$x)) * diff(range(win$y))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta0</span> <span class="o">&lt;-</span> <span class="mi">3</span>
+<span class="n">exp</span><span class="p">(</span><span class="n">beta0</span><span class="p">)</span> <span class="o">*</span> <span class="n">diff</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">win</span><span class="err">$</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">diff</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">win</span><span class="err">$</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -960,9 +1008,9 @@ por ejemplo, un GLM.</p>
 para estos parámetros producirán una intensidad suave del proceso puntual:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sigma2x &lt;- 0.2
-range &lt;- 1.2
-nu &lt;- 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma2x</span> <span class="o">&lt;-</span> <span class="mf">0.2</span>
+<span class="nb">range</span> <span class="o">&lt;-</span> <span class="mf">1.2</span>
+<span class="n">nu</span> <span class="o">&lt;-</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -975,8 +1023,8 @@ casi constante <span class="math notranslate nohighlight">\(S(s)\)</span>, de mo
 <p>Los puntos del proceso puntual se simulan de la siguiente manera:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>set.seed(1)
-lg.s &lt;- rLGCP(&#39;matern&#39;, beta0, var = sigma2x,scale = range / sqrt(8), nu = nu, win = win)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">lg</span><span class="o">.</span><span class="n">s</span> <span class="o">&lt;-</span> <span class="n">rLGCP</span><span class="p">(</span><span class="s1">&#39;matern&#39;</span><span class="p">,</span> <span class="n">beta0</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">sigma2x</span><span class="p">,</span><span class="n">scale</span> <span class="o">=</span> <span class="nb">range</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">nu</span> <span class="o">=</span> <span class="n">nu</span><span class="p">,</span> <span class="n">win</span> <span class="o">=</span> <span class="n">win</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -985,7 +1033,7 @@ lg.s &lt;- rLGCP(&#39;matern&#39;, beta0, var = sigma2x,scale = range / sqrt(8),
 de la siguiente manera:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xy &lt;- cbind(lg.s$x, lg.s$y)[, 2:1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span> <span class="o">&lt;-</span> <span class="n">cbind</span><span class="p">(</span><span class="n">lg</span><span class="o">.</span><span class="n">s</span><span class="err">$</span><span class="n">x</span><span class="p">,</span> <span class="n">lg</span><span class="o">.</span><span class="n">s</span><span class="err">$</span><span class="n">y</span><span class="p">)[,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -993,7 +1041,7 @@ de la siguiente manera:</p>
 <p>El numero de puntos simulados es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(n &lt;- nrow(xy))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;-</span> <span class="n">nrow</span><span class="p">(</span><span class="n">xy</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1002,9 +1050,9 @@ de la siguiente manera:</p>
 de λ(s) y resumimos el log(λ(s)).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Lam &lt;- attr(lg.s, &#39;Lambda&#39;)
-rf.s &lt;- log(Lam$v)
-summary(as.vector(rf.s))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lam</span> <span class="o">&lt;-</span> <span class="n">attr</span><span class="p">(</span><span class="n">lg</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;Lambda&#39;</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">s</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Lam</span><span class="err">$</span><span class="n">v</span><span class="p">)</span>
+<span class="n">summary</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">s</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1033,22 +1081,22 @@ resultados de la inferencia bayesiana.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(&quot;devtools&quot;)
-devtools::install_github(repo = &quot;https://github.com/hrue/r-inla&quot;, ref = &quot;stable&quot;, subdir = &quot;rinla&quot;, build = FALSE)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="p">::</span><span class="n">install_github</span><span class="p">(</span><span class="n">repo</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/hrue/r-inla&quot;</span><span class="p">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="s2">&quot;stable&quot;</span><span class="p">,</span> <span class="n">subdir</span> <span class="o">=</span> <span class="s2">&quot;rinla&quot;</span><span class="p">,</span> <span class="n">build</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>inla.upgrade() # for the stable version
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inla</span><span class="o">.</span><span class="n">upgrade</span><span class="p">()</span> <span class="c1"># for the stable version</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>library(INLA)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">INLA</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1062,10 +1110,10 @@ generalmente no usamos los puntos de ubicación como nodos de la malla. Necesita
 <code class="docutils literal notranslate"><span class="pre">loc.domain</span></code> para construir la malla. Además, solo usamos una pequeña primera extensión exterior, pero no una segunda extensión exterior.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>loc.d &lt;- 3 * cbind(c(0, 1, 1, 0, 0), c(0, 0, 1, 1, 0))
-mesh &lt;- inla.mesh.2d(loc.domain = loc.d, offset = c(0.3, 1), 
-  max.edge = c(0.3, 0.7), cutoff = 0.05)
-nv &lt;- mesh$n
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loc</span><span class="o">.</span><span class="n">d</span> <span class="o">&lt;-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">cbind</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">mesh</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">mesh</span><span class="mf">.2</span><span class="n">d</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">domain</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+  <span class="nb">max</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="n">cutoff</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">nv</span> <span class="o">&lt;-</span> <span class="n">mesh</span><span class="err">$</span><span class="n">n</span>
 </pre></div>
 </div>
 </div>
@@ -1074,11 +1122,11 @@ nv &lt;- mesh$n
 marginal. Estos se definen de la siguiente manera:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spde &lt;- inla.spde2.pcmatern(mesh = mesh,
-  # PC-prior on range: P(practic.range &lt; 0.05) = 0.01
-  prior.range = c(0.05, 0.01),
-  # PC-prior on sigma: P(sigma &gt; 1) = 0.01
-  prior.sigma = c(1, 0.01)) 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spde</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde2</span><span class="o">.</span><span class="n">pcmatern</span><span class="p">(</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">,</span>
+  <span class="c1"># PC-prior on range: P(practic.range &lt; 0.05) = 0.01</span>
+  <span class="n">prior</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span>
+  <span class="c1"># PC-prior on sigma: P(sigma &gt; 1) = 0.01</span>
+  <span class="n">prior</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span> 
 </pre></div>
 </div>
 </div>
@@ -1091,7 +1139,7 @@ Estos valores para los nodos en el dominio interno se pueden usar para calcular 
 del dominio de estudio. Para ello, utilizamos la función <code class="docutils literal notranslate"><span class="pre">book.mesh.dual()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dmesh &lt;- book.mesh.dual(mesh)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmesh</span> <span class="o">&lt;-</span> <span class="n">book</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dual</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1100,8 +1148,8 @@ del dominio de estudio. Para ello, utilizamos la función <code class="docutils 
 del dominio se puede convertir en una clase <code class="docutils literal notranslate"><span class="pre">SpatialPolygons</span></code> de la siguiente manera:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>domain.polys &lt;- Polygons(list(Polygon(loc.d)), &#39;0&#39;)
-domainSP &lt;- SpatialPolygons(list(domain.polys))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span><span class="o">.</span><span class="n">polys</span> <span class="o">&lt;-</span> <span class="n">Polygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Polygon</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">d</span><span class="p">)),</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">domainSP</span> <span class="o">&lt;-</span> <span class="n">SpatialPolygons</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">polys</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1111,11 +1159,11 @@ pequeña modificación de que log(E) se define como cero si E=0. Aumentamos el v
 con una secuencia de ceros (que representan los nodos de la malla):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>w &lt;- sapply(1:length(dmesh), function(i) {
-  if (gIntersects(dmesh[i, ], domainSP))
-    return(gArea(gIntersection(dmesh[i, ], domainSP)))
-  else return(0)
-})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">dmesh</span><span class="p">),</span> <span class="n">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gIntersects</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">gArea</span><span class="p">(</span><span class="n">gIntersection</span><span class="p">(</span><span class="n">dmesh</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">domainSP</span><span class="p">)))</span>
+  <span class="k">else</span> <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1124,11 +1172,11 @@ con una secuencia de ceros (que representan los nodos de la malla):</p>
 estos lugares son solo los vértices de la malla. La matriz de proyección completa es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>y.pp &lt;- rep(0:1, c(nv, n))
-e.pp &lt;- c(w, rep(0, n)) 
-imat &lt;- Diagonal(nv, rep(1, nv))
-lmat &lt;- inla.spde.make.A(mesh, xy)
-A.pp &lt;- rbind(imat, lmat)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">e</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> 
+<span class="n">imat</span> <span class="o">&lt;-</span> <span class="n">Diagonal</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span><span class="p">))</span>
+<span class="n">lmat</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">spde</span><span class="o">.</span><span class="n">make</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">rbind</span><span class="p">(</span><span class="n">imat</span><span class="p">,</span> <span class="n">lmat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1136,11 +1184,11 @@ A.pp &lt;- rbind(imat, lmat)
 <p>Configuramos el conjunto de datos de la siguiente manera:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>stk.pp &lt;- inla.stack(
-  data = list(y = y.pp, e = e.pp), 
-  A = list(1, A.pp),
-  effects = list(list(b0 = rep(1, nv + n)), list(i = 1:nv)),
-  tag = &#39;pp&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stk</span><span class="o">.</span><span class="n">pp</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">pp</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span> 
+  <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span>
+  <span class="n">effects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">b0</span> <span class="o">=</span> <span class="n">rep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nv</span> <span class="o">+</span> <span class="n">n</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">nv</span><span class="p">)),</span>
+  <span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;pp&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1148,12 +1196,12 @@ A.pp &lt;- rbind(imat, lmat)
 <p>Las marginales posteriores para todos los parámetros del modelo se obtienen ajustando el modelo con INLA:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pp.res &lt;- inla(y ~ 0 + b0 + f(i, model = spde), 
-  family = &#39;poisson&#39;, data = inla.stack.data(stk.pp), 
-  control.predictor = list(A = inla.stack.A(stk.pp)), 
-  E = inla.stack.data(stk.pp)$e)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pp</span><span class="o">.</span><span class="n">res</span> <span class="o">&lt;-</span> <span class="n">inla</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">spde</span><span class="p">),</span> 
+  <span class="n">family</span> <span class="o">=</span> <span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">pp</span><span class="p">),</span> 
+  <span class="n">control</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">pp</span><span class="p">)),</span> 
+  <span class="n">E</span> <span class="o">=</span> <span class="n">inla</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">stk</span><span class="o">.</span><span class="n">pp</span><span class="p">)</span><span class="err">$</span><span class="n">e</span><span class="p">)</span>
 
-pp.res$summary.hyperpar
+<span class="n">pp</span><span class="o">.</span><span class="n">res</span><span class="err">$</span><span class="n">summary</span><span class="o">.</span><span class="n">hyperpar</span>
 </pre></div>
 </div>
 </div>
@@ -1216,15 +1264,17 @@ pp.res$summary.hyperpar
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2">Ejemplo 2</a></li>
 </ul>
@@ -1275,8 +1325,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

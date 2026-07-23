@@ -16,43 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -60,40 +63,37 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '13_MGWR';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Kriging con Python" href="14_Kriging.html" />
     <link rel="prev" title="Modelos con dependencia y heterogeneidad espacial" href="12_CARJerarquicos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +101,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,15 +108,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -126,7 +169,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +200,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -220,9 +260,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -352,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -366,25 +411,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -406,7 +443,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marco-teorico-ampliado">Marco teórico ampliado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#del-modelo-global-al-local-limitaciones-del-ols">Del modelo global al local: limitaciones del OLS</a></li>
@@ -601,7 +638,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/7308255de41bb31a2a46a25abefc4a42f59135ff36d85732573646a1bcfb8264.png" src="_images/7308255de41bb31a2a46a25abefc4a42f59135ff36d85732573646a1bcfb8264.png" />
+<img alt="_images/230b0ed3660c7b8118cc9987a0f1d76f18864879620ad7d4470729517e6faa28.png" src="_images/230b0ed3660c7b8118cc9987a0f1d76f18864879620ad7d4470729517e6faa28.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -667,7 +704,7 @@ document.write(`
       <td>941396.6</td>
       <td>3521764</td>
       <td>13001</td>
-      <td>POLYGON ((931869.062 3545540.500, 934111.625 3...</td>
+      <td>POLYGON ((931869.062 3545540.5, 934111.625 354...</td>
     </tr>
     <tr>
       <th>1</th>
@@ -687,7 +724,7 @@ document.write(`
       <td>895553.0</td>
       <td>3471916</td>
       <td>13003</td>
-      <td>POLYGON ((867016.312 3482416.000, 884309.375 3...</td>
+      <td>POLYGON ((867016.312 3482416, 884309.375 34826...</td>
     </tr>
   </tbody>
 </table>
@@ -707,11 +744,11 @@ Data columns (total 17 columns):
 ---  ------     --------------  -----   
  0   AREA       159 non-null    float64 
  1   PERIMETER  159 non-null    float64 
- 2   G_UTM_     159 non-null    int64   
- 3   G_UTM_ID   159 non-null    int64   
+ 2   G_UTM_     159 non-null    int32   
+ 3   G_UTM_ID   159 non-null    int32   
  4   Latitude   159 non-null    float64 
  5   Longitud   159 non-null    float64 
- 6   TotPop90   159 non-null    int64   
+ 6   TotPop90   159 non-null    int32   
  7   PctRural   159 non-null    float64 
  8   PctBach    159 non-null    float64 
  9   PctEld     159 non-null    float64 
@@ -719,11 +756,11 @@ Data columns (total 17 columns):
  11  PctPov     159 non-null    float64 
  12  PctBlack   159 non-null    float64 
  13  X          159 non-null    float64 
- 14  Y          159 non-null    int64   
- 15  AreaKey    159 non-null    int64   
+ 14  Y          159 non-null    int32   
+ 15  AreaKey    159 non-null    int32   
  16  geometry   159 non-null    geometry
-dtypes: float64(11), geometry(1), int64(5)
-memory usage: 21.2 KB
+dtypes: float64(11), geometry(1), int32(5)
+memory usage: 18.1 KB
 </pre></div>
 </div>
 </div>
@@ -913,7 +950,7 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/c8c50b406184e85e82ef33b5dfebd81cccce31090d01fc21e6223afc8807738f.png" src="_images/c8c50b406184e85e82ef33b5dfebd81cccce31090d01fc21e6223afc8807738f.png" />
+<img alt="_images/1385e90e47df625f7cfc17b7a7ff7748727669d53e1b522b7906c48a22f3c302.png" src="_images/1385e90e47df625f7cfc17b7a7ff7748727669d53e1b522b7906c48a22f3c302.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -926,7 +963,7 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/6bfba3925856be13b49979ad3bf9718184f39aa9ff76217723916af895b06f93.png" src="_images/6bfba3925856be13b49979ad3bf9718184f39aa9ff76217723916af895b06f93.png" />
+<img alt="_images/28e3b19dd743dd5a5bdc68b8baef8428066c320d070eeb039a75c8a7052788f4.png" src="_images/28e3b19dd743dd5a5bdc68b8baef8428066c320d070eeb039a75c8a7052788f4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -939,7 +976,7 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/49af75b041d88c81775180a884b977843a14193fee2b41b47b8dda3139478da6.png" src="_images/49af75b041d88c81775180a884b977843a14193fee2b41b47b8dda3139478da6.png" />
+<img alt="_images/01680aef725fbf36e65e08a5864c13d432e7f523202e6f5372da588a738a3689.png" src="_images/01680aef725fbf36e65e08a5864c13d432e7f523202e6f5372da588a738a3689.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -952,7 +989,7 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/810cf1635d5ce0600d10ee74ae2f16ac1ad37c02669fd6a3bce200f8fac7b58c.png" src="_images/810cf1635d5ce0600d10ee74ae2f16ac1ad37c02669fd6a3bce200f8fac7b58c.png" />
+<img alt="_images/78210fa94b167a58ca632979ff823de6e2033abd7d960fadc090a5240b85dbad.png" src="_images/78210fa94b167a58ca632979ff823de6e2033abd7d960fadc090a5240b85dbad.png" />
 </div>
 </div>
 </section>
@@ -966,6 +1003,57 @@ X3                       -0.328      0.060     -0.464     -0.308     -0.241
 <span class="n">mgwr_selector</span> <span class="o">=</span> <span class="n">Sel_BW</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">mgwr_bw</span> <span class="o">=</span> <span class="n">mgwr_selector</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">multi_bw_min</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">mgwr_results</span> <span class="o">=</span> <span class="n">MGWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="n">mgwr_selector</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\edier\AppData\Roaming\Python\Python314\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   0%|          | 1/200 [00:01&lt;04:41,  1.41s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   1%|          | 2/200 [00:02&lt;04:41,  1.42s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   2%|▏         | 3/200 [00:04&lt;04:44,  1.44s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   2%|▏         | 4/200 [00:05&lt;04:43,  1.45s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   2%|▎         | 5/200 [00:07&lt;04:44,  1.46s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   3%|▎         | 6/200 [00:08&lt;04:46,  1.48s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   4%|▎         | 7/200 [00:10&lt;04:44,  1.47s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   4%|▍         | 8/200 [00:11&lt;04:45,  1.48s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   4%|▍         | 9/200 [00:13&lt;04:40,  1.47s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backfitting:   4%|▍         | 9/200 [00:14&lt;05:10,  1.62s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inference:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inference: 100%|██████████| 1/1 [00:00&lt;00:00, 16513.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1061,6 +1149,9 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Comparison maps of GWR vs. MGWR parameter surfaces where the grey units pertain to statistically insignificant parameters</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mgwr.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">shift_colormap</span><span class="p">,</span> <span class="n">truncate_colormap</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span> <span class="s1">&#39;register_cmap&#39;</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="ow">or</span> <span class="n">cmap</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 
 <span class="c1">#Prep plot and add axes</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
@@ -1121,7 +1212,7 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eda350750461ddac2fccbfd01f1a8cc85348eb2388425e9cfb719d9e7d72a0e8.png" src="_images/eda350750461ddac2fccbfd01f1a8cc85348eb2388425e9cfb719d9e7d72a0e8.png" />
+<img alt="_images/e7db710b7e93fc168de5efe1460f0339f2dcd9c86b616ff9cba2f93b178f1c1b.png" src="_images/e7db710b7e93fc168de5efe1460f0339f2dcd9c86b616ff9cba2f93b178f1c1b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1173,7 +1264,7 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/39da4493e821b9e3eff75d1cc352a1104d95fbc18526a800c7204063798a09f2.png" src="_images/39da4493e821b9e3eff75d1cc352a1104d95fbc18526a800c7204063798a09f2.png" />
+<img alt="_images/8b215d8ca0a05c7b62fd56fda1e33e92c7b78bd2c3ac8cafde0bb3113da52e74.png" src="_images/8b215d8ca0a05c7b62fd56fda1e33e92c7b78bd2c3ac8cafde0bb3113da52e74.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1244,7 +1335,7 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6d7f692b7cf8d39c0cea699beaf30906f2dab59bb44caef10172c4dcd74e32f4.png" src="_images/6d7f692b7cf8d39c0cea699beaf30906f2dab59bb44caef10172c4dcd74e32f4.png" />
+<img alt="_images/cd1b60a5cd490defb17899f9bb4b91e429f1816f588d5b3a9f240d854f120ff1.png" src="_images/cd1b60a5cd490defb17899f9bb4b91e429f1816f588d5b3a9f240d854f120ff1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1315,7 +1406,7 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/372e31c2cd3f704ee90e852125e966957bf978cf12c3cef68417748109187ad3.png" src="_images/372e31c2cd3f704ee90e852125e966957bf978cf12c3cef68417748109187ad3.png" />
+<img alt="_images/d37e3959ffff3c504e36beed00ebba99d0956605e48aa2870c6985413c45490c.png" src="_images/d37e3959ffff3c504e36beed00ebba99d0956605e48aa2870c6985413c45490c.png" />
 </div>
 </div>
 <p>También es posible probar la significancia estadística de cada superficie de estimaciones de parámetros producidas por GWR a través de métodos de Monte Carlo. La prueba de variabilidad espacial mezcla las observaciones en el espacio, recalibra GWR en los datos aleatorizados manteniendo constante la especificación del modelo, y luego calcula la variabilidad de las estimaciones de parámetros resultantes para cada superficie. Este proceso se repite y el número de veces que la variabilidad de cada superficie de los datos aleatorizados es mayor que la variabilidad de cada superficie original se utiliza para construir pseudo valores p para pruebas de hipótesis. Un pseudo valor-p menor que 0.05 indica que la variabilidad espacial observada de una superficie de coeficientes es significativa al nivel de confianza del 95% (es decir, no aleatoria).</p>
@@ -1333,7 +1424,2036 @@ X3                       -0.304      0.019     -0.347     -0.302     -0.266
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.002 0.091 0.166 0.553]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   0%|          | 0/1000 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   0%|          | 1/1000 [00:00&lt;06:43,  2.47it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   0%|          | 2/1000 [00:00&lt;06:13,  2.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   0%|          | 3/1000 [00:01&lt;06:20,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   0%|          | 4/1000 [00:01&lt;06:33,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   0%|          | 5/1000 [00:01&lt;06:13,  2.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 6/1000 [00:02&lt;06:18,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 7/1000 [00:02&lt;06:25,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 8/1000 [00:03&lt;06:34,  2.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 9/1000 [00:03&lt;06:26,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 10/1000 [00:03&lt;06:29,  2.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 11/1000 [00:04&lt;06:21,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|          | 12/1000 [00:04&lt;06:10,  2.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|▏         | 13/1000 [00:04&lt;06:11,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   1%|▏         | 14/1000 [00:05&lt;06:16,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 15/1000 [00:05&lt;06:06,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 16/1000 [00:06&lt;05:56,  2.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 17/1000 [00:06&lt;06:01,  2.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 18/1000 [00:06&lt;06:02,  2.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 19/1000 [00:07&lt;06:02,  2.70it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 20/1000 [00:07&lt;06:05,  2.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 21/1000 [00:07&lt;05:55,  2.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 22/1000 [00:08&lt;05:56,  2.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 23/1000 [00:08&lt;06:04,  2.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▏         | 24/1000 [00:09&lt;06:09,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   2%|▎         | 25/1000 [00:09&lt;06:09,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 26/1000 [00:09&lt;06:14,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 27/1000 [00:10&lt;06:07,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 28/1000 [00:10&lt;06:01,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 29/1000 [00:10&lt;06:11,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 30/1000 [00:11&lt;06:07,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 31/1000 [00:11&lt;06:15,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 32/1000 [00:12&lt;06:12,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 33/1000 [00:12&lt;06:05,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   3%|▎         | 34/1000 [00:12&lt;06:13,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▎         | 35/1000 [00:13&lt;06:23,  2.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▎         | 36/1000 [00:13&lt;06:25,  2.50it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▎         | 37/1000 [00:14&lt;06:16,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 38/1000 [00:14&lt;06:09,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 39/1000 [00:14&lt;06:11,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 40/1000 [00:15&lt;06:06,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 41/1000 [00:15&lt;05:56,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 42/1000 [00:15&lt;05:53,  2.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 43/1000 [00:16&lt;06:02,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 44/1000 [00:16&lt;06:18,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   4%|▍         | 45/1000 [00:17&lt;06:07,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▍         | 46/1000 [00:17&lt;06:02,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▍         | 47/1000 [00:17&lt;05:53,  2.70it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▍         | 48/1000 [00:18&lt;05:55,  2.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▍         | 49/1000 [00:18&lt;05:52,  2.70it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▌         | 50/1000 [00:18&lt;05:48,  2.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▌         | 51/1000 [00:19&lt;05:55,  2.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▌         | 52/1000 [00:19&lt;05:52,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▌         | 53/1000 [00:20&lt;05:45,  2.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   5%|▌         | 54/1000 [00:20&lt;05:52,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 55/1000 [00:20&lt;05:57,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 56/1000 [00:21&lt;05:48,  2.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 57/1000 [00:21&lt;05:55,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 58/1000 [00:21&lt;05:56,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 59/1000 [00:22&lt;05:58,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 60/1000 [00:22&lt;06:02,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 61/1000 [00:23&lt;06:07,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▌         | 62/1000 [00:23&lt;06:10,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▋         | 63/1000 [00:23&lt;05:56,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▋         | 64/1000 [00:24&lt;05:58,  2.61it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   6%|▋         | 65/1000 [00:24&lt;06:02,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 66/1000 [00:25&lt;05:54,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 67/1000 [00:25&lt;05:47,  2.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 68/1000 [00:25&lt;05:53,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 69/1000 [00:26&lt;05:53,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 70/1000 [00:26&lt;05:47,  2.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 71/1000 [00:26&lt;05:40,  2.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 72/1000 [00:27&lt;05:54,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 73/1000 [00:27&lt;05:57,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   7%|▋         | 74/1000 [00:28&lt;05:49,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 75/1000 [00:28&lt;05:58,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 76/1000 [00:28&lt;06:00,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 77/1000 [00:29&lt;06:03,  2.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 78/1000 [00:29&lt;05:57,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 79/1000 [00:30&lt;05:55,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 80/1000 [00:30&lt;06:01,  2.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 81/1000 [00:30&lt;06:03,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 82/1000 [00:31&lt;05:56,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 83/1000 [00:31&lt;05:51,  2.61it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 84/1000 [00:31&lt;05:53,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   8%|▊         | 85/1000 [00:32&lt;05:48,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▊         | 86/1000 [00:32&lt;05:57,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▊         | 87/1000 [00:33&lt;05:53,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 88/1000 [00:33&lt;06:01,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 89/1000 [00:33&lt;05:50,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 90/1000 [00:34&lt;05:48,  2.61it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 91/1000 [00:34&lt;05:54,  2.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 92/1000 [00:35&lt;05:48,  2.61it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 93/1000 [00:35&lt;05:50,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:   9%|▉         | 94/1000 [00:35&lt;05:46,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|▉         | 95/1000 [00:36&lt;05:49,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|▉         | 96/1000 [00:36&lt;05:53,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|▉         | 97/1000 [00:37&lt;05:48,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|▉         | 98/1000 [00:37&lt;05:52,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|▉         | 99/1000 [00:37&lt;05:58,  2.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|█         | 100/1000 [00:38&lt;05:51,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|█         | 101/1000 [00:38&lt;05:45,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|█         | 102/1000 [00:38&lt;05:45,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|█         | 103/1000 [00:39&lt;05:44,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|█         | 104/1000 [00:39&lt;05:40,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  10%|█         | 105/1000 [00:40&lt;05:37,  2.66it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 106/1000 [00:40&lt;05:44,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 107/1000 [00:40&lt;05:48,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 108/1000 [00:41&lt;05:49,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 109/1000 [00:41&lt;05:39,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 110/1000 [00:42&lt;05:41,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 111/1000 [00:42&lt;05:47,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█         | 112/1000 [00:42&lt;05:35,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█▏        | 113/1000 [00:43&lt;05:29,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  11%|█▏        | 114/1000 [00:43&lt;05:37,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 115/1000 [00:43&lt;05:40,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 116/1000 [00:44&lt;05:35,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 117/1000 [00:44&lt;05:47,  2.54it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 118/1000 [00:45&lt;05:50,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 119/1000 [00:45&lt;05:40,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 120/1000 [00:45&lt;05:47,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 121/1000 [00:46&lt;05:40,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 122/1000 [00:46&lt;05:30,  2.66it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 123/1000 [00:47&lt;05:36,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▏        | 124/1000 [00:47&lt;05:23,  2.70it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  12%|█▎        | 125/1000 [00:47&lt;05:18,  2.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 126/1000 [00:48&lt;05:31,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 127/1000 [00:48&lt;05:37,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 128/1000 [00:48&lt;05:50,  2.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 129/1000 [00:49&lt;05:30,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 130/1000 [00:49&lt;05:33,  2.61it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 131/1000 [00:50&lt;05:40,  2.55it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 132/1000 [00:50&lt;05:55,  2.44it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 133/1000 [00:50&lt;05:44,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  13%|█▎        | 134/1000 [00:51&lt;05:41,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▎        | 135/1000 [00:51&lt;05:38,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▎        | 136/1000 [00:52&lt;05:24,  2.66it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▎        | 137/1000 [00:52&lt;05:22,  2.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 138/1000 [00:52&lt;05:27,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 139/1000 [00:53&lt;05:24,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 140/1000 [00:53&lt;05:14,  2.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 141/1000 [00:53&lt;05:10,  2.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 142/1000 [00:54&lt;05:15,  2.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 143/1000 [00:54&lt;05:11,  2.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 144/1000 [00:55&lt;05:24,  2.64it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  14%|█▍        | 145/1000 [00:55&lt;05:26,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▍        | 146/1000 [00:55&lt;05:17,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▍        | 147/1000 [00:56&lt;05:20,  2.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▍        | 148/1000 [00:56&lt;05:19,  2.66it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▍        | 149/1000 [00:56&lt;05:24,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▌        | 150/1000 [00:57&lt;05:32,  2.55it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▌        | 151/1000 [00:57&lt;05:22,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▌        | 152/1000 [00:58&lt;05:35,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▌        | 153/1000 [00:58&lt;05:36,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  15%|█▌        | 154/1000 [00:58&lt;05:21,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 155/1000 [00:59&lt;05:21,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 156/1000 [00:59&lt;05:18,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 157/1000 [00:59&lt;05:21,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 158/1000 [01:00&lt;05:27,  2.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 159/1000 [01:00&lt;05:25,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 160/1000 [01:01&lt;05:32,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 161/1000 [01:01&lt;05:26,  2.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▌        | 162/1000 [01:01&lt;05:18,  2.63it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▋        | 163/1000 [01:02&lt;05:07,  2.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▋        | 164/1000 [01:02&lt;05:10,  2.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  16%|█▋        | 165/1000 [01:03&lt;05:08,  2.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 166/1000 [01:03&lt;05:14,  2.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 167/1000 [01:03&lt;05:23,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 168/1000 [01:04&lt;05:21,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 169/1000 [01:04&lt;05:17,  2.61it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 170/1000 [01:04&lt;05:12,  2.66it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 171/1000 [01:05&lt;05:16,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 172/1000 [01:05&lt;05:18,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 173/1000 [01:06&lt;05:30,  2.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  17%|█▋        | 174/1000 [01:06&lt;05:34,  2.47it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 175/1000 [01:06&lt;05:31,  2.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 176/1000 [01:07&lt;05:30,  2.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 177/1000 [01:07&lt;05:27,  2.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 178/1000 [01:08&lt;05:26,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 179/1000 [01:08&lt;05:17,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 180/1000 [01:08&lt;05:20,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 181/1000 [01:09&lt;05:12,  2.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 182/1000 [01:09&lt;05:19,  2.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 183/1000 [01:10&lt;05:20,  2.55it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 184/1000 [01:10&lt;05:15,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  18%|█▊        | 185/1000 [01:10&lt;05:27,  2.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▊        | 186/1000 [01:11&lt;05:18,  2.55it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▊        | 187/1000 [01:11&lt;05:16,  2.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 188/1000 [01:12&lt;05:20,  2.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 189/1000 [01:12&lt;05:21,  2.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 190/1000 [01:12&lt;05:15,  2.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 191/1000 [01:13&lt;05:10,  2.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 192/1000 [01:13&lt;05:25,  2.48it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 193/1000 [01:13&lt;05:13,  2.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  19%|█▉        | 194/1000 [01:14&lt;05:11,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|█▉        | 195/1000 [01:14&lt;05:13,  2.57it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|█▉        | 196/1000 [01:15&lt;05:10,  2.59it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|█▉        | 197/1000 [01:15&lt;05:27,  2.45it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|█▉        | 198/1000 [01:16&lt;05:45,  2.32it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|█▉        | 199/1000 [01:16&lt;05:58,  2.24it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|██        | 200/1000 [01:17&lt;06:06,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|██        | 201/1000 [01:17&lt;06:13,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|██        | 202/1000 [01:18&lt;06:16,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|██        | 203/1000 [01:18&lt;06:19,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|██        | 204/1000 [01:18&lt;06:12,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  20%|██        | 205/1000 [01:19&lt;06:07,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 206/1000 [01:19&lt;06:13,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 207/1000 [01:20&lt;06:05,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 208/1000 [01:20&lt;06:00,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 209/1000 [01:21&lt;06:07,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 210/1000 [01:21&lt;06:01,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 211/1000 [01:22&lt;05:57,  2.21it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██        | 212/1000 [01:22&lt;06:05,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██▏       | 213/1000 [01:23&lt;06:11,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  21%|██▏       | 214/1000 [01:23&lt;06:05,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 215/1000 [01:24&lt;05:59,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 216/1000 [01:24&lt;05:57,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 217/1000 [01:24&lt;05:55,  2.20it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 218/1000 [01:25&lt;05:54,  2.20it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 219/1000 [01:25&lt;06:04,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 220/1000 [01:26&lt;06:00,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 221/1000 [01:26&lt;06:11,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 222/1000 [01:27&lt;06:09,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 223/1000 [01:27&lt;06:14,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▏       | 224/1000 [01:28&lt;06:05,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  22%|██▎       | 225/1000 [01:28&lt;06:03,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 226/1000 [01:29&lt;05:56,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 227/1000 [01:29&lt;05:52,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 228/1000 [01:30&lt;05:59,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 229/1000 [01:30&lt;06:07,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 230/1000 [01:31&lt;06:08,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 231/1000 [01:31&lt;06:09,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 232/1000 [01:32&lt;06:13,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 233/1000 [01:32&lt;06:02,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  23%|██▎       | 234/1000 [01:32&lt;06:04,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▎       | 235/1000 [01:33&lt;06:05,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▎       | 236/1000 [01:33&lt;05:56,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▎       | 237/1000 [01:34&lt;05:49,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 238/1000 [01:34&lt;05:48,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 239/1000 [01:35&lt;05:46,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 240/1000 [01:35&lt;05:56,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 241/1000 [01:36&lt;05:50,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 242/1000 [01:36&lt;05:53,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 243/1000 [01:37&lt;05:47,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 244/1000 [01:37&lt;05:52,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  24%|██▍       | 245/1000 [01:38&lt;06:26,  1.95it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▍       | 246/1000 [01:38&lt;06:09,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▍       | 247/1000 [01:39&lt;06:06,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▍       | 248/1000 [01:39&lt;05:56,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▍       | 249/1000 [01:40&lt;06:14,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▌       | 250/1000 [01:40&lt;06:01,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▌       | 251/1000 [01:41&lt;06:07,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▌       | 252/1000 [01:41&lt;05:55,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▌       | 253/1000 [01:42&lt;05:58,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  25%|██▌       | 254/1000 [01:42&lt;05:59,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 255/1000 [01:42&lt;05:50,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 256/1000 [01:43&lt;05:43,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 257/1000 [01:43&lt;05:41,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 258/1000 [01:44&lt;05:47,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 259/1000 [01:44&lt;05:42,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 260/1000 [01:45&lt;05:52,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 261/1000 [01:45&lt;05:54,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▌       | 262/1000 [01:46&lt;05:46,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▋       | 263/1000 [01:46&lt;05:42,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▋       | 264/1000 [01:47&lt;05:37,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  26%|██▋       | 265/1000 [01:47&lt;05:32,  2.21it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 266/1000 [01:48&lt;05:40,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 267/1000 [01:48&lt;05:35,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 268/1000 [01:48&lt;05:32,  2.20it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 269/1000 [01:49&lt;05:29,  2.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 270/1000 [01:49&lt;05:37,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 271/1000 [01:50&lt;05:32,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 272/1000 [01:50&lt;05:28,  2.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 273/1000 [01:51&lt;05:38,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  27%|██▋       | 274/1000 [01:51&lt;05:42,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 275/1000 [01:52&lt;05:53,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 276/1000 [01:52&lt;05:43,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 277/1000 [01:53&lt;05:38,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 278/1000 [01:53&lt;05:33,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 279/1000 [01:54&lt;05:40,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 280/1000 [01:54&lt;05:46,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 281/1000 [01:55&lt;05:37,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 282/1000 [01:55&lt;05:34,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 283/1000 [01:55&lt;05:31,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 284/1000 [01:56&lt;05:27,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  28%|██▊       | 285/1000 [01:56&lt;05:24,  2.21it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▊       | 286/1000 [01:57&lt;05:23,  2.21it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▊       | 287/1000 [01:57&lt;05:30,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 288/1000 [01:58&lt;05:40,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 289/1000 [01:58&lt;05:34,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 290/1000 [01:59&lt;05:29,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 291/1000 [01:59&lt;05:24,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 292/1000 [02:00&lt;05:22,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 293/1000 [02:00&lt;05:26,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  29%|██▉       | 294/1000 [02:01&lt;05:31,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|██▉       | 295/1000 [02:01&lt;05:34,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|██▉       | 296/1000 [02:02&lt;05:41,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|██▉       | 297/1000 [02:02&lt;05:41,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|██▉       | 298/1000 [02:03&lt;05:46,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|██▉       | 299/1000 [02:03&lt;05:51,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|███       | 300/1000 [02:04&lt;05:55,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|███       | 301/1000 [02:04&lt;05:42,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|███       | 302/1000 [02:05&lt;05:48,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|███       | 303/1000 [02:05&lt;05:36,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|███       | 304/1000 [02:05&lt;05:27,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  30%|███       | 305/1000 [02:06&lt;05:31,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 306/1000 [02:06&lt;05:23,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 307/1000 [02:07&lt;05:27,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 308/1000 [02:07&lt;05:21,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 309/1000 [02:08&lt;05:25,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 310/1000 [02:08&lt;05:28,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 311/1000 [02:09&lt;05:21,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███       | 312/1000 [02:09&lt;05:32,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███▏      | 313/1000 [02:10&lt;05:22,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  31%|███▏      | 314/1000 [02:10&lt;05:16,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 315/1000 [02:11&lt;05:11,  2.20it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 316/1000 [02:11&lt;05:17,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 317/1000 [02:12&lt;05:21,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 318/1000 [02:12&lt;05:17,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 319/1000 [02:12&lt;05:12,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 320/1000 [02:13&lt;05:11,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 321/1000 [02:13&lt;05:18,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 322/1000 [02:14&lt;05:17,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 323/1000 [02:14&lt;05:22,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▏      | 324/1000 [02:15&lt;05:15,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  32%|███▎      | 325/1000 [02:15&lt;05:19,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 326/1000 [02:16&lt;05:13,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 327/1000 [02:16&lt;05:18,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 328/1000 [02:17&lt;05:14,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 329/1000 [02:17&lt;05:18,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 330/1000 [02:18&lt;05:22,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 331/1000 [02:18&lt;05:23,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 332/1000 [02:19&lt;05:52,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 333/1000 [02:19&lt;05:44,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  33%|███▎      | 334/1000 [02:20&lt;05:38,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▎      | 335/1000 [02:20&lt;05:50,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▎      | 336/1000 [02:21&lt;05:56,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▎      | 337/1000 [02:21&lt;05:50,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 338/1000 [02:22&lt;05:53,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 339/1000 [02:22&lt;05:52,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 340/1000 [02:23&lt;05:48,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 341/1000 [02:24&lt;05:47,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 342/1000 [02:24&lt;05:46,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 343/1000 [02:25&lt;06:00,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 344/1000 [02:25&lt;06:15,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  34%|███▍      | 345/1000 [02:26&lt;05:58,  1.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▍      | 346/1000 [02:26&lt;05:51,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▍      | 347/1000 [02:27&lt;06:07,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▍      | 348/1000 [02:27&lt;05:51,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▍      | 349/1000 [02:28&lt;05:41,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▌      | 350/1000 [02:28&lt;05:50,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▌      | 351/1000 [02:29&lt;05:38,  1.92it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▌      | 352/1000 [02:30&lt;05:52,  1.84it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▌      | 353/1000 [02:30&lt;06:03,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  35%|███▌      | 354/1000 [02:31&lt;06:00,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 355/1000 [02:31&lt;06:08,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 356/1000 [02:32&lt;06:04,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 357/1000 [02:32&lt;06:15,  1.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 358/1000 [02:33&lt;06:19,  1.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 359/1000 [02:34&lt;06:07,  1.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 360/1000 [02:34&lt;06:09,  1.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 361/1000 [02:35&lt;06:00,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▌      | 362/1000 [02:35&lt;05:59,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▋      | 363/1000 [02:36&lt;05:55,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▋      | 364/1000 [02:36&lt;06:10,  1.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  36%|███▋      | 365/1000 [02:37&lt;05:57,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 366/1000 [02:38&lt;05:48,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 367/1000 [02:38&lt;05:45,  1.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 368/1000 [02:39&lt;05:49,  1.81it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 369/1000 [02:39&lt;05:49,  1.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 370/1000 [02:40&lt;05:59,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 371/1000 [02:40&lt;05:52,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 372/1000 [02:41&lt;05:53,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 373/1000 [02:42&lt;06:05,  1.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  37%|███▋      | 374/1000 [02:42&lt;06:13,  1.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 375/1000 [02:43&lt;05:57,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 376/1000 [02:43&lt;05:44,  1.81it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 377/1000 [02:44&lt;05:55,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 378/1000 [02:44&lt;06:03,  1.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 379/1000 [02:45&lt;05:42,  1.81it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 380/1000 [02:45&lt;05:44,  1.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 381/1000 [02:46&lt;05:36,  1.84it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 382/1000 [02:47&lt;05:52,  1.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 383/1000 [02:47&lt;06:01,  1.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 384/1000 [02:48&lt;05:53,  1.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  38%|███▊      | 385/1000 [02:48&lt;05:58,  1.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▊      | 386/1000 [02:49&lt;05:56,  1.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▊      | 387/1000 [02:50&lt;06:07,  1.67it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 388/1000 [02:50&lt;06:02,  1.69it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 389/1000 [02:51&lt;05:56,  1.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 390/1000 [02:51&lt;05:44,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 391/1000 [02:52&lt;05:34,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 392/1000 [02:52&lt;05:18,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 393/1000 [02:53&lt;05:32,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  39%|███▉      | 394/1000 [02:53&lt;05:40,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|███▉      | 395/1000 [02:54&lt;05:54,  1.71it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|███▉      | 396/1000 [02:55&lt;05:47,  1.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|███▉      | 397/1000 [02:55&lt;05:55,  1.70it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|███▉      | 398/1000 [02:56&lt;05:41,  1.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|███▉      | 399/1000 [02:56&lt;05:35,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|████      | 400/1000 [02:57&lt;05:29,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|████      | 401/1000 [02:57&lt;05:24,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|████      | 402/1000 [02:58&lt;05:19,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|████      | 403/1000 [02:58&lt;05:15,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|████      | 404/1000 [02:59&lt;05:14,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  40%|████      | 405/1000 [02:59&lt;05:11,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 406/1000 [03:00&lt;05:17,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 407/1000 [03:01&lt;05:30,  1.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 408/1000 [03:01&lt;05:27,  1.81it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 409/1000 [03:02&lt;05:37,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 410/1000 [03:02&lt;05:40,  1.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 411/1000 [03:03&lt;05:40,  1.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████      | 412/1000 [03:03&lt;05:41,  1.72it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████▏     | 413/1000 [03:04&lt;05:48,  1.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  41%|████▏     | 414/1000 [03:05&lt;05:31,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 415/1000 [03:05&lt;05:21,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 416/1000 [03:06&lt;05:15,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 417/1000 [03:06&lt;05:07,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 418/1000 [03:07&lt;05:09,  1.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 419/1000 [03:07&lt;05:14,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 420/1000 [03:08&lt;05:06,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 421/1000 [03:08&lt;05:00,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 422/1000 [03:09&lt;04:49,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 423/1000 [03:09&lt;04:53,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▏     | 424/1000 [03:10&lt;04:42,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  42%|████▎     | 425/1000 [03:10&lt;04:45,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 426/1000 [03:11&lt;04:41,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 427/1000 [03:11&lt;04:35,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 428/1000 [03:12&lt;04:38,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 429/1000 [03:12&lt;04:35,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 430/1000 [03:13&lt;04:55,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 431/1000 [03:13&lt;04:44,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 432/1000 [03:14&lt;04:41,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 433/1000 [03:14&lt;04:43,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  43%|████▎     | 434/1000 [03:15&lt;04:44,  1.99it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▎     | 435/1000 [03:15&lt;04:51,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▎     | 436/1000 [03:16&lt;05:15,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▎     | 437/1000 [03:16&lt;05:21,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 438/1000 [03:17&lt;05:20,  1.75it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 439/1000 [03:18&lt;05:07,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 440/1000 [03:18&lt;05:16,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 441/1000 [03:19&lt;05:11,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 442/1000 [03:19&lt;05:05,  1.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 443/1000 [03:20&lt;05:08,  1.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 444/1000 [03:20&lt;05:03,  1.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  44%|████▍     | 445/1000 [03:21&lt;05:00,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▍     | 446/1000 [03:21&lt;04:46,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▍     | 447/1000 [03:22&lt;04:51,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▍     | 448/1000 [03:22&lt;04:47,  1.92it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▍     | 449/1000 [03:23&lt;04:58,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▌     | 450/1000 [03:23&lt;04:50,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▌     | 451/1000 [03:24&lt;05:00,  1.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▌     | 452/1000 [03:25&lt;04:57,  1.84it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▌     | 453/1000 [03:25&lt;05:00,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  45%|████▌     | 454/1000 [03:26&lt;04:47,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 455/1000 [03:26&lt;04:58,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 456/1000 [03:27&lt;04:49,  1.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 457/1000 [03:27&lt;04:46,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 458/1000 [03:28&lt;05:05,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 459/1000 [03:28&lt;04:57,  1.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 460/1000 [03:29&lt;04:44,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 461/1000 [03:29&lt;04:47,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▌     | 462/1000 [03:30&lt;04:49,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▋     | 463/1000 [03:30&lt;04:46,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▋     | 464/1000 [03:31&lt;04:37,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  46%|████▋     | 465/1000 [03:31&lt;04:38,  1.92it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 466/1000 [03:32&lt;04:42,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 467/1000 [03:33&lt;04:41,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 468/1000 [03:33&lt;04:42,  1.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 469/1000 [03:34&lt;04:39,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 470/1000 [03:34&lt;04:42,  1.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 471/1000 [03:35&lt;04:29,  1.96it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 472/1000 [03:35&lt;04:29,  1.96it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 473/1000 [03:36&lt;04:38,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  47%|████▋     | 474/1000 [03:36&lt;04:35,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 475/1000 [03:37&lt;04:22,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 476/1000 [03:37&lt;04:18,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 477/1000 [03:38&lt;04:29,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 478/1000 [03:38&lt;04:20,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 479/1000 [03:39&lt;04:18,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 480/1000 [03:39&lt;04:12,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 481/1000 [03:40&lt;04:27,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 482/1000 [03:40&lt;04:33,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 483/1000 [03:41&lt;04:22,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 484/1000 [03:41&lt;04:16,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  48%|████▊     | 485/1000 [03:42&lt;04:35,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▊     | 486/1000 [03:42&lt;04:29,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▊     | 487/1000 [03:43&lt;04:28,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 488/1000 [03:43&lt;04:29,  1.90it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 489/1000 [03:44&lt;04:35,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 490/1000 [03:44&lt;04:34,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 491/1000 [03:45&lt;04:26,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 492/1000 [03:45&lt;04:20,  1.95it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 493/1000 [03:46&lt;04:22,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  49%|████▉     | 494/1000 [03:46&lt;04:17,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|████▉     | 495/1000 [03:47&lt;04:08,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|████▉     | 496/1000 [03:47&lt;04:16,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|████▉     | 497/1000 [03:48&lt;04:21,  1.92it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|████▉     | 498/1000 [03:49&lt;04:28,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|████▉     | 499/1000 [03:49&lt;04:28,  1.87it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|█████     | 500/1000 [03:50&lt;04:29,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|█████     | 501/1000 [03:50&lt;04:30,  1.85it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|█████     | 502/1000 [03:51&lt;04:28,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|█████     | 503/1000 [03:51&lt;04:40,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|█████     | 504/1000 [03:52&lt;05:00,  1.65it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  50%|█████     | 505/1000 [03:53&lt;04:37,  1.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 506/1000 [03:53&lt;04:39,  1.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 507/1000 [03:54&lt;04:39,  1.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 508/1000 [03:54&lt;04:20,  1.89it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 509/1000 [03:55&lt;04:21,  1.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 510/1000 [03:55&lt;04:13,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 511/1000 [03:56&lt;04:08,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████     | 512/1000 [03:56&lt;04:04,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████▏    | 513/1000 [03:57&lt;03:54,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  51%|█████▏    | 514/1000 [03:57&lt;03:55,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 515/1000 [03:57&lt;03:48,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 516/1000 [03:58&lt;03:43,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 517/1000 [03:58&lt;03:41,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 518/1000 [03:59&lt;03:38,  2.21it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 519/1000 [03:59&lt;03:36,  2.23it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 520/1000 [04:00&lt;03:35,  2.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 521/1000 [04:00&lt;03:33,  2.24it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 522/1000 [04:01&lt;03:40,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 523/1000 [04:01&lt;03:54,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▏    | 524/1000 [04:02&lt;03:51,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  52%|█████▎    | 525/1000 [04:02&lt;03:59,  1.98it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 526/1000 [04:03&lt;04:04,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 527/1000 [04:03&lt;04:16,  1.84it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 528/1000 [04:04&lt;04:13,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 529/1000 [04:04&lt;04:12,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 530/1000 [04:05&lt;04:13,  1.86it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 531/1000 [04:06&lt;04:22,  1.79it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 532/1000 [04:06&lt;04:19,  1.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 533/1000 [04:07&lt;04:08,  1.88it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  53%|█████▎    | 534/1000 [04:07&lt;03:56,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▎    | 535/1000 [04:08&lt;03:50,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▎    | 536/1000 [04:08&lt;03:48,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▎    | 537/1000 [04:08&lt;03:46,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 538/1000 [04:09&lt;03:49,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 539/1000 [04:09&lt;03:48,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 540/1000 [04:10&lt;03:46,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 541/1000 [04:10&lt;03:39,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 542/1000 [04:11&lt;03:35,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 543/1000 [04:11&lt;03:42,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  54%|█████▍    | 544/1000 [04:12&lt;03:46,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▍    | 545/1000 [04:12&lt;03:51,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▍    | 546/1000 [04:13&lt;03:48,  1.98it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▍    | 547/1000 [04:13&lt;03:43,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▍    | 548/1000 [04:14&lt;03:42,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▍    | 549/1000 [04:14&lt;03:45,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▌    | 550/1000 [04:15&lt;03:39,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▌    | 551/1000 [04:15&lt;03:40,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▌    | 552/1000 [04:16&lt;03:39,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▌    | 553/1000 [04:16&lt;03:46,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  55%|█████▌    | 554/1000 [04:17&lt;03:51,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 555/1000 [04:17&lt;03:51,  1.92it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 556/1000 [04:18&lt;03:48,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 557/1000 [04:18&lt;03:44,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 558/1000 [04:19&lt;03:38,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 559/1000 [04:19&lt;03:42,  1.98it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 560/1000 [04:20&lt;03:36,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 561/1000 [04:21&lt;03:49,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▌    | 562/1000 [04:21&lt;03:41,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▋    | 563/1000 [04:21&lt;03:36,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▋    | 564/1000 [04:22&lt;03:30,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  56%|█████▋    | 565/1000 [04:22&lt;03:32,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 566/1000 [04:23&lt;03:30,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 567/1000 [04:23&lt;03:25,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 568/1000 [04:24&lt;03:26,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 569/1000 [04:24&lt;03:30,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 570/1000 [04:25&lt;03:31,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 571/1000 [04:25&lt;03:41,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 572/1000 [04:26&lt;03:31,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 573/1000 [04:26&lt;03:24,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▋    | 574/1000 [04:27&lt;03:32,  2.00it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  57%|█████▊    | 575/1000 [04:27&lt;03:36,  1.96it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 576/1000 [04:28&lt;03:38,  1.94it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 577/1000 [04:28&lt;03:30,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 578/1000 [04:29&lt;03:23,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 579/1000 [04:29&lt;03:22,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 580/1000 [04:30&lt;03:26,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 581/1000 [04:30&lt;03:30,  1.99it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 582/1000 [04:31&lt;03:24,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 583/1000 [04:31&lt;03:23,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 584/1000 [04:32&lt;03:18,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  58%|█████▊    | 585/1000 [04:32&lt;03:19,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▊    | 586/1000 [04:33&lt;03:14,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▊    | 587/1000 [04:33&lt;03:10,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 588/1000 [04:34&lt;03:07,  2.20it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 589/1000 [04:34&lt;03:11,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 590/1000 [04:34&lt;03:10,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 591/1000 [04:35&lt;03:08,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 592/1000 [04:35&lt;03:05,  2.20it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 593/1000 [04:36&lt;03:03,  2.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  59%|█████▉    | 594/1000 [04:36&lt;03:03,  2.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|█████▉    | 595/1000 [04:37&lt;03:07,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|█████▉    | 596/1000 [04:37&lt;03:12,  2.10it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|█████▉    | 597/1000 [04:38&lt;03:07,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|█████▉    | 598/1000 [04:38&lt;03:09,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|█████▉    | 599/1000 [04:39&lt;03:05,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|██████    | 600/1000 [04:39&lt;03:07,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|██████    | 601/1000 [04:40&lt;03:05,  2.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|██████    | 602/1000 [04:40&lt;03:03,  2.16it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|██████    | 603/1000 [04:40&lt;03:00,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|██████    | 604/1000 [04:41&lt;02:58,  2.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  60%|██████    | 605/1000 [04:41&lt;03:06,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 606/1000 [04:42&lt;03:03,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 607/1000 [04:42&lt;03:00,  2.18it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 608/1000 [04:43&lt;02:59,  2.19it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 609/1000 [04:43&lt;03:07,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 610/1000 [04:44&lt;03:02,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 611/1000 [04:44&lt;02:59,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████    | 612/1000 [04:45&lt;03:02,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████▏   | 613/1000 [04:45&lt;03:08,  2.05it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  61%|██████▏   | 614/1000 [04:46&lt;03:11,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 615/1000 [04:46&lt;03:15,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 616/1000 [04:47&lt;03:15,  1.97it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 617/1000 [04:47&lt;03:12,  1.99it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 618/1000 [04:48&lt;03:08,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 619/1000 [04:48&lt;03:02,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 620/1000 [04:49&lt;03:03,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 621/1000 [04:49&lt;03:01,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 622/1000 [04:50&lt;03:03,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 623/1000 [04:50&lt;02:58,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▏   | 624/1000 [04:51&lt;02:59,  2.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  62%|██████▎   | 625/1000 [04:51&lt;03:00,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 626/1000 [04:52&lt;03:04,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 627/1000 [04:52&lt;03:04,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 628/1000 [04:53&lt;02:58,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 629/1000 [04:53&lt;02:59,  2.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 630/1000 [04:53&lt;02:53,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 631/1000 [04:54&lt;02:55,  2.11it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 632/1000 [04:54&lt;02:57,  2.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 633/1000 [04:55&lt;02:52,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  63%|██████▎   | 634/1000 [04:55&lt;02:51,  2.13it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▎   | 635/1000 [04:56&lt;02:48,  2.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▎   | 636/1000 [04:56&lt;02:51,  2.12it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▎   | 637/1000 [04:57&lt;02:56,  2.06it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▍   | 638/1000 [04:57&lt;02:57,  2.04it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▍   | 639/1000 [04:58&lt;03:08,  1.91it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▍   | 640/1000 [04:58&lt;02:59,  2.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▍   | 641/1000 [04:59&lt;02:57,  2.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▍   | 642/1000 [04:59&lt;02:56,  2.03it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing:  64%|██████▍   | 642/1000 [05:00&lt;02:47,  2.14it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">gwr_model</span> <span class="o">=</span> <span class="n">GWR</span><span class="p">(</span><span class="n">g_coords</span><span class="p">,</span> <span class="n">g_y</span><span class="p">,</span> <span class="n">g_X</span><span class="p">,</span> <span class="mi">107</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">gwr_results</span> <span class="o">=</span> <span class="n">gwr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1">#default is 1000 iterations</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">p_vals_1000</span> <span class="o">=</span> <span class="n">gwr_results</span><span class="o">.</span><span class="n">spatial_variability</span><span class="p">(</span><span class="n">gwr_selector</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="n">p_vals_1000</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\geospatial\Lib\site-packages\mgwr\gwr.py:1248,</span> in <span class="ni">GWRResults.spatial_variability</span><span class="nt">(self, selector, n_iters, seed)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1246</span> <span class="n">temp_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1247</span> <span class="n">temp_sel</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="n">temp_coords</span>
+<span class="ne">-&gt; </span><span class="mi">1248</span> <span class="n">temp_bw</span> <span class="o">=</span> <span class="n">temp_sel</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="o">**</span><span class="n">search_params</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1249</span> <span class="n">temp_gwr</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">temp_bw</span>
+<span class="g g-Whitespace">   </span><span class="mi">1250</span> <span class="n">temp_gwr</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="n">temp_coords</span>
+
+<span class="nn">File ~\miniconda3\envs\geospatial\Lib\site-packages\mgwr\sel_bw.py:324,</span> in <span class="ni">Sel_BW.search</span><span class="nt">(self, search_method, criterion, bw_min, bw_max, interval, tol, max_iter, init_multi, tol_multi, rss_score, max_iter_multi, multi_bw_min, multi_bw_max, bws_same_times, verbose, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="bp">self</span><span class="o">.</span><span class="n">bw_init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1">#scalar, optimal bw from initial gwr model</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">324</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_bw</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="bp">self</span><span class="o">.</span><span class="n">sel_hist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~\miniconda3\envs\geospatial\Lib\site-packages\mgwr\sel_bw.py:341,</span> in <span class="ni">Sel_BW._bw</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">338</span>     <span class="n">a</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_section</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_glob</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_loc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span>                               <span class="bp">self</span><span class="o">.</span><span class="n">constant</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">340</span>     <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.38197</span>  <span class="c1">#1 - (np.sqrt(5.0)-1.0)/2.0</span>
+<span class="ne">--&gt; </span><span class="mi">341</span>     <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">golden_section</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gwr_func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span>                              <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_score</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>                              <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_method</span> <span class="o">==</span> <span class="s1">&#39;interval&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span>     <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">equal_interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bw_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>                              <span class="n">gwr_func</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_score</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\geospatial\Lib\site-packages\mgwr\search.py:75,</span> in <span class="ni">golden_section</span><span class="nt">(a, c, delta, function, tol, max_iter, bw_max, int_score, verbose)</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="n">score_d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">75</span>     <span class="n">score_d</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>     <span class="nb">dict</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">score_d</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\geospatial\Lib\site-packages\mgwr\sel_bw.py:333,</span> in <span class="ni">Sel_BW._bw.&lt;locals&gt;.&lt;lambda&gt;</span><span class="nt">(bw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="k">def</span><span class="w"> </span><span class="nf">_bw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>     <span class="n">gwr_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">bw</span><span class="p">:</span> <span class="n">getDiag</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">](</span><span class="n">GWR</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_loc</span><span class="p">,</span> <span class="n">bw</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">family</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span>         <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">constant</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span>
+<span class="ne">--&gt; </span><span class="mi">333</span>         <span class="n">offset</span><span class="p">,</span> <span class="n">spherical</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">spherical</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">lite</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_optimized_function</span> <span class="o">=</span> <span class="n">gwr_func</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_method</span> <span class="o">==</span> <span class="s1">&#39;golden_section&#39;</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\geospatial\Lib\site-packages\mgwr\gwr.py:348,</span> in <span class="ni">GWR.fit</span><span class="nt">(self, ini_params, tol, max_iter, solve, lite, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>     <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nn">--&gt; 348 rslt = Parallel(n_jobs=self.n_jobs)(delayed(self._local_fit)(i) for i</span> in <span class="ni">range</span><span class="nt">(m))</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span> <span class="n">rslt_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">rslt</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span> <span class="n">influ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rslt_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\joblib\parallel.py:2072,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2066</span> <span class="c1"># The first item from the output is blank, but it makes the interpreter</span>
+<span class="g g-Whitespace">   </span><span class="mi">2067</span> <span class="c1"># progress until it enters the Try/Except block of the generator and</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="c1"># reaches the first `yield` statement. This starts the asynchronous</span>
+<span class="g g-Whitespace">   </span><span class="mi">2069</span> <span class="c1"># dispatch of the tasks to the workers.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2070</span> <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2072</span> <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\joblib\parallel.py:1682,</span> in <span class="ni">Parallel._get_outputs</span><span class="nt">(self, iterator, pre_dispatch)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1679</span>     <span class="k">yield</span>
+<span class="g g-Whitespace">   </span><span class="mi">1681</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
+<span class="ne">-&gt; </span><span class="mi">1682</span>         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1684</span> <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1685</span>     <span class="c1"># The generator has been garbage collected before being fully</span>
+<span class="g g-Whitespace">   </span><span class="mi">1686</span>     <span class="c1"># consumed. This aborts the remaining tasks if possible and warn</span>
+<span class="g g-Whitespace">   </span><span class="mi">1687</span>     <span class="c1"># the user if necessary.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1688</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~\AppData\Roaming\Python\Python314\site-packages\joblib\parallel.py:1800,</span> in <span class="ni">Parallel._retrieve</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1789</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_ordered</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1790</span>     <span class="c1"># Case ordered: wait for completion (or error) of the next job</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span>     <span class="c1"># that have been dispatched and not retrieved yet. If no job</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1795</span>     <span class="c1"># control only have to be done on the amount of time the next</span>
+<span class="g g-Whitespace">   </span><span class="mi">1796</span>     <span class="c1"># dispatched job is pending.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1797</span>     <span class="k">if</span> <span class="p">(</span><span class="n">nb_jobs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1798</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span> <span class="o">==</span> <span class="n">TASK_PENDING</span>
+<span class="g g-Whitespace">   </span><span class="mi">1799</span>     <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1800</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1801</span>         <span class="k">continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">1803</span> <span class="k">elif</span> <span class="n">nb_jobs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1804</span>     <span class="c1"># Case unordered: jobs are added to the list of jobs to</span>
+<span class="g g-Whitespace">   </span><span class="mi">1805</span>     <span class="c1"># retrieve `self._jobs` only once completed or in error, which</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1811</span>     <span class="c1"># timeouts before any other dispatched job has completed and</span>
+<span class="g g-Whitespace">   </span><span class="mi">1812</span>     <span class="c1"># been added to `self._jobs` to be retrieved.</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -2168,15 +4288,17 @@ X3                       -0.218      0.002     -0.221     -0.218     -0.213
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marco-teorico-ampliado">Marco teórico ampliado</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#del-modelo-global-al-local-limitaciones-del-ols">Del modelo global al local: limitaciones del OLS</a></li>
@@ -2257,8 +4379,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

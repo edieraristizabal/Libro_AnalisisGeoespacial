@@ -16,43 +16,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -60,40 +63,37 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '14_Kriging';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Procesos Gaussianos con Python" href="15_GP.html" />
     <link rel="prev" title="Regresión Ponderada Geográficamente (GWR)" href="13_MGWR.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +101,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,15 +108,59 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -126,7 +169,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +200,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Análisis Geoespacial - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Análisis Geoespacial - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Análisis Geoespacial - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -220,9 +260,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -352,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -366,25 +411,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -406,7 +443,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
@@ -465,7 +502,7 @@ document.write(`
 <section id="interpolacion-por-proximidad">
 <h3>Interpolación por proximidad<a class="headerlink" href="#interpolacion-por-proximidad" title="Link to this heading">#</a></h3>
 <p>Fue introducido por Alfred H. Thiessen hace más de un siglo. El objetivo es simple: asignar a todas las ubicaciones no muestreadas el valor de la ubicación muestreada más cercana. Esto genera una superficie teselada donde se conectan líneas que dividen el punto medio entre cada ubicación muestreada, encerrando así un área. Cada área termina rodeando un punto de muestra cuyo valor hereda.</p>
-<center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-proximity-1.png" width="1000"></center><div class="cell docutils container">
+<center><img src="https://mgimond.github.io/Spatial/16-Spatial-Interpolation_files/figure-html/f14-proximity-1.png" width="1000"></center><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
@@ -481,7 +518,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airbnbs</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://geographicdata.science/book/_downloads/dcd429d1761a2d0efdbc4532e141ba14/regression_db.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airbnbs</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/gdsbook/book/main/data/airbnb/regression_db.geojson&quot;</span><span class="p">)</span>
 <span class="n">airbnbs</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -588,7 +625,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/4b1dce0d20495e3f57d4f0909e3ec99690baa4ee675f447b99f02f41307aff03.png" src="_images/4b1dce0d20495e3f57d4f0909e3ec99690baa4ee675f447b99f02f41307aff03.png" />
+<img alt="_images/c8f6ea54c6d6c7dea65fe4b63f8ef0e59a9c7ff1f4ad0c7c139fed5afe3cac9c.png" src="_images/c8f6ea54c6d6c7dea65fe4b63f8ef0e59a9c7ff1f4ad0c7c139fed5afe3cac9c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -599,10 +636,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-87d0c743-a3c2-40e4-86df-4c6703d66357">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -664,7 +698,7 @@ document.write(`
       <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>POINT (-117.25840 32.80855)</td>
+      <td>POINT (-117.2584 32.80855)</td>
     </tr>
     <tr>
       <th>26</th>
@@ -691,83 +725,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-87d0c743-a3c2-40e4-86df-4c6703d66357')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-87d0c743-a3c2-40e4-86df-4c6703d66357 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-87d0c743-a3c2-40e4-86df-4c6703d66357');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -806,7 +764,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09bf7b5e65e065cb0276953d789940730721203a11a17a3cef2d0559e3e9bacb.png" src="_images/09bf7b5e65e065cb0276953d789940730721203a11a17a3cef2d0559e3e9bacb.png" />
+<img alt="_images/f42fabd4f0f2bddabe615e531b06cacfb73d4ab20d7d9ad49adff2cc6a3a7d59.png" src="_images/f42fabd4f0f2bddabe615e531b06cacfb73d4ab20d7d9ad49adff2cc6a3a7d59.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -824,10 +782,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7eff69708390&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/02ff67f2d84e9abc8553894b441d1b2cb1270a996cf8ebbed8e42f6f1e19c087.png" src="_images/02ff67f2d84e9abc8553894b441d1b2cb1270a996cf8ebbed8e42f6f1e19c087.png" />
+<img alt="_images/f29fc18210b989c6bc77966cb864bf6cb314d11ec0e672ee193452a96ebfb729.png" src="_images/f29fc18210b989c6bc77966cb864bf6cb314d11ec0e672ee193452a96ebfb729.png" />
 </div>
 </div>
 </section>
@@ -845,10 +803,1124 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsRegressor(weights=&#39;distance&#39;)
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><style>.sk-global {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+}
+
+.sk-global.light {
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: black;
+  --sklearn-color-background: white;
+  --sklearn-color-border-box: black;
+  --sklearn-color-icon: #696969;
+}
+
+.sk-global.dark {
+  --sklearn-color-text-on-default-background: white;
+  --sklearn-color-background: #111;
+  --sklearn-color-border-box: white;
+  --sklearn-color-icon: #878787;
+}
+
+.sk-global {
+  color: var(--sklearn-color-text);
+}
+
+.sk-global pre {
+  padding: 0;
+}
+
+.sk-global input.sk-hidden--visually {
+  border: 0;
+  clip-path: inset(100%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sk-global div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+.sk-global div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+.sk-global div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+.sk-global div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+.sk-global div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+.sk-global div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.sk-global div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+.sk-global div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+.sk-global div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+.sk-global div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+.sk-global div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+.sk-global label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.sk-global label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+.sk-global label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+.sk-global label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+.sk-global div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.sk-global input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.sk-global input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+.sk-global div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+.sk-global div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+.sk-global div.sk-label label.sk-toggleable__label,
+.sk-global div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+.sk-global div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+.sk-global div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+.sk-global div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+.sk-global div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+.sk-global div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+.sk-global div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-3) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3) 1pt solid;
+  color: var(--sklearn-color-fitted-level-3);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-0);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-fitted-level-0);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+.sk-global a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+.sk-global a.estimator_doc_link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+.sk-global a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+.sk-global a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-top-container.sk-global {
+  /* pydata-sphinx-theme hides overflow, so scrolling is disabled.
+   We need to set it to !important and add tabindex="0" in the HTML
+   to allow keyboard-only users to navigate the display. */
+  overflow-x: scroll !important;
+  max-width: 100%;
+}
+
+.estimator-table {
+    font-family: monospace;
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.estimator-table summary::marker {
+    font-size: 0.7rem;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover td {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table :is(td, th) {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+/*
+    `table td`is set in notebook with right text-align.
+    We need to overwrite it.
+*/
+.estimator-table table td.param {
+    text-align: left;
+    position: relative;
+    padding: 0;
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left !important;
+}
+
+.user-set td.value {
+    color:rgb(255, 94, 0);
+    background-color: transparent;
+}
+
+.default td, .estimator-table th {
+    color: black;
+    text-align: left !important;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+td.fitted-att-type {
+    white-space: preserve nowrap;
+}
+
+/*
+    Styles for parameter documentation links
+    We need styling for visited so jupyter doesn't overwrite it
+*/
+a.param-doc-link,
+a.param-doc-link:link,
+a.param-doc-link:visited {
+    text-decoration: underline dashed;
+    text-underline-offset: .3em;
+    color: inherit;
+    display: block;
+    padding: .5em;
+}
+
+@supports(anchor-name: --doc-link) {
+    a.param-doc-link,
+    a.param-doc-link:link,
+    a.param-doc-link:visited {
+    anchor-name: --doc-link;
+    }
+}
+
+/* "hack" to make the entire area of the cell containing the link clickable */
+a.param-doc-link::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+}
+
+.param-doc-description {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    padding: .5ex;
+    margin-left: 1.5em;
+    color: var(--sklearn-color-text);
+    box-shadow: .3em .3em .4em #999;
+    width: max-content;
+    text-align: left;
+    max-height: 10em;
+    overflow-y: auto;
+
+    /* unfitted */
+    background: var(--sklearn-color-unfitted-level-0);
+    border: thin solid var(--sklearn-color-unfitted-level-3);
+}
+
+@supports(position-area: center right) {
+    .param-doc-description {
+    position-area: center right;
+    position: fixed;
+    margin-left: 0;
+    }
+}
+
+/* Fitted state for parameter tooltips */
+.fitted .param-doc-description {
+    /* fitted */
+    background: var(--sklearn-color-fitted-level-0);
+    border: thin solid var(--sklearn-color-fitted-level-3);
+}
+
+.param-doc-link:hover .param-doc-description {
+    display: block;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+
+.features {
+  font-family: monospace;
+  cursor: pointer;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: .20em;
+  margin-bottom: 0.5em;
+  font-size: inherit; /* Needed for jupyter */
+}
+
+.features.fitted {
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.features summary {
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: .25em;
+}
+
+.features details[open] > summary {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+  border-radius: .20em 0 0 0;
+}
+
+.features.fitted details[open] > summary {
+  background-color: var(--sklearn-color-fitted-level-2);
+  border-radius: .20em 0 0 0;
+}
+
+.features details > summary .arrow::before {
+  content: "▸";
+  color: grey;
+}
+
+.features details[open] > summary .arrow::before {
+  content: "▾";
+}
+
+.features details:hover > summary {
+  margin: 0;
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.features.fitted details:hover > summary {
+  margin: 0;
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+.features .features-container {
+  max-width: 15em;
+  max-height: 10em;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: .25em 0.1rem;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 0 0 .5em .5em;
+}
+
+.features.fitted .features-container {
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.features .image-container {
+  block-size: 1em;
+  inline-size: 1em;
+  padding: 0;
+  margin: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.features .copy-paste-icon {
+  background-size: 1em 1em;
+  width: 1em;
+  height: 1em;
+  filter: grayscale(100%) opacity(60%);
+}
+
+.features .features-container table {
+  width: 100%;
+  margin: 0.01em;
+}
+
+.features .features-container table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.features .features-container table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.features .features-container table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.features .features-container table {
+  table-layout: inherit;
+}
+
+.features .features-container table td {
+  text-align: left;
+  padding: 0 0.5em;
+  border: 1px solid rgba(106, 105, 104, 0.232);
+  white-space: nowrap;
+  color: var(--sklearn-color-text);
+}
+
+.total_features {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+</style><body><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>KNeighborsRegressor(weights=&#x27;distance&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KNeighborsRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html">?<span>Documentation for KNeighborsRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('weights',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-weights;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=weights,-%7B%27uniform%27%2C%20%27distance%27%7D%2C%20callable%20or%20None%2C%20default%3D%27uniform%27">
+            weights
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-weights;">
+            weights: {&#x27;uniform&#x27;, &#x27;distance&#x27;}, callable or None, default=&#x27;uniform&#x27;<br><br>Weight function used in prediction.  Possible values:<br><br>- &#x27;uniform&#x27; : uniform weights.  All points in each neighborhood<br>  are weighted equally.<br>- &#x27;distance&#x27; : weight points by the inverse of their distance.<br>  in this case, closer neighbors of a query point will have a<br>  greater influence than neighbors which are further away.<br>- [callable] : a user-defined function which accepts an<br>  array of distances, and returns an array of the same shape<br>  containing the weights.<br><br>Uniform weights are used by default.<br><br>See the following example for a demonstration of the impact of<br>different weighting schemes on predictions:<br>:ref:`sphx_glr_auto_examples_neighbors_plot_regression.py`.</span>
+        </a>
+    </td>
+            <td class="value">&#x27;distance&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_neighbors',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-n_neighbors;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=n_neighbors,-int%2C%20default%3D5">
+            n_neighbors
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-n_neighbors;">
+            n_neighbors: int, default=5<br><br>Number of neighbors to use by default for :meth:`kneighbors` queries.</span>
+        </a>
+    </td>
+            <td class="value">5</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('algorithm',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-algorithm;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=algorithm,-%7B%27auto%27%2C%20%27ball_tree%27%2C%20%27kd_tree%27%2C%20%27brute%27%7D%2C%20default%3D%27auto%27">
+            algorithm
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-algorithm;">
+            algorithm: {&#x27;auto&#x27;, &#x27;ball_tree&#x27;, &#x27;kd_tree&#x27;, &#x27;brute&#x27;}, default=&#x27;auto&#x27;<br><br>Algorithm used to compute the nearest neighbors:<br><br>- &#x27;ball_tree&#x27; will use :class:`BallTree`<br>- &#x27;kd_tree&#x27; will use :class:`KDTree`<br>- &#x27;brute&#x27; will use a brute-force search.<br>- &#x27;auto&#x27; will attempt to decide the most appropriate algorithm<br>  based on the values passed to :meth:`fit` method.<br><br>Note: fitting on sparse input will override the setting of<br>this parameter, using brute force.</span>
+        </a>
+    </td>
+            <td class="value">&#x27;auto&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('leaf_size',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-leaf_size;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=leaf_size,-int%2C%20default%3D30">
+            leaf_size
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-leaf_size;">
+            leaf_size: int, default=30<br><br>Leaf size passed to BallTree or KDTree.  This can affect the<br>speed of the construction and query, as well as the memory<br>required to store the tree.  The optimal value depends on the<br>nature of the problem.</span>
+        </a>
+    </td>
+            <td class="value">30</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('p',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-p;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=p,-float%2C%20default%3D2">
+            p
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-p;">
+            p: float, default=2<br><br>Power parameter for the Minkowski metric. When p = 1, this is<br>equivalent to using manhattan_distance (l1), and euclidean_distance<br>(l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.</span>
+        </a>
+    </td>
+            <td class="value">2</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('metric',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-metric;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=metric,-str%2C%20DistanceMetric%20object%20or%20callable%2C%20default%3D%27minkowski%27">
+            metric
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-metric;">
+            metric: str, DistanceMetric object or callable, default=&#x27;minkowski&#x27;<br><br>Metric to use for distance computation. Default is &quot;minkowski&quot;, which<br>results in the standard Euclidean distance when p = 2. See the<br>documentation of `scipy.spatial.distance<br>&lt;https://docs.scipy.org/doc/scipy/reference/spatial.distance.html&gt;`_ and<br>the metrics listed in<br>:class:`~sklearn.metrics.pairwise.distance_metrics` for valid metric<br>values.<br><br>If metric is &quot;precomputed&quot;, X is assumed to be a distance matrix and<br>must be square during fit. X may be a :term:`sparse graph`, in which<br>case only &quot;nonzero&quot; elements may be considered neighbors.<br><br>If metric is a callable function, it takes two arrays representing 1D<br>vectors as inputs and must return one value indicating the distance<br>between those vectors. This works for Scipy&#x27;s metrics, but is less<br>efficient than passing the metric name as a string.<br><br>If metric is a DistanceMetric object, it will be passed directly to<br>the underlying computation routines.</span>
+        </a>
+    </td>
+            <td class="value">&#x27;minkowski&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('metric_params',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-metric_params;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=metric_params,-dict%2C%20default%3DNone">
+            metric_params
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-metric_params;">
+            metric_params: dict, default=None<br><br>Additional keyword arguments for the metric function.</span>
+        </a>
+    </td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_jobs',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-n_jobs;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=n_jobs,-int%2C%20default%3DNone">
+            n_jobs
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-n_jobs;">
+            n_jobs: int, default=None<br><br>The number of parallel jobs to run for neighbors search.<br>``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.<br>``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`<br>for more details.<br>Doesn&#x27;t affect :meth:`fit` method.</span>
+        </a>
+    </td>
+            <td class="value">None</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    
+        <div class="estimator-table">
+            <details>
+                <summary>Fitted attributes</summary>
+                <table class="parameters-table">
+                    <tbody>
+                        <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        </tr>
+                        
+       <tr class="default">
+           <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-effective_metric_;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=effective_metric_,-str%20or%20callable">
+            effective_metric_
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-effective_metric_;">
+            effective_metric_: str or callable<br><br>The distance metric to use. It will be same as the `metric` parameter<br>or a synonym of it, e.g. &#x27;euclidean&#x27; if the `metric` parameter set to<br>&#x27;minkowski&#x27; and `p` parameter set to 2.</span>
+        </a>
+    </td>
+           <td class="fitted-att-type">str</td>
+           <td>&#x27;eu...an&#x27;</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-effective_metric_params_;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=effective_metric_params_,-dict">
+            effective_metric_params_
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-effective_metric_params_;">
+            effective_metric_params_: dict<br><br>Additional keyword arguments for the metric function. For most metrics<br>will be same with `metric_params` parameter, but may also contain the<br>`p` parameter value if the `effective_metric_` attribute is set to<br>&#x27;minkowski&#x27;.</span>
+        </a>
+    </td>
+           <td class="fitted-att-type">dict</td>
+           <td>{}</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-n_features_in_;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=n_features_in_,-int">
+            n_features_in_
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-n_features_in_;">
+            n_features_in_: int<br><br>Number of features seen during :term:`fit`.<br><br>.. versionadded:: 0.24</span>
+        </a>
+    </td>
+           <td class="fitted-att-type">int</td>
+           <td>2</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param">
+        <a class="param-doc-link"
+            style="anchor-name: --doc-link-n_samples_fit_;"
+            rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.neighbors.KNeighborsRegressor.html#:~:text=n_samples_fit_,-int">
+            n_samples_fit_
+            <span class="param-doc-description"
+            style="position-anchor: --doc-link-n_samples_fit_;">
+            n_samples_fit_: int<br><br>Number of samples in the fitted data.</span>
+        </a>
+    </td>
+           <td class="fitted-att-type">int</td>
+           <td>445</td>
+
+
+       </tr>
+    
+                    </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>/*  Authors: The scikit-learn developers
+ SPDX-License-Identifier: BSD-3-Clause
+*/
+
+function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.copy-paste-icon').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+
+    const parent = element.parentElement;
+    if (!parent || !parent.nextElementSibling) {
+        console.warn('Expected copy-paste icon is missing from the DOM structure');
+        return;
+    }
+
+    const paramName = element.parentElement.nextElementSibling
+        .textContent.trim().split(' ')[0];
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+
+/**
+ * Copy the list of feature names formatted as a Python list.
+ *
+ * @param {HTMLElement} element - The copy button inside a `.features` block; its siblings
+ *   contain a `details` element and a table containing feature named.
+ * @returns {boolean} Always returns `false` so callers can prevent the default click behavior.
+ */
+function copyFeatureNamesToClipboard(element) {
+    var detailsElem = element.closest('.features').querySelector('details');
+    var wasOpen = detailsElem.open;
+    detailsElem.open = true;
+    var content = element.closest('.features').querySelector('tbody')
+                  .innerText.trim();
+    if (!wasOpen) detailsElem.open = false;
+    const rows = content.split('\n').map(row => `    "${row}"`);
+    const formattedText = `[\n${rows.join(',\n')},\n]`;
+    const originalHTML = element.innerHTML.replace('âœ”', '');
+    const originalStyle = element.style;
+    const copyMark = document.createElement('span');
+    copyMark.innerHTML = 'âœ”';
+    copyMark.style.color = 'blue';
+    copyMark.style.fontSize = '1em';
+
+    navigator.clipboard.writeText(formattedText)
+        .then(() => {
+            element.style.display = 'none';
+            element.parentElement.appendChild(copyMark);
+
+            setTimeout(() => {
+                copyMark.remove();
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 1000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'orange';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 1000);
+        });
+    return false;
+}
+/**
+ * Adapted from Skrub
+ * https://github.com/skrub-data/skrub/blob/403466d1d5d4dc76a7ef569b3f8228db59a31dc3/skrub/_reporting/_data/templates/report.js#L789
+ * @returns "light" or "dark"
+ */
+function detectTheme(element) {
+    const body = document.querySelector('body');
+
+    // Check VSCode theme
+    const themeKindAttr = body.getAttribute('data-vscode-theme-kind');
+    const themeNameAttr = body.getAttribute('data-vscode-theme-name');
+
+    if (themeKindAttr && themeNameAttr) {
+        const themeKind = themeKindAttr.toLowerCase();
+        const themeName = themeNameAttr.toLowerCase();
+
+        if (themeKind.includes("dark") || themeName.includes("dark")) {
+            return "dark";
+        }
+        if (themeKind.includes("light") || themeName.includes("light")) {
+            return "light";
+        }
+    }
+
+    // Check Jupyter theme
+    if (body.getAttribute('data-jp-theme-light') === 'false') {
+        return 'dark';
+    } else if (body.getAttribute('data-jp-theme-light') === 'true') {
+        return 'light';
+    }
+
+    // Guess based on a parent element's color
+    const color = window.getComputedStyle(element.parentNode, null).getPropertyValue('color');
+    const match = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$/i);
+    if (match) {
+        const [r, g, b] = [
+            parseFloat(match[1]),
+            parseFloat(match[2]),
+            parseFloat(match[3])
+        ];
+
+        // https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+        const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+
+        if (luma > 180) {
+            // If the text is very bright we have a dark theme
+            return 'dark';
+        }
+        if (luma < 75) {
+            // If the text is very dark we have a light theme
+            return 'light';
+        }
+        // Otherwise fall back to the next heuristic.
+    }
+
+    // Fallback to system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+
+function forceTheme(elementId) {
+    const estimatorElement = document.querySelector(`#${elementId}`);
+    if (estimatorElement === null) {
+        console.error(`Element with id ${elementId} not found.`);
+    } else {
+        const theme = detectTheme(estimatorElement);
+        estimatorElement.classList.add(theme);
+    }
+}
+
+forceTheme('sk-container-id-1');</script></body></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -865,10 +1937,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/6dc72ea043e8ef828c6aa2d9667fabeac7574b273f510324750166369ed052e3.png" src="_images/6dc72ea043e8ef828c6aa2d9667fabeac7574b273f510324750166369ed052e3.png" />
+<img alt="_images/34659bf64c7cee42bc190dc97434a8a2d099f2b7f8eb6ab131e2d81df434b391.png" src="_images/34659bf64c7cee42bc190dc97434a8a2d099f2b7f8eb6ab131e2d81df434b391.png" />
 </div>
 </div>
 <p>Para implementar en esta librería la función <em>weights</em> con IDW utilizando un valor de <span class="math notranslate nohighlight">\(n\)</span> diferente, se debe crear una función de la siguiente manera la interpolación IDW con <span class="math notranslate nohighlight">\(𝑘=5\)</span> vecinos y exponente <span class="math notranslate nohighlight">\(𝑝=2\)</span>:</p>
@@ -909,10 +1981,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1d70bdfbe80&gt;]
-</pre></div>
-</div>
-<img alt="_images/f76c2aa7d874f3b90936b16e10efb24ead962dc17ac4acdb0eb0268a3b101ebd.png" src="_images/f76c2aa7d874f3b90936b16e10efb24ead962dc17ac4acdb0eb0268a3b101ebd.png" />
+<img alt="_images/41b7d55f4080c50fd50a963aa88e77a517fe7f432a4599a14ceee75212638852.png" src="_images/41b7d55f4080c50fd50a963aa88e77a517fe7f432a4599a14ceee75212638852.png" />
 </div>
 </div>
 </section>
@@ -934,7 +2003,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3cea426aeffcd607ef7b6c07018cd9a0e06b0b99946016a1a377341842785e6a.png" src="_images/3cea426aeffcd607ef7b6c07018cd9a0e06b0b99946016a1a377341842785e6a.png" />
+<img alt="_images/d165dbfcd4f19c9362b65aceb780d3f603cdbbbb318411e9cc80bdbc4b85d9b9.png" src="_images/d165dbfcd4f19c9362b65aceb780d3f603cdbbbb318411e9cc80bdbc4b85d9b9.png" />
 </div>
 </div>
 </section>
@@ -950,7 +2019,7 @@ document.write(`
 <li><p>Agregar la superficie interpolada por kriging a la superficie interpolada por tendencia para producir el resultado final.</p></li>
 </ul>
 <p>Nos interesa cómo varían estos valores de atributo a medida que aumenta la distancia entre pares de puntos de ubicación. Podemos calcular la diferencia, <span class="math notranslate nohighlight">\(γ\)</span>, en los valores al cuadrar sus diferencias y luego dividir por 2.</p>
-<center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f13-two-sites-1.png" width="1000"></center>
+<center><img src="https://mgimond.github.io/Spatial/16-Spatial-Interpolation_files/figure-html/f13-two-sites-1.png" width="1000"></center>
 <p>El variograma relaciona las distancias de separación por pares de las <code class="docutils literal notranslate"><span class="pre">coordenadas</span></code> y las relaciona con la <em>semivarianza</em> de los pares de <code class="docutils literal notranslate"><span class="pre">valores</span></code> correspondientes. El estimador predeterminado utilizado es el estimador de Matheron:</p>
 <div class="math notranslate nohighlight">
 \[ \gamma (h) = \frac{1}{2N(h)} * \sum_{i=1}^{N(h)}(Z(x_i) - Z(x_{i + h}))^2 \]</div>
@@ -959,16 +2028,16 @@ document.write(`
 </div>
 <section id="experimental-variogram">
 <h3>Experimental variogram<a class="headerlink" href="#experimental-variogram" title="Link to this heading">#</a></h3>
-<center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-variogram-1.png" width="800"></center>
-<center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-sample-variogram-1.png" width="800"></center>
+<center><img src="https://mgimond.github.io/Spatial/16-Spatial-Interpolation_files/figure-html/f14-variogram-1.png" width="800"></center>
+<center><img src="https://mgimond.github.io/Spatial/16-Spatial-Interpolation_files/figure-html/f14-sample-variogram-1.png" width="800"></center>
 </section>
 <section id="modelos-de-variograma">
 <h3>Modelos de Variograma<a class="headerlink" href="#modelos-de-variograma" title="Link to this heading">#</a></h3>
-<center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-variogram-models-1.png" width="800"></center>
+<center><img src="https://mgimond.github.io/Spatial/16-Spatial-Interpolation_files/figure-html/f14-variogram-models-1.png" width="800"></center>
 </section>
 <section id="parametros">
 <h3>Parámetros<a class="headerlink" href="#parametros" title="Link to this heading">#</a></h3>
-<center><img src="https://mgimond.github.io/Spatial/14-Spatial-Interpolation_files/figure-html/f14-model-explained-1.png" width="1000"></center></section>
+<center><img src="https://mgimond.github.io/Spatial/16-Spatial-Interpolation_files/figure-html/f14-model-explained-1.png" width="1000"></center></section>
 <section id="scikit-gstat">
 <h3>Scikit-Gstat<a class="headerlink" href="#scikit-gstat" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://scikit-gstat.readthedocs.io/en/latest/userguide/introduction.html">Scikit-gstat</a> es un módulo de análisis de geoestadística con un estilo similar a scipy. Incluye dos clases base: Variogram y OrdinaryKriging. Adicionalmente, se encuentran disponibles diversas clases de variogramas que heredan de Variogram para resolver tareas relacionadas con la dirección o espacio-tiempo. El módulo hace uso de una rica selección de estimadores de semivarianza y funciones de modelos de variogramas, mientras que sigue siendo extensible.</p>
@@ -979,123 +2048,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting scikit-gstat
-  Downloading scikit_gstat-1.0.16-py3-none-any.whl (708 kB)
-                                              0.0/708.3 kB ? eta -:--:--
-                                              10.2/708.3 kB ? eta -:--:--
-                                              10.2/708.3 kB ? eta -:--:--
-     -                                     30.7/708.3 kB 217.9 kB/s eta 0:00:04
-     -                                     30.7/708.3 kB 217.9 kB/s eta 0:00:04
-     -                                     30.7/708.3 kB 217.9 kB/s eta 0:00:04
-     ---                                   61.4/708.3 kB 217.9 kB/s eta 0:00:03
-     ---                                   71.7/708.3 kB 218.6 kB/s eta 0:00:03
-     ----                                  92.2/708.3 kB 275.8 kB/s eta 0:00:03
-     ------                               122.9/708.3 kB 300.4 kB/s eta 0:00:02
-     -------                              153.6/708.3 kB 339.7 kB/s eta 0:00:02
-     ---------                            194.6/708.3 kB 393.0 kB/s eta 0:00:02
-     -----------                          225.3/708.3 kB 416.7 kB/s eta 0:00:02
-     -----------                          225.3/708.3 kB 416.7 kB/s eta 0:00:02
-     -----------                          235.5/708.3 kB 400.1 kB/s eta 0:00:02
-     -------------                        256.0/708.3 kB 393.2 kB/s eta 0:00:02
-     --------------                       276.5/708.3 kB 405.9 kB/s eta 0:00:02
-     --------------                       286.7/708.3 kB 401.9 kB/s eta 0:00:02
-     --------------                       286.7/708.3 kB 401.9 kB/s eta 0:00:02
-     ----------------                     317.4/708.3 kB 385.4 kB/s eta 0:00:02
-     ----------------                     317.4/708.3 kB 385.4 kB/s eta 0:00:02
-     -----------------                    337.9/708.3 kB 367.8 kB/s eta 0:00:02
-     -----------------                    337.9/708.3 kB 367.8 kB/s eta 0:00:02
-     -----------------                    337.9/708.3 kB 367.8 kB/s eta 0:00:02
-     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
-     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
-     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
-     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
-     ------------------                   358.4/708.3 kB 332.5 kB/s eta 0:00:02
-     ------------------                   368.6/708.3 kB 290.2 kB/s eta 0:00:02
-     ------------------                   368.6/708.3 kB 290.2 kB/s eta 0:00:02
-     ------------------                   368.6/708.3 kB 290.2 kB/s eta 0:00:02
-     -------------------                  389.1/708.3 kB 275.5 kB/s eta 0:00:02
-     -------------------                  389.1/708.3 kB 275.5 kB/s eta 0:00:02
-     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
-     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
-     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
-     --------------------                 399.4/708.3 kB 262.0 kB/s eta 0:00:02
-     --------------------                 409.6/708.3 kB 241.2 kB/s eta 0:00:02
-     --------------------                 409.6/708.3 kB 241.2 kB/s eta 0:00:02
-     --------------------                 409.6/708.3 kB 241.2 kB/s eta 0:00:02
-     ---------------------                430.1/708.3 kB 231.6 kB/s eta 0:00:02
-     ---------------------                430.1/708.3 kB 231.6 kB/s eta 0:00:02
-     ---------------------                430.1/708.3 kB 231.6 kB/s eta 0:00:02
-     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
-     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
-     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
-     ----------------------               450.6/708.3 kB 227.2 kB/s eta 0:00:02
-     -----------------------              460.8/708.3 kB 215.2 kB/s eta 0:00:02
-     -----------------------              460.8/708.3 kB 215.2 kB/s eta 0:00:02
-     -----------------------              460.8/708.3 kB 215.2 kB/s eta 0:00:02
-     ------------------------             481.3/708.3 kB 212.3 kB/s eta 0:00:02
-     ------------------------             481.3/708.3 kB 212.3 kB/s eta 0:00:02
-     ------------------------             491.5/708.3 kB 205.3 kB/s eta 0:00:02
-     ------------------------             491.5/708.3 kB 205.3 kB/s eta 0:00:02
-     ------------------------             491.5/708.3 kB 205.3 kB/s eta 0:00:02
-     --------------------------           512.0/708.3 kB 203.2 kB/s eta 0:00:01
-     --------------------------           512.0/708.3 kB 203.2 kB/s eta 0:00:01
-     ---------------------------          532.5/708.3 kB 203.8 kB/s eta 0:00:01
-     ---------------------------          532.5/708.3 kB 203.8 kB/s eta 0:00:01
-     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
-     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
-     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
-     ---------------------------          542.7/708.3 kB 200.5 kB/s eta 0:00:01
-     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
-     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
-     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
-     ----------------------------         563.2/708.3 kB 194.4 kB/s eta 0:00:01
-     -----------------------------        573.4/708.3 kB 185.8 kB/s eta 0:00:01
-     -----------------------------        573.4/708.3 kB 185.8 kB/s eta 0:00:01
-     -----------------------------        573.4/708.3 kB 185.8 kB/s eta 0:00:01
-     ------------------------------       593.9/708.3 kB 183.1 kB/s eta 0:00:01
-     ------------------------------       593.9/708.3 kB 183.1 kB/s eta 0:00:01
-     ------------------------------       593.9/708.3 kB 183.1 kB/s eta 0:00:01
-     -------------------------------      614.4/708.3 kB 184.1 kB/s eta 0:00:01
-     -------------------------------      624.6/708.3 kB 183.7 kB/s eta 0:00:01
-     -------------------------------      624.6/708.3 kB 183.7 kB/s eta 0:00:01
-     --------------------------------     645.1/708.3 kB 184.7 kB/s eta 0:00:01
-     --------------------------------     645.1/708.3 kB 184.7 kB/s eta 0:00:01
-     --------------------------------     645.1/708.3 kB 184.7 kB/s eta 0:00:01
-     ---------------------------------    655.4/708.3 kB 181.9 kB/s eta 0:00:01
-     ---------------------------------    655.4/708.3 kB 181.9 kB/s eta 0:00:01
-     ---------------------------------    655.4/708.3 kB 181.9 kB/s eta 0:00:01
-     ----------------------------------   675.8/708.3 kB 181.3 kB/s eta 0:00:01
-     ----------------------------------   675.8/708.3 kB 181.3 kB/s eta 0:00:01
-     ----------------------------------   675.8/708.3 kB 181.3 kB/s eta 0:00:01
-     -----------------------------------  696.3/708.3 kB 177.7 kB/s eta 0:00:01
-     -----------------------------------  696.3/708.3 kB 177.7 kB/s eta 0:00:01
-     -----------------------------------  696.3/708.3 kB 177.7 kB/s eta 0:00:01
-     ------------------------------------ 708.3/708.3 kB 175.9 kB/s eta 0:00:00
-Requirement already satisfied: scipy in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (1.11.3)
-Requirement already satisfied: numpy in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (1.25.1)
-Requirement already satisfied: pandas in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (2.0.3)
-Requirement already satisfied: matplotlib in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (3.7.2)
-Requirement already satisfied: numba in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (0.58.1)
-Requirement already satisfied: scikit-learn in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (1.3.1)
-Requirement already satisfied: imageio in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (2.33.0)
-Requirement already satisfied: tqdm in c:\users\edier\miniconda3\lib\site-packages (from scikit-gstat) (4.65.0)
-Requirement already satisfied: pillow&gt;=8.3.2 in c:\users\edier\miniconda3\lib\site-packages (from imageio-&gt;scikit-gstat) (10.0.0)
-Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\edier\miniconda3\lib\site-packages (from matplotlib-&gt;scikit-gstat) (1.1.0)
-Requirement already satisfied: cycler&gt;=0.10 in c:\users\edier\miniconda3\lib\site-packages (from matplotlib-&gt;scikit-gstat) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\edier\miniconda3\lib\site-packages (from matplotlib-&gt;scikit-gstat) (4.41.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\edier\miniconda3\lib\site-packages (from matplotlib-&gt;scikit-gstat) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in c:\users\edier\miniconda3\lib\site-packages (from matplotlib-&gt;scikit-gstat) (23.0)
-Requirement already satisfied: pyparsing&lt;3.1,&gt;=2.3.1 in c:\users\edier\miniconda3\lib\site-packages (from matplotlib-&gt;scikit-gstat) (3.0.9)
-Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\edier\appdata\roaming\python\python311\site-packages (from matplotlib-&gt;scikit-gstat) (2.8.2)
-Requirement already satisfied: llvmlite&lt;0.42,&gt;=0.41.0dev0 in c:\users\edier\miniconda3\lib\site-packages (from numba-&gt;scikit-gstat) (0.41.1)
-Requirement already satisfied: pytz&gt;=2020.1 in c:\users\edier\miniconda3\lib\site-packages (from pandas-&gt;scikit-gstat) (2023.3)
-Requirement already satisfied: tzdata&gt;=2022.1 in c:\users\edier\miniconda3\lib\site-packages (from pandas-&gt;scikit-gstat) (2023.3)
-Requirement already satisfied: joblib&gt;=1.1.1 in c:\users\edier\miniconda3\lib\site-packages (from scikit-learn-&gt;scikit-gstat) (1.3.2)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in c:\users\edier\miniconda3\lib\site-packages (from scikit-learn-&gt;scikit-gstat) (3.2.0)
-Requirement already satisfied: colorama in c:\users\edier\miniconda3\lib\site-packages (from tqdm-&gt;scikit-gstat) (0.4.6)
-Requirement already satisfied: six&gt;=1.5 in c:\users\edier\miniconda3\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;scikit-gstat) (1.16.0)
-Installing collected packages: scikit-gstat
-Successfully installed scikit-gstat-1.0.16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: scikit-gstat in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (1.0.23)
+Requirement already satisfied: setuptools in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (83.0.0)
+Requirement already satisfied: scipy in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (1.16.3)
+Requirement already satisfied: numpy in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (2.4.4)
+Requirement already satisfied: pandas in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (3.0.3)
+Requirement already satisfied: matplotlib in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (3.11.0)
+Requirement already satisfied: numba in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (0.65.1)
+Requirement already satisfied: scikit-learn in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (1.9.0)
+Requirement already satisfied: imageio in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (2.37.3)
+Requirement already satisfied: tqdm in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-gstat) (4.67.3)
+Requirement already satisfied: pillow&gt;=8.3.2 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from imageio-&gt;scikit-gstat) (12.2.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (4.63.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (1.5.0)
+Requirement already satisfied: packaging&gt;=20.0 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (26.2)
+Requirement already satisfied: pyparsing&gt;=3 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (3.3.2)
+Requirement already satisfied: python-dateutil&gt;=2.7 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from matplotlib-&gt;scikit-gstat) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;scikit-gstat) (1.17.0)
+Requirement already satisfied: llvmlite&lt;0.48,&gt;=0.47.0dev0 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from numba-&gt;scikit-gstat) (0.47.0)
+Requirement already satisfied: tzdata in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from pandas-&gt;scikit-gstat) (2026.2)
+Requirement already satisfied: joblib&gt;=1.4.0 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-learn-&gt;scikit-gstat) (1.5.3)
+Requirement already satisfied: narwhals&gt;=2.0.1 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-learn-&gt;scikit-gstat) (2.22.1)
+Requirement already satisfied: threadpoolctl&gt;=3.5.0 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from scikit-learn-&gt;scikit-gstat) (3.6.0)
+Requirement already satisfied: colorama in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from tqdm-&gt;scikit-gstat) (0.4.6)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 26.1.1 -&gt; 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
 </div>
@@ -1165,10 +2147,10 @@ Successfully installed scikit-gstat-1.0.16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1d70c839610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x1ca48b5bb60&gt;
 </pre></div>
 </div>
-<img alt="_images/b148e14aeaa2502366ca4c464a0af9a7caa1181280b1e64cc4c38dd55f778477.png" src="_images/b148e14aeaa2502366ca4c464a0af9a7caa1181280b1e64cc4c38dd55f778477.png" />
+<img alt="_images/ae69af1e1d28c87001634fe239f96b62d2711cc48204311d490acd5316776e03.png" src="_images/ae69af1e1d28c87001634fe239f96b62d2711cc48204311d490acd5316776e03.png" />
 </div>
 </div>
 <p>Ya podemos ver mucho desde aquí:</p>
@@ -1176,7 +2158,7 @@ Successfully installed scikit-gstat-1.0.16
 <li><p>Los valores pequeños parecen concentrarse en la esquina superior izquierda y en la esquina inferior derecha.</p></li>
 <li><p>Los valores más grandes están dispuestos como una banda desde la esquina inferior izquierda hasta la esquina superior derecha.</p></li>
 </ul>
-<p>La clase <a class="reference external" href="https://scikit-gstat.readthedocs.io/en/latest/reference/variogram.html">Variogram</a> requiere al menos dos argumentos: las coordenadas y los valores observados en esas ubicaciones. También se debe establecer explícitamente el parámetro <code class="docutils literal notranslate"><span class="pre">normalize</span></code>, ya que en la versión 0.2.8 su valor predeterminado cambia a <code class="docutils literal notranslate"><span class="pre">False</span></code>. Este atributo afecta únicamente el trazado, no los valores del variograma. Además, el número de bins se establece en 20, ya que tenemos bastantes observaciones y el valor predeterminado de 10 es innecesariamente pequeño. El parámetro <code class="docutils literal notranslate"><span class="pre">maxlag</span></code> establece la distancia máxima para el último bin. Sabemos por el gráfico anterior que valores mayores a 60 unidades no son realmente significativos. Para más detalles, por favor consulta la <a class="reference external" href="https://mmaelicke.github.io/scikit-gstat/userguide/variogram.html#experimental-variograms">Guía del Usuario</a> y el <a class="reference external" href="https://mmaelicke.github.io/scikit-gstat/SciKitGStat.pdf">Libro</a>.</p>
+<p>La clase <a class="reference external" href="https://scikit-gstat.readthedocs.io/en/latest/reference/variogram.html">Variogram</a> requiere al menos dos argumentos: las coordenadas y los valores observados en esas ubicaciones. También se debe establecer explícitamente el parámetro <code class="docutils literal notranslate"><span class="pre">normalize</span></code>, ya que en la versión 0.2.8 su valor predeterminado cambia a <code class="docutils literal notranslate"><span class="pre">False</span></code>. Este atributo afecta únicamente el trazado, no los valores del variograma. Además, el número de bins se establece en 20, ya que tenemos bastantes observaciones y el valor predeterminado de 10 es innecesariamente pequeño. El parámetro <code class="docutils literal notranslate"><span class="pre">maxlag</span></code> establece la distancia máxima para el último bin. Sabemos por el gráfico anterior que valores mayores a 60 unidades no son realmente significativos. Para más detalles, por favor consulta la <a class="reference external" href="https://mmaelicke.github.io/scikit-gstat/userguide/variogram.html#experimental-variograms">Guía del Usuario</a> y el <a class="reference external" href="https://mmaelicke.github.io/scikit-gstat/">Libro</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">Variogram</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="s2">&quot;entropy&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;spherical&quot;</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">n_lags</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1185,11 +2167,7 @@ Successfully installed scikit-gstat-1.0.16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\usuario\miniconda3\envs\geospatial\lib\site-packages\skgstat\plotting\variogram_plot.py:123: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
-  fig.show()
-</pre></div>
-</div>
-<img alt="_images/776cad9fb63bc08d36d0828649d872098b45ce48746f929d97dcfb9a8ba1c0a4.png" src="_images/776cad9fb63bc08d36d0828649d872098b45ce48746f929d97dcfb9a8ba1c0a4.png" />
+<img alt="_images/80347b895bd1aa9e0ff524186200e8429079f1b865897b8327fff52276709967.png" src="_images/80347b895bd1aa9e0ff524186200e8429079f1b865897b8327fff52276709967.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1199,7 +2177,7 @@ Successfully installed scikit-gstat-1.0.16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model&#39;: &#39;spherical&#39;, &#39;estimator&#39;: &#39;matheron&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;normalized_effective_range&#39;: 2281.7783283856843, &#39;normalized_sill&#39;: 1.8366472766475495, &#39;normalized_nugget&#39;: 0, &#39;effective_range&#39;: 38.02963880642807, &#39;sill&#39;: 1.2512444944568355, &#39;nugget&#39;: 0, &#39;params&#39;: {&#39;estimator&#39;: &#39;matheron&#39;, &#39;model&#39;: &#39;spherical&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;bin_func&#39;: &#39;even&#39;, &#39;normalize&#39;: False, &#39;fit_method&#39;: &#39;trf&#39;, &#39;fit_sigma&#39;: None, &#39;use_nugget&#39;: False, &#39;maxlag&#39;: 60, &#39;n_lags&#39;: 20, &#39;verbose&#39;: False}, &#39;kwargs&#39;: {}}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model&#39;: &#39;spherical&#39;, &#39;estimator&#39;: &#39;entropy&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;normalized_effective_range&#39;: np.float64(1834.269221852959), &#39;normalized_sill&#39;: np.float64(1.3943088508365808), &#39;normalized_nugget&#39;: 0, &#39;effective_range&#39;: np.float64(30.571153697549317), &#39;sill&#39;: np.float64(1.0997281085410393), &#39;nugget&#39;: 0, &#39;params&#39;: {&#39;estimator&#39;: &#39;entropy&#39;, &#39;model&#39;: &#39;spherical&#39;, &#39;dist_func&#39;: &#39;euclidean&#39;, &#39;bin_func&#39;: &#39;even&#39;, &#39;normalize&#39;: False, &#39;fit_method&#39;: &#39;trf&#39;, &#39;fit_sigma&#39;: None, &#39;use_nugget&#39;: False, &#39;maxlag&#39;: 60, &#39;n_lags&#39;: 20, &#39;verbose&#39;: False}, &#39;kwargs&#39;: {}}
 </pre></div>
 </div>
 </div>
@@ -1211,11 +2189,7 @@ Successfully installed scikit-gstat-1.0.16
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\usuario\miniconda3\envs\geospatial\lib\site-packages\skgstat\plotting\variogram_dd_plot.py:49: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
-  fig.show()
-</pre></div>
-</div>
-<img alt="_images/67af085e71497acd1d56fcc831ec646dcdf08ed1f0561180370a153a51e8679e.png" src="_images/67af085e71497acd1d56fcc831ec646dcdf08ed1f0561180370a153a51e8679e.png" />
+<img alt="_images/8d12156e2fe8f5badbaf91af232c2f70701e7068c020dd3a7ed6c2bfa6f88b10.png" src="_images/8d12156e2fe8f5badbaf91af232c2f70701e7068c020dd3a7ed6c2bfa6f88b10.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1237,7 +2211,7 @@ Successfully installed scikit-gstat-1.0.16
  &lt;BarContainer object of 20 artists&gt;)
 </pre></div>
 </div>
-<img alt="_images/395303a801da39f4793e41458d92653443766d4afc671e23e433a7b9ea699f23.png" src="_images/395303a801da39f4793e41458d92653443766d4afc671e23e433a7b9ea699f23.png" />
+<img alt="_images/b8277d36fdbb8e5523d543e5ad06365d67658ee8230a52bfb6b57ebc833c7151.png" src="_images/b8277d36fdbb8e5523d543e5ad06365d67658ee8230a52bfb6b57ebc833c7151.png" />
 </div>
 </div>
 <p>El subgráfico superior muestra el histograma del conteo de pares de puntos en cada clase de retraso (lag). Se pueden observar varias cosas aquí:</p>
@@ -1253,10 +2227,10 @@ La forma de la dependencia no se captura del todo bien, pero es suficientemente 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.104387967773688
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1043879677736883
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2553698540989082
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0997281085410393)
 </pre></div>
 </div>
 </div>
@@ -1328,7 +2302,7 @@ La forma de la dependencia no se captura del todo bien, pero es suficientemente 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3a149214ae49762f0eb748b7d9a6f981dfaba922406259387c9890aa40c559f3.png" src="_images/3a149214ae49762f0eb748b7d9a6f981dfaba922406259387c9890aa40c559f3.png" />
+<img alt="_images/9262b4633beb2eaa465c9a40ff78af72c2261cc55d67ceba10e47479eec228fd.png" src="_images/9262b4633beb2eaa465c9a40ff78af72c2261cc55d67ceba10e47479eec228fd.png" />
 </div>
 </div>
 </section>
@@ -1341,25 +2315,14 @@ La forma de la dependencia no se captura del todo bien, pero es suficientemente 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pykrige
-  Downloading PyKrige-1.7.1-cp311-cp311-win_amd64.whl (183 kB)
-                                              0.0/183.9 kB ? eta -:--:--
-     --                                       10.2/183.9 kB ? eta -:--:--
-     --                                       10.2/183.9 kB ? eta -:--:--
-     --                                       10.2/183.9 kB ? eta -:--:--
-     --                                       10.2/183.9 kB ? eta -:--:--
-     --                                       10.2/183.9 kB ? eta -:--:--
-     ------                                 30.7/183.9 kB 93.5 kB/s eta 0:00:02
-     --------                              41.0/183.9 kB 115.9 kB/s eta 0:00:02
-     ------------                          61.4/183.9 kB 164.1 kB/s eta 0:00:01
-     ----------------------               112.6/183.9 kB 273.1 kB/s eta 0:00:01
-     ------------------------             122.9/183.9 kB 266.9 kB/s eta 0:00:01
-     ------------------------------       153.6/183.9 kB 305.7 kB/s eta 0:00:01
-     ------------------------------------ 183.9/183.9 kB 327.1 kB/s eta 0:00:00
-Requirement already satisfied: numpy&lt;2,&gt;=1.14.5 in c:\users\edier\miniconda3\lib\site-packages (from pykrige) (1.25.1)
-Requirement already satisfied: scipy&lt;2,&gt;=1.1.0 in c:\users\edier\miniconda3\lib\site-packages (from pykrige) (1.11.3)
-Installing collected packages: pykrige
-Successfully installed pykrige-1.7.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pykrige in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (1.7.3)
+Requirement already satisfied: numpy&gt;=1.20.0 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from pykrige) (2.4.4)
+Requirement already satisfied: scipy&lt;2,&gt;=1.5.4 in C:\Users\edier\AppData\Roaming\Python\Python314\site-packages (from pykrige) (1.16.3)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 26.1.1 -&gt; 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
 </div>
@@ -1387,7 +2350,7 @@ Successfully installed pykrige-1.7.1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8191a7120b4f968a10caba80b46011bf2a107ec15b51c61e2da9f4c504e99b4e.png" src="_images/8191a7120b4f968a10caba80b46011bf2a107ec15b51c61e2da9f4c504e99b4e.png" />
+<img alt="_images/54f35968bca3245c27a0881095b0f3d491d0872813cead6fa43ee7e0d44c805f.png" src="_images/54f35968bca3245c27a0881095b0f3d491d0872813cead6fa43ee7e0d44c805f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1427,7 +2390,7 @@ Successfully installed pykrige-1.7.1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5ae1cc8320b11f1988e577682302fe9ec973c8dda78ed2e8a1f1150a602352fd.png" src="_images/5ae1cc8320b11f1988e577682302fe9ec973c8dda78ed2e8a1f1150a602352fd.png" />
+<img alt="_images/be978cc905712ca64ed63f47e39693fbfb0c7520ae994efef26bebc07fa2eb5c.png" src="_images/be978cc905712ca64ed63f47e39693fbfb0c7520ae994efef26bebc07fa2eb5c.png" />
 </div>
 </div>
 </section>
@@ -1550,6 +2513,40 @@ Successfully installed pykrige-1.7.1
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observations
+     x    y  elev  temp
+A  0.0  0.0   100  10.0
+B  1.0  0.0   110  12.0
+C  0.0  1.0   105  13.0 
+
+Target point P = (0.5,0.5), elevation = 115 m
+
+Trend model  m(s) = β0 + β1*elev
+β0 = -9.3333, β1 = 0.2000
+
+Trend at sample points  m_i: [10.6667 12.6667 11.6667]
+Residuals e_i = z_i - m_i: [-0.6667 -0.6667  1.3333] 
+
+Trend at target m0 = 13.6667
+
+Empirical semi‑variogram (residuals):
+pair     dist  gamma
+ A-B 1.000000    0.0
+ A-C 1.000000    2.0
+ B-C 1.414214    2.0 
+
+Linear model  γ(h) = a·h  with  a = 1.1381
+
+Kriging system solution
+λ (weights): [-0.7929  1.2071  0.5858]
+μ (multipliers): [-21.2357   0.2   ] 
+
+Predicted temperature at P: Ẑ = 14.17 °C
+Kriging variance at P    : σ²_k = 2.569
+</pre></div>
+</div>
+</div>
 </div>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1630,7 +2627,7 @@ Successfully installed pykrige-1.7.1
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.gslib.com/">GSLIB — Geostatistical Library</a></p></li>
 <li><p><a class="reference external" href="https://www.ai-geostats.org/">Variogram Tutorial — AI Geostats</a></p></li>
-<li><p><a class="reference external" href="https://gstatsim.readthedocs.io/">GStatSim — Geostatistical Simulation in Python</a></p></li>
+<li><p><a class="reference external" href="https://gatorglaciology.github.io/gstatsimbook/intro.html">GStatSim — Geostatistical Simulation in Python</a></p></li>
 </ul>
 </section>
 </section>
@@ -1691,15 +2688,17 @@ Successfully installed pykrige-1.7.1
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-deterministicos">Métodos determinísticos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-proximidad">Interpolación por proximidad</a></li>
@@ -1772,8 +2771,8 @@ By Edier V. Aristizábal G.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>
